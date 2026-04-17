@@ -7,13 +7,13 @@ import { Reveal } from "./Reveal";
 /**
  * Force-directed graph of the portfolio, Obsidian-style.
  *
- * Positioning is handled by a custom force simulation that updates a plain
- * SVG <g> transform each frame. Motion (formerly framer-motion) layers
- * spring-based scale/opacity animations on the individual shapes inside
- * each group — never on the group itself, because motion does not compose
- * with string-valued SVG transform attributes.
+ * Nodes are draggable — pointer-captured, positions bypass the force sim
+ * while held, and physics resumes on release. Hub stays anchored so the
+ * layout keeps an organizing center.
  *
- * Only publicly-shareable relationships are represented. Nothing financial.
+ * Animation uses low-stiffness springs and long ease-out transitions;
+ * nothing snaps. The breathing halo is gentle (scale 1 → 1.9, opacity
+ * 0.35 → 0 over 3.6s). Dim factor is 0.55 rather than hard-fading.
  */
 
 type NodeKind = "hub" | "live" | "dev" | "planned" | "resource";
@@ -29,6 +29,7 @@ type GraphNode = {
   vy: number;
   radius: number;
   pinned?: boolean;
+  dragPinned?: boolean; // set while user is actively dragging
   visibleAt: number;
 };
 
@@ -102,10 +103,10 @@ const links: GraphLink[] = [
 ];
 
 function simulate(nodes: GraphNode[], now: number): number {
-  const DAMPING = 0.88;
+  const DAMPING = 0.9;
   const REPULSION = 1600;
-  const SPRING_K = 0.018;
-  const CENTER_K = 0.0015;
+  const SPRING_K = 0.017;
+  const CENTER_K = 0.0013;
   const linkLengths: Record<string, number> = {
     structural: 180,
     feeds: 145,
@@ -124,11 +125,11 @@ function simulate(nodes: GraphNode[], now: number): number {
       const force = REPULSION / distSq;
       const fx = (dx / dist) * force;
       const fy = (dy / dist) * force;
-      if (!a.pinned) {
+      if (!a.pinned && !a.dragPinned) {
         a.vx -= fx;
         a.vy -= fy;
       }
-      if (!b.pinned) {
+      if (!b.pinned && !b.dragPinned) {
         b.vx += fx;
         b.vy += fy;
       }
@@ -147,24 +148,24 @@ function simulate(nodes: GraphNode[], now: number): number {
     const stretch = dist - ideal;
     const fx = (dx / dist) * stretch * SPRING_K;
     const fy = (dy / dist) * stretch * SPRING_K;
-    if (!a.pinned) {
+    if (!a.pinned && !a.dragPinned) {
       a.vx += fx;
       a.vy += fy;
     }
-    if (!b.pinned) {
+    if (!b.pinned && !b.dragPinned) {
       b.vx -= fx;
       b.vy -= fy;
     }
   }
 
   for (const n of active) {
-    if (n.pinned) continue;
+    if (n.pinned || n.dragPinned) continue;
     n.vx += (CX - n.x) * CENTER_K;
     n.vy += (CY - n.y) * CENTER_K;
   }
 
   for (const n of active) {
-    if (n.pinned) continue;
+    if (n.pinned || n.dragPinned) continue;
     n.vx *= DAMPING;
     n.vy *= DAMPING;
     n.x += n.vx;
@@ -178,7 +179,7 @@ function simulate(nodes: GraphNode[], now: number): number {
 
   let ke = 0;
   for (const n of active) {
-    if (n.pinned) continue;
+    if (n.pinned || n.dragPinned) continue;
     ke += n.vx * n.vx + n.vy * n.vy;
   }
   return ke;
@@ -207,16 +208,20 @@ function haloColor(kind: NodeKind): string {
   return "#1C1C1A";
 }
 
-const gentleSpring = { type: "spring" as const, stiffness: 170, damping: 22, mass: 0.9 };
-const softSpring = { type: "spring" as const, stiffness: 130, damping: 20, mass: 1 };
+// Softer spring presets — low stiffness, high damping, more mass
+const gentleSpring = { type: "spring" as const, stiffness: 90, damping: 26, mass: 1.1 };
+const softSpring = { type: "spring" as const, stiffness: 70, damping: 24, mass: 1.2 };
 
 export function PortfolioGraph() {
   const [, setTick] = useState(0);
   const [hovered, setHovered] = useState<string | null>(null);
+  const [dragging, setDragging] = useState<string | null>(null);
   const [started, setStarted] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const svgRef = useRef<SVGSVGElement | null>(null);
   const nodesRef = useRef<GraphNode[]>(initialNodes.map((n) => ({ ...n })));
   const startTimeRef = useRef<number>(0);
+  const dragOffsetRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
   useEffect(() => {
     const el = containerRef.current;
@@ -245,21 +250,78 @@ export function PortfolioGraph() {
       const ke = simulate(nodesRef.current, now);
       setTick((t) => t + 1);
 
-      if (ke < 0.02 && now > 3000) {
+      if (ke < 0.02 && now > 3000 && !dragging) {
         settledFrames++;
       } else {
         settledFrames = 0;
       }
       if (settledFrames > 60 && !settled) settled = true;
 
-      if (!settled || hovered) {
+      if (!settled || hovered || dragging) {
         raf = requestAnimationFrame(tick);
       }
     };
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [started, hovered]);
+  }, [started, hovered, dragging]);
+
+  // Translate a client (mouse/touch) point to SVG viewBox coordinates.
+  const toSvgPoint = (clientX: number, clientY: number) => {
+    const svg = svgRef.current;
+    if (!svg) return { x: 0, y: 0 };
+    const rect = svg.getBoundingClientRect();
+    const x = ((clientX - rect.left) / rect.width) * WIDTH;
+    const y = ((clientY - rect.top) / rect.height) * HEIGHT;
+    return { x, y };
+  };
+
+  const handlePointerDown = (nodeId: string) =>
+    (e: React.PointerEvent<SVGGElement>) => {
+      const node = nodesRef.current.find((n) => n.id === nodeId);
+      if (!node) return;
+      // Don't drag the pinned hub
+      if (node.pinned) return;
+
+      const p = toSvgPoint(e.clientX, e.clientY);
+      dragOffsetRef.current = { x: p.x - node.x, y: p.y - node.y };
+      node.dragPinned = true;
+      node.vx = 0;
+      node.vy = 0;
+      setDragging(nodeId);
+
+      // capture pointer so we keep getting events even if cursor leaves the element
+      try {
+        (e.currentTarget as Element).setPointerCapture(e.pointerId);
+      } catch {}
+      e.preventDefault();
+    };
+
+  const handlePointerMove = (e: React.PointerEvent<SVGGElement>) => {
+    if (!dragging) return;
+    const node = nodesRef.current.find((n) => n.id === dragging);
+    if (!node) return;
+    const p = toSvgPoint(e.clientX, e.clientY);
+    node.x = p.x - dragOffsetRef.current.x;
+    node.y = p.y - dragOffsetRef.current.y;
+    node.vx = 0;
+    node.vy = 0;
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<SVGGElement>) => {
+    if (!dragging) return;
+    const node = nodesRef.current.find((n) => n.id === dragging);
+    if (node) {
+      node.dragPinned = false;
+      // Small nudge so the sim picks up organically
+      node.vx *= 0.2;
+      node.vy *= 0.2;
+    }
+    setDragging(null);
+    try {
+      (e.currentTarget as Element).releasePointerCapture(e.pointerId);
+    } catch {}
+  };
 
   const connectedIds = new Set<string>();
   if (hovered) {
@@ -304,26 +366,27 @@ export function PortfolioGraph() {
             <p className="text-[16px] md:text-[17px] leading-[1.7] text-ink/75 max-w-[48ch]">
               Each circle is a product or a public asset the studio maintains.
               The edges describe audience overlap, shared methodology, or
-              infrastructure that recurs across categories. The configuration
-              is simple today and will get denser as new properties come
-              online.
+              infrastructure that recurs across categories. Hover a node to
+              trace its relationships — or grab one and rearrange the map
+              yourself.
             </p>
           </Reveal>
         </div>
 
         <div className="relative rounded-md border border-border bg-cream overflow-hidden">
           <svg
+            ref={svgRef}
             viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-            className="w-full h-auto block"
+            className="w-full h-auto block touch-none select-none"
             role="img"
             aria-label="Force-directed graph of The Compound Group portfolio"
           >
             <defs>
               <pattern id="dot-grid" width="32" height="32" patternUnits="userSpaceOnUse">
-                <circle cx="1" cy="1" r="0.8" fill="#1C1C1A" opacity="0.08" />
+                <circle cx="1" cy="1" r="0.8" fill="#1C1C1A" opacity="0.07" />
               </pattern>
               <filter id="node-glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feGaussianBlur stdDeviation="2.5" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
                   <feMergeNode in="SourceGraphic" />
@@ -347,7 +410,7 @@ export function PortfolioGraph() {
               const strokeColor = isActive
                 ? isFeed ? "#8B6F47" : "#3B5D4F"
                 : "#1C1C1A";
-              const opacity = isActive ? 0.8 : isDimmed ? 0.04 : 0.16;
+              const opacity = isActive ? 0.7 : isDimmed ? 0.06 : 0.14;
 
               return (
                 <line
@@ -358,18 +421,19 @@ export function PortfolioGraph() {
                   y2={target.y}
                   stroke={strokeColor}
                   strokeOpacity={opacity}
-                  strokeWidth={isFeed ? 1.4 : 0.9}
+                  strokeWidth={isFeed ? 1.3 : 0.85}
                   strokeDasharray={isFeed ? "0" : "3 2"}
                   strokeLinecap="round"
                   style={{
-                    transition: "stroke-opacity 0.45s cubic-bezier(0.19,1,0.22,1), stroke 0.45s ease-out",
+                    transition:
+                      "stroke-opacity 0.7s cubic-bezier(0.19,1,0.22,1), stroke 0.7s ease-out",
                   }}
                 />
               );
             })}
 
             {/* Flow dots along hovered edges */}
-            {hovered && links
+            {hovered && !dragging && links
               .filter((l) => l.source === hovered || l.target === hovered)
               .map((link, i) => {
                 const source = nodesRef.current.find((n) => n.id === link.source);
@@ -380,19 +444,20 @@ export function PortfolioGraph() {
                 return (
                   <motion.circle
                     key={`flow-${i}-${hovered}`}
-                    r={2.4}
+                    r={2.2}
                     fill={link.kind === "feeds" ? "#8B6F47" : "#3B5D4F"}
+                    opacity={0.85}
                     initial={{ cx: from.x, cy: from.y, opacity: 0 }}
                     animate={{
                       cx: [from.x, to.x],
                       cy: [from.y, to.y],
-                      opacity: [0, 1, 1, 0],
+                      opacity: [0, 0.8, 0.8, 0],
                     }}
                     transition={{
-                      duration: 1.9,
+                      duration: 2.4,
                       ease: "easeInOut",
                       repeat: Infinity,
-                      delay: i * 0.1,
+                      delay: i * 0.12,
                     }}
                   />
                 );
@@ -403,46 +468,56 @@ export function PortfolioGraph() {
               const entered = !started || now >= node.visibleAt;
               if (!entered) return null;
               const isHovered = hovered === node.id;
+              const isDragging = dragging === node.id;
               const isConnected = connectedIds.has(node.id);
               const isDimmed = hovered && !isConnected;
               const showLabel = node.kind !== "resource" || isHovered || !hovered;
               const halo = haloColor(node.kind);
+              const canDrag = !node.pinned;
 
               return (
                 <g
                   key={node.id}
                   className="graph-node"
                   transform={`translate(${node.x} ${node.y})`}
-                  onMouseEnter={() => setHovered(node.id)}
-                  onMouseLeave={() => setHovered(null)}
+                  onPointerDown={canDrag ? handlePointerDown(node.id) : undefined}
+                  onPointerMove={isDragging ? handlePointerMove : undefined}
+                  onPointerUp={isDragging ? handlePointerUp : undefined}
+                  onPointerCancel={isDragging ? handlePointerUp : undefined}
+                  onMouseEnter={() => !dragging && setHovered(node.id)}
+                  onMouseLeave={() => !dragging && setHovered(null)}
                   onFocus={() => setHovered(node.id)}
                   onBlur={() => setHovered(null)}
                   tabIndex={0}
-                  style={{ cursor: "pointer", outline: "none" }}
+                  style={{
+                    cursor: canDrag
+                      ? isDragging
+                        ? "grabbing"
+                        : "grab"
+                      : "default",
+                    outline: "none",
+                  }}
                 >
                   {/* Hit area */}
-                  <circle
-                    r={node.radius + 16}
-                    fill="transparent"
-                  />
+                  <circle r={node.radius + 18} fill="transparent" />
 
-                  {/* Breathing halo (only while hovered) */}
+                  {/* Ambient breathing halo when hovered */}
                   <AnimatePresence>
-                    {isHovered && (
+                    {isHovered && !isDragging && (
                       <motion.circle
                         key="breathe"
                         r={node.radius}
                         fill="none"
                         stroke={halo}
-                        strokeWidth={1.5}
+                        strokeWidth={1.2}
                         initial={{ scale: 1, opacity: 0 }}
                         animate={{
-                          scale: [1, 1.9, 2.5],
-                          opacity: [0.55, 0.22, 0],
+                          scale: [1, 1.45, 1.9],
+                          opacity: [0.32, 0.14, 0],
                         }}
                         exit={{ opacity: 0 }}
                         transition={{
-                          duration: 2.3,
+                          duration: 3.6,
                           ease: "easeOut",
                           repeat: Infinity,
                         }}
@@ -450,58 +525,62 @@ export function PortfolioGraph() {
                     )}
                   </AnimatePresence>
 
-                  {/* Static soft halo (only while hovered) */}
+                  {/* Static soft halo */}
                   <AnimatePresence>
-                    {isHovered && (
+                    {(isHovered || isDragging) && (
                       <motion.circle
                         key="static-halo"
-                        r={node.radius + 6}
+                        r={node.radius + 7}
                         fill="none"
                         stroke={halo}
-                        strokeWidth={1}
-                        initial={{ scale: 0.7, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 0.32 }}
-                        exit={{ scale: 0.7, opacity: 0 }}
+                        strokeWidth={0.9}
+                        initial={{ scale: 0.75, opacity: 0 }}
+                        animate={{
+                          scale: isDragging ? 1.08 : 1,
+                          opacity: isDragging ? 0.35 : 0.22,
+                        }}
+                        exit={{ scale: 0.75, opacity: 0 }}
                         transition={gentleSpring}
                       />
                     )}
                   </AnimatePresence>
 
-                  {/* Main circle — motion on scale only, fill/stroke stable */}
+                  {/* Main node */}
                   <motion.circle
                     r={node.radius}
                     fill={nodeFill(node.kind)}
                     stroke={nodeStroke(node.kind)}
-                    strokeWidth={node.kind === "planned" ? 1.5 : 1}
-                    initial={{ scale: 0.5, opacity: 0 }}
+                    strokeWidth={node.kind === "planned" ? 1.4 : 1}
+                    initial={{ scale: 0.4, opacity: 0 }}
                     animate={{
-                      scale: isHovered ? 1.12 : 1,
-                      opacity: isDimmed ? 0.4 : 1,
+                      scale: isDragging ? 1.12 : isHovered ? 1.06 : 1,
+                      opacity: isDimmed ? 0.55 : 1,
                     }}
                     transition={gentleSpring}
-                    filter={isHovered ? "url(#node-glow)" : undefined}
+                    filter={isHovered || isDragging ? "url(#node-glow)" : undefined}
                     style={{ transformOrigin: "center" }}
                   />
 
                   {/* Label */}
                   {showLabel && (
                     <motion.text
-                      y={node.radius + 20}
+                      y={node.radius + 22}
                       textAnchor="middle"
                       fontFamily="var(--font-display), Georgia, serif"
                       fontSize={node.kind === "hub" ? 18 : node.kind === "resource" ? 12 : 15}
                       fontStyle={node.kind === "resource" ? "italic" : "normal"}
                       fill={node.kind === "resource" ? "#6B6A66" : "#1C1C1A"}
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: isDimmed ? 0.45 : 1 }}
-                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      animate={{ opacity: isDimmed ? 0.5 : 1 }}
+                      transition={{ duration: 0.7, ease: "easeOut" }}
+                      style={{ pointerEvents: "none" }}
                     >
                       {node.label}
                     </motion.text>
                   )}
                   {node.sub && showLabel && node.kind !== "hub" && (
                     <motion.text
-                      y={node.radius + 36}
+                      y={node.radius + 38}
                       textAnchor="middle"
                       fontFamily="var(--font-body), system-ui"
                       fontSize={10}
@@ -509,8 +588,9 @@ export function PortfolioGraph() {
                       fill="#6B6A66"
                       textRendering="geometricPrecision"
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: isDimmed ? 0.45 : 0.9 }}
-                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      animate={{ opacity: isDimmed ? 0.5 : 0.85 }}
+                      transition={{ duration: 0.7, ease: "easeOut" }}
+                      style={{ pointerEvents: "none" }}
                     >
                       {node.sub.toUpperCase()}
                     </motion.text>
@@ -529,7 +609,7 @@ export function PortfolioGraph() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={softSpring}
-                className="absolute top-4 left-4 md:top-6 md:left-6 max-w-[280px] bg-ink text-cream rounded-md px-4 py-3 shadow-xl"
+                className="absolute top-4 left-4 md:top-6 md:left-6 max-w-[280px] bg-ink text-cream rounded-md px-4 py-3 shadow-xl pointer-events-none"
               >
                 <div className="text-[10px] uppercase tracking-[0.24em] text-cream/60 mb-1">
                   {hoveredNode.kind === "hub"
@@ -557,9 +637,10 @@ export function PortfolioGraph() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute top-4 left-4 md:top-6 md:left-6 text-[11px] uppercase tracking-[0.24em] text-muted/80"
+                transition={{ duration: 0.6 }}
+                className="absolute top-4 left-4 md:top-6 md:left-6 text-[11px] uppercase tracking-[0.24em] text-muted/80 pointer-events-none"
               >
-                Hover any node
+                Hover or grab a node
               </motion.div>
             )}
           </AnimatePresence>
