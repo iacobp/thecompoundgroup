@@ -85,7 +85,7 @@ export function Approach() {
               <div className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-sm">
                 <Image
                   src="/images/notebook-detail.jpg"
-                  alt="Handwritten editorial ledger with data in warm natural light"
+                  alt="Crystalline molecular network rendered in warm light"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -96,7 +96,7 @@ export function Approach() {
                 />
               </div>
               <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-muted">
-                Methodology · Annotated
+                Research · Atomical
               </p>
             </div>
           </Reveal>

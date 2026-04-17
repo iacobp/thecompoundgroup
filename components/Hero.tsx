@@ -24,7 +24,7 @@ export function Hero() {
         className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-ink/55 to-transparent z-[1]"
       />
 
-      {/* Warm dark gradient overlay for text legibility (Function-style) */}
+      {/* Warm dark gradient overlay for text legibility */}
       <div
         aria-hidden
         className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/45 to-ink/25 z-[1]"
@@ -34,7 +34,7 @@ export function Hero() {
         className="absolute inset-0 bg-gradient-to-r from-ink/55 via-transparent to-transparent z-[1]"
       />
 
-      {/* Content — reserve clear space for the fixed nav at top */}
+      {/* Content */}
       <div className="relative z-[2] flex-1 flex flex-col mx-auto w-full max-w-[1320px] px-6 md:px-10 pt-[140px] md:pt-[168px] pb-16 md:pb-20">
         {/* Edition marker */}
         <Reveal>
@@ -43,25 +43,23 @@ export function Hero() {
             <span>Volume 01 · Est. 2026</span>
             <span className="hidden md:inline opacity-50">·</span>
             <span className="hidden md:inline opacity-80">
-              A studio for consumer health
+              A research studio for consumer health
             </span>
           </div>
         </Reveal>
 
-        {/* Spacer — pushes the headline to the lower portion of the viewport */}
         <div className="flex-1 min-h-[80px] md:min-h-[160px]" />
 
         {/* Thesis headline */}
         <div className="grid grid-cols-12">
           <h1 className="col-span-12 font-display text-cream tracking-tightest leading-[0.88] text-[56px] sm:text-[84px] md:text-[120px] lg:text-[148px] drop-shadow-[0_2px_40px_rgba(0,0,0,0.35)]">
             <Reveal delay={120}>
-              <span className="block">Consumer health,</span>
+              <span className="block">Built. Acquired.</span>
             </Reveal>
             <Reveal delay={280}>
               <span className="block">
-                built{" "}
                 <em className="italic text-sage-soft relative">
-                  honestly
+                  Researched
                   <span
                     aria-hidden
                     className="absolute -right-3 md:-right-5 top-[0.12em] text-sage-soft/70 font-display text-[0.25em] not-italic"
@@ -82,11 +80,12 @@ export function Hero() {
             className="col-span-12 md:col-span-7 md:col-start-4"
           >
             <p className="text-[17px] md:text-[20px] leading-[1.45] text-cream/90 font-light">
-              A studio building products that tell the truth about{" "}
-              <em className="italic text-cream">price</em>,{" "}
-              <em className="italic text-cream">safety</em>, and{" "}
-              <em className="italic text-cream">outcomes</em> — in categories
-              where nobody else does.
+              A studio that <em className="italic text-cream">builds</em> and{" "}
+              <em className="italic text-cream">acquires</em> honest consumer
+              health brands — <em className="italic text-cream">grounded in research</em>.
+              From GLP-1 to supplements for the mind, pet health to
+              neuroscience, we operate in the categories where no one else
+              tells the truth about price, safety, and outcomes.
             </p>
           </Reveal>
 
@@ -97,8 +96,8 @@ export function Hero() {
             <div className="flex items-start gap-2 text-[12px] leading-[1.5] text-cream/65">
               <span className="font-display italic text-sage-soft">¹</span>
               <span>
-                Honest as in transparent pricing, transparent methodology,
-                and transparent ownership. No pay-for-placement. Ever.
+                Research as in published methodology, original pricing data,
+                and protocols that evolve. Trust compounds across the portfolio.
               </span>
             </div>
           </Reveal>
@@ -119,7 +118,7 @@ export function Hero() {
         </Reveal>
       </div>
 
-      {/* Bottom fade into cream — tall + soft multi-stop so no banding */}
+      {/* Bottom fade into cream */}
       <div
         aria-hidden
         className="absolute inset-x-0 bottom-0 h-56 md:h-72 bg-gradient-to-b from-transparent via-cream/60 to-cream z-[1]"

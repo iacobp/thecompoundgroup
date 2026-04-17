@@ -1,10 +1,18 @@
 import { Reveal } from "./Reveal";
+import { CountUp } from "./CountUp";
 
-const numbers = [
-  { n: "960+", label: "Pages published", note: "Across the portfolio" },
-  { n: "40", label: "Providers ranked", note: "GLP-1 Picks · All-in pricing" },
-  { n: "51", label: "State guides", note: "Medicaid + coverage" },
-  { n: "20", label: "Affiliate partners", note: "Katalys network" },
+type Numeric = {
+  to: number;
+  suffix?: string;
+  label: string;
+  note: string;
+};
+
+const numbers: Numeric[] = [
+  { to: 960, suffix: "+", label: "Pages published", note: "Across the portfolio" },
+  { to: 40, label: "Providers ranked", note: "GLP-1 Picks · All-in pricing" },
+  { to: 51, label: "State guides", note: "Medicaid + coverage" },
+  { to: 20, label: "Affiliate partners", note: "Katalys network" },
 ];
 
 export function Metrics() {
@@ -26,8 +34,8 @@ export function Metrics() {
           {numbers.map((n, i) => (
             <Reveal key={n.label} delay={i * 100}>
               <div className="border-t border-ink/15 pt-6">
-                <div className="font-display text-ink text-[56px] md:text-[88px] leading-[0.9] tracking-tightest mb-4">
-                  {n.n}
+                <div className="font-display text-ink text-[56px] md:text-[88px] leading-[0.9] tracking-tightest mb-4 tabular-nums">
+                  <CountUp to={n.to} suffix={n.suffix} duration={1800} />
                 </div>
                 <div className="text-[13px] md:text-[14px] text-ink font-medium mb-1">
                   {n.label}
