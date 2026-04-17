@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: #F4F1EB;
+  color: #1C1C1A;
+}
+
+::selection {
+  background: #3B5D4F;
+  color: #F4F1EB;
+}
+
+/* Subtle underline animation for inline links */
+.link-line {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  transition: background-size 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.link-line:hover {
+  background-size: 0 1px;
+  background-position: 100% 100%;
+}
+
+/* Portfolio thumbnail glass plate — subtle editorial frame */
+.plate {
+  box-shadow:
+    0 1px 0 0 rgba(28, 28, 26, 0.04),
+    0 12px 32px -12px rgba(28, 28, 26, 0.12),
+    0 32px 60px -24px rgba(28, 28, 26, 0.08);
+}
