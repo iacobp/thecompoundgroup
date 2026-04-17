@@ -2,6 +2,7 @@ import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { Portfolio } from "@/components/Portfolio";
 import { Metrics } from "@/components/Metrics";
+import { PricingAudit } from "@/components/PricingAudit";
 import { ResearchFramework } from "@/components/ResearchFramework";
 import { ThesisBreak } from "@/components/ThesisBreak";
 import { Approach } from "@/components/Approach";
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <Portfolio />
       <Metrics />
+      <PricingAudit />
       <ResearchFramework />
       <ThesisBreak />
       <Approach />

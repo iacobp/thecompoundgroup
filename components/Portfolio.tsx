@@ -22,9 +22,9 @@ const items: PortfolioItem[] = [
   {
     num: "I",
     name: "GLP-1 Picks",
-    tagline: "The honest comparison of GLP-1 telehealth providers.",
+    tagline: "Forty providers. Real prices. No favorites.",
     body:
-      "Forty providers ranked on all-in monthly price, safety signals, and care quality. No pay-for-placement. Methodology published in full. The only index showing real costs.",
+      "We ranked forty telehealth providers on all-in cost, safety, and care. Our methodology is public. Our affiliate disclosures are loud. Our favorites are nonexistent.",
     status: "live",
     mode: "built",
     href: "https://glp1picks.com",
@@ -39,9 +39,9 @@ const items: PortfolioItem[] = [
   {
     num: "II",
     name: "GLP-1 Tracker",
-    tagline: "Choose. Track. Switch. All in one app.",
+    tagline: "Your dose. Your price. Your move.",
     body:
-      "Built on our provider-intelligence database. Dose logging and weight tracking — but the unlock is the switch nudge. When a better price appears, you hear about it first.",
+      "Dose logging, weight tracking, side effects — table stakes. The thing you'll use it for is the switch nudge: when a cheaper, safer provider appears, we tell you before your refill does.",
     status: "in-development",
     mode: "built",
     href: "/tracker",
@@ -59,19 +59,19 @@ const upcoming = [
   {
     num: "03",
     name: "Supplement Index",
-    tag: "For GLP-1 · For the mind",
+    tag: "Shelf & science",
     note:
-      "Honest reviews of protein, fiber, electrolytes — and nootropics that actually have research behind them.",
+      "The supplements that earned their shelf space. Protein and fiber for GLP-1, nootropics that hold up to peer review, electrolytes that aren't lying.",
     when: "2026",
     mode: "built" as Mode,
   },
   {
     num: "04",
     name: "Pet Health",
-    tag: "Continuation of the thesis",
+    tag: "Continuation",
     note:
-      "The compound model, applied to pet obesity and longevity. GLP-1 for dogs, supplements that evolve with the animal.",
-    when: "2026-27",
+      "Dog owners get lied to twice — once at the vet, once online. We bring the same methodology to pet obesity, GLP-1 for dogs, and protocols that improve with the animal.",
+    when: "2026–27",
     mode: "built" as Mode,
   },
   {
@@ -79,16 +79,16 @@ const upcoming = [
     name: "Peptide Index",
     tag: "Post-FDA panel",
     note:
-      "BPC-157, TB-500, and beyond. Launching after the July 2026 FDA reclassification guidance.",
+      "BPC-157. TB-500. The rest of the alphabet. We hold publication until the July 2026 FDA panel settles what's legal — then we publish prices, sources, and studies.",
     when: "Q3 2026",
     mode: "built" as Mode,
   },
   {
     num: "06",
-    name: "Neuroscience protocols",
+    name: "Neuroscience",
     tag: "In research",
     note:
-      "Cognitive supplements, neuroplasticity training, focus tools. Protocols that evolve with the science.",
+      "Cognitive supplements. Neuroplasticity training. Focus protocols. We version them like software — and ship the changelog when the evidence turns.",
     when: "2027",
     mode: "built" as Mode,
   },
@@ -238,12 +238,12 @@ export function Portfolio() {
               </span>
             </div>
             <p className="font-display italic text-ink/75 text-[22px] md:text-[26px] leading-[1.35] max-w-[20ch]">
-              We build. We acquire.{" "}
-              <span className="text-ink">Always research-first.</span>
+              We build. We buy.{" "}
+              <span className="text-ink">We footnote everything.</span>
             </p>
             <p className="mt-5 text-[14px] leading-[1.6] text-muted max-w-[38ch]">
-              Supplements that make sense. Minds that compound. Pet health as a
-              continuation of the same thesis. Every protocol evolves.
+              Supplements that earn their shelf space. Protocols for the mind.
+              Pet health as a continuation. Nothing we couldn't defend in a lab.
             </p>
           </Reveal>
 

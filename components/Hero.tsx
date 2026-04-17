@@ -24,7 +24,7 @@ export function Hero() {
         className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-ink/55 to-transparent z-[1]"
       />
 
-      {/* Warm dark gradient overlay for text legibility */}
+      {/* Warm dark gradient for text legibility */}
       <div
         aria-hidden
         className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/45 to-ink/25 z-[1]"
@@ -50,23 +50,24 @@ export function Hero() {
 
         <div className="flex-1 min-h-[80px] md:min-h-[160px]" />
 
-        {/* Thesis headline */}
+        {/* Thesis headline — Cole Schafer: rhythm, specificity, one unexpected turn */}
         <div className="grid grid-cols-12">
-          <h1 className="col-span-12 font-display text-cream tracking-tightest leading-[0.88] text-[56px] sm:text-[84px] md:text-[120px] lg:text-[148px] drop-shadow-[0_2px_40px_rgba(0,0,0,0.35)]">
+          <h1 className="col-span-12 font-display text-cream tracking-tightest leading-[0.92] text-[44px] sm:text-[64px] md:text-[88px] lg:text-[108px] drop-shadow-[0_2px_40px_rgba(0,0,0,0.35)] max-w-[16ch]">
             <Reveal delay={120}>
-              <span className="block">Built. Acquired.</span>
-            </Reveal>
-            <Reveal delay={280}>
               <span className="block">
-                <em className="italic text-sage-soft relative">
-                  Researched
-                  <span
-                    aria-hidden
-                    className="absolute -right-3 md:-right-5 top-[0.12em] text-sage-soft/70 font-display text-[0.25em] not-italic"
-                  >
-                    ¹
-                  </span>
-                </em>
+                We build the health
+              </span>
+            </Reveal>
+            <Reveal delay={240}>
+              <span className="block">
+                companies{" "}
+                <em className="italic text-sage-soft">that should exist</em>.
+              </span>
+            </Reveal>
+            <Reveal delay={360}>
+              <span className="block mt-4 md:mt-6 text-[28px] sm:text-[38px] md:text-[52px] lg:text-[64px] text-cream/85">
+                Then we quietly buy{" "}
+                <em className="italic text-sage-soft">the ones that already do</em>
                 <span className="text-sage-soft">.</span>
               </span>
             </Reveal>
@@ -74,38 +75,45 @@ export function Hero() {
         </div>
 
         {/* Subline + footnote */}
-        <div className="mt-10 md:mt-14 grid grid-cols-12 gap-6 md:gap-12">
+        <div className="mt-12 md:mt-16 grid grid-cols-12 gap-6 md:gap-12">
           <Reveal
-            delay={440}
+            delay={520}
             className="col-span-12 md:col-span-7 md:col-start-4"
           >
-            <p className="text-[17px] md:text-[20px] leading-[1.45] text-cream/90 font-light">
-              A studio that <em className="italic text-cream">builds</em> and{" "}
-              <em className="italic text-cream">acquires</em> honest consumer
-              health brands — <em className="italic text-cream">grounded in research</em>.
-              From GLP-1 to supplements for the mind, pet health to
-              neuroscience, we operate in the categories where no one else
-              tells the truth about price, safety, and outcomes.
+            <p className="text-[17px] md:text-[20px] leading-[1.5] text-cream/90 font-light">
+              A studio for consumer health.{" "}
+              <em className="italic text-cream">GLP-1</em> to{" "}
+              <em className="italic text-cream">neuroscience</em>.{" "}
+              <em className="italic text-cream">Supplements</em> to{" "}
+              <em className="italic text-cream">pet health</em>. We build or
+              acquire — and never sell what we can&apos;t footnote.
+              <span
+                aria-hidden
+                className="align-super text-sage-soft text-[0.6em] ml-0.5 font-display italic not-italic"
+              >
+                ¹
+              </span>
             </p>
           </Reveal>
 
           <Reveal
-            delay={620}
+            delay={680}
             className="col-span-12 md:col-span-3 md:col-start-11 md:pt-1"
           >
-            <div className="flex items-start gap-2 text-[12px] leading-[1.5] text-cream/65">
+            <div className="flex items-start gap-2 text-[12px] leading-[1.55] text-cream/65">
               <span className="font-display italic text-sage-soft">¹</span>
               <span>
-                Research as in published methodology, original pricing data,
-                and protocols that evolve. Trust compounds across the portfolio.
+                Footnoted as in every stat has a source, every methodology is
+                public, every provider ranking shows our work. Nothing we can&apos;t
+                defend in a lab.
               </span>
             </div>
           </Reveal>
         </div>
 
-        {/* Scroll cue + floating monogram */}
-        <Reveal delay={900}>
-          <div className="mt-12 md:mt-16 flex items-center justify-between">
+        {/* Scroll cue + monogram */}
+        <Reveal delay={960}>
+          <div className="mt-14 md:mt-20 flex items-center justify-between">
             <div className="flex items-center gap-3 text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-cream/65">
               <span className="inline-block h-4 w-px bg-cream/50 animate-pulse" />
               <span>Scroll · Portfolio below</span>
@@ -118,7 +126,7 @@ export function Hero() {
         </Reveal>
       </div>
 
-      {/* Bottom fade into cream */}
+      {/* Bottom fade */}
       <div
         aria-hidden
         className="absolute inset-x-0 bottom-0 h-56 md:h-72 bg-gradient-to-b from-transparent via-cream/60 to-cream z-[1]"

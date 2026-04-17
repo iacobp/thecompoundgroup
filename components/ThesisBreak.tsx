@@ -1,14 +1,14 @@
 import { Reveal } from "./Reveal";
 
 /**
- * Full-bleed editorial moment between Metrics/ResearchFramework and Approach.
+ * Full-bleed editorial moment between ResearchFramework and Approach.
  * Uses the neuroplasticity montage as dynamic background with pull-quote overlay.
+ * Lighter overlay so the neural network stays visible.
  */
 export function ThesisBreak() {
   return (
     <section className="relative overflow-hidden">
       <div className="relative aspect-[16/9] md:aspect-[21/9] w-full">
-        {/* Background video — futuristic neuroplasticity montage */}
         <video
           className="absolute inset-0 h-full w-full object-cover"
           autoPlay
@@ -22,14 +22,14 @@ export function ThesisBreak() {
           <source src="/video/neuroplasticity.mp4" type="video/mp4" />
         </video>
 
-        {/* Warm darkening for text legibility */}
+        {/* Lighter overlay — only darkens the bottom third for pull-quote legibility */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/40 to-ink/25"
+          className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/20 to-transparent"
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-r from-ink/65 via-transparent to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-ink/35 via-transparent to-transparent"
         />
 
         {/* Pull-quote overlay */}
@@ -46,7 +46,7 @@ export function ThesisBreak() {
               </div>
             </Reveal>
             <Reveal delay={150}>
-              <blockquote className="font-display text-cream text-[28px] md:text-[52px] lg:text-[64px] leading-[1.1] tracking-snug max-w-[22ch] drop-shadow-[0_2px_30px_rgba(0,0,0,0.4)]">
+              <blockquote className="font-display text-cream text-[28px] md:text-[52px] lg:text-[64px] leading-[1.1] tracking-snug max-w-[22ch] drop-shadow-[0_2px_30px_rgba(0,0,0,0.55)]">
                 Publish the methodology.{" "}
                 <em className="italic text-sage-soft">
                   Let the protocols evolve
