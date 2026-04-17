@@ -6,25 +6,25 @@ const principles = [
     num: "I",
     label: "Transparency",
     body:
-      "Every methodology published. Every affiliate disclosed. Every price shown all-in. If we can't say it out loud, we don't put it on the site.",
+      "The scoring methodology for every ranking is published in full on the site, not buried in a FAQ or promised in an about page. Affiliate relationships are disclosed on the pages where they're relevant, so a reader can tell when a click earns us a commission and when it doesn't. Pricing is reported as the ongoing monthly cost a typical patient will actually pay — even when that number makes a partner look more expensive than their marketing rate suggests.",
   },
   {
     num: "II",
     label: "Specificity",
     body:
-      "Generic advice is a lie told politely. We name the provider. Name the price. Name the trade-off. Even when it costs us a commission.",
+      "General advice is almost always less useful than it sounds. Our content names the specific program, quotes the specific cost, and describes the specific trade-off — because that is the only way a reader can weigh one option against another. Occasionally this choice costs us affiliate revenue. It's a trade we think is worth making for the kind of reader who comes back.",
   },
   {
     num: "III",
     label: "Compounding",
     body:
-      "GLP-1 feeds supplements. Supplements feed peptides. Peptides feed the mind. Pet health feeds all of it. Trust, once earned, doesn't start over.",
+      "Each property in the portfolio extends the same research discipline into an adjacent category. The audience that trusts our GLP-1 work is the same audience looking for supplement guidance; the database infrastructure built for one transfers directly to the next. Pet health broadens the methodology to a parallel customer base, and the neuroscience work reads to a different reader entirely — but the underlying process travels.",
   },
   {
     num: "IV",
     label: "Patience",
     body:
-      "We build for ten years, not ten weeks. Acquisition-ready means defensible — not in a rush to be sold.",
+      "Studios built on short time horizons tend to optimize for growth numbers that don't survive a due diligence process. We'd rather build slowly and end up with something defensible — content that ages well, data that's actually audited, partner relationships that hold. If an acquisition is part of the story, it happens because the work can stand up to scrutiny, not because a deadline demands it.",
   },
 ];
 
@@ -45,26 +45,28 @@ export function Approach() {
               †
             </span>
             <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-muted">
-              The manifesto
+              Operating principles
             </span>
           </div>
         </Reveal>
 
-        {/* Manifesto */}
+        {/* Flowing manifesto */}
         <div className="grid grid-cols-12 gap-6 md:gap-14 mb-28 md:mb-40">
           <Reveal className="col-span-12 md:col-span-9 md:col-start-3">
-            <p className="font-display text-ink text-[32px] md:text-[52px] lg:text-[64px] leading-[1.1] tracking-snug">
-              Most consumer health is a pitch.{" "}
-              <em className="italic text-sage">Sponsored content dressed as advice</em>.{" "}
-              <em className="italic text-sage">Membership fees hiding real prices</em>.{" "}
-              <em className="italic text-sage">
-                Comparison sites that only rank their advertisers
-              </em>
-              .
+            <p className="font-display text-ink text-[28px] md:text-[40px] lg:text-[48px] leading-[1.2] tracking-snug">
+              Consumer health is a category where the incentives rarely line
+              up with clarity. Content is written to sell, pricing is
+              structured to win the comparison on the headline number, and
+              comparison tools themselves tend to optimize for commission
+              rather than fit. None of this is malicious — it is simply how
+              the economics work out when most participants have{" "}
+              <em className="italic text-sage">something to sell</em>.
             </p>
-            <p className="font-display text-ink/70 text-[28px] md:text-[44px] lg:text-[52px] leading-[1.15] tracking-snug mt-10 md:mt-14">
-              We build the <span className="text-ink">opposite</span>.{" "}
-              <em className="italic text-sage/90">Slowly</em>.
+            <p className="font-display text-ink/85 text-[24px] md:text-[36px] lg:text-[44px] leading-[1.2] tracking-snug mt-10 md:mt-14">
+              We&apos;re trying to operate with the priorities reversed —{" "}
+              <em className="italic text-sage">research before opinion</em>,
+              methodology before recommendation, and affiliate revenue as a
+              consequence of useful work rather than the driver of it.
             </p>
           </Reveal>
         </div>
@@ -75,10 +77,11 @@ export function Approach() {
             <div className="md:sticky md:top-24">
               <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-muted mb-6">
                 <span className="inline-block h-px w-8 bg-ink/40" />
-                <span>Principles</span>
+                <span>Four commitments</span>
               </div>
-              <p className="font-display italic text-ink/80 text-[19px] md:text-[22px] leading-[1.4] mb-8 max-w-[28ch]">
-                Four commitments. Every brand in the portfolio signs up for all four.
+              <p className="font-display italic text-ink/80 text-[19px] md:text-[22px] leading-[1.5] mb-8 max-w-[30ch]">
+                The four operating constraints each property in the portfolio
+                is built around, regardless of category or stage.
               </p>
               <div className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-sm">
                 <Image
@@ -94,7 +97,7 @@ export function Approach() {
                 />
               </div>
               <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-muted">
-                Research · Atom by atom
+                Research · Structured and maintained
               </p>
             </div>
           </Reveal>
@@ -103,7 +106,7 @@ export function Approach() {
             <div className="divide-y divide-border border-t border-b border-border">
               {principles.map((p, i) => (
                 <Reveal key={p.num} delay={i * 120}>
-                  <article className="grid grid-cols-12 gap-6 py-10 md:py-14 items-start">
+                  <article className="grid grid-cols-12 gap-6 py-12 md:py-16 items-start">
                     <div className="col-span-2 md:col-span-1">
                       <span className="font-display italic text-bronze text-[22px] md:text-[28px]">
                         {p.num}
@@ -115,7 +118,7 @@ export function Approach() {
                       </div>
                     </div>
                     <div className="col-span-12 md:col-span-7">
-                      <p className="text-[17px] md:text-[19px] leading-[1.55] text-ink/80 max-w-[46ch]">
+                      <p className="text-[16px] md:text-[17px] leading-[1.7] text-ink/80 max-w-[52ch]">
                         {p.body}
                       </p>
                     </div>

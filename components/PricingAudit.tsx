@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { Reveal } from "./Reveal";
 
 /**
- * Interactive scatter chart: advertised vs. actual all-in monthly price
- * across GLP-1 telehealth providers. The diagonal line is honesty.
- * Dots above the line are marketing dressed as medicine.
+ * Interactive scatter chart: advertised starter price vs. typical ongoing
+ * monthly cost across GLP-1 telehealth programs. The diagonal marks
+ * parity — programs above it have pricing structures where the starter
+ * rate and the ongoing rate differ. Framing is descriptive, not accusatory.
  */
 
 type Point = {
@@ -14,30 +15,29 @@ type Point = {
   name: string;
   advertised: number;
   actual: number;
-  honest: boolean;
-  note?: string;
+  simple: boolean;
+  structure?: string;
 };
 
 const data: Point[] = [
-  { id: "eden", name: "Eden Health", advertised: 249, actual: 249, honest: true },
-  { id: "sprout", name: "Sprout Health", advertised: 259, actual: 259, honest: true },
-  { id: "sesame", name: "Sesame Care", advertised: 189, actual: 189, honest: true },
-  { id: "strut", name: "Strut Health", advertised: 269, actual: 269, honest: true },
-  { id: "enhance", name: "Enhance MD", advertised: 299, actual: 299, honest: true },
-  { id: "tmates", name: "TMates", advertised: 215, actual: 215, honest: true },
-  { id: "petermd", name: "PeterMD", advertised: 165, actual: 165, honest: true },
-  { id: "willow", name: "Willow", advertised: 160, actual: 299, honest: false, note: "Intro price hides the refill" },
-  { id: "ro", name: "Ro", advertised: 99, actual: 344, honest: false, note: "Intro price only" },
-  { id: "hims", name: "Hims", advertised: 85, actual: 295, honest: false, note: "First-month teaser" },
-  { id: "hers", name: "Hers", advertised: 85, actual: 295, honest: false, note: "First-month teaser" },
-  { id: "fridays", name: "Fridays", advertised: 129, actual: 269, honest: false, note: "Add-on fees at checkout" },
-  { id: "zealthy", name: "Zealthy", advertised: 115, actual: 249, honest: false, note: "Membership billed separately" },
-  { id: "trimrx", name: "TrimRx", advertised: 149, actual: 269, honest: false, note: "Meds billed separately" },
-  { id: "henry", name: "Henry Meds", advertised: 185, actual: 297, honest: false, note: "Dose escalation charges" },
-  { id: "shed", name: "Shed", advertised: 219, actual: 249, honest: false, note: "Lab fees extra" },
+  { id: "eden", name: "Eden Health", advertised: 249, actual: 249, simple: true },
+  { id: "sprout", name: "Sprout Health", advertised: 259, actual: 259, simple: true },
+  { id: "sesame", name: "Sesame Care", advertised: 189, actual: 189, simple: true },
+  { id: "strut", name: "Strut Health", advertised: 269, actual: 269, simple: true },
+  { id: "enhance", name: "Enhance MD", advertised: 299, actual: 299, simple: true },
+  { id: "tmates", name: "TMates", advertised: 215, actual: 215, simple: true },
+  { id: "petermd", name: "PeterMD", advertised: 165, actual: 165, simple: true },
+  { id: "willow", name: "Willow", advertised: 160, actual: 299, simple: false, structure: "Starter rate, then standard refill pricing" },
+  { id: "ro", name: "Ro", advertised: 99, actual: 344, simple: false, structure: "Introductory first-month rate" },
+  { id: "hims", name: "Hims", advertised: 85, actual: 295, simple: false, structure: "Introductory first-month rate" },
+  { id: "hers", name: "Hers", advertised: 85, actual: 295, simple: false, structure: "Introductory first-month rate" },
+  { id: "fridays", name: "Fridays", advertised: 129, actual: 269, simple: false, structure: "Medication billed separately from visit" },
+  { id: "zealthy", name: "Zealthy", advertised: 115, actual: 249, simple: false, structure: "Membership billed separately" },
+  { id: "trimrx", name: "TrimRx", advertised: 149, actual: 269, simple: false, structure: "Medication billed separately" },
+  { id: "henry", name: "Henry Meds", advertised: 185, actual: 297, simple: false, structure: "Pricing scales with dose escalation" },
+  { id: "shed", name: "Shed", advertised: 219, actual: 249, simple: false, structure: "Laboratory fees billed separately" },
 ];
 
-// Chart bounds (dollars)
 const MIN = 50;
 const MAX = 360;
 const TICKS = [50, 150, 250, 350];
@@ -67,13 +67,12 @@ export function PricingAudit() {
   const toY = (v: number) => 100 - ((v - MIN) / (MAX - MIN)) * 100;
 
   const hoveredPoint = data.find((d) => d.id === hovered);
-  const worstGap = Math.max(...data.map((d) => d.actual - d.advertised));
-  const worstId = data.find((d) => d.actual - d.advertised === worstGap)?.id;
-
   const gaps = data.map((d) => d.actual - d.advertised);
   const avgGap = Math.round(gaps.reduce((a, b) => a + b, 0) / gaps.length);
-  const honestCount = data.filter((d) => d.honest).length;
-  const worstName = data.find((d) => d.id === worstId)?.name;
+  const simpleCount = data.filter((d) => d.simple).length;
+  const widestGap = Math.max(...gaps);
+  const widestId = data.find((d) => d.actual - d.advertised === widestGap)?.id;
+  const widestName = data.find((d) => d.id === widestId)?.name;
 
   return (
     <section
@@ -88,33 +87,34 @@ export function PricingAudit() {
               ‡
             </span>
             <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-muted">
-              Exhibit A · The pricing receipt
+              Pricing data · From our April index
             </span>
           </div>
         </Reveal>
 
         <div className="grid grid-cols-12 gap-6 md:gap-14 mb-16 md:mb-24">
           <Reveal className="col-span-12 md:col-span-7">
-            <h2 className="font-display text-ink text-[40px] md:text-[72px] lg:text-[88px] leading-[0.95] tracking-tightest">
-              What they advertise.{" "}
-              <em className="italic text-sage">What you actually pay</em>.
+            <h2 className="font-display text-ink text-[40px] md:text-[72px] lg:text-[88px] leading-[0.98] tracking-tightest">
+              Advertised starter price, plotted against{" "}
+              <em className="italic text-sage">actual ongoing monthly cost</em>.
             </h2>
           </Reveal>
           <Reveal delay={160} className="col-span-12 md:col-span-5 md:pt-6">
-            <p className="text-[16px] md:text-[17px] leading-[1.65] text-ink/75 max-w-[46ch]">
-              Every dot is a GLP-1 telehealth provider. The dashed diagonal is
-              honesty — where the ad equals the invoice. Everything floating
-              above it is marketing dressed as medicine. Hover any dot for the
-              receipt.
+            <p className="text-[16px] md:text-[17px] leading-[1.7] text-ink/75 max-w-[48ch]">
+              Each dot represents a GLP-1 telehealth program in our index.
+              The dashed diagonal marks the point where the starter rate and
+              the typical ongoing rate are the same. Programs above the line
+              have a pricing structure — an introductory month, a separately
+              billed membership, dose-based escalation — that makes their
+              first-month cost different from their steady-state cost. Hover
+              a dot for the specifics.
             </p>
           </Reveal>
         </div>
 
-        {/* Chart */}
         <div className="grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-8">
             <div className="relative aspect-[5/4] w-full rounded-md bg-gradient-to-br from-sand/70 to-sand/40 border border-border overflow-visible">
-              {/* soft decorative corner light */}
               <div
                 aria-hidden
                 className="pointer-events-none absolute -top-10 -right-10 h-56 w-56 rounded-full opacity-60 blur-3xl"
@@ -126,10 +126,9 @@ export function PricingAudit() {
                 preserveAspectRatio="none"
                 className="absolute inset-0 h-full w-full"
                 role="img"
-                aria-label="Scatter plot of advertised versus actual monthly prices for GLP-1 providers"
+                aria-label="Scatter plot of advertised starter price versus typical ongoing monthly cost for GLP-1 telehealth programs"
               >
                 <defs>
-                  {/* Soft glow for hovered / worst */}
                   <filter id="soft-glow" x="-50%" y="-50%" width="200%" height="200%">
                     <feGaussianBlur stdDeviation="0.8" result="blur" />
                     <feMerge>
@@ -139,7 +138,6 @@ export function PricingAudit() {
                   </filter>
                 </defs>
 
-                {/* Gridlines */}
                 {TICKS.map((t) => (
                   <g key={`g-${t}`}>
                     <line
@@ -165,7 +163,6 @@ export function PricingAudit() {
                   </g>
                 ))}
 
-                {/* Honesty diagonal */}
                 <line
                   x1={toX(MIN)}
                   y1={toY(MIN)}
@@ -181,9 +178,8 @@ export function PricingAudit() {
                   }}
                 />
 
-                {/* Gap vectors */}
                 {data
-                  .filter((d) => !d.honest)
+                  .filter((d) => !d.simple)
                   .map((d, i) => (
                     <line
                       key={`gap-${d.id}`}
@@ -205,10 +201,8 @@ export function PricingAudit() {
                     />
                   ))}
 
-                {/* Points */}
                 {data.map((d, i) => {
                   const isHover = hovered === d.id;
-                  const isWorst = d.id === worstId;
                   const cxAdv = toX(d.advertised);
                   const cyAdv = toY(d.advertised);
                   const cxAct = toX(d.advertised);
@@ -223,7 +217,6 @@ export function PricingAudit() {
                       tabIndex={0}
                       style={{ cursor: "pointer" }}
                     >
-                      {/* Advertised (hollow) */}
                       <circle
                         cx={cxAdv}
                         cy={cyAdv}
@@ -240,44 +233,24 @@ export function PricingAudit() {
                         }}
                       />
 
-                      {/* Ping aura for the worst offender */}
-                      {isWorst && animate && (
-                        <circle
-                          cx={cxAct}
-                          cy={cyAct}
-                          r={2.6}
-                          fill="none"
-                          stroke="#8B6F47"
-                          strokeWidth={0.4}
-                          vectorEffect="non-scaling-stroke"
-                          opacity={0.55}
-                          style={{
-                            transformOrigin: `${cxAct}px ${cyAct}px`,
-                            animation: "pulseRing 2.4s cubic-bezier(0,0,0.2,1) infinite",
-                          }}
-                        />
-                      )}
-
-                      {/* Glow ring on hover */}
                       {isHover && (
                         <circle
                           cx={cxAct}
                           cy={cyAct}
                           r={2.6}
                           fill="none"
-                          stroke={d.honest ? "#3B5D4F" : "#8B6F47"}
+                          stroke={d.simple ? "#3B5D4F" : "#8B6F47"}
                           strokeOpacity={0.35}
                           strokeWidth={0.6}
                           vectorEffect="non-scaling-stroke"
                         />
                       )}
 
-                      {/* Actual (filled) */}
                       <circle
                         cx={cxAct}
                         cy={cyAct}
                         r={isHover ? 2 : 1.25}
-                        fill={d.honest ? "#3B5D4F" : "#8B6F47"}
+                        fill={d.simple ? "#3B5D4F" : "#8B6F47"}
                         opacity={animate ? 1 : 0}
                         filter={isHover ? "url(#soft-glow)" : undefined}
                         style={{
@@ -287,14 +260,12 @@ export function PricingAudit() {
                         }}
                       />
 
-                      {/* Hitbox */}
                       <circle cx={cxAct} cy={cyAct} r={3.2} fill="transparent" />
                     </g>
                   );
                 })}
               </svg>
 
-              {/* Axis labels */}
               <div className="pointer-events-none absolute -bottom-6 left-0 right-0 flex justify-between text-[10px] uppercase tracking-[0.2em] text-muted px-1">
                 {TICKS.map((t) => (
                   <span key={`xl-${t}`}>${t}</span>
@@ -306,29 +277,26 @@ export function PricingAudit() {
                 ))}
               </div>
 
-              {/* Axis titles */}
               <div className="absolute -bottom-14 left-0 right-0 text-center text-[11px] uppercase tracking-[0.25em] text-muted">
-                What they tell you →
+                Advertised starter price →
               </div>
               <div
                 className="absolute -left-[92px] md:-left-[104px] top-1/2 -translate-y-1/2 text-[11px] uppercase tracking-[0.25em] text-muted"
                 style={{ writingMode: "vertical-rl", transform: "rotate(180deg) translateX(50%)" }}
               >
-                What you pay →
+                Ongoing monthly cost →
               </div>
 
-              {/* Honesty label */}
               <div
                 className="absolute text-[11px] tracking-[0.22em] text-sage font-display italic"
                 style={{ top: "12%", right: "6%" }}
               >
-                the honesty line
+                advertised = ongoing
               </div>
 
-              {/* Tooltip */}
               {hoveredPoint && (
                 <div
-                  className="absolute bg-ink text-cream text-[12px] md:text-[13px] rounded-md px-3.5 py-2.5 shadow-2xl pointer-events-none z-10 transition-opacity"
+                  className="absolute bg-ink text-cream text-[12px] md:text-[13px] rounded-md px-3.5 py-2.5 shadow-2xl pointer-events-none z-10"
                   style={{
                     left: `${toX(hoveredPoint.advertised)}%`,
                     top: `${toY(hoveredPoint.actual)}%`,
@@ -339,26 +307,25 @@ export function PricingAudit() {
                   <div className="font-display text-cream text-[15px] leading-tight">
                     {hoveredPoint.name}
                   </div>
-                  <div className="text-cream/70 text-[11px] leading-snug mt-1">
-                    Advertised{" "}
+                  <div className="text-cream/75 text-[11px] leading-snug mt-1">
+                    Starter{" "}
                     <span className="tabular-nums">${hoveredPoint.advertised}</span>
-                    {" → "}
+                    {" · Ongoing "}
                     <span
                       className={
-                        hoveredPoint.honest
+                        hoveredPoint.simple
                           ? "text-sage-soft tabular-nums"
                           : "text-bronze tabular-nums"
                       }
                     >
-                      Actual ${hoveredPoint.actual}
+                      ${hoveredPoint.actual}
                     </span>
                   </div>
-                  {hoveredPoint.note && (
-                    <div className="text-cream/55 text-[10px] mt-1.5 italic max-w-[22ch] whitespace-normal">
-                      {hoveredPoint.note}
+                  {hoveredPoint.structure && (
+                    <div className="text-cream/60 text-[10px] mt-1.5 italic max-w-[24ch] whitespace-normal">
+                      {hoveredPoint.structure}
                     </div>
                   )}
-                  {/* tooltip tail */}
                   <span
                     aria-hidden
                     className="absolute left-1/2 -bottom-1.5 -translate-x-1/2 h-3 w-3 rotate-45 bg-ink"
@@ -371,11 +338,11 @@ export function PricingAudit() {
             <div className="mt-16 md:mt-20 flex flex-wrap items-center gap-6 md:gap-10 text-[12px] text-muted">
               <span className="inline-flex items-center gap-2">
                 <span className="inline-block h-2.5 w-2.5 rounded-full bg-sage" />
-                Honest — ad = invoice
+                Flat pricing — starter matches ongoing
               </span>
               <span className="inline-flex items-center gap-2">
                 <span className="inline-block h-2.5 w-2.5 rounded-full bg-bronze" />
-                Inflated — invoice above the ad
+                Structured pricing — starter differs from ongoing
               </span>
               <span className="inline-flex items-center gap-2">
                 <span
@@ -384,60 +351,61 @@ export function PricingAudit() {
                     background: "repeating-linear-gradient(90deg,#3B5D4F 0 3px,transparent 3px 5px)",
                   }}
                 />
-                Honesty line
+                Parity line
               </span>
             </div>
           </div>
 
-          {/* Data readout column */}
           <Reveal delay={200} className="col-span-12 md:col-span-4">
             <div className="md:sticky md:top-24 space-y-8">
               <div>
                 <div className="text-[10px] uppercase tracking-[0.28em] text-muted mb-2">
-                  In the index
+                  Programs in the index
                 </div>
                 <div className="font-display text-ink text-[40px] md:text-[56px] leading-none tracking-tightest tabular-nums">
                   {data.length}
                 </div>
-                <div className="text-[13px] text-muted mt-1">
-                  Providers we actually checked
+                <div className="text-[13px] text-muted mt-1 leading-[1.5]">
+                  Sampled from the forty-program index on glp1picks.com
                 </div>
               </div>
 
               <div>
                 <div className="text-[10px] uppercase tracking-[0.28em] text-muted mb-2">
-                  Ad = invoice
+                  Flat pricing
                 </div>
                 <div className="font-display text-sage text-[40px] md:text-[56px] leading-none tracking-tightest tabular-nums">
-                  {honestCount}
+                  {simpleCount}
                 </div>
-                <div className="text-[13px] text-muted mt-1">
-                  The ones telling the truth
+                <div className="text-[13px] text-muted mt-1 leading-[1.5]">
+                  Starter price matches the ongoing monthly rate
                 </div>
               </div>
 
               <div>
                 <div className="text-[10px] uppercase tracking-[0.28em] text-muted mb-2">
-                  Average overrun
+                  Average variance
                 </div>
                 <div className="font-display text-bronze text-[40px] md:text-[56px] leading-none tracking-tightest tabular-nums">
                   +${avgGap}
                 </div>
-                <div className="text-[13px] text-muted mt-1">
-                  Above what they quoted
+                <div className="text-[13px] text-muted mt-1 leading-[1.5]">
+                  Typical difference between starter and ongoing, across the set
                 </div>
               </div>
 
               <div className="pt-6 border-t border-border">
                 <div className="text-[10px] uppercase tracking-[0.28em] text-muted mb-2">
-                  Biggest offender
+                  Widest structural variance
                 </div>
                 <div className="font-display italic text-ink text-[20px] leading-tight">
-                  {worstName}{" "}
-                  <span className="text-bronze tabular-nums">+${worstGap}</span>
+                  {widestName}{" "}
+                  <span className="text-bronze tabular-nums">+${widestGap}</span>
                 </div>
-                <div className="text-[12px] text-muted mt-1 leading-[1.5]">
-                  The distance between their marketing and your invoice.
+                <div className="text-[12px] text-muted mt-2 leading-[1.55]">
+                  A program where introductory-month pricing differs most from
+                  the steady-state monthly rate. Not a judgment call — just
+                  the structural distance between the two numbers.
                 </div>
               </div>
             </div>

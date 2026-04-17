@@ -9,10 +9,10 @@ type Numeric = {
 };
 
 const numbers: Numeric[] = [
-  { to: 960, suffix: "+", label: "Pages shipped", note: "Every one footnoted" },
-  { to: 40, label: "Providers on record", note: "All-in pricing, no asterisks" },
-  { to: 51, label: "State-by-state guides", note: "Where Medicaid meets reality" },
-  { to: 20, label: "Affiliate partners", note: "None of them own a rank" },
+  { to: 960, suffix: "+", label: "Pages published", note: "Each tied to its sources" },
+  { to: 40, label: "Providers reviewed", note: "Scored on all-in monthly cost" },
+  { to: 51, label: "State-level guides", note: "Including Medicaid coverage detail" },
+  { to: 20, label: "Affiliate partners", note: "Disclosed on every relevant page" },
 ];
 
 export function Metrics() {
@@ -25,7 +25,7 @@ export function Metrics() {
               ¶
             </span>
             <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-muted">
-              The work · Counted
+              Where we stand, as of April
             </span>
           </div>
         </Reveal>
@@ -40,7 +40,7 @@ export function Metrics() {
                 <div className="text-[13px] md:text-[14px] text-ink font-medium mb-1">
                   {n.label}
                 </div>
-                <div className="text-[12px] text-muted">{n.note}</div>
+                <div className="text-[12px] text-muted leading-[1.5]">{n.note}</div>
               </div>
             </Reveal>
           ))}

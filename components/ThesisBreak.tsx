@@ -41,15 +41,15 @@ export function ThesisBreak() {
                   ❝
                 </span>
                 <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-cream/70">
-                  On methodology
+                  From our methodology
                 </span>
               </div>
             </Reveal>
             <Reveal delay={150}>
-              <blockquote className="font-display text-cream text-[28px] md:text-[52px] lg:text-[64px] leading-[1.1] tracking-snug max-w-[22ch] drop-shadow-[0_2px_30px_rgba(0,0,0,0.55)]">
-                Publish the methodology.{" "}
+              <blockquote className="font-display text-cream text-[26px] md:text-[44px] lg:text-[52px] leading-[1.2] tracking-snug max-w-[28ch] drop-shadow-[0_2px_30px_rgba(0,0,0,0.55)]">
+                Show the work, and keep showing it —{" "}
                 <em className="italic text-sage-soft">
-                  Let the protocols evolve
+                  as the evidence changes, so should the conclusion
                 </em>
                 .
               </blockquote>

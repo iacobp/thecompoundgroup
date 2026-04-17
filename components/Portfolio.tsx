@@ -22,9 +22,10 @@ const items: PortfolioItem[] = [
   {
     num: "I",
     name: "GLP-1 Picks",
-    tagline: "Forty providers. Real prices. No favorites.",
+    tagline:
+      "A clear-eyed comparison of the major GLP-1 telehealth programs, priced the way a patient actually pays for them.",
     body:
-      "We ranked forty telehealth providers on all-in cost, safety, and care. Our methodology is public. Our affiliate disclosures are loud. Our favorites are nonexistent.",
+      "We review forty GLP-1 telehealth programs on three dimensions: the full monthly cost over a typical year, the quality and credentials of the clinical care, and the transparency of the program's pricing structure. The scoring methodology is published in full, the affiliate relationships are disclosed on every page, and the rankings are calculated rather than curated. When we earn a commission on a visit, the page you're reading says so.",
     status: "live",
     mode: "built",
     href: "https://glp1picks.com",
@@ -39,9 +40,10 @@ const items: PortfolioItem[] = [
   {
     num: "II",
     name: "GLP-1 Tracker",
-    tagline: "Your dose. Your price. Your move.",
+    tagline:
+      "A tracking app designed around the decisions a GLP-1 patient has to keep making — not just the doses they have to keep taking.",
     body:
-      "Dose logging, weight tracking, side effects — table stakes. The thing you'll use it for is the switch nudge: when a cheaper, safer provider appears, we tell you before your refill does.",
+      "The core logging features are standard: doses, weight trends, side effects, and injection-site rotation. What we're adding is a decision layer. As programs change their pricing structures, formularies, or dose-escalation policies, the app surfaces the ones that continue to fit your situation — so your next refill is a choice, not a default.",
     status: "in-development",
     mode: "built",
     href: "/tracker",
@@ -59,36 +61,45 @@ const upcoming = [
   {
     num: "03",
     name: "Supplement Index",
-    tag: "Shelf & science",
+    tag: "Adjacent category",
     note:
-      "The supplements that earned their shelf space. Protein and fiber for GLP-1, nootropics that hold up to peer review, electrolytes that aren't lying.",
+      "A reviews site for the supplements GLP-1 users tend to look for — protein, fiber, electrolytes, basic micronutrient support — alongside the broader nootropics and cognitive categories. Sourced from peer-reviewed evidence where it exists, and transparent about the gaps where it doesn't.",
     when: "2026",
     mode: "built" as Mode,
   },
   {
     num: "04",
     name: "Pet Health",
-    tag: "Continuation",
+    tag: "Same methodology, new audience",
     note:
-      "Dog owners get lied to twice — once at the vet, once online. We bring the same methodology to pet obesity, GLP-1 for dogs, and protocols that improve with the animal.",
+      "Pet health is a category where the information landscape is especially scattered — pricing is opaque, most resources are written by people selling something, and independent research is rare. We're extending the same methodology to pet obesity, veterinary GLP-1 therapy, and supportive supplement research.",
     when: "2026–27",
     mode: "built" as Mode,
   },
   {
     num: "05",
     name: "Peptide Index",
-    tag: "Post-FDA panel",
+    tag: "Post-FDA clarity",
     note:
-      "BPC-157. TB-500. The rest of the alphabet. We hold publication until the July 2026 FDA panel settles what's legal — then we publish prices, sources, and studies.",
+      "Peptide therapy sits in a regulatory transition. After the July 2026 FDA advisory panel, we intend to publish a research-backed index covering BPC-157, TB-500, ipamorelin, and adjacent compounds — with pricing from licensed providers, the underlying evidence for each claim, and a clear account of what the regulation now permits.",
     when: "Q3 2026",
     mode: "built" as Mode,
   },
   {
     num: "06",
-    name: "Neuroscience",
-    tag: "In research",
+    name: "Neuroscience Index",
+    tag: "Cognitive supplements",
     note:
-      "Cognitive supplements. Neuroplasticity training. Focus protocols. We version them like software — and ship the changelog when the evidence turns.",
+      "The supplement side of cognition — nootropics, neuroprotective compounds, cognitive-aging formulas — reviewed with the same rigor we apply to GLP-1. Less about optimization culture, more about what has clinical trials behind it and what is still essentially hopeful biochemistry.",
+    when: "2027",
+    mode: "built" as Mode,
+  },
+  {
+    num: "07",
+    name: "Neuroplasticity Lab",
+    tag: "Training & tools",
+    note:
+      "The behavioral counterpart to the Neuroscience Index. Rather than what goes into the brain, this asks how the brain can actually be trained — through cognitive apps, neurofeedback hardware, meditation platforms, and the small protocols with measurable effects. A separate product, sharing the same research discipline.",
     when: "2027",
     mode: "built" as Mode,
   },
@@ -139,7 +150,7 @@ export function Portfolio() {
                 §
               </span>
               <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-muted">
-                Portfolio · Two shipped, four on the bench
+                Portfolio — active and forthcoming
               </span>
             </div>
             <span className="hidden md:block font-display italic text-muted text-[17px]">
@@ -234,16 +245,19 @@ export function Portfolio() {
             <div className="flex items-baseline gap-4 mb-6">
               <span className="font-display italic text-bronze text-[22px]">§§</span>
               <span className="text-[11px] uppercase tracking-[0.3em] text-muted">
-                The pipeline
+                What comes next
               </span>
             </div>
-            <p className="font-display italic text-ink/75 text-[22px] md:text-[26px] leading-[1.35] max-w-[20ch]">
-              We build. We buy.{" "}
-              <span className="text-ink">We footnote everything.</span>
+            <p className="font-display italic text-ink/80 text-[22px] md:text-[26px] leading-[1.4] max-w-[24ch]">
+              Adjacent categories, where the{" "}
+              <span className="text-ink not-italic">same research methodology transfers</span>{" "}
+              and the consumer is asking the same three questions.
             </p>
-            <p className="mt-5 text-[14px] leading-[1.6] text-muted max-w-[38ch]">
-              Supplements that earn their shelf space. Protocols for the mind.
-              Pet health as a continuation. Nothing we couldn't defend in a lab.
+            <p className="mt-6 text-[14px] leading-[1.75] text-muted max-w-[40ch]">
+              What does it cost over the course of a year, what is actually in
+              it, and what is the evidence that it does what the packaging
+              says. We build or acquire where those three questions have no
+              clear answer yet.
             </p>
           </Reveal>
 

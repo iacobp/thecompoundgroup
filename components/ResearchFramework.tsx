@@ -17,62 +17,67 @@ const pillars: Pillar[] = [
     key: "databases",
     num: "01",
     label: "Databases",
-    body: "Every ranking is backed by a live dataset we audit weekly.",
+    body:
+      "Every ranking is grounded in data we maintain ourselves, audited on a weekly cycle.",
     detail:
-      "Pricing. Dosing. FDA alerts. Medicaid coverage by state. Affiliate terms. All of it lives in structured databases we audit every week. No screenshots. No 'last updated 2023.' If a number on the site looks wrong, it's because we haven't run the audit yet — and we're about to.",
-    stat: { value: "12,400+", note: "Structured datapoints, audited weekly" },
+      "Pricing, dosing schedules, FDA alerts, state-level Medicaid coverage, and the terms of our affiliate partnerships all live in structured datasets that are audited each week. The numbers on the page are the numbers in the database, and when something shifts — a new formulation, a revised policy, a price change — the process is built to catch it within days rather than months.",
+    stat: { value: "12,400+", note: "Datapoints in structured databases, refreshed weekly" },
   },
   {
     key: "intent",
     num: "02",
     label: "Intent",
-    body: "We start with the question you'd actually type at 1 AM.",
+    body:
+      "Every piece of content begins with the underlying question someone is actually trying to answer.",
     detail:
-      "Every page begins with the search — what you actually type, how you actually compare, where the existing answers lie by omission. When the intent shifts, so does our content. We don't write for the algorithm. We write for the question underneath it.",
-    stat: { value: "3,200+", note: "Search intents mapped, per brand" },
+      "Before writing, we map the queries users are running — the comparative questions, the specific dosing concerns, the coverage questions that existing articles tend to treat superficially. The goal is a page that actually resolves the question, rather than a page optimized for the fraction of the query the algorithm rewards.",
+    stat: { value: "3,200+", note: "Search queries mapped per brand in the portfolio" },
   },
   {
     key: "mind",
     num: "03",
     label: "Mind",
-    body: "Nootropics that hold up. Protocols that improve cognition without pretending to.",
+    body:
+      "Cognitive supplements and neuroplasticity protocols, evaluated against the same evidence standards.",
     detail:
-      "Nootropics. Neuroplasticity training. Focus stacks. Each one runs through the same filter: mechanism, dosage, third-party testing, peer-reviewed evidence. If it can't show up on all four, it doesn't show up on our site.",
-    stat: { value: "∞", note: "Protocols update when the science does" },
+      "Nootropics, cognitive-support formulas, and the behavioral side of neuroplasticity are reviewed through the same filter we apply everywhere: plausible mechanism, validated dosing, independent testing, and peer-reviewed human trials. Where the evidence is inconclusive, the page says so rather than filling the space with inference.",
+    stat: { value: "∞", note: "Recommendations updated continuously as evidence evolves" },
   },
   {
     key: "body",
     num: "04",
     label: "Body",
-    body: "GLP-1. Peptides. Hormones. Tracked from ad to invoice.",
+    body:
+      "The visible interventions — GLP-1, peptides, hormones — tracked through their full customer experience.",
     detail:
-      "Telehealth providers. Compounding pharmacies. Hormone clinics. We track what you can actually buy, what it costs all-in, and what the side-effect forums are saying. Pet bodies get the same treatment.",
-    stat: { value: "40+", note: "Providers on the record, all-in priced" },
+      "This is where the practical comparison work lives: which telehealth programs are offering what, which compounding pharmacies serve which regions, and how starter pricing relates to ongoing monthly cost. The same comparison methodology is being extended to the pet-health side, where the information gap is even more pronounced.",
+    stat: { value: "40+", note: "Telehealth programs actively reviewed" },
   },
   {
     key: "protocols",
     num: "05",
     label: "Protocols",
-    body: "Recommendations versioned like software. Changelog in public.",
+    body:
+      "Recommendations are versioned, so readers can see how a conclusion has changed over time.",
     detail:
-      "A 2026 Q2 recommendation is stamped. When a new trial drops, a pharmacy gets a warning letter, or a provider doubles their price — we push a new version and publish the changelog. You get to see the edit history.",
-    stat: { value: "Q/Q", note: "Versioned quarterly · Changelog public" },
+      "A 2026 Q2 recommendation is stamped with that version. When a new trial publishes, a pharmacy receives a warning letter, or a program materially changes its pricing structure, we issue an update and publish a public note describing what changed and why. The reader gets to see the edit history, not just the current opinion.",
+    stat: { value: "Q/Q", note: "Reviewed on a quarterly cadence, with a public changelog" },
   },
 ];
 
 const marqueeItems = [
-  "Honest pricing",
   "Published methodology",
-  "Named medical reviewer",
-  "Loud affiliate disclosures",
-  "Versioned protocols",
+  "Named medical reviewers",
+  "Disclosed affiliate relationships",
+  "Versioned recommendations",
   "Peer-reviewed sources",
-  "Pharmacy license checks",
-  "Side-effect audits",
-  "Cost-per-refill tracking",
-  "Pet-health extensions",
-  "Search-intent mapping",
-  "Quarterly republishing",
+  "Verified pharmacy licenses",
+  "Audited side-effect data",
+  "Tracked ongoing pricing",
+  "Pet-health research",
+  "Mapped search intent",
+  "Quarterly content review",
+  "Public changelog",
 ];
 
 export function ResearchFramework() {
@@ -137,15 +142,16 @@ export function ResearchFramework() {
                 Ω
               </span>
               <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-cream/60">
-                The framework · How we break things down
+                How we operate
               </span>
             </div>
           </div>
         </Reveal>
 
         <Reveal>
-          <h2 className="font-display text-cream text-[40px] md:text-[72px] lg:text-[88px] leading-[0.95] tracking-tightest mb-12 md:mb-20 max-w-[22ch]">
-            Research, <em className="italic text-sage-soft">atom by atom</em>.
+          <h2 className="font-display text-cream text-[40px] md:text-[64px] lg:text-[76px] leading-[1.02] tracking-tightest mb-12 md:mb-20 max-w-[30ch]">
+            Research has a shape. This is how{" "}
+            <em className="italic text-sage-soft">ours gets organized</em>.
           </h2>
         </Reveal>
 

@@ -25,24 +25,24 @@ export function Footer() {
               </span>
             </div>
 
-            <h2 className="font-display text-cream text-[44px] md:text-[72px] lg:text-[92px] leading-[0.95] tracking-tightest mb-10">
-              Press, partnerships,
-              <br />
+            <h2 className="font-display text-cream text-[40px] md:text-[64px] lg:text-[80px] leading-[1.02] tracking-tightest mb-10 max-w-[18ch]">
+              Press, partnerships,{" "}
               <em className="italic text-sage-soft">and acquisitions.</em>
             </h2>
 
             <a
               href="mailto:hello@thecompound.group"
-              className="inline-flex items-center gap-3 font-display italic text-cream text-[26px] md:text-[36px] link-line"
+              className="inline-flex items-center gap-3 font-display italic text-cream text-[24px] md:text-[32px] link-line"
             >
               hello@thecompound.group
               <span aria-hidden className="text-[0.6em] opacity-70">→</span>
             </a>
 
-            <p className="mt-10 max-w-[44ch] text-[14px] leading-[1.65] text-cream/60">
-              Email reaches a human. One operator, AI-assisted across
-              engineering, content, and growth. We read every inbound — usually
-              reply the same day.
+            <p className="mt-10 max-w-[52ch] text-[14px] md:text-[15px] leading-[1.7] text-cream/65">
+              The inbox is read by a human, not a form queue. The operation is
+              small — a single principal, working with AI-assisted engineering
+              and content teams — and most inbound messages get a reply within
+              a day.
             </p>
           </Reveal>
 
@@ -69,8 +69,8 @@ export function Footer() {
                       ↗
                     </span>
                   </div>
-                  <div className="text-[12px] text-cream/50 mt-1">
-                    Forty providers ranked · Live
+                  <div className="text-[12px] text-cream/55 mt-1">
+                    Provider comparison — Live
                   </div>
                 </a>
               </li>
@@ -90,16 +90,17 @@ export function Footer() {
                       →
                     </span>
                   </div>
-                  <div className="text-[12px] text-cream/50 mt-1">
-                    Dose + switch app · In dev
+                  <div className="text-[12px] text-cream/55 mt-1">
+                    Companion app — In development
                   </div>
                 </a>
               </li>
             </ul>
 
-            <div className="mt-10 text-[13px] leading-[1.6] text-cream/50">
-              <em className="italic">Coming next.</em> Supplement Index.
-              Pet Health. Peptide Index. Neuroscience protocols.
+            <div className="mt-10 text-[13px] leading-[1.7] text-cream/55">
+              <em className="italic">Forthcoming:</em> Supplement Index, Pet
+              Health, Peptide Index, the Neuroscience Index, and the
+              Neuroplasticity Lab as a distinct product alongside it.
             </div>
           </Reveal>
         </div>
@@ -111,10 +112,10 @@ export function Footer() {
               The Compound Group
             </span>
           </div>
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-2 text-[12px] text-cream/50">
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-2 text-[12px] text-cream/55">
             <span>© {year} The Compound Group</span>
-            <span className="font-display italic text-cream/70">
-              Built, bought, and footnoted.
+            <span className="font-display italic text-cream/75">
+              A research-led studio for consumer health.
             </span>
           </div>
         </div>
