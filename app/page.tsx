@@ -2,6 +2,7 @@ import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { Portfolio } from "@/components/Portfolio";
 import { Metrics } from "@/components/Metrics";
+import { ThesisBreak } from "@/components/ThesisBreak";
 import { Approach } from "@/components/Approach";
 import { Footer } from "@/components/Footer";
 
@@ -12,6 +13,7 @@ export default function Home() {
       <Hero />
       <Portfolio />
       <Metrics />
+      <ThesisBreak />
       <Approach />
       <Footer />
     </main>

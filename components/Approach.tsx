@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Reveal } from "./Reveal";
 
 const principles = [
@@ -69,21 +70,38 @@ export function Approach() {
           </Reveal>
         </div>
 
-        {/* Four principles */}
+        {/* Four principles — with editorial side image */}
         <div className="grid grid-cols-12 gap-6 md:gap-14">
-          <Reveal className="col-span-12 md:col-span-3">
-            <div className="sticky top-24">
-              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-muted mb-4">
+          {/* Sticky sidebar with photograph + header */}
+          <Reveal className="col-span-12 md:col-span-4">
+            <div className="md:sticky md:top-24">
+              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-muted mb-6">
                 <span className="inline-block h-px w-8 bg-ink/40" />
                 <span>Principles</span>
               </div>
-              <p className="font-display italic text-ink/75 text-[17px] md:text-[19px] leading-[1.45]">
+              <p className="font-display italic text-ink/80 text-[19px] md:text-[22px] leading-[1.4] mb-8 max-w-[28ch]">
                 Four commitments every brand in the portfolio shares.
+              </p>
+              <div className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-sm">
+                <Image
+                  src="/images/notebook-detail.jpg"
+                  alt="Handwritten editorial ledger with data in warm natural light"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-ink/10"
+                />
+              </div>
+              <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-muted">
+                Methodology · Annotated
               </p>
             </div>
           </Reveal>
 
-          <div className="col-span-12 md:col-span-9">
+          <div className="col-span-12 md:col-span-8">
             <div className="divide-y divide-border border-t border-b border-border">
               {principles.map((p, i) => (
                 <Reveal key={p.num} delay={i * 120}>

@@ -3,10 +3,10 @@ import { Monogram } from "./Monogram";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[92vh] md:min-h-[98vh] overflow-hidden -mt-[88px] md:-mt-[104px] pt-[120px] md:pt-[140px] flex flex-col">
+    <section className="relative min-h-[88vh] md:min-h-[94vh] overflow-hidden flex flex-col">
       {/* Background video */}
       <video
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
         autoPlay
         loop
         muted
@@ -18,21 +18,27 @@ export function Hero() {
         <source src="/video/hero.mp4" type="video/mp4" />
       </video>
 
-      {/* Dark warm gradient overlay for text legibility (Function Health approach) */}
+      {/* Top darkening for nav legibility */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/45 to-ink/20"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-gradient-to-r from-ink/50 via-transparent to-transparent"
+        className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-ink/55 to-transparent z-[1]"
       />
 
-      {/* Content */}
-      <div className="relative flex-1 flex flex-col mx-auto w-full max-w-[1320px] px-6 md:px-10 pb-16 md:pb-24">
-        {/* Edition marker top */}
+      {/* Warm dark gradient overlay for text legibility (Function-style) */}
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/45 to-ink/25 z-[1]"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-r from-ink/55 via-transparent to-transparent z-[1]"
+      />
+
+      {/* Content — reserve clear space for the fixed nav at top */}
+      <div className="relative z-[2] flex-1 flex flex-col mx-auto w-full max-w-[1320px] px-6 md:px-10 pt-[140px] md:pt-[168px] pb-16 md:pb-20">
+        {/* Edition marker */}
         <Reveal>
-          <div className="flex items-center gap-4 text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-cream/75 mt-2">
+          <div className="flex items-center gap-4 text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-cream/75">
             <span className="inline-block h-px w-10 bg-cream/40" />
             <span>Volume 01 · Est. 2026</span>
             <span className="hidden md:inline opacity-50">·</span>
@@ -42,12 +48,12 @@ export function Hero() {
           </div>
         </Reveal>
 
-        {/* Spacer pushes headline to lower portion of viewport */}
-        <div className="flex-1" />
+        {/* Spacer — pushes the headline to the lower portion of the viewport */}
+        <div className="flex-1 min-h-[80px] md:min-h-[160px]" />
 
         {/* Thesis headline */}
         <div className="grid grid-cols-12">
-          <h1 className="col-span-12 font-display text-cream tracking-tightest leading-[0.88] text-[56px] sm:text-[84px] md:text-[124px] lg:text-[156px] drop-shadow-[0_2px_40px_rgba(0,0,0,0.35)]">
+          <h1 className="col-span-12 font-display text-cream tracking-tightest leading-[0.88] text-[56px] sm:text-[84px] md:text-[120px] lg:text-[148px] drop-shadow-[0_2px_40px_rgba(0,0,0,0.35)]">
             <Reveal delay={120}>
               <span className="block">Consumer health,</span>
             </Reveal>
@@ -69,7 +75,7 @@ export function Hero() {
           </h1>
         </div>
 
-        {/* Subline + footnote layout */}
+        {/* Subline + footnote */}
         <div className="mt-10 md:mt-14 grid grid-cols-12 gap-6 md:gap-12">
           <Reveal
             delay={440}
@@ -100,7 +106,7 @@ export function Hero() {
 
         {/* Scroll cue + floating monogram */}
         <Reveal delay={900}>
-          <div className="mt-14 md:mt-20 flex items-center justify-between">
+          <div className="mt-12 md:mt-16 flex items-center justify-between">
             <div className="flex items-center gap-3 text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-cream/65">
               <span className="inline-block h-4 w-px bg-cream/50 animate-pulse" />
               <span>Scroll · Portfolio below</span>
@@ -113,10 +119,10 @@ export function Hero() {
         </Reveal>
       </div>
 
-      {/* Bottom edge fade into cream page */}
+      {/* Bottom fade into cream — tall + soft multi-stop so no banding */}
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-cream"
+        className="absolute inset-x-0 bottom-0 h-56 md:h-72 bg-gradient-to-b from-transparent via-cream/60 to-cream z-[1]"
       />
     </section>
   );
