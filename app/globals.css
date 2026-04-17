@@ -141,6 +141,17 @@ body {
     height 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Custom focus styles — replace the default browser blue ring everywhere */
+:focus-visible {
+  outline: 2px solid rgba(59, 93, 79, 0.45); /* sage at 45% */
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.graph-node:focus,
+.graph-node:focus-visible {
+  outline: none;
+}
+
 @keyframes fadeSlideIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
