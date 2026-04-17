@@ -5,18 +5,15 @@ import { motion, AnimatePresence } from "motion/react";
 import { Reveal } from "./Reveal";
 
 /**
- * Force-directed graph of the portfolio, Obsidian-style, with gentle spring
- * animations via motion (the library formerly known as framer-motion).
+ * Force-directed graph of the portfolio, Obsidian-style.
  *
- * Only publicly-shareable relationships are represented:
- *   - Products (live / in-development / planned)
- *   - Shared public assets that demonstrate research rigor
- *     (methodology, live datasets, peer-reviewed sources, editorial standards)
+ * Positioning is handled by a custom force simulation that updates a plain
+ * SVG <g> transform each frame. Motion (formerly framer-motion) layers
+ * spring-based scale/opacity animations on the individual shapes inside
+ * each group — never on the group itself, because motion does not compose
+ * with string-valued SVG transform attributes.
  *
- * Everything private (financial flows, commissions, internal tooling) is
- * deliberately excluded. The force simulation is custom so we keep
- * precise control over node behavior; motion handles the render-side
- * transitions with spring physics.
+ * Only publicly-shareable relationships are represented. Nothing financial.
  */
 
 type NodeKind = "hub" | "live" | "dev" | "planned" | "resource";
@@ -49,20 +46,15 @@ const CY = HEIGHT / 2;
 const initialNodes: GraphNode[] = [
   { id: "cg", label: "The Compound Group", kind: "hub", x: CX, y: CY, vx: 0, vy: 0, radius: 30, pinned: true, visibleAt: 0 },
 
-  // Live
   { id: "glp1picks", label: "GLP-1 Picks", sub: "Live", kind: "live", x: CX - 220, y: CY - 120, vx: 0, vy: 0, radius: 24, visibleAt: 280 },
-
-  // In development
   { id: "glp1tracker", label: "GLP-1 Tracker", sub: "In development", kind: "dev", x: CX - 200, y: CY + 120, vx: 0, vy: 0, radius: 21, visibleAt: 500 },
 
-  // Planned
   { id: "supplements", label: "Supplement Index", sub: "Planned 2026", kind: "planned", x: CX + 220, y: CY - 190, vx: 0, vy: 0, radius: 19, visibleAt: 720 },
   { id: "pet", label: "Pet Health", sub: "Planned 2026–27", kind: "planned", x: CX + 290, y: CY - 40, vx: 0, vy: 0, radius: 19, visibleAt: 880 },
   { id: "peptides", label: "Peptide Index", sub: "Planned Q3 2026", kind: "planned", x: CX + 240, y: CY + 110, vx: 0, vy: 0, radius: 19, visibleAt: 1040 },
   { id: "neuro", label: "Neuroscience Index", sub: "Planned 2027", kind: "planned", x: CX + 180, y: CY + 230, vx: 0, vy: 0, radius: 19, visibleAt: 1200 },
   { id: "plasticity", label: "Neuroplasticity Lab", sub: "Planned 2027", kind: "planned", x: CX + 30, y: CY + 260, vx: 0, vy: 0, radius: 19, visibleAt: 1360 },
 
-  // Shared public resources
   { id: "methodology", label: "Published methodology", kind: "resource", x: CX - 130, y: CY - 260, vx: 0, vy: 0, radius: 13, visibleAt: 1520 },
   { id: "database", label: "Live datasets", kind: "resource", x: CX - 310, y: CY + 30, vx: 0, vy: 0, radius: 13, visibleAt: 1620 },
   { id: "review", label: "Peer-reviewed sources", kind: "resource", x: CX - 180, y: CY + 270, vx: 0, vy: 0, radius: 13, visibleAt: 1720 },
@@ -208,9 +200,15 @@ function nodeStroke(kind: NodeKind): string {
   return kind === "hub" ? "#F4F1EB" : "#1C1C1A";
 }
 
-// Gentle spring config used for all hover transitions
-const gentleSpring = { type: "spring" as const, stiffness: 180, damping: 22, mass: 0.8 };
-const softSpring = { type: "spring" as const, stiffness: 120, damping: 18, mass: 1 };
+function haloColor(kind: NodeKind): string {
+  if (kind === "live") return "#3B5D4F";
+  if (kind === "dev") return "#8B6F47";
+  if (kind === "resource") return "#8B6F47";
+  return "#1C1C1A";
+}
+
+const gentleSpring = { type: "spring" as const, stiffness: 170, damping: 22, mass: 0.9 };
+const softSpring = { type: "spring" as const, stiffness: 130, damping: 20, mass: 1 };
 
 export function PortfolioGraph() {
   const [, setTick] = useState(0);
@@ -313,7 +311,6 @@ export function PortfolioGraph() {
           </Reveal>
         </div>
 
-        {/* The graph */}
         <div className="relative rounded-md border border-border bg-cream overflow-hidden">
           <svg
             viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
@@ -353,30 +350,25 @@ export function PortfolioGraph() {
               const opacity = isActive ? 0.8 : isDimmed ? 0.04 : 0.16;
 
               return (
-                <motion.line
+                <line
                   key={`link-${i}`}
                   x1={source.x}
                   y1={source.y}
                   x2={target.x}
                   y2={target.y}
                   stroke={strokeColor}
-                  initial={{ opacity: 0, pathLength: 0 }}
-                  animate={{
-                    opacity,
-                    pathLength: 1,
-                  }}
-                  transition={{
-                    opacity: { duration: 0.6, ease: "easeOut" },
-                    pathLength: { duration: 0.9, ease: [0.19, 1, 0.22, 1] },
-                  }}
+                  strokeOpacity={opacity}
                   strokeWidth={isFeed ? 1.4 : 0.9}
                   strokeDasharray={isFeed ? "0" : "3 2"}
                   strokeLinecap="round"
+                  style={{
+                    transition: "stroke-opacity 0.45s cubic-bezier(0.19,1,0.22,1), stroke 0.45s ease-out",
+                  }}
                 />
               );
             })}
 
-            {/* Animated flow dots along hovered edges */}
+            {/* Flow dots along hovered edges */}
             {hovered && links
               .filter((l) => l.source === hovered || l.target === hovered)
               .map((link, i) => {
@@ -388,7 +380,7 @@ export function PortfolioGraph() {
                 return (
                   <motion.circle
                     key={`flow-${i}-${hovered}`}
-                    r="2.5"
+                    r={2.4}
                     fill={link.kind === "feeds" ? "#8B6F47" : "#3B5D4F"}
                     initial={{ cx: from.x, cy: from.y, opacity: 0 }}
                     animate={{
@@ -397,7 +389,7 @@ export function PortfolioGraph() {
                       opacity: [0, 1, 1, 0],
                     }}
                     transition={{
-                      duration: 1.8,
+                      duration: 1.9,
                       ease: "easeInOut",
                       repeat: Infinity,
                       delay: i * 0.1,
@@ -407,147 +399,125 @@ export function PortfolioGraph() {
               })}
 
             {/* Nodes */}
-            <AnimatePresence>
-              {nodesRef.current.map((node) => {
-                const entered = !started || now >= node.visibleAt;
-                if (!entered) return null;
-                const isHovered = hovered === node.id;
-                const isConnected = connectedIds.has(node.id);
-                const isDimmed = hovered && !isConnected;
-                const showLabel =
-                  node.kind !== "resource" || isHovered || !hovered;
+            {nodesRef.current.map((node) => {
+              const entered = !started || now >= node.visibleAt;
+              if (!entered) return null;
+              const isHovered = hovered === node.id;
+              const isConnected = connectedIds.has(node.id);
+              const isDimmed = hovered && !isConnected;
+              const showLabel = node.kind !== "resource" || isHovered || !hovered;
+              const halo = haloColor(node.kind);
 
-                return (
-                  <motion.g
-                    key={node.id}
-                    className="graph-node"
-                    initial={{ opacity: 0, scale: 0.6 }}
-                    animate={{
-                      opacity: isDimmed ? 0.35 : 1,
-                      scale: 1,
-                    }}
-                    exit={{ opacity: 0, scale: 0.6 }}
-                    transition={gentleSpring}
-                    onMouseEnter={() => setHovered(node.id)}
-                    onMouseLeave={() => setHovered(null)}
-                    onFocus={() => setHovered(node.id)}
-                    onBlur={() => setHovered(null)}
-                    tabIndex={0}
-                    style={{
-                      cursor: "pointer",
-                      outline: "none",
-                    }}
-                    // motion requires setting transform via x/y on group
-                    // but SVG groups transform differently — use attribute
-                    {...{ transform: `translate(${node.x}, ${node.y})` }}
-                  >
-                    {/* Breathing halo on hovered node */}
+              return (
+                <g
+                  key={node.id}
+                  className="graph-node"
+                  transform={`translate(${node.x} ${node.y})`}
+                  onMouseEnter={() => setHovered(node.id)}
+                  onMouseLeave={() => setHovered(null)}
+                  onFocus={() => setHovered(node.id)}
+                  onBlur={() => setHovered(null)}
+                  tabIndex={0}
+                  style={{ cursor: "pointer", outline: "none" }}
+                >
+                  {/* Hit area */}
+                  <circle
+                    r={node.radius + 16}
+                    fill="transparent"
+                  />
+
+                  {/* Breathing halo (only while hovered) */}
+                  <AnimatePresence>
                     {isHovered && (
                       <motion.circle
+                        key="breathe"
                         r={node.radius}
                         fill="none"
-                        stroke={
-                          node.kind === "live"
-                            ? "#3B5D4F"
-                            : node.kind === "dev"
-                            ? "#8B6F47"
-                            : node.kind === "resource"
-                            ? "#8B6F47"
-                            : "#1C1C1A"
-                        }
-                        strokeOpacity={0.22}
+                        stroke={halo}
                         strokeWidth={1.5}
                         initial={{ scale: 1, opacity: 0 }}
                         animate={{
-                          scale: [1, 1.8, 2.4],
-                          opacity: [0.5, 0.22, 0],
+                          scale: [1, 1.9, 2.5],
+                          opacity: [0.55, 0.22, 0],
                         }}
+                        exit={{ opacity: 0 }}
                         transition={{
-                          duration: 2.2,
+                          duration: 2.3,
                           ease: "easeOut",
                           repeat: Infinity,
                         }}
                       />
                     )}
+                  </AnimatePresence>
 
-                    {/* Soft static halo */}
+                  {/* Static soft halo (only while hovered) */}
+                  <AnimatePresence>
                     {isHovered && (
                       <motion.circle
+                        key="static-halo"
                         r={node.radius + 6}
                         fill="none"
-                        stroke={
-                          node.kind === "live"
-                            ? "#3B5D4F"
-                            : node.kind === "dev"
-                            ? "#8B6F47"
-                            : node.kind === "resource"
-                            ? "#8B6F47"
-                            : "#1C1C1A"
-                        }
-                        strokeOpacity={0.25}
+                        stroke={halo}
                         strokeWidth={1}
-                        initial={{ scale: 0.6, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
+                        initial={{ scale: 0.7, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 0.32 }}
+                        exit={{ scale: 0.7, opacity: 0 }}
                         transition={gentleSpring}
                       />
                     )}
+                  </AnimatePresence>
 
-                    <motion.circle
-                      r={node.radius}
-                      fill={nodeFill(node.kind)}
-                      stroke={nodeStroke(node.kind)}
-                      strokeWidth={node.kind === "planned" ? 1.5 : 1}
-                      initial={{ scale: 1 }}
-                      animate={{
-                        scale: isHovered ? 1.12 : 1,
-                      }}
-                      transition={gentleSpring}
-                      filter={isHovered ? "url(#node-glow)" : undefined}
-                    />
+                  {/* Main circle — motion on scale only, fill/stroke stable */}
+                  <motion.circle
+                    r={node.radius}
+                    fill={nodeFill(node.kind)}
+                    stroke={nodeStroke(node.kind)}
+                    strokeWidth={node.kind === "planned" ? 1.5 : 1}
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{
+                      scale: isHovered ? 1.12 : 1,
+                      opacity: isDimmed ? 0.4 : 1,
+                    }}
+                    transition={gentleSpring}
+                    filter={isHovered ? "url(#node-glow)" : undefined}
+                    style={{ transformOrigin: "center" }}
+                  />
 
-                    {showLabel && (
-                      <motion.text
-                        y={node.radius + 20}
-                        textAnchor="middle"
-                        fontFamily="var(--font-display), Georgia, serif"
-                        fontSize={
-                          node.kind === "hub"
-                            ? 18
-                            : node.kind === "resource"
-                            ? 12
-                            : 15
-                        }
-                        fontStyle={
-                          node.kind === "resource" ? "italic" : "normal"
-                        }
-                        fill={node.kind === "resource" ? "#6B6A66" : "#1C1C1A"}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: isDimmed ? 0.4 : 1 }}
-                        transition={{ duration: 0.4, ease: "easeOut" }}
-                      >
-                        {node.label}
-                      </motion.text>
-                    )}
-                    {node.sub && showLabel && node.kind !== "hub" && (
-                      <motion.text
-                        y={node.radius + 36}
-                        textAnchor="middle"
-                        fontFamily="var(--font-body), system-ui"
-                        fontSize={10}
-                        letterSpacing="0.18em"
-                        fill="#6B6A66"
-                        textRendering="geometricPrecision"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: isDimmed ? 0.4 : 0.9 }}
-                        transition={{ duration: 0.4, ease: "easeOut" }}
-                      >
-                        {node.sub.toUpperCase()}
-                      </motion.text>
-                    )}
-                  </motion.g>
-                );
-              })}
-            </AnimatePresence>
+                  {/* Label */}
+                  {showLabel && (
+                    <motion.text
+                      y={node.radius + 20}
+                      textAnchor="middle"
+                      fontFamily="var(--font-display), Georgia, serif"
+                      fontSize={node.kind === "hub" ? 18 : node.kind === "resource" ? 12 : 15}
+                      fontStyle={node.kind === "resource" ? "italic" : "normal"}
+                      fill={node.kind === "resource" ? "#6B6A66" : "#1C1C1A"}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: isDimmed ? 0.45 : 1 }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                    >
+                      {node.label}
+                    </motion.text>
+                  )}
+                  {node.sub && showLabel && node.kind !== "hub" && (
+                    <motion.text
+                      y={node.radius + 36}
+                      textAnchor="middle"
+                      fontFamily="var(--font-body), system-ui"
+                      fontSize={10}
+                      letterSpacing="0.18em"
+                      fill="#6B6A66"
+                      textRendering="geometricPrecision"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: isDimmed ? 0.45 : 0.9 }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                    >
+                      {node.sub.toUpperCase()}
+                    </motion.text>
+                  )}
+                </g>
+              );
+            })}
           </svg>
 
           {/* Hover readout panel */}
@@ -595,7 +565,6 @@ export function PortfolioGraph() {
           </AnimatePresence>
         </div>
 
-        {/* Legend */}
         <div className="mt-10 md:mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 text-[12px] md:text-[13px] text-muted">
           <LegendDot color="#1C1C1A" label="Parent" />
           <LegendDot color="#3B5D4F" label="Live product" />
