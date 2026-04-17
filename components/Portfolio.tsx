@@ -139,7 +139,7 @@ export function Portfolio() {
                 §
               </span>
               <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-muted">
-                Portfolio · Two live, four in pipeline
+                Portfolio · Two shipped, four on the bench
               </span>
             </div>
             <span className="hidden md:block font-display italic text-muted text-[17px]">

@@ -7,8 +7,6 @@ import { Reveal } from "./Reveal";
  * Interactive scatter chart: advertised vs. actual all-in monthly price
  * across GLP-1 telehealth providers. The diagonal line is honesty.
  * Dots above the line are marketing dressed as medicine.
- *
- * Animated entrance (draws in on scroll) + hover tooltip per provider.
  */
 
 type Point = {
@@ -28,12 +26,12 @@ const data: Point[] = [
   { id: "enhance", name: "Enhance MD", advertised: 299, actual: 299, honest: true },
   { id: "tmates", name: "TMates", advertised: 215, actual: 215, honest: true },
   { id: "petermd", name: "PeterMD", advertised: 165, actual: 165, honest: true },
-  { id: "willow", name: "Willow", advertised: 160, actual: 299, honest: false, note: "Intro price hides ongoing cost" },
+  { id: "willow", name: "Willow", advertised: 160, actual: 299, honest: false, note: "Intro price hides the refill" },
   { id: "ro", name: "Ro", advertised: 99, actual: 344, honest: false, note: "Intro price only" },
   { id: "hims", name: "Hims", advertised: 85, actual: 295, honest: false, note: "First-month teaser" },
   { id: "hers", name: "Hers", advertised: 85, actual: 295, honest: false, note: "First-month teaser" },
-  { id: "fridays", name: "Fridays", advertised: 129, actual: 269, honest: false, note: "Add-on fees" },
-  { id: "zealthy", name: "Zealthy", advertised: 115, actual: 249, honest: false, note: "Membership separate" },
+  { id: "fridays", name: "Fridays", advertised: 129, actual: 269, honest: false, note: "Add-on fees at checkout" },
+  { id: "zealthy", name: "Zealthy", advertised: 115, actual: 249, honest: false, note: "Membership billed separately" },
   { id: "trimrx", name: "TrimRx", advertised: 149, actual: 269, honest: false, note: "Meds billed separately" },
   { id: "henry", name: "Henry Meds", advertised: 185, actual: 297, honest: false, note: "Dose escalation charges" },
   { id: "shed", name: "Shed", advertised: 219, actual: 249, honest: false, note: "Lab fees extra" },
@@ -69,13 +67,13 @@ export function PricingAudit() {
   const toY = (v: number) => 100 - ((v - MIN) / (MAX - MIN)) * 100;
 
   const hoveredPoint = data.find((d) => d.id === hovered);
+  const worstGap = Math.max(...data.map((d) => d.actual - d.advertised));
+  const worstId = data.find((d) => d.actual - d.advertised === worstGap)?.id;
 
-  // Derive some summary stats for the bottom row
   const gaps = data.map((d) => d.actual - d.advertised);
   const avgGap = Math.round(gaps.reduce((a, b) => a + b, 0) / gaps.length);
   const honestCount = data.filter((d) => d.honest).length;
-  const worstGap = Math.max(...gaps);
-  const worstName = data.find((d) => d.actual - d.advertised === worstGap)?.name;
+  const worstName = data.find((d) => d.id === worstId)?.name;
 
   return (
     <section
@@ -84,14 +82,13 @@ export function PricingAudit() {
       className="relative py-24 md:py-40 border-t border-border overflow-hidden"
     >
       <div className="mx-auto max-w-[1320px] px-6 md:px-10">
-        {/* Header */}
         <Reveal>
           <div className="flex items-baseline gap-5 mb-10 md:mb-14">
             <span className="font-display italic text-bronze text-[22px] md:text-[28px]">
               ‡
             </span>
             <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-muted">
-              Exhibit A · The pricing audit
+              Exhibit A · The pricing receipt
             </span>
           </div>
         </Reveal>
@@ -104,10 +101,11 @@ export function PricingAudit() {
             </h2>
           </Reveal>
           <Reveal delay={160} className="col-span-12 md:col-span-5 md:pt-6">
-            <p className="text-[16px] md:text-[17px] leading-[1.6] text-ink/75 max-w-[46ch]">
-              Every dot is a GLP-1 telehealth provider. The diagonal is honesty
-              — advertised equals actual. Dots hovering above it are
-              marketing dressed as medicine. Hover any point for the receipt.
+            <p className="text-[16px] md:text-[17px] leading-[1.65] text-ink/75 max-w-[46ch]">
+              Every dot is a GLP-1 telehealth provider. The dashed diagonal is
+              honesty — where the ad equals the invoice. Everything floating
+              above it is marketing dressed as medicine. Hover any dot for the
+              receipt.
             </p>
           </Reveal>
         </div>
@@ -115,7 +113,14 @@ export function PricingAudit() {
         {/* Chart */}
         <div className="grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-8">
-            <div className="relative aspect-[5/4] w-full rounded-md bg-sand/50 border border-border overflow-visible">
+            <div className="relative aspect-[5/4] w-full rounded-md bg-gradient-to-br from-sand/70 to-sand/40 border border-border overflow-visible">
+              {/* soft decorative corner light */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -top-10 -right-10 h-56 w-56 rounded-full opacity-60 blur-3xl"
+                style={{ background: "radial-gradient(circle,#F4F1EB 0%,transparent 70%)" }}
+              />
+
               <svg
                 viewBox="0 0 100 100"
                 preserveAspectRatio="none"
@@ -123,6 +128,17 @@ export function PricingAudit() {
                 role="img"
                 aria-label="Scatter plot of advertised versus actual monthly prices for GLP-1 providers"
               >
+                <defs>
+                  {/* Soft glow for hovered / worst */}
+                  <filter id="soft-glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="0.8" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
                 {/* Gridlines */}
                 {TICKS.map((t) => (
                   <g key={`g-${t}`}>
@@ -156,16 +172,16 @@ export function PricingAudit() {
                   x2={toX(MAX)}
                   y2={toY(MAX)}
                   stroke="#3B5D4F"
-                  strokeWidth={0.35}
+                  strokeWidth={0.4}
                   strokeDasharray="1.2 0.8"
                   vectorEffect="non-scaling-stroke"
                   style={{
                     strokeDashoffset: animate ? 0 : 200,
-                    transition: "stroke-dashoffset 1.6s cubic-bezier(0.19,1,0.22,1)",
+                    transition: "stroke-dashoffset 1.8s cubic-bezier(0.19,1,0.22,1)",
                   }}
                 />
 
-                {/* Gap vectors — thin lines from advertised→actual for each dishonest one */}
+                {/* Gap vectors */}
                 {data
                   .filter((d) => !d.honest)
                   .map((d, i) => (
@@ -176,15 +192,15 @@ export function PricingAudit() {
                       x2={toX(d.advertised)}
                       y2={toY(d.actual)}
                       stroke="#8B6F47"
-                      strokeOpacity={hovered === d.id ? 0.75 : 0.22}
-                      strokeWidth={0.35}
+                      strokeOpacity={hovered === d.id ? 0.85 : 0.22}
+                      strokeWidth={hovered === d.id ? 0.5 : 0.35}
                       vectorEffect="non-scaling-stroke"
                       style={{
                         transformOrigin: `${toX(d.advertised)}px ${toY(d.advertised)}px`,
                         transform: animate ? "scaleY(1)" : "scaleY(0)",
                         transition: `transform 1.1s cubic-bezier(0.19,1,0.22,1) ${
                           400 + i * 60
-                        }ms`,
+                        }ms, stroke-opacity 0.3s ease-out, stroke-width 0.3s ease-out`,
                       }}
                     />
                   ))}
@@ -192,6 +208,7 @@ export function PricingAudit() {
                 {/* Points */}
                 {data.map((d, i) => {
                   const isHover = hovered === d.id;
+                  const isWorst = d.id === worstId;
                   const cxAdv = toX(d.advertised);
                   const cyAdv = toY(d.advertised);
                   const cxAct = toX(d.advertised);
@@ -206,42 +223,72 @@ export function PricingAudit() {
                       tabIndex={0}
                       style={{ cursor: "pointer" }}
                     >
-                      {/* Advertised price marker (small, hollow) */}
+                      {/* Advertised (hollow) */}
                       <circle
                         cx={cxAdv}
                         cy={cyAdv}
-                        r={isHover ? 0.9 : 0.7}
+                        r={isHover ? 1.1 : 0.75}
                         fill="none"
                         stroke="#6B6A66"
                         strokeWidth={0.3}
                         vectorEffect="non-scaling-stroke"
-                        opacity={animate ? 0.6 : 0}
+                        opacity={animate ? 0.65 : 0}
                         style={{
                           transition: `opacity 0.7s cubic-bezier(0.19,1,0.22,1) ${
                             300 + i * 40
-                          }ms, r 0.3s ease-out`,
+                          }ms, r 0.4s cubic-bezier(0.34,1.56,0.64,1)`,
                         }}
                       />
-                      {/* Actual price marker (big, filled) */}
+
+                      {/* Ping aura for the worst offender */}
+                      {isWorst && animate && (
+                        <circle
+                          cx={cxAct}
+                          cy={cyAct}
+                          r={2.6}
+                          fill="none"
+                          stroke="#8B6F47"
+                          strokeWidth={0.4}
+                          vectorEffect="non-scaling-stroke"
+                          opacity={0.55}
+                          style={{
+                            transformOrigin: `${cxAct}px ${cyAct}px`,
+                            animation: "pulseRing 2.4s cubic-bezier(0,0,0.2,1) infinite",
+                          }}
+                        />
+                      )}
+
+                      {/* Glow ring on hover */}
+                      {isHover && (
+                        <circle
+                          cx={cxAct}
+                          cy={cyAct}
+                          r={2.6}
+                          fill="none"
+                          stroke={d.honest ? "#3B5D4F" : "#8B6F47"}
+                          strokeOpacity={0.35}
+                          strokeWidth={0.6}
+                          vectorEffect="non-scaling-stroke"
+                        />
+                      )}
+
+                      {/* Actual (filled) */}
                       <circle
                         cx={cxAct}
                         cy={cyAct}
-                        r={isHover ? 1.8 : 1.2}
+                        r={isHover ? 2 : 1.25}
                         fill={d.honest ? "#3B5D4F" : "#8B6F47"}
                         opacity={animate ? 1 : 0}
+                        filter={isHover ? "url(#soft-glow)" : undefined}
                         style={{
                           transition: `opacity 0.7s cubic-bezier(0.19,1,0.22,1) ${
                             500 + i * 60
-                          }ms, r 0.3s ease-out`,
+                          }ms, r 0.35s cubic-bezier(0.34,1.56,0.64,1)`,
                         }}
                       />
+
                       {/* Hitbox */}
-                      <circle
-                        cx={cxAct}
-                        cy={cyAct}
-                        r={3}
-                        fill="transparent"
-                      />
+                      <circle cx={cxAct} cy={cyAct} r={3.2} fill="transparent" />
                     </g>
                   );
                 })}
@@ -261,50 +308,61 @@ export function PricingAudit() {
 
               {/* Axis titles */}
               <div className="absolute -bottom-14 left-0 right-0 text-center text-[11px] uppercase tracking-[0.25em] text-muted">
-                Advertised price →
+                What they tell you →
               </div>
               <div
                 className="absolute -left-[92px] md:-left-[104px] top-1/2 -translate-y-1/2 text-[11px] uppercase tracking-[0.25em] text-muted"
                 style={{ writingMode: "vertical-rl", transform: "rotate(180deg) translateX(50%)" }}
               >
-                Actual price →
+                What you pay →
               </div>
 
-              {/* Honesty line label */}
+              {/* Honesty label */}
               <div
-                className="absolute text-[11px] uppercase tracking-[0.22em] text-sage font-display italic normal-case"
+                className="absolute text-[11px] tracking-[0.22em] text-sage font-display italic"
                 style={{ top: "12%", right: "6%" }}
               >
-                honesty line
+                the honesty line
               </div>
 
               {/* Tooltip */}
               {hoveredPoint && (
                 <div
-                  className="absolute bg-ink text-cream text-[12px] md:text-[13px] rounded-sm px-3 py-2 shadow-lg pointer-events-none"
+                  className="absolute bg-ink text-cream text-[12px] md:text-[13px] rounded-md px-3.5 py-2.5 shadow-2xl pointer-events-none z-10 transition-opacity"
                   style={{
                     left: `${toX(hoveredPoint.advertised)}%`,
                     top: `${toY(hoveredPoint.actual)}%`,
-                    transform: "translate(-50%, -130%)",
+                    transform: "translate(-50%, calc(-100% - 14px))",
                     whiteSpace: "nowrap",
                   }}
                 >
-                  <div className="font-display text-cream text-[14px] leading-tight">
+                  <div className="font-display text-cream text-[15px] leading-tight">
                     {hoveredPoint.name}
                   </div>
-                  <div className="text-cream/70 text-[11px] leading-snug mt-0.5">
-                    Advertised ${hoveredPoint.advertised}{" · "}
+                  <div className="text-cream/70 text-[11px] leading-snug mt-1">
+                    Advertised{" "}
+                    <span className="tabular-nums">${hoveredPoint.advertised}</span>
+                    {" → "}
                     <span
-                      className={hoveredPoint.honest ? "text-sage-soft" : "text-bronze"}
+                      className={
+                        hoveredPoint.honest
+                          ? "text-sage-soft tabular-nums"
+                          : "text-bronze tabular-nums"
+                      }
                     >
                       Actual ${hoveredPoint.actual}
                     </span>
                   </div>
                   {hoveredPoint.note && (
-                    <div className="text-cream/55 text-[10px] mt-1 italic">
+                    <div className="text-cream/55 text-[10px] mt-1.5 italic max-w-[22ch] whitespace-normal">
                       {hoveredPoint.note}
                     </div>
                   )}
+                  {/* tooltip tail */}
+                  <span
+                    aria-hidden
+                    className="absolute left-1/2 -bottom-1.5 -translate-x-1/2 h-3 w-3 rotate-45 bg-ink"
+                  />
                 </div>
               )}
             </div>
@@ -313,11 +371,11 @@ export function PricingAudit() {
             <div className="mt-16 md:mt-20 flex flex-wrap items-center gap-6 md:gap-10 text-[12px] text-muted">
               <span className="inline-flex items-center gap-2">
                 <span className="inline-block h-2.5 w-2.5 rounded-full bg-sage" />
-                Honest — advertised = actual
+                Honest — ad = invoice
               </span>
               <span className="inline-flex items-center gap-2">
                 <span className="inline-block h-2.5 w-2.5 rounded-full bg-bronze" />
-                Inflated — actual price above advertised
+                Inflated — invoice above the ad
               </span>
               <span className="inline-flex items-center gap-2">
                 <span
@@ -336,49 +394,50 @@ export function PricingAudit() {
             <div className="md:sticky md:top-24 space-y-8">
               <div>
                 <div className="text-[10px] uppercase tracking-[0.28em] text-muted mb-2">
-                  Dataset
+                  In the index
                 </div>
                 <div className="font-display text-ink text-[40px] md:text-[56px] leading-none tracking-tightest tabular-nums">
                   {data.length}
                 </div>
                 <div className="text-[13px] text-muted mt-1">
-                  Providers in the index
+                  Providers we actually checked
                 </div>
               </div>
 
               <div>
                 <div className="text-[10px] uppercase tracking-[0.28em] text-muted mb-2">
-                  Honest
+                  Ad = invoice
                 </div>
                 <div className="font-display text-sage text-[40px] md:text-[56px] leading-none tracking-tightest tabular-nums">
                   {honestCount}
                 </div>
                 <div className="text-[13px] text-muted mt-1">
-                  Advertised = actual
+                  The ones telling the truth
                 </div>
               </div>
 
               <div>
                 <div className="text-[10px] uppercase tracking-[0.28em] text-muted mb-2">
-                  Average gap
+                  Average overrun
                 </div>
                 <div className="font-display text-bronze text-[40px] md:text-[56px] leading-none tracking-tightest tabular-nums">
                   +${avgGap}
                 </div>
                 <div className="text-[13px] text-muted mt-1">
-                  Above what was advertised
+                  Above what they quoted
                 </div>
               </div>
 
               <div className="pt-6 border-t border-border">
                 <div className="text-[10px] uppercase tracking-[0.28em] text-muted mb-2">
-                  Biggest gap
+                  Biggest offender
                 </div>
                 <div className="font-display italic text-ink text-[20px] leading-tight">
-                  {worstName} <span className="text-bronze">+${worstGap}</span>
+                  {worstName}{" "}
+                  <span className="text-bronze tabular-nums">+${worstGap}</span>
                 </div>
                 <div className="text-[12px] text-muted mt-1 leading-[1.5]">
-                  The distance between their marketing and their invoice.
+                  The distance between their marketing and your invoice.
                 </div>
               </div>
             </div>

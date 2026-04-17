@@ -6,32 +6,31 @@ const principles = [
     num: "I",
     label: "Transparency",
     body:
-      "Every methodology published. Every affiliate disclosed. Every price shown all-in.",
+      "Every methodology published. Every affiliate disclosed. Every price shown all-in. If we can't say it out loud, we don't put it on the site.",
   },
   {
     num: "II",
     label: "Specificity",
     body:
-      "Generic advice is a lie told politely. We publish the actual numbers, providers, and trade-offs.",
+      "Generic advice is a lie told politely. We name the provider. Name the price. Name the trade-off. Even when it costs us a commission.",
   },
   {
     num: "III",
     label: "Compounding",
     body:
-      "Each brand shares audience, methodology, and trust. GLP-1 feeds supplements. Supplements feed peptides. Nothing starts from zero.",
+      "GLP-1 feeds supplements. Supplements feed peptides. Peptides feed the mind. Pet health feeds all of it. Trust, once earned, doesn't start over.",
   },
   {
     num: "IV",
     label: "Patience",
     body:
-      "We build for ten years, not ten weeks. Acquisition-ready means defensible — not rushed.",
+      "We build for ten years, not ten weeks. Acquisition-ready means defensible — not in a rush to be sold.",
   },
 ];
 
 export function Approach() {
   return (
     <section id="approach" className="py-28 md:py-44 border-t border-border relative overflow-hidden">
-      {/* Oversized decorative mark */}
       <div
         aria-hidden
         className="absolute -left-10 top-24 font-display italic text-ink/[0.04] text-[400px] leading-none pointer-events-none select-none hidden md:block"
@@ -40,14 +39,13 @@ export function Approach() {
       </div>
 
       <div className="relative mx-auto max-w-[1320px] px-6 md:px-10">
-        {/* Section label */}
         <Reveal>
           <div className="flex items-baseline gap-5 mb-20 md:mb-32">
             <span className="font-display italic text-bronze text-[22px] md:text-[28px]">
               †
             </span>
             <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-muted">
-              Approach · A studio manifesto
+              The manifesto
             </span>
           </div>
         </Reveal>
@@ -56,23 +54,23 @@ export function Approach() {
         <div className="grid grid-cols-12 gap-6 md:gap-14 mb-28 md:mb-40">
           <Reveal className="col-span-12 md:col-span-9 md:col-start-3">
             <p className="font-display text-ink text-[32px] md:text-[52px] lg:text-[64px] leading-[1.1] tracking-snug">
-              Consumer health is full of noise —{" "}
-              <em className="italic text-sage">sponsored content dressed as advice</em>,{" "}
-              <em className="italic text-sage">membership fees hiding true prices</em>,{" "}
+              Most consumer health is a pitch.{" "}
+              <em className="italic text-sage">Sponsored content dressed as advice</em>.{" "}
+              <em className="italic text-sage">Membership fees hiding real prices</em>.{" "}
               <em className="italic text-sage">
-                comparison sites that only rank their advertisers
+                Comparison sites that only rank their advertisers
               </em>
               .
             </p>
             <p className="font-display text-ink/70 text-[28px] md:text-[44px] lg:text-[52px] leading-[1.15] tracking-snug mt-10 md:mt-14">
-              We build the <span className="text-ink">opposite</span>.
+              We build the <span className="text-ink">opposite</span>.{" "}
+              <em className="italic text-sage/90">Slowly</em>.
             </p>
           </Reveal>
         </div>
 
-        {/* Four principles — with editorial side image */}
+        {/* Principles */}
         <div className="grid grid-cols-12 gap-6 md:gap-14">
-          {/* Sticky sidebar with photograph + header */}
           <Reveal className="col-span-12 md:col-span-4">
             <div className="md:sticky md:top-24">
               <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-muted mb-6">
@@ -80,7 +78,7 @@ export function Approach() {
                 <span>Principles</span>
               </div>
               <p className="font-display italic text-ink/80 text-[19px] md:text-[22px] leading-[1.4] mb-8 max-w-[28ch]">
-                Four commitments every brand in the portfolio shares.
+                Four commitments. Every brand in the portfolio signs up for all four.
               </p>
               <div className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-sm">
                 <Image
@@ -96,7 +94,7 @@ export function Approach() {
                 />
               </div>
               <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-muted">
-                Research · Atomical
+                Research · Atom by atom
               </p>
             </div>
           </Reveal>
@@ -117,7 +115,7 @@ export function Approach() {
                       </div>
                     </div>
                     <div className="col-span-12 md:col-span-7">
-                      <p className="text-[17px] md:text-[19px] leading-[1.55] text-ink/80 max-w-[44ch]">
+                      <p className="text-[17px] md:text-[19px] leading-[1.55] text-ink/80 max-w-[46ch]">
                         {p.body}
                       </p>
                     </div>

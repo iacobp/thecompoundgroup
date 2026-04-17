@@ -9,10 +9,10 @@ type Numeric = {
 };
 
 const numbers: Numeric[] = [
-  { to: 960, suffix: "+", label: "Pages published", note: "Across the portfolio" },
-  { to: 40, label: "Providers ranked", note: "GLP-1 Picks · All-in pricing" },
-  { to: 51, label: "State guides", note: "Medicaid + coverage" },
-  { to: 20, label: "Affiliate partners", note: "Katalys network" },
+  { to: 960, suffix: "+", label: "Pages shipped", note: "Every one footnoted" },
+  { to: 40, label: "Providers on record", note: "All-in pricing, no asterisks" },
+  { to: 51, label: "State-by-state guides", note: "Where Medicaid meets reality" },
+  { to: 20, label: "Affiliate partners", note: "None of them own a rank" },
 ];
 
 export function Metrics() {
@@ -25,7 +25,7 @@ export function Metrics() {
               ¶
             </span>
             <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-muted">
-              By the numbers · April 2026
+              The work · Counted
             </span>
           </div>
         </Reveal>

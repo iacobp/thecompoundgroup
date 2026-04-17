@@ -8,7 +8,6 @@ export function Footer() {
       id="contact"
       className="bg-ink text-cream py-24 md:py-36 relative overflow-hidden"
     >
-      {/* Huge background monogram */}
       <div
         aria-hidden
         className="absolute -right-20 -bottom-32 font-display text-cream/[0.04] text-[500px] leading-none select-none pointer-events-none hidden md:block"
@@ -39,6 +38,12 @@ export function Footer() {
               hello@thecompound.group
               <span aria-hidden className="text-[0.6em] opacity-70">→</span>
             </a>
+
+            <p className="mt-10 max-w-[44ch] text-[14px] leading-[1.65] text-cream/60">
+              Email reaches a human. One operator, AI-assisted across
+              engineering, content, and growth. We read every inbound — usually
+              reply the same day.
+            </p>
           </Reveal>
 
           <Reveal delay={200} className="col-span-12 md:col-span-4 md:col-start-9 md:pt-4">
@@ -65,7 +70,7 @@ export function Footer() {
                     </span>
                   </div>
                   <div className="text-[12px] text-cream/50 mt-1">
-                    Provider comparison · Live
+                    Forty providers ranked · Live
                   </div>
                 </a>
               </li>
@@ -86,15 +91,15 @@ export function Footer() {
                     </span>
                   </div>
                   <div className="text-[12px] text-cream/50 mt-1">
-                    Mobile app · In development
+                    Dose + switch app · In dev
                   </div>
                 </a>
               </li>
             </ul>
 
-            <div className="mt-10 text-[13px] leading-[1.6] text-cream/60">
-              Operated remotely. Single operator with AI-assisted teams across
-              engineering, content, and growth.
+            <div className="mt-10 text-[13px] leading-[1.6] text-cream/50">
+              <em className="italic">Coming next.</em> Supplement Index.
+              Pet Health. Peptide Index. Neuroscience protocols.
             </div>
           </Reveal>
         </div>
@@ -109,7 +114,7 @@ export function Footer() {
           <div className="flex flex-wrap items-center gap-x-8 gap-y-2 text-[12px] text-cream/50">
             <span>© {year} The Compound Group</span>
             <span className="font-display italic text-cream/70">
-              Consumer health, built honestly.
+              Built, bought, and footnoted.
             </span>
           </div>
         </div>
