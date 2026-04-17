@@ -1,81 +1,97 @@
 /**
- * Editorial thumbnail for GLP-1 Picks.
- * A stylised rankings card — not a screenshot, but evocative of one.
- * Pure SVG for crisp rendering at any size.
+ * Editorial thumbnail for GLP-1 Picks — a stylized browser view of the
+ * rankings index. Designed to feel like a product screenshot without
+ * being one.
  */
 export function GLP1PicksThumb() {
   return (
-    <div className="plate relative aspect-[4/3] w-full overflow-hidden rounded-[20px] bg-gradient-to-br from-white to-[#EFEBE4]">
-      {/* subtle top chrome */}
-      <div className="absolute inset-x-0 top-0 flex items-center gap-1.5 px-5 pt-4">
-        <span className="h-2 w-2 rounded-full bg-ink/15" />
-        <span className="h-2 w-2 rounded-full bg-ink/15" />
-        <span className="h-2 w-2 rounded-full bg-ink/15" />
-        <span className="ml-3 font-display text-[13px] italic text-ink/50">
-          glp1picks.com
-        </span>
+    <div className="plate relative aspect-[4/3] w-full overflow-hidden rounded-[14px] bg-white">
+      {/* Browser chrome */}
+      <div className="absolute inset-x-0 top-0 h-9 bg-[#F1ECE1] border-b border-[#E3DED1] flex items-center gap-1.5 px-4">
+        <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
+        <div className="mx-auto -translate-x-4 flex items-center gap-1.5 text-[10px] text-ink/60 font-mono">
+          <span>🔒</span>
+          <span>glp1picks.com</span>
+        </div>
       </div>
 
-      {/* content */}
-      <svg
-        viewBox="0 0 400 300"
-        className="absolute inset-0 h-full w-full"
-        aria-hidden="true"
-      >
-        {/* Title strip */}
-        <text
-          x="26"
-          y="68"
-          fontFamily="Georgia, serif"
-          fontSize="20"
-          fill="#1C1C1A"
-          fontStyle="italic"
-        >
-          Top GLP-1 providers
-        </text>
-        <text
-          x="26"
-          y="86"
-          fontFamily="Inter, system-ui, sans-serif"
-          fontSize="10"
-          fill="#6B6A66"
-          letterSpacing="0.12em"
-        >
-          RANKED BY ALL-IN PRICE · APRIL 2026
-        </text>
+      {/* Page content */}
+      <div className="absolute inset-x-0 top-9 bottom-0 px-6 pt-5 pb-4 flex flex-col">
+        {/* Masthead */}
+        <div className="flex items-baseline justify-between border-b border-ink/10 pb-3">
+          <div>
+            <div className="font-display italic text-ink text-[18px] leading-none">
+              The Pricing Index
+            </div>
+            <div className="text-[8px] tracking-[0.22em] text-muted mt-1.5 uppercase">
+              40 providers · Updated April 2026
+            </div>
+          </div>
+          <div className="text-right">
+            <div className="font-display italic text-sage text-[11px]">Vol. IV</div>
+            <div className="text-[7.5px] text-muted uppercase tracking-widest">
+              Issue 04
+            </div>
+          </div>
+        </div>
 
-        {/* Rank rows — staggered tones convey hierarchy */}
-        {[
-          { rank: "01", name: "Eden Health", price: "$249", score: "8.9", highlight: true },
-          { rank: "02", name: "Sprout Health", price: "$259", score: "8.6" },
-          { rank: "03", name: "Strut Health", price: "$269", score: "8.4" },
-          { rank: "04", name: "Sesame Care", price: "$189", score: "8.2" },
-        ].map((r, i) => {
-          const y = 112 + i * 40;
-          return (
-            <g key={r.rank}>
-              {r.highlight && (
-                <rect x="16" y={y - 20} width="368" height="34" rx="8" fill="#3B5D4F" opacity="0.06" />
-              )}
-              <text x="30" y={y} fontFamily="Georgia, serif" fontSize="14" fill="#8B6F47" fontStyle="italic">
-                {r.rank}
-              </text>
-              <text x="60" y={y} fontFamily="Inter, system-ui, sans-serif" fontSize="13" fill="#1C1C1A" fontWeight="500">
-                {r.name}
-              </text>
-              <text x="260" y={y} fontFamily="Inter, system-ui, sans-serif" fontSize="12" fill="#6B6A66">
-                {r.price}/mo
-              </text>
-              <text x="340" y={y} fontFamily="Georgia, serif" fontSize="14" fill={r.highlight ? "#3B5D4F" : "#1C1C1A"} fontStyle="italic">
-                {r.score}
-              </text>
-            </g>
-          );
-        })}
+        {/* Top pick callout */}
+        <div className="mt-3 p-3 rounded-md bg-sage/5 border border-sage/20 flex items-center justify-between">
+          <div>
+            <div className="text-[8px] uppercase tracking-[0.22em] text-sage/80 mb-0.5">
+              Editor&apos;s Top Pick
+            </div>
+            <div className="font-display text-ink text-[14px] leading-none">
+              Eden Health
+            </div>
+            <div className="text-[9px] text-ink/60 mt-0.5">
+              $249/mo · All-in · No hidden fees
+            </div>
+          </div>
+          <div className="text-right">
+            <div className="font-display italic text-sage text-[22px] leading-none">8.9</div>
+            <div className="text-[7.5px] uppercase tracking-widest text-muted mt-0.5">
+              of 10
+            </div>
+          </div>
+        </div>
 
-        {/* Footer line */}
-        <line x1="16" y1="280" x2="384" y2="280" stroke="#1C1C1A" strokeOpacity="0.08" />
-      </svg>
+        {/* Rank rows */}
+        <div className="mt-3 flex-1">
+          {[
+            { r: "02", n: "Sprout Health", p: "$259", s: "8.6" },
+            { r: "03", n: "Strut Health", p: "$269", s: "8.4" },
+            { r: "04", n: "Sesame Care", p: "$189", s: "8.2" },
+            { r: "05", n: "Enhance MD", p: "$299", s: "8.0" },
+          ].map((row) => (
+            <div
+              key={row.r}
+              className="grid grid-cols-[auto_1fr_auto_auto] gap-3 items-baseline py-1.5 border-b border-ink/5"
+            >
+              <span className="font-display italic text-bronze text-[11px] w-6">
+                {row.r}
+              </span>
+              <span className="text-[11px] font-medium text-ink">{row.n}</span>
+              <span className="text-[9.5px] text-muted tabular-nums">
+                {row.p}/mo
+              </span>
+              <span className="font-display italic text-ink text-[12px] tabular-nums w-6 text-right">
+                {row.s}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer note */}
+        <div className="mt-2 pt-2 border-t border-ink/10 flex items-center justify-between text-[7.5px] text-muted uppercase tracking-[0.2em]">
+          <span>Methodology published</span>
+          <span className="font-display italic normal-case text-sage">
+            Read the full index →
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

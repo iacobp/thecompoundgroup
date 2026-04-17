@@ -1,67 +1,111 @@
+import { Reveal } from "./Reveal";
+
+const principles = [
+  {
+    num: "I",
+    label: "Transparency",
+    body:
+      "Every methodology published. Every affiliate disclosed. Every price shown all-in.",
+  },
+  {
+    num: "II",
+    label: "Specificity",
+    body:
+      "Generic advice is a lie told politely. We publish the actual numbers, providers, and trade-offs.",
+  },
+  {
+    num: "III",
+    label: "Compounding",
+    body:
+      "Each brand shares audience, methodology, and trust. GLP-1 feeds supplements. Supplements feed peptides. Nothing starts from zero.",
+  },
+  {
+    num: "IV",
+    label: "Patience",
+    body:
+      "We build for ten years, not ten weeks. Acquisition-ready means defensible — not rushed.",
+  },
+];
+
 export function Approach() {
   return (
-    <section id="approach" className="py-20 md:py-32 border-t border-border bg-sand">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-10">
-        <div className="grid grid-cols-12 gap-6 md:gap-12">
-          {/* Section label */}
-          <div className="col-span-12 md:col-span-3">
-            <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-muted sticky top-10">
-              <span className="inline-block h-px w-8 bg-ink/40" />
-              <span>Approach</span>
-            </div>
+    <section id="approach" className="py-28 md:py-44 border-t border-border relative overflow-hidden">
+      {/* Oversized decorative mark */}
+      <div
+        aria-hidden
+        className="absolute -left-10 top-24 font-display italic text-ink/[0.04] text-[400px] leading-none pointer-events-none select-none hidden md:block"
+      >
+        *
+      </div>
+
+      <div className="relative mx-auto max-w-[1320px] px-6 md:px-10">
+        {/* Section label */}
+        <Reveal>
+          <div className="flex items-baseline gap-5 mb-20 md:mb-32">
+            <span className="font-display italic text-bronze text-[22px] md:text-[28px]">
+              †
+            </span>
+            <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-muted">
+              Approach · A studio manifesto
+            </span>
           </div>
+        </Reveal>
 
-          {/* Thesis body */}
-          <div className="col-span-12 md:col-span-9 space-y-10">
-            <p className="font-display text-ink text-[28px] md:text-[40px] leading-[1.15] tracking-snug max-w-[26ch]">
-              Consumer health is{" "}
-              <em className="italic text-sage">full of noise</em> — sponsored
-              content dressed as advice, membership fees hiding true prices,
-              comparison sites that only rank their advertisers.
+        {/* Manifesto */}
+        <div className="grid grid-cols-12 gap-6 md:gap-14 mb-28 md:mb-40">
+          <Reveal className="col-span-12 md:col-span-9 md:col-start-3">
+            <p className="font-display text-ink text-[32px] md:text-[52px] lg:text-[64px] leading-[1.1] tracking-snug">
+              Consumer health is full of noise —{" "}
+              <em className="italic text-sage">sponsored content dressed as advice</em>,{" "}
+              <em className="italic text-sage">membership fees hiding true prices</em>,{" "}
+              <em className="italic text-sage">
+                comparison sites that only rank their advertisers
+              </em>
+              .
             </p>
+            <p className="font-display text-ink/70 text-[28px] md:text-[44px] lg:text-[52px] leading-[1.15] tracking-snug mt-10 md:mt-14">
+              We build the <span className="text-ink">opposite</span>.
+            </p>
+          </Reveal>
+        </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 pt-4">
-              <div>
-                <div className="font-display italic text-bronze text-[18px] mb-3">
-                  What we build
-                </div>
-                <p className="text-[16px] md:text-[17px] leading-[1.65] text-ink/80">
-                  Honest comparison tools, transparent pricing, and apps that
-                  serve the user over the advertiser. We earn when we direct
-                  people to the <em className="italic">right</em> fit — never
-                  when we sell a spot on a leaderboard.
-                </p>
+        {/* Four principles */}
+        <div className="grid grid-cols-12 gap-6 md:gap-14">
+          <Reveal className="col-span-12 md:col-span-3">
+            <div className="sticky top-24">
+              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-muted mb-4">
+                <span className="inline-block h-px w-8 bg-ink/40" />
+                <span>Principles</span>
               </div>
-              <div>
-                <div className="font-display italic text-bronze text-[18px] mb-3">
-                  Where we play
-                </div>
-                <p className="text-[16px] md:text-[17px] leading-[1.65] text-ink/80">
-                  Regulated categories where the stakes matter: GLP-1,
-                  supplements, peptides, neuroscience. Markets confusing enough
-                  that truthful comparison is itself a product.
-                </p>
-              </div>
-              <div>
-                <div className="font-display italic text-bronze text-[18px] mb-3">
-                  How we win
-                </div>
-                <p className="text-[16px] md:text-[17px] leading-[1.65] text-ink/80">
-                  Programmatic SEO, editorial depth, affiliate infrastructure,
-                  and AI-assisted operations. One operator, a small portfolio,
-                  compound effects.
-                </p>
-              </div>
-              <div>
-                <div className="font-display italic text-bronze text-[18px] mb-3">
-                  Why it compounds
-                </div>
-                <p className="text-[16px] md:text-[17px] leading-[1.65] text-ink/80">
-                  Every brand shares audience, infrastructure, and editorial
-                  methodology. GLP-1 Picks feeds supplements. Supplements feed
-                  peptides. Trust, once earned, travels.
-                </p>
-              </div>
+              <p className="font-display italic text-ink/75 text-[17px] md:text-[19px] leading-[1.45]">
+                Four commitments every brand in the portfolio shares.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="col-span-12 md:col-span-9">
+            <div className="divide-y divide-border border-t border-b border-border">
+              {principles.map((p, i) => (
+                <Reveal key={p.num} delay={i * 120}>
+                  <article className="grid grid-cols-12 gap-6 py-10 md:py-14 items-start">
+                    <div className="col-span-2 md:col-span-1">
+                      <span className="font-display italic text-bronze text-[22px] md:text-[28px]">
+                        {p.num}
+                      </span>
+                    </div>
+                    <div className="col-span-10 md:col-span-4">
+                      <div className="font-display text-ink text-[32px] md:text-[40px] leading-[0.95] tracking-snug">
+                        {p.label}
+                      </div>
+                    </div>
+                    <div className="col-span-12 md:col-span-7">
+                      <p className="text-[17px] md:text-[19px] leading-[1.55] text-ink/80 max-w-[44ch]">
+                        {p.body}
+                      </p>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
             </div>
           </div>
         </div>

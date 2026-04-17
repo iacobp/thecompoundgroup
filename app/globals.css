@@ -4,17 +4,21 @@
 
 :root {
   color-scheme: light;
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
 body {
   background: #F4F1EB;
   color: #1C1C1A;
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -22,23 +26,76 @@ body {
   color: #F4F1EB;
 }
 
-/* Subtle underline animation for inline links */
+/* Subtle underline draw animation for inline links */
 .link-line {
   background-image: linear-gradient(currentColor, currentColor);
   background-position: 0 100%;
   background-repeat: no-repeat;
   background-size: 100% 1px;
-  transition: background-size 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-size 0.5s var(--ease-out-expo);
 }
 .link-line:hover {
   background-size: 0 1px;
   background-position: 100% 100%;
 }
 
-/* Portfolio thumbnail glass plate — subtle editorial frame */
+/* Editorial plate — portfolio thumbnail frame */
 .plate {
   box-shadow:
     0 1px 0 0 rgba(28, 28, 26, 0.04),
     0 12px 32px -12px rgba(28, 28, 26, 0.12),
-    0 32px 60px -24px rgba(28, 28, 26, 0.08);
+    0 40px 80px -32px rgba(28, 28, 26, 0.12);
+  transition: transform 0.7s var(--ease-out-expo),
+    box-shadow 0.7s var(--ease-out-expo);
+}
+
+.plate-hover:hover .plate {
+  transform: translateY(-6px);
+  box-shadow:
+    0 1px 0 0 rgba(28, 28, 26, 0.04),
+    0 24px 48px -16px rgba(28, 28, 26, 0.2),
+    0 60px 100px -40px rgba(28, 28, 26, 0.18);
+}
+
+/* Grain overlay — fixed, very subtle warmth */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.11  0 0 0 0 0.11  0 0 0 0 0.1  0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Scroll reveal — starts hidden, animates in when [data-in] is set */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal][data-in="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .plate, .plate-hover:hover .plate {
+    transition: none !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* Hide scrollbar track noise in Safari */
+@supports (-webkit-touch-callout: none) {
+  body { overscroll-behavior: none; }
 }

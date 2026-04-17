@@ -19,7 +19,7 @@ const body = Inter({
 const siteUrl = "https://thecompound.group";
 const siteName = "The Compound Group";
 const description =
-  "A studio building honest consumer health brands. Portfolio includes GLP-1 Picks, GLP-1 Tracker, and emerging products in nutrition, peptides, and neuroscience.";
+  "A studio building honest consumer health brands. Portfolio includes GLP-1 Picks, GLP-1 Tracker, and emerging products in supplements, peptides, and neuroscience.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -35,11 +35,9 @@ export const metadata: Metadata = {
     "GLP-1",
     "GLP-1 comparison",
     "health venture studio",
-    "Arsenal Productions",
   ],
-  authors: [{ name: "Arsenal Productions SRL" }],
-  creator: "The Compound Group",
-  publisher: "Arsenal Productions SRL",
+  creator: siteName,
+  publisher: siteName,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -73,11 +71,6 @@ const organizationJsonLd = {
   url: siteUrl,
   description,
   foundingDate: "2026",
-  parentOrganization: {
-    "@type": "Organization",
-    name: "Arsenal Productions SRL",
-    address: { "@type": "PostalAddress", addressCountry: "RO" },
-  },
   subOrganization: [
     {
       "@type": "Organization",
