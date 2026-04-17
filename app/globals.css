@@ -15,6 +15,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Fraunces tuning — warmer, more editorial at display sizes.
+   SOFT axis adds organic terminals, opsz lets big sizes bloom. */
+.font-display {
+  font-variation-settings: "SOFT" 50, "opsz" 144;
+}
+.font-display em,
+em.italic {
+  font-variation-settings: "SOFT" 60, "opsz" 144;
+}
+
 body {
   background: #F4F1EB;
   color: #1C1C1A;

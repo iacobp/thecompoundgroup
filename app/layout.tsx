@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
-const display = Instrument_Serif({
+/**
+ * Display: Fraunces — variable editorial serif (optical size + SOFT axis).
+ *   The free-but-premium alternative to Tiempos / Canela used by Function
+ *   Health, Redesign Health, Hone Health, Forerunner Ventures.
+ * Body: Inter — restrained grotesque, sits quietly under the display.
+ */
+const display = Fraunces({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: "variable",
   style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
+  axes: ["SOFT", "opsz"],
 });
 
 const body = Inter({
