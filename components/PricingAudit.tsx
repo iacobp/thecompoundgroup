@@ -404,8 +404,8 @@ export function PricingAudit() {
                 </div>
                 <div className="text-[12px] text-muted mt-2 leading-[1.55]">
                   A program where introductory-month pricing differs most from
-                  the steady-state monthly rate. Not a judgment call — just
-                  the structural distance between the two numbers.
+                  the steady-state monthly rate. The structural distance
+                  between the two numbers, measured in dollars per month.
                 </div>
               </div>
             </div>

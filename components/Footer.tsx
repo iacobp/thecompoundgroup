@@ -39,10 +39,9 @@ export function Footer() {
             </a>
 
             <p className="mt-10 max-w-[52ch] text-[14px] md:text-[15px] leading-[1.7] text-cream/65">
-              The inbox is read by a human, not a form queue. The operation is
-              small — a single principal, working with AI-assisted engineering
-              and content teams — and most inbound messages get a reply within
-              a day.
+              The inbox is read by a human — a single principal, working with
+              AI-assisted engineering and content teams. Most inbound messages
+              get a reply within a day.
             </p>
           </Reveal>
 

@@ -20,7 +20,7 @@ const pillars: Pillar[] = [
     body:
       "Every ranking is grounded in data we maintain ourselves, audited on a weekly cycle.",
     detail:
-      "Pricing, dosing schedules, FDA alerts, state-level Medicaid coverage, and the terms of our affiliate partnerships all live in structured datasets that are audited each week. The numbers on the page are the numbers in the database, and when something shifts — a new formulation, a revised policy, a price change — the process is built to catch it within days rather than months.",
+      "Pricing, dosing schedules, FDA alerts, state-level Medicaid coverage, and the terms of our affiliate partnerships all live in structured datasets that are audited each week. The numbers on the page are the numbers in the database, and when something shifts — a new formulation, a revised policy, a price change — the process catches it within days.",
     stat: { value: "12,400+", note: "Datapoints in structured databases, refreshed weekly" },
   },
   {
@@ -30,7 +30,7 @@ const pillars: Pillar[] = [
     body:
       "Every piece of content begins with the underlying question someone is actually trying to answer.",
     detail:
-      "Before writing, we map the queries users are running — the comparative questions, the specific dosing concerns, the coverage questions that existing articles tend to treat superficially. The goal is a page that actually resolves the question, rather than a page optimized for the fraction of the query the algorithm rewards.",
+      "Before writing, we map the queries users are running — the comparative questions, the specific dosing concerns, the coverage questions underneath each search. The goal is a page that resolves the question, from the first click to the next decision.",
     stat: { value: "3,200+", note: "Search queries mapped per brand in the portfolio" },
   },
   {
@@ -40,7 +40,7 @@ const pillars: Pillar[] = [
     body:
       "Cognitive supplements and neuroplasticity protocols, evaluated against the same evidence standards.",
     detail:
-      "Nootropics, cognitive-support formulas, and the behavioral side of neuroplasticity are reviewed through the same filter we apply everywhere: plausible mechanism, validated dosing, independent testing, and peer-reviewed human trials. Where the evidence is inconclusive, the page says so rather than filling the space with inference.",
+      "Nootropics, cognitive-support formulas, and the behavioral side of neuroplasticity are reviewed through the same filter we apply everywhere: plausible mechanism, validated dosing, independent testing, and peer-reviewed human trials. Where the evidence is inconclusive, the page says so.",
     stat: { value: "∞", note: "Recommendations updated continuously as evidence evolves" },
   },
   {
@@ -60,7 +60,7 @@ const pillars: Pillar[] = [
     body:
       "Recommendations are versioned, so readers can see how a conclusion has changed over time.",
     detail:
-      "A 2026 Q2 recommendation is stamped with that version. When a new trial publishes, a pharmacy receives a warning letter, or a program materially changes its pricing structure, we issue an update and publish a public note describing what changed and why. The reader gets to see the edit history, not just the current opinion.",
+      "A 2026 Q2 recommendation is stamped with that version. When a new trial publishes, a pharmacy receives a warning letter, or a program materially changes its pricing structure, we issue an update and publish a public note describing what changed and why. The reader sees the full edit history alongside the current opinion.",
     stat: { value: "Q/Q", note: "Reviewed on a quarterly cadence, with a public changelog" },
   },
 ];

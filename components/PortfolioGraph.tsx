@@ -358,7 +358,7 @@ export function PortfolioGraph() {
         <div className="grid grid-cols-12 gap-6 md:gap-14 mb-14 md:mb-20">
           <Reveal className="col-span-12 md:col-span-7">
             <h2 className="font-display text-ink text-[36px] md:text-[56px] lg:text-[68px] leading-[1.05] tracking-tightest">
-              A portfolio is a graph, not a list.{" "}
+              A portfolio is a graph.{" "}
               <em className="italic text-sage">This is where the edges are.</em>
             </h2>
           </Reveal>
@@ -670,12 +670,11 @@ export function PortfolioGraph() {
 
         <Reveal>
           <p className="mt-14 md:mt-20 max-w-[60ch] text-[15px] md:text-[16px] leading-[1.75] text-ink/70">
-            Two properties are live or shipping. Five more are scheduled to
-            come online across 2026 and 2027. As they do, the graph densifies
-            — a shared methodology, shared datasets, and an audience that
-            overlaps more than any one product suggests on its own. The
-            compounding, when it works, is in the edges rather than in the
-            nodes.
+            Two properties are live or shipping. Five more come online across
+            2026 and 2027. As they do, the graph densifies — a shared
+            methodology, shared datasets, and an audience that overlaps more
+            than any one product suggests on its own. The compounding, when
+            it works, lives in the edges — in how the nodes connect.
           </p>
         </Reveal>
       </div>

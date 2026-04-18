@@ -85,8 +85,8 @@ export function Hero() {
               <em className="italic text-cream">GLP-1</em> to{" "}
               <em className="italic text-cream">neuroscience</em>.{" "}
               <em className="italic text-cream">Supplements</em> to{" "}
-              <em className="italic text-cream">pet health</em>. We build or
-              acquire — and never sell what we can&apos;t footnote.
+              <em className="italic text-cream">pet health</em>. We build what
+              we&apos;d want to use. We acquire what&apos;s already working.
               <span
                 aria-hidden
                 className="align-super text-sage-soft text-[0.6em] ml-0.5 font-display italic not-italic"
@@ -104,8 +104,8 @@ export function Hero() {
               <span className="font-display italic text-sage-soft">¹</span>
               <span>
                 Footnoted as in every stat has a source, every methodology is
-                public, every provider ranking shows our work. Nothing we can&apos;t
-                defend in a lab.
+                public, every ranking shows our work — the standard we&apos;d want
+                applied to anything we&apos;d use ourselves.
               </span>
             </div>
           </Reveal>

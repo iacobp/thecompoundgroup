@@ -25,7 +25,7 @@ const items: PortfolioItem[] = [
     tagline:
       "A clear-eyed comparison of the major GLP-1 telehealth programs, priced the way a patient actually pays for them.",
     body:
-      "We review forty GLP-1 telehealth programs on three dimensions: the full monthly cost over a typical year, the quality and credentials of the clinical care, and the transparency of the program's pricing structure. The scoring methodology is published in full, the affiliate relationships are disclosed on every page, and the rankings are calculated rather than curated. When we earn a commission on a visit, the page you're reading says so.",
+      "We review forty GLP-1 telehealth programs on three dimensions: the full monthly cost over a typical year, the quality and credentials of the clinical care, and the transparency of the program's pricing structure. The scoring methodology is published in full, the affiliate relationships are disclosed on every page, and the rankings follow directly from the methodology. When we earn a commission on a visit, the page you're reading says so.",
     status: "live",
     mode: "built",
     href: "https://glp1picks.com",
@@ -41,9 +41,9 @@ const items: PortfolioItem[] = [
     num: "II",
     name: "GLP-1 Tracker",
     tagline:
-      "A tracking app designed around the decisions a GLP-1 patient has to keep making — not just the doses they have to keep taking.",
+      "A tracking app designed around the decisions a GLP-1 patient keeps making — from the dose to the refill to the program itself.",
     body:
-      "The core logging features are standard: doses, weight trends, side effects, and injection-site rotation. What we're adding is a decision layer. As programs change their pricing structures, formularies, or dose-escalation policies, the app surfaces the ones that continue to fit your situation — so your next refill is a choice, not a default.",
+      "The core logging works the way these apps should: doses, weight trends, side effects, and injection-site rotation. The layer we're adding is decision support. As programs update their pricing structures, formularies, and dose-escalation policies, the app surfaces the ones that continue to fit your situation — so the next refill is a deliberate choice.",
     status: "in-development",
     mode: "built",
     href: "/tracker",
@@ -63,7 +63,7 @@ const upcoming = [
     name: "Supplement Index",
     tag: "Adjacent category",
     note:
-      "A reviews site for the supplements GLP-1 users tend to look for — protein, fiber, electrolytes, basic micronutrient support — alongside the broader nootropics and cognitive categories. Sourced from peer-reviewed evidence where it exists, and transparent about the gaps where it doesn't.",
+      "A reviews site for the supplements GLP-1 users tend to look for — protein, fiber, electrolytes, basic micronutrient support — alongside the broader nootropics and cognitive categories. Sourced from peer-reviewed evidence where it exists; the methodology notes where the research is still thin.",
     when: "2026",
     mode: "built" as Mode,
   },

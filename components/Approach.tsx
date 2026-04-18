@@ -6,25 +6,25 @@ const principles = [
     num: "I",
     label: "Transparency",
     body:
-      "The scoring methodology for every ranking is published in full on the site, not buried in a FAQ or promised in an about page. Affiliate relationships are disclosed on the pages where they're relevant, so a reader can tell when a click earns us a commission and when it doesn't. Pricing is reported as the ongoing monthly cost a typical patient will actually pay — even when that number makes a partner look more expensive than their marketing rate suggests.",
+      "The scoring methodology for every ranking is published in detail on every site we run. Every affiliate relationship is disclosed on the pages where it's relevant. And we report pricing as the ongoing monthly cost a typical patient pays over a full year of use — the number that matters once the introductory period ends.",
   },
   {
     num: "II",
     label: "Specificity",
     body:
-      "General advice is almost always less useful than it sounds. Our content names the specific program, quotes the specific cost, and describes the specific trade-off — because that is the only way a reader can weigh one option against another. Occasionally this choice costs us affiliate revenue. It's a trade we think is worth making for the kind of reader who comes back.",
+      "Our content names the specific program, quotes the specific cost, and describes the specific trade-off — which is what lets a reader actually weigh one option against another. The reader who comes back for the next question is worth more than a reader who clicks once on a generic superlative.",
   },
   {
     num: "III",
     label: "Compounding",
     body:
-      "Each property in the portfolio extends the same research discipline into an adjacent category. The audience that trusts our GLP-1 work is the same audience looking for supplement guidance; the database infrastructure built for one transfers directly to the next. Pet health broadens the methodology to a parallel customer base, and the neuroscience work reads to a different reader entirely — but the underlying process travels.",
+      "Each property in the portfolio extends the same research discipline into an adjacent category. The audience that trusts our GLP-1 work is the same audience looking for supplement guidance. The database infrastructure built for one transfers directly to the next. Pet health broadens the methodology to a parallel customer base; the neuroscience work reads to a different reader entirely. The underlying process travels.",
   },
   {
     num: "IV",
     label: "Patience",
     body:
-      "Studios built on short time horizons tend to optimize for growth numbers that don't survive a due diligence process. We'd rather build slowly and end up with something defensible — content that ages well, data that's actually audited, partner relationships that hold. If an acquisition is part of the story, it happens because the work can stand up to scrutiny, not because a deadline demands it.",
+      "We build for ten years — content that ages well, data that's audited continuously, partner relationships that hold. If an acquisition is part of the story, it's because the work stands up to scrutiny the way we'd want our own work scrutinized.",
   },
 ];
 
@@ -50,23 +50,26 @@ export function Approach() {
           </div>
         </Reveal>
 
-        {/* Flowing manifesto */}
+        {/* Flowing manifesto — interior-to-exterior */}
         <div className="grid grid-cols-12 gap-6 md:gap-14 mb-28 md:mb-40">
           <Reveal className="col-span-12 md:col-span-9 md:col-start-3">
             <p className="font-display text-ink text-[28px] md:text-[40px] lg:text-[48px] leading-[1.2] tracking-snug">
-              Consumer health is a category where the incentives rarely line
-              up with clarity. Content is written to sell, pricing is
-              structured to win the comparison on the headline number, and
-              comparison tools themselves tend to optimize for commission
-              rather than fit. None of this is malicious — it is simply how
-              the economics work out when most participants have{" "}
-              <em className="italic text-sage">something to sell</em>.
+              We started by asking ourselves the same questions the sites
+              now answer. What does a GLP-1 program actually cost over a
+              year of use. Which supplements have{" "}
+              <em className="italic text-sage">real research</em> behind
+              them. How dose escalation works in practice, not in the
+              marketing copy.
             </p>
             <p className="font-display text-ink/85 text-[24px] md:text-[36px] lg:text-[44px] leading-[1.2] tracking-snug mt-10 md:mt-14">
-              We&apos;re trying to operate with the priorities reversed —{" "}
-              <em className="italic text-sage">research before opinion</em>,
-              methodology before recommendation, and affiliate revenue as a
-              consequence of useful work rather than the driver of it.
+              The answers took more work than we expected. So we kept the
+              notes. The notes became databases. The databases became{" "}
+              <em className="italic text-sage">sites</em>.
+            </p>
+            <p className="font-display text-ink/75 text-[22px] md:text-[32px] lg:text-[38px] leading-[1.25] tracking-snug mt-10 md:mt-14">
+              <em className="italic">Research before opinion.</em>{" "}
+              Methodology before recommendation. Infrastructure that
+              compounds across categories. The work is the work.
             </p>
           </Reveal>
         </div>
