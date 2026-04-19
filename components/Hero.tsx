@@ -6,7 +6,7 @@ export function Hero() {
     <section className="relative min-h-[88vh] md:min-h-[94vh] overflow-hidden flex flex-col">
       {/* Background video */}
       <video
-        className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
+        className="absolute inset-0 h-full w-full object-cover object-[65%_35%] md:object-[center_35%]"
         autoPlay
         loop
         muted
@@ -35,11 +35,11 @@ export function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-[2] flex-1 flex flex-col mx-auto w-full max-w-[1320px] px-6 md:px-10 pt-[140px] md:pt-[168px] pb-16 md:pb-20">
+      <div className="relative z-[2] flex-1 flex flex-col mx-auto w-full max-w-[1320px] px-5 sm:px-6 md:px-10 pt-[120px] sm:pt-[140px] md:pt-[168px] pb-14 md:pb-20">
         {/* Edition marker */}
         <Reveal>
-          <div className="flex items-center gap-4 text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-cream/75">
-            <span className="inline-block h-px w-10 bg-cream/40" />
+          <div className="flex items-center gap-3 md:gap-4 text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-cream/75">
+            <span className="inline-block h-px w-8 md:w-10 bg-cream/40" />
             <span>Volume 01 · Est. 2026</span>
             <span className="hidden md:inline opacity-50">·</span>
             <span className="hidden md:inline opacity-80">
@@ -48,11 +48,11 @@ export function Hero() {
           </div>
         </Reveal>
 
-        <div className="flex-1 min-h-[80px] md:min-h-[160px]" />
+        <div className="flex-1 min-h-[56px] sm:min-h-[80px] md:min-h-[160px]" />
 
         {/* Thesis headline — Cole Schafer: rhythm, specificity, one unexpected turn */}
         <div className="grid grid-cols-12">
-          <h1 className="col-span-12 font-display text-cream tracking-tightest leading-[0.92] text-[44px] sm:text-[64px] md:text-[88px] lg:text-[108px] drop-shadow-[0_2px_40px_rgba(0,0,0,0.35)] max-w-[16ch]">
+          <h1 className="col-span-12 font-display text-cream tracking-tightest leading-[0.92] text-[40px] sm:text-[64px] md:text-[88px] lg:text-[108px] drop-shadow-[0_2px_40px_rgba(0,0,0,0.35)] max-w-[16ch]">
             <Reveal delay={120}>
               <span className="block">
                 We build the health
@@ -65,7 +65,7 @@ export function Hero() {
               </span>
             </Reveal>
             <Reveal delay={360}>
-              <span className="block mt-4 md:mt-6 text-[28px] sm:text-[38px] md:text-[52px] lg:text-[64px] text-cream/85">
+              <span className="block mt-4 md:mt-6 text-[24px] sm:text-[38px] md:text-[52px] lg:text-[64px] text-cream/85">
                 Then we quietly acquire{" "}
                 <em className="italic text-sage-soft">the ones that already do</em>
                 <span className="text-sage-soft">.</span>
@@ -75,12 +75,12 @@ export function Hero() {
         </div>
 
         {/* Subline + footnote */}
-        <div className="mt-12 md:mt-16 grid grid-cols-12 gap-6 md:gap-12">
+        <div className="mt-10 md:mt-16 grid grid-cols-12 gap-5 md:gap-12">
           <Reveal
             delay={520}
             className="col-span-12 md:col-span-7 md:col-start-4"
           >
-            <p className="text-[17px] md:text-[20px] leading-[1.5] text-cream/90 font-light">
+            <p className="text-[16px] sm:text-[17px] md:text-[20px] leading-[1.5] text-cream/90 font-light">
               A studio for consumer health.{" "}
               <em className="italic text-cream">GLP-1</em> to{" "}
               <em className="italic text-cream">neuroscience</em>.{" "}
@@ -113,7 +113,7 @@ export function Hero() {
 
         {/* Scroll cue + monogram */}
         <Reveal delay={960}>
-          <div className="mt-14 md:mt-20 flex items-center justify-between">
+          <div className="mt-10 md:mt-20 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-cream/65">
               <span className="inline-block h-4 w-px bg-cream/50 animate-pulse" />
               <span>Scroll · Portfolio below</span>
