@@ -51,9 +51,9 @@ export function Approach() {
         </Reveal>
 
         {/* Flowing manifesto — interior-to-exterior */}
-        <div className="grid grid-cols-12 gap-6 md:gap-14 mb-28 md:mb-40">
+        <div className="grid grid-cols-12 gap-6 md:gap-14 mb-24 md:mb-40">
           <Reveal className="col-span-12 md:col-span-9 md:col-start-3">
-            <p className="font-display text-ink text-[28px] md:text-[40px] lg:text-[48px] leading-[1.2] tracking-snug">
+            <p className="font-display text-ink text-[24px] sm:text-[28px] md:text-[40px] lg:text-[48px] leading-[1.2] tracking-snug">
               We started by asking ourselves the same questions the sites
               now answer. What does a GLP-1 program actually cost over a
               year of use. Which supplements have{" "}
@@ -61,12 +61,12 @@ export function Approach() {
               them. How dose escalation works in practice, not in the
               marketing copy.
             </p>
-            <p className="font-display text-ink/85 text-[24px] md:text-[36px] lg:text-[44px] leading-[1.2] tracking-snug mt-10 md:mt-14">
+            <p className="font-display text-ink/85 text-[22px] sm:text-[24px] md:text-[36px] lg:text-[44px] leading-[1.2] tracking-snug mt-8 md:mt-14">
               The answers took more work than we expected. So we kept the
               notes. The notes became databases. The databases became{" "}
               <em className="italic text-sage">sites</em>.
             </p>
-            <p className="font-display text-ink/75 text-[22px] md:text-[32px] lg:text-[38px] leading-[1.25] tracking-snug mt-10 md:mt-14">
+            <p className="font-display text-ink/75 text-[20px] sm:text-[22px] md:text-[32px] lg:text-[38px] leading-[1.25] tracking-snug mt-8 md:mt-14">
               <em className="italic">Research before opinion.</em>{" "}
               Methodology before recommendation. Infrastructure that
               compounds across categories. The work is the work.
@@ -82,11 +82,11 @@ export function Approach() {
                 <span className="inline-block h-px w-8 bg-ink/40" />
                 <span>Four commitments</span>
               </div>
-              <p className="font-display italic text-ink/80 text-[19px] md:text-[22px] leading-[1.5] mb-8 max-w-[30ch]">
+              <p className="font-display italic text-ink/80 text-[18px] md:text-[22px] leading-[1.5] mb-8 max-w-[30ch]">
                 The four operating constraints each property in the portfolio
                 is built around, regardless of category or stage.
               </p>
-              <div className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-sm">
+              <div className="relative aspect-[4/5] w-full max-w-[340px] md:max-w-[420px] overflow-hidden rounded-sm">
                 <Image
                   src="/images/notebook-detail.jpg"
                   alt="Crystalline molecular network rendered in warm light"
@@ -109,19 +109,19 @@ export function Approach() {
             <div className="divide-y divide-border border-t border-b border-border">
               {principles.map((p, i) => (
                 <Reveal key={p.num} delay={i * 120}>
-                  <article className="grid grid-cols-12 gap-6 py-12 md:py-16 items-start">
+                  <article className="grid grid-cols-12 gap-x-4 gap-y-5 sm:gap-6 py-10 md:py-16 items-start">
                     <div className="col-span-2 md:col-span-1">
-                      <span className="font-display italic text-bronze text-[22px] md:text-[28px]">
+                      <span className="font-display italic text-bronze text-[20px] md:text-[28px]">
                         {p.num}
                       </span>
                     </div>
                     <div className="col-span-10 md:col-span-4">
-                      <div className="font-display text-ink text-[32px] md:text-[40px] leading-[0.95] tracking-snug">
+                      <div className="font-display text-ink text-[28px] sm:text-[32px] md:text-[40px] leading-[0.95] tracking-snug">
                         {p.label}
                       </div>
                     </div>
                     <div className="col-span-12 md:col-span-7">
-                      <p className="text-[16px] md:text-[17px] leading-[1.7] text-ink/80 max-w-[52ch]">
+                      <p className="text-[15px] md:text-[17px] leading-[1.7] text-ink/80 max-w-[52ch]">
                         {p.body}
                       </p>
                     </div>

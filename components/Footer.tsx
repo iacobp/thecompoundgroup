@@ -25,14 +25,14 @@ export function Footer() {
               </span>
             </div>
 
-            <h2 className="font-display text-cream text-[40px] md:text-[64px] lg:text-[80px] leading-[1.02] tracking-tightest mb-10 max-w-[18ch]">
+            <h2 className="font-display text-cream text-[34px] sm:text-[40px] md:text-[64px] lg:text-[80px] leading-[1.02] tracking-tightest mb-8 md:mb-10 max-w-[18ch]">
               Press, partnerships,{" "}
               <em className="italic text-sage-soft">and acquisitions.</em>
             </h2>
 
             <a
               href="mailto:hello@thecompound.group"
-              className="inline-flex items-center gap-3 font-display italic text-cream text-[24px] md:text-[32px] link-line"
+              className="inline-flex items-center gap-3 font-display italic text-cream text-[20px] sm:text-[24px] md:text-[32px] link-line break-all"
             >
               hello@thecompound.group
               <span aria-hidden className="text-[0.6em] opacity-70">→</span>

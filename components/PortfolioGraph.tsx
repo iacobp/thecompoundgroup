@@ -379,10 +379,20 @@ export function PortfolioGraph() {
         </div>
 
         <div className="relative rounded-md border border-border bg-cream overflow-hidden">
+          {/* Mobile scroll hint */}
+          <div
+            aria-hidden
+            className="md:hidden absolute top-3 right-3 z-[2] text-[10px] uppercase tracking-[0.22em] text-muted/80 bg-cream/80 backdrop-blur-sm border border-border rounded-full px-2.5 py-1 inline-flex items-center gap-1.5 pointer-events-none"
+          >
+            <span>Scroll</span>
+            <span>→</span>
+          </div>
+          <div className="w-full overflow-x-auto md:overflow-visible [scrollbar-width:thin]">
           <svg
             ref={svgRef}
             viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-            className="w-full h-auto block touch-none select-none"
+            className="h-auto block select-none w-[720px] md:w-full md:touch-none"
+            style={{ touchAction: "pan-x pan-y" }}
             role="img"
             aria-label="Force-directed graph of The Compound Group portfolio"
           >
@@ -604,6 +614,7 @@ export function PortfolioGraph() {
               );
             })}
           </svg>
+          </div>
 
           {/* Hover readout panel */}
           <AnimatePresence mode="wait">

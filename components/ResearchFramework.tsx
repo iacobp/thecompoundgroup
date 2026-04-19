@@ -275,7 +275,7 @@ export function ResearchFramework() {
 
           {/* Detail pane */}
           <div className="col-span-12 md:col-span-7">
-            <div className="md:sticky md:top-24 rounded-md border border-cream/10 bg-cream/[0.03] backdrop-blur-sm p-8 md:p-12 min-h-[420px]">
+            <div className="md:sticky md:top-24 rounded-md border border-cream/10 bg-cream/[0.03] backdrop-blur-sm p-6 sm:p-8 md:p-12 md:min-h-[420px]">
               <div
                 key={activePillar.key}
                 className="animate-fade-in"
@@ -283,34 +283,34 @@ export function ResearchFramework() {
                   animation: "fadeSlideIn 0.5s cubic-bezier(0.19,1,0.22,1) both",
                 }}
               >
-                <div className="flex items-baseline justify-between mb-8">
+                <div className="flex items-baseline justify-between gap-3 mb-6 md:mb-8">
                   <span className="font-display italic text-sage-soft text-[20px] md:text-[24px]">
                     {activePillar.num}
                   </span>
-                  <span className="text-[10px] uppercase tracking-[0.22em] text-cream/45">
+                  <span className="text-[10px] uppercase tracking-[0.22em] text-cream/45 text-right">
                     Pillar · {activePillar.label.toLowerCase()}
                   </span>
                 </div>
 
-                <h3 className="font-display text-cream text-[40px] md:text-[64px] leading-[0.95] tracking-tightest mb-6">
+                <h3 className="font-display text-cream text-[36px] sm:text-[40px] md:text-[64px] leading-[0.95] tracking-tightest mb-5 md:mb-6">
                   {activePillar.label}
                 </h3>
 
-                <p className="font-display italic text-cream/85 text-[22px] md:text-[26px] leading-[1.3] mb-8 max-w-[28ch]">
+                <p className="font-display italic text-cream/85 text-[19px] sm:text-[22px] md:text-[26px] leading-[1.3] mb-6 md:mb-8 max-w-[28ch]">
                   {activePillar.body}
                 </p>
 
-                <p className="text-[15px] md:text-[17px] leading-[1.7] text-cream/75 mb-10 max-w-[52ch]">
+                <p className="text-[15px] md:text-[17px] leading-[1.7] text-cream/75 mb-8 md:mb-10 max-w-[52ch]">
                   {activePillar.detail}
                 </p>
 
-                <div className="border-t border-cream/15 pt-6 flex items-baseline gap-6">
+                <div className="border-t border-cream/15 pt-6 flex items-baseline gap-5 md:gap-6">
                   <div>
-                    <div className="font-display text-cream text-[48px] md:text-[64px] leading-none tracking-tightest">
+                    <div className="font-display text-cream text-[40px] sm:text-[48px] md:text-[64px] leading-none tracking-tightest">
                       {activePillar.stat.value}
                     </div>
                   </div>
-                  <div className="flex-1 text-[13px] md:text-[14px] text-cream/60 leading-[1.5]">
+                  <div className="flex-1 text-[12px] md:text-[14px] text-cream/60 leading-[1.5]">
                     {activePillar.stat.note}
                   </div>
                 </div>

@@ -29,14 +29,14 @@ export function Methodology() {
         </Reveal>
 
         <Reveal>
-          <h2 className="font-display text-ink text-[40px] md:text-[64px] lg:text-[72px] leading-[1.04] tracking-tightest mb-6 max-w-[22ch]">
+          <h2 className="font-display text-ink text-[34px] sm:text-[40px] md:text-[64px] lg:text-[72px] leading-[1.04] tracking-tightest mb-5 md:mb-6 max-w-[22ch]">
             Not a time machine.{" "}
             <em className="italic text-sage-soft">A calibrated one.</em>
           </h2>
         </Reveal>
 
         <Reveal delay={120}>
-          <p className="text-[16px] md:text-[18px] leading-[1.6] text-ink/70 max-w-[60ch] mb-20 md:mb-28">
+          <p className="text-[15px] sm:text-[16px] md:text-[18px] leading-[1.6] text-ink/70 max-w-[60ch] mb-16 md:mb-28">
             Barque isn&apos;t trying to predict everything. It&apos;s a
             domain-specific forecasting loop with a Brier score — the same
             primitive Tetlock&apos;s superforecasters use, scaled across
@@ -44,14 +44,14 @@ export function Methodology() {
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-12 gap-6 md:gap-10">
+        <div className="grid grid-cols-12 gap-x-6 gap-y-8 md:gap-10">
           {loop.map((step, i) => (
             <Reveal key={step.num} delay={80 * i} className="col-span-12 md:col-span-6 lg:col-span-4">
-              <div className="border-t border-ink/15 pt-6 md:pt-8 h-full">
-                <div className="font-display italic text-sage-soft text-[22px] md:text-[24px] mb-4">
+              <div className="border-t border-ink/15 pt-5 md:pt-8 h-full">
+                <div className="font-display italic text-sage-soft text-[20px] md:text-[24px] mb-3 md:mb-4">
                   {step.num}
                 </div>
-                <h3 className="font-display text-ink text-[32px] md:text-[40px] leading-none tracking-tightest mb-5">
+                <h3 className="font-display text-ink text-[28px] sm:text-[32px] md:text-[40px] leading-none tracking-tightest mb-4 md:mb-5">
                   {step.label}
                 </h3>
                 <p className="text-[14px] md:text-[15px] leading-[1.6] text-ink/70 max-w-[38ch]">

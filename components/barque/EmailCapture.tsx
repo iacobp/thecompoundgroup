@@ -78,12 +78,12 @@ export function EmailCapture() {
               </span>
             </div>
 
-            <h2 className="font-display text-cream text-[40px] md:text-[60px] lg:text-[72px] leading-[1.04] tracking-tightest max-w-[18ch]">
+            <h2 className="font-display text-cream text-[34px] sm:text-[40px] md:text-[60px] lg:text-[72px] leading-[1.04] tracking-tightest max-w-[18ch]">
               Get the log{" "}
               <em className="italic text-sage-soft">before the market does</em>.
             </h2>
 
-            <p className="mt-6 md:mt-8 text-[15px] md:text-[16px] leading-[1.6] text-cream/70 max-w-[44ch]">
+            <p className="mt-5 md:mt-8 text-[14px] sm:text-[15px] md:text-[16px] leading-[1.6] text-cream/70 max-w-[44ch]">
               Forecasts arrive long before the news cycle catches up. Two
               separate lists, two different intents — pick one, pick both.
             </p>
@@ -99,7 +99,7 @@ export function EmailCapture() {
                       key={a.key}
                       type="button"
                       onClick={() => setAudience(a.key)}
-                      className={`w-full text-left px-6 py-5 rounded-md border transition-all duration-300 ${
+                      className={`w-full text-left px-5 sm:px-6 py-4 sm:py-5 rounded-md border transition-all duration-300 ${
                         isActive
                           ? "border-sage-soft bg-sage-soft/[0.08]"
                           : "border-cream/15 hover:border-cream/35 bg-cream/[0.02]"
@@ -107,7 +107,7 @@ export function EmailCapture() {
                       aria-pressed={isActive}
                     >
                       <div className="flex items-baseline justify-between gap-4">
-                        <div className="font-display text-cream text-[22px] md:text-[26px] tracking-snug">
+                        <div className="font-display text-cream text-[20px] sm:text-[22px] md:text-[26px] tracking-snug">
                           {a.label}
                         </div>
                         <div
@@ -150,7 +150,7 @@ export function EmailCapture() {
                 <button
                   type="submit"
                   disabled={status.kind === "sending"}
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-sage-soft hover:bg-sage text-cream px-6 py-4 text-[14px] uppercase tracking-[0.18em] font-medium transition-colors disabled:opacity-60"
+                  className="inline-flex items-center justify-center gap-2 rounded-md bg-sage-soft hover:bg-sage text-cream px-5 sm:px-6 py-3.5 sm:py-4 text-[13px] sm:text-[14px] uppercase tracking-[0.18em] font-medium transition-colors disabled:opacity-60 text-center"
                 >
                   {status.kind === "sending" ? "Sending…" : "Join " + active.label}
                 </button>

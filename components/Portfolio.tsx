@@ -201,20 +201,20 @@ export function Portfolio() {
                       reverse ? "md:order-1" : "md:order-2"
                     }`}
                   >
-                    <div className="flex items-center gap-5 mb-7 flex-wrap">
-                      <span className="font-display italic text-bronze text-[28px] leading-none">
+                    <div className="flex items-center gap-3 sm:gap-5 mb-6 md:mb-7 flex-wrap">
+                      <span className="font-display italic text-bronze text-[24px] md:text-[28px] leading-none">
                         {item.num}
                       </span>
-                      <span className="h-px w-10 bg-ink/20" />
+                      <span className="h-px w-8 md:w-10 bg-ink/20" />
                       <StatusPill status={item.status} />
                       <ModeTag mode={item.mode} />
                     </div>
 
-                    <h3 className="font-display text-ink text-[44px] md:text-[64px] leading-[0.95] tracking-tightest mb-5">
+                    <h3 className="font-display text-ink text-[38px] sm:text-[44px] md:text-[64px] leading-[0.95] tracking-tightest mb-5">
                       {item.name}
                     </h3>
 
-                    <p className="font-display italic text-ink/85 text-[20px] md:text-[24px] leading-[1.25] mb-7 max-w-[22ch]">
+                    <p className="font-display italic text-ink/85 text-[18px] sm:text-[20px] md:text-[24px] leading-[1.25] mb-7 max-w-[22ch]">
                       {item.tagline}
                     </p>
 
@@ -222,7 +222,7 @@ export function Portfolio() {
                       {item.body}
                     </p>
 
-                    <div className="grid grid-cols-3 gap-4 mb-10 border-t border-border pt-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-5 mb-10 border-t border-border pt-6">
                       {item.meta.map((m) => (
                         <div key={m.label}>
                           <div className="text-[9px] uppercase tracking-[0.22em] text-muted mb-1.5">
@@ -285,20 +285,27 @@ export function Portfolio() {
               {upcoming.map((u) => (
                 <li
                   key={u.name}
-                  className="group grid grid-cols-12 gap-4 items-baseline py-6 md:py-7"
+                  className="group grid grid-cols-12 gap-x-3 gap-y-2 md:gap-4 items-baseline py-6 md:py-7"
                 >
-                  <span className="col-span-1 font-display italic text-bronze text-[14px]">
+                  <span className="col-span-2 md:col-span-1 font-display italic text-bronze text-[14px]">
                     {u.num}
                   </span>
-                  <div className="col-span-8 md:col-span-7">
-                    <div className="font-display text-ink text-[22px] md:text-[28px] leading-none mb-1.5">
+                  <div className="col-span-10 md:col-span-7">
+                    <div className="font-display text-ink text-[22px] md:text-[28px] leading-[1.05] mb-1.5">
                       {u.name}
                     </div>
                     <div className="text-[13px] text-muted leading-[1.5]">
                       {u.note}
                     </div>
+                    <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 md:hidden text-[10px] uppercase tracking-[0.22em] text-muted">
+                      <span>{u.tag}</span>
+                      <span aria-hidden className="opacity-50">·</span>
+                      <span className="font-display italic normal-case tracking-normal text-ink/60 text-[14px]">
+                        {u.when}
+                      </span>
+                    </div>
                   </div>
-                  <span className="col-span-3 md:col-span-2 text-[11px] uppercase tracking-[0.22em] text-muted md:text-right">
+                  <span className="hidden md:block md:col-span-2 text-[11px] uppercase tracking-[0.22em] text-muted md:text-right">
                     {u.tag}
                   </span>
                   <span className="hidden md:block md:col-span-2 font-display italic text-ink/60 text-[17px] text-right">

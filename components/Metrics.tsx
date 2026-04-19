@@ -30,17 +30,17 @@ export function Metrics() {
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-14">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-10 md:gap-14">
           {numbers.map((n, i) => (
             <Reveal key={n.label} delay={i * 100}>
-              <div className="border-t border-ink/15 pt-6">
-                <div className="font-display text-ink text-[56px] md:text-[88px] leading-[0.9] tracking-tightest mb-4 tabular-nums">
+              <div className="border-t border-ink/15 pt-5 md:pt-6">
+                <div className="font-display text-ink text-[44px] sm:text-[56px] md:text-[88px] leading-[0.9] tracking-tightest mb-3 md:mb-4 tabular-nums">
                   <CountUp to={n.to} suffix={n.suffix} duration={1800} />
                 </div>
-                <div className="text-[13px] md:text-[14px] text-ink font-medium mb-1">
+                <div className="text-[12px] sm:text-[13px] md:text-[14px] text-ink font-medium mb-1">
                   {n.label}
                 </div>
-                <div className="text-[12px] text-muted leading-[1.5]">{n.note}</div>
+                <div className="text-[11px] sm:text-[12px] text-muted leading-[1.5]">{n.note}</div>
               </div>
             </Reveal>
           ))}

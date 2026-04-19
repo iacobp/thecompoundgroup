@@ -114,6 +114,11 @@ export function PricingAudit() {
 
         <div className="grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-8">
+            {/* Mobile-only y-axis caption (the desktop uses a rotated label outside the chart) */}
+            <div className="md:hidden mb-3 text-[10px] uppercase tracking-[0.22em] text-muted">
+              Ongoing monthly cost ↑
+            </div>
+            <div className="relative pl-10 pb-12 md:pl-0 md:pb-0">
             <div className="relative aspect-[5/4] w-full rounded-md bg-gradient-to-br from-sand/70 to-sand/40 border border-border overflow-visible">
               <div
                 aria-hidden
@@ -214,6 +219,9 @@ export function PricingAudit() {
                       onMouseLeave={() => setHovered(null)}
                       onFocus={() => setHovered(d.id)}
                       onBlur={() => setHovered(null)}
+                      onClick={() =>
+                        setHovered((prev) => (prev === d.id ? null : d.id))
+                      }
                       tabIndex={0}
                       style={{ cursor: "pointer" }}
                     >
@@ -271,24 +279,24 @@ export function PricingAudit() {
                   <span key={`xl-${t}`}>${t}</span>
                 ))}
               </div>
-              <div className="pointer-events-none absolute -left-10 md:-left-12 top-0 bottom-0 flex flex-col justify-between text-[10px] uppercase tracking-[0.2em] text-muted py-1 text-right">
+              <div className="pointer-events-none absolute -left-9 md:-left-12 top-0 bottom-0 flex flex-col justify-between text-[10px] uppercase tracking-[0.2em] text-muted py-1 text-right">
                 {[...TICKS].reverse().map((t) => (
                   <span key={`yl-${t}`}>${t}</span>
                 ))}
               </div>
 
-              <div className="absolute -bottom-14 left-0 right-0 text-center text-[11px] uppercase tracking-[0.25em] text-muted">
+              <div className="absolute -bottom-12 md:-bottom-14 left-0 right-0 text-center text-[10px] md:text-[11px] uppercase tracking-[0.25em] text-muted">
                 Advertised starter price →
               </div>
               <div
-                className="absolute -left-[92px] md:-left-[104px] top-1/2 -translate-y-1/2 text-[11px] uppercase tracking-[0.25em] text-muted"
+                className="hidden md:block absolute -left-[92px] md:-left-[104px] top-1/2 -translate-y-1/2 text-[11px] uppercase tracking-[0.25em] text-muted"
                 style={{ writingMode: "vertical-rl", transform: "rotate(180deg) translateX(50%)" }}
               >
                 Ongoing monthly cost →
               </div>
 
               <div
-                className="absolute text-[11px] tracking-[0.22em] text-sage font-display italic"
+                className="hidden sm:block absolute text-[11px] tracking-[0.22em] text-sage font-display italic"
                 style={{ top: "12%", right: "6%" }}
               >
                 advertised = ongoing
@@ -296,7 +304,7 @@ export function PricingAudit() {
 
               {hoveredPoint && (
                 <div
-                  className="absolute bg-ink text-cream text-[12px] md:text-[13px] rounded-md px-3.5 py-2.5 shadow-2xl pointer-events-none z-10"
+                  className="hidden sm:block absolute bg-ink text-cream text-[12px] md:text-[13px] rounded-md px-3.5 py-2.5 shadow-2xl pointer-events-none z-10"
                   style={{
                     left: `${toX(hoveredPoint.advertised)}%`,
                     top: `${toY(hoveredPoint.actual)}%`,
@@ -333,9 +341,49 @@ export function PricingAudit() {
                 </div>
               )}
             </div>
+            </div>
+
+            {/* Mobile tap readout — the absolute tooltip above doesn't render nicely
+                on touch. A fixed-position readout below the chart gives the same
+                information in a layout that respects small viewports. */}
+            {hoveredPoint && (
+              <div className="sm:hidden mt-6 rounded-md bg-ink text-cream px-4 py-3.5">
+                <div className="flex items-baseline justify-between gap-3">
+                  <div className="font-display text-cream text-[18px] leading-tight">
+                    {hoveredPoint.name}
+                  </div>
+                  <div
+                    className={`font-display italic text-[13px] ${
+                      hoveredPoint.simple ? "text-sage-soft" : "text-bronze"
+                    }`}
+                  >
+                    {hoveredPoint.simple ? "Flat" : "Structured"}
+                  </div>
+                </div>
+                <div className="text-cream/75 text-[12px] leading-snug mt-1.5">
+                  Starter{" "}
+                  <span className="tabular-nums">${hoveredPoint.advertised}</span>
+                  {" · Ongoing "}
+                  <span
+                    className={
+                      hoveredPoint.simple
+                        ? "text-sage-soft tabular-nums"
+                        : "text-bronze tabular-nums"
+                    }
+                  >
+                    ${hoveredPoint.actual}
+                  </span>
+                </div>
+                {hoveredPoint.structure && (
+                  <div className="text-cream/60 text-[11px] mt-2 italic leading-[1.5]">
+                    {hoveredPoint.structure}
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Legend */}
-            <div className="mt-16 md:mt-20 flex flex-wrap items-center gap-6 md:gap-10 text-[12px] text-muted">
+            <div className="mt-12 md:mt-20 flex flex-wrap items-center gap-x-6 gap-y-3 md:gap-10 text-[12px] text-muted">
               <span className="inline-flex items-center gap-2">
                 <span className="inline-block h-2.5 w-2.5 rounded-full bg-sage" />
                 Flat pricing — starter matches ongoing

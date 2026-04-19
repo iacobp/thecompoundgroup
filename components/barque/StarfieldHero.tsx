@@ -45,10 +45,10 @@ export function StarfieldHero() {
       />
 
       {/* Content */}
-      <div className="relative z-[3] mx-auto w-full max-w-[1320px] px-6 md:px-10 pt-[160px] md:pt-[200px] pb-24 md:pb-40 flex flex-col min-h-[92vh]">
+      <div className="relative z-[3] mx-auto w-full max-w-[1320px] px-5 sm:px-6 md:px-10 pt-[120px] sm:pt-[160px] md:pt-[200px] pb-20 md:pb-40 flex flex-col min-h-[88vh] md:min-h-[92vh]">
         <Reveal>
-          <div className="flex items-center gap-4 text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-cream/70">
-            <span className="inline-block h-px w-10 bg-cream/40" />
+          <div className="flex items-center gap-3 md:gap-4 text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-cream/70">
+            <span className="inline-block h-px w-8 md:w-10 bg-cream/40" />
             <span>Barque · The Compound Research</span>
             <span className="hidden md:inline opacity-50">·</span>
             <span className="hidden md:inline opacity-80">
@@ -57,10 +57,10 @@ export function StarfieldHero() {
           </div>
         </Reveal>
 
-        <div className="flex-1 min-h-[40px] md:min-h-[80px]" />
+        <div className="flex-1 min-h-[32px] sm:min-h-[40px] md:min-h-[80px]" />
 
         <div className="grid grid-cols-12">
-          <h1 className="col-span-12 font-display text-cream tracking-tightest leading-[0.94] text-[44px] sm:text-[64px] md:text-[88px] lg:text-[104px] drop-shadow-[0_2px_40px_rgba(0,0,0,0.5)] max-w-[18ch]">
+          <h1 className="col-span-12 font-display text-cream tracking-tightest leading-[0.94] text-[40px] sm:text-[64px] md:text-[88px] lg:text-[104px] drop-shadow-[0_2px_40px_rgba(0,0,0,0.5)] max-w-[18ch]">
             <Reveal delay={120}>
               <span className="block">The ship we send</span>
             </Reveal>
@@ -75,12 +75,12 @@ export function StarfieldHero() {
           </h1>
         </div>
 
-        <div className="mt-12 md:mt-16 grid grid-cols-12 gap-6 md:gap-12">
+        <div className="mt-10 md:mt-16 grid grid-cols-12 gap-5 md:gap-12">
           <Reveal
             delay={560}
             className="col-span-12 md:col-span-7 md:col-start-4"
           >
-            <p className="text-[17px] md:text-[20px] leading-[1.55] text-cream/85 font-light">
+            <p className="text-[16px] sm:text-[17px] md:text-[20px] leading-[1.55] text-cream/85 font-light">
               <em className="italic text-cream">Barque</em> is the research
               engine behind every Compound decision. One operator, a dataset
               far larger than any one mind can hold, and the discipline of{" "}
@@ -116,7 +116,7 @@ export function StarfieldHero() {
         </div>
 
         <Reveal delay={960}>
-          <div className="mt-16 md:mt-24 flex items-center justify-between">
+          <div className="mt-12 md:mt-24 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-cream/65">
               <span className="inline-block h-4 w-px bg-cream/50 animate-pulse" />
               <span>Scroll · The log below</span>
