@@ -4,7 +4,9 @@ import Link from "next/link";
 import { Monogram } from "./Monogram";
 import { useEffect, useState } from "react";
 
-export function Nav() {
+type NavVariant = "auto" | "dark";
+
+export function Nav({ variant = "auto" }: { variant?: NavVariant } = {}) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -14,11 +16,18 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // On dedicated dark pages (like /barque) the hero is dark, but the body
+  // sections are cream — so we still want the scroll-based transition.
+  // "dark" variant keeps text cream at the top and only transitions after scroll.
+  const textClass = scrolled ? "text-ink" : "text-cream";
+
   return (
     <header
       className={`fixed top-0 inset-x-0 z-30 transition-all duration-500 ${
         scrolled
           ? "pt-3 pb-3 backdrop-blur-md bg-cream/85 border-b border-border"
+          : variant === "dark"
+          ? "pt-7 pb-4 bg-transparent"
           : "pt-7 pb-4 bg-transparent"
       }`}
     >
@@ -30,9 +39,7 @@ export function Nav() {
         >
           <Monogram size="sm" variant={scrolled ? "solid" : "outline"} />
           <span
-            className={`font-display text-[20px] md:text-[22px] tracking-snug transition-colors duration-500 ${
-              scrolled ? "text-ink" : "text-cream"
-            }`}
+            className={`font-display text-[20px] md:text-[22px] tracking-snug transition-colors duration-500 ${textClass}`}
           >
             The Compound Group
           </span>
@@ -43,30 +50,38 @@ export function Nav() {
             scrolled ? "text-ink/70" : "text-cream/80"
           }`}
         >
-          <a
-            href="#portfolio"
+          <Link
+            href="/#portfolio"
             className={`link-line transition-colors ${
               scrolled ? "hover:text-ink" : "hover:text-cream"
             }`}
           >
             Portfolio
-          </a>
-          <a
-            href="#approach"
+          </Link>
+          <Link
+            href="/barque"
+            className={`link-line transition-colors ${
+              scrolled ? "hover:text-ink" : "hover:text-cream"
+            }`}
+          >
+            Barque
+          </Link>
+          <Link
+            href="/#approach"
             className={`link-line transition-colors ${
               scrolled ? "hover:text-ink" : "hover:text-cream"
             }`}
           >
             Approach
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            href="/#contact"
             className={`link-line transition-colors ${
               scrolled ? "hover:text-ink" : "hover:text-cream"
             }`}
           >
             Contact
-          </a>
+          </Link>
         </nav>
       </div>
     </header>
