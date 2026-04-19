@@ -1,32 +1,30 @@
-"use client";
-
-import dynamic from "next/dynamic";
 import { Reveal } from "../Reveal";
-
-// The 3D canvas is client-only and heavy — load it dynamically so the
-// rest of the page (text, layout) paints instantly.
-const StarfieldCanvas = dynamic(
-  () => import("./StarfieldCanvas").then((m) => m.StarfieldCanvas),
-  { ssr: false }
-);
 
 export function StarfieldHero() {
   return (
     <section className="relative min-h-[92vh] bg-ink text-cream overflow-hidden">
-      {/* Deep gradient wash for warmth against pure ink */}
+      {/* Base ink wash — behind the video for safety if it fails to load */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-radial from-[#1C1C1A] via-[#1A1A18] to-[#0E0E0D]"
+        className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 55%, rgba(42,42,38,1) 0%, rgba(28,28,26,1) 45%, rgba(14,14,13,1) 100%)",
+            "radial-gradient(ellipse at 50% 55%, rgba(28,28,26,1) 0%, rgba(14,14,13,1) 100%)",
         }}
       />
 
-      {/* Starfield canvas fills the section */}
-      <div className="absolute inset-0 z-[1]">
-        <StarfieldCanvas />
-      </div>
+      {/* Hero video — the barque painted in dots of light, Seedance 2.0 */}
+      <video
+        className="absolute inset-0 h-full w-full object-cover z-[1]"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        aria-hidden
+      >
+        <source src="/video/barque.mp4" type="video/mp4" />
+      </video>
 
       {/* Top fade for nav legibility */}
       <div
