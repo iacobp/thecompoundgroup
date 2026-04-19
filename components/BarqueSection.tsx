@@ -45,14 +45,15 @@ export function BarqueSection() {
         <div className="grid grid-cols-12 gap-6 md:gap-14">
           <Reveal className="col-span-12 md:col-span-7">
             <h2 className="font-display text-ink text-[44px] md:text-[72px] lg:text-[88px] leading-[0.98] tracking-tightest max-w-[16ch]">
-              We send a ship into the{" "}
-              <em className="italic text-sage-soft">signal</em>.
+              Research is the{" "}
+              <em className="italic text-sage-soft">whole game</em>.
             </h2>
             <p className="mt-6 md:mt-8 text-[16px] md:text-[19px] leading-[1.55] text-ink/75 max-w-[52ch]">
-              <em className="italic text-ink">Barque</em> is the research
-              protocol behind every Compound decision. Cross-signal fusion,
-              five-agent scenarios, Brier-scored forecasts. It tells us what
-              to build, what to skip, and when the window opens.
+              <em className="italic text-ink">Barque</em> is the protocol we
+              lean on for it. Curiosity paired with a dataset far larger than
+              any one mind can hold — cross-signal fusion, five-agent
+              scenarios, Brier-scored forecasts. It tells us what to build,
+              what to skip, and when the window opens.
             </p>
 
             <Reveal delay={200}>

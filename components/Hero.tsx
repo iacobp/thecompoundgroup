@@ -66,7 +66,7 @@ export function Hero() {
             </Reveal>
             <Reveal delay={360}>
               <span className="block mt-4 md:mt-6 text-[28px] sm:text-[38px] md:text-[52px] lg:text-[64px] text-cream/85">
-                Then we quietly buy{" "}
+                Then we quietly acquire{" "}
                 <em className="italic text-sage-soft">the ones that already do</em>
                 <span className="text-sage-soft">.</span>
               </span>

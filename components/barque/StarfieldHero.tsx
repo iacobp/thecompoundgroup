@@ -84,10 +84,11 @@ export function StarfieldHero() {
           >
             <p className="text-[17px] md:text-[20px] leading-[1.55] text-cream/85 font-light">
               <em className="italic text-cream">Barque</em> is the research
-              engine behind every decision we make across The Compound. A
-              cross-signal forecasting protocol that reads the weak signals
-              the rest of the market ignores, fuses them across domains no
-              single team bridges, and returns{" "}
+              engine behind every Compound decision. One operator, a dataset
+              far larger than any one mind can hold, and the discipline of{" "}
+              <em className="italic text-cream">curiosity</em> applied to
+              weak signals most desks ignore. The protocol fuses them across
+              domains no single team bridges and returns{" "}
               <em className="italic text-cream">
                 falsifiable, Brier-scored forecasts
               </em>
