@@ -93,8 +93,9 @@ export function TrackRecord() {
                 <div className="mt-1">{stats.coverageAuditStart}</div>
               </div>
               <div className="text-[12px] md:text-[13px] text-ink/60 mt-3 leading-[1.5] max-w-[26ch]">
-                Coverage — % of resolvable events in our domains that Barque
-                forecasts. Measurement cycle opens after Ra&apos;s first quarter.
+                Coverage — the fraction of resolvable events in our domains
+                that Barque forecasts. Audit opens once the log has a full
+                quarter of continuous re-evaluation behind it.
               </div>
             </div>
           </Reveal>

@@ -62,51 +62,6 @@ export function Methodology() {
           ))}
         </div>
 
-        <Reveal delay={600}>
-          <div className="mt-20 md:mt-28 border-t border-ink/15 pt-10 grid grid-cols-12 gap-6 md:gap-10">
-            <div className="col-span-12 md:col-span-4">
-              <div className="text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-3">
-                What Barque refuses to predict
-              </div>
-            </div>
-            <div className="col-span-12 md:col-span-8">
-              <ul className="space-y-4 text-[15px] md:text-[16px] leading-[1.55] text-ink/75">
-                <li className="flex gap-3">
-                  <span className="font-display italic text-sage-soft shrink-0">—</span>
-                  <span>
-                    <em className="italic text-ink">Financial market direction.</em>{" "}
-                    Efficient market eats any edge an LLM wrapper could produce.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="font-display italic text-sage-soft shrink-0">—</span>
-                  <span>
-                    <em className="italic text-ink">Which meme goes viral.</em>{" "}
-                    That&apos;s lottery forecasting. But cultural signals — celebrity
-                    adoption, TikTok velocity, Reddit vocabulary shifts — are
-                    tracked as{" "}
-                    <em className="italic text-ink">inputs</em> to scorable
-                    forecasts. Memes move markets.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="font-display italic text-sage-soft shrink-0">—</span>
-                  <span>
-                    <em className="italic text-ink">Long-horizon geopolitics.</em>{" "}
-                    Signals too sparse, horizons too long for Brier-scoring.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="font-display italic text-sage-soft shrink-0">—</span>
-                  <span>
-                    <em className="italic text-ink">Prediction-market arbitrage.</em>{" "}
-                    Quant desks are already there with better data.
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
