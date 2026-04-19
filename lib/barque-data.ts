@@ -34,6 +34,13 @@ export type Backtest = {
   brier: number;
   signalStrength: number;
   leadTimeMonths: number;
+  /**
+   * Contrarian = the forecast materially diverged from the market/media
+   * consensus at the time of the cutoff. Measured qualitatively against
+   * the prevailing narrative, not Polymarket odds (which didn't exist
+   * for most of these).
+   */
+  contrarian: boolean;
   insight: string;
 };
 
@@ -101,6 +108,7 @@ export const backtests: Backtest[] = [
     brier: 0.04,
     signalStrength: 450,
     leadTimeMonths: 28,
+    contrarian: false, // Consensus was already bullish by Q3 2022; we were explicit, not contrarian
     insight:
       "Novo raising guidance while supply-constrained was the cardinal signal. When an incumbent raises guidance under rationing, demand signal is maxed.",
   },
@@ -116,6 +124,7 @@ export const backtests: Backtest[] = [
     brier: 0.0625,
     signalStrength: 5,
     leadTimeMonths: 27,
+    contrarian: true, // a16z was rumored to be leading a $4B round; consensus was "new dominant platform"
     insight:
       "Agent divergence capped signal strength. 3 of 5 agents negative override loud 2-agent positive (capital + celebrity). Incumbent clones shipping during peak hype is a kill signal.",
   },
@@ -131,6 +140,7 @@ export const backtests: Backtest[] = [
     brier: 0.04,
     signalStrength: 207,
     leadTimeMonths: 24,
+    contrarian: true, // Industry trade press was in panic mode about imminent enforcement
     insight:
       "FDA warning letters without injunction or court action historically do not remove supplements from market within 24 months. Industry lobby + litigation + consumer demand compound.",
   },
@@ -146,6 +156,7 @@ export const backtests: Backtest[] = [
     brier: 0.1225,
     signalStrength: 48,
     leadTimeMonths: 6,
+    contrarian: false, // Industry insiders already expected this; not a contrarian call
     insight:
       "Weak signal environment. Protocol correctly expressed lower confidence via probability. Self-calibration working — weaker signal → wider error bars.",
   },
@@ -160,6 +171,14 @@ export const stats = {
     backtests.reduce((sum, b) => sum + b.brier, 0) / backtests.length,
   avgLeadMonths:
     backtests.reduce((sum, b) => sum + b.leadTimeMonths, 0) / backtests.length,
+  contrarianCount: backtests.filter((b) => b.contrarian).length,
+  /**
+   * Coverage — % of resolvable events in our domains we forecast.
+   * We don't claim a number yet; the measurement cycle starts Q3 2026
+   * after Ra (the daily re-evaluation agent) has run for a full quarter.
+   * Showing this transparently is better than inventing a number.
+   */
+  coverageAuditStart: "Q3 2026",
 };
 
 /** Domain display names */

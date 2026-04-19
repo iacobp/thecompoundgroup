@@ -81,8 +81,12 @@ export function Methodology() {
                 <li className="flex gap-3">
                   <span className="font-display italic text-sage-soft shrink-0">—</span>
                   <span>
-                    <em className="italic text-ink">Pure cultural prediction.</em>{" "}
-                    Memes and taste don&apos;t resolve with clear truth values.
+                    <em className="italic text-ink">Which meme goes viral.</em>{" "}
+                    That&apos;s lottery forecasting. But cultural signals — celebrity
+                    adoption, TikTok velocity, Reddit vocabulary shifts — are
+                    tracked as{" "}
+                    <em className="italic text-ink">inputs</em> to scorable
+                    forecasts. Memes move markets.
                   </span>
                 </li>
                 <li className="flex gap-3">

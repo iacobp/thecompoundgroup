@@ -29,8 +29,10 @@ export function TrackRecord() {
           </h2>
         </Reveal>
 
-        {/* Stat bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-20 md:mb-28 pb-12 border-b border-ink/15">
+        {/* Stat bar — six measures, two rows.
+            Calibration: Backtests / Direction / Brier.
+            Quality:    Lead time / Contrarian / Coverage. */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-20 md:mb-28 pb-12 border-b border-ink/15">
           <Reveal>
             <div>
               <div className="font-display text-ink text-[48px] md:text-[72px] leading-none tracking-tightest">
@@ -74,6 +76,28 @@ export function TrackRecord() {
               </div>
             </div>
           </Reveal>
+          <Reveal delay={320}>
+            <div>
+              <div className="font-display text-ink text-[48px] md:text-[72px] leading-none tracking-tightest">
+                {stats.contrarianCount}/{stats.backtestsResolved}
+              </div>
+              <div className="text-[12px] md:text-[13px] text-ink/60 mt-3 leading-[1.5] max-w-[24ch]">
+                Contrarian calls · divergent from market/media consensus at cutoff
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={400}>
+            <div>
+              <div className="font-display text-ink text-[32px] md:text-[40px] leading-[1.1] tracking-tightest pt-3 md:pt-4">
+                <em className="italic text-sage-soft">Audit begins</em>
+                <div className="mt-1">{stats.coverageAuditStart}</div>
+              </div>
+              <div className="text-[12px] md:text-[13px] text-ink/60 mt-3 leading-[1.5] max-w-[26ch]">
+                Coverage — % of resolvable events in our domains that Barque
+                forecasts. Measurement cycle opens after Ra&apos;s first quarter.
+              </div>
+            </div>
+          </Reveal>
         </div>
 
         {/* Backtest log */}
@@ -88,8 +112,15 @@ export function TrackRecord() {
                 </div>
 
                 <div className="col-span-12 md:col-span-5">
-                  <div className="text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-2">
-                    Cutoff · {b.cutoff}
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="text-[11px] uppercase tracking-[0.22em] text-ink/50">
+                      Cutoff · {b.cutoff}
+                    </div>
+                    {b.contrarian && (
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-sage-soft border border-sage-soft/40 rounded-full px-2 py-0.5">
+                        Contrarian
+                      </span>
+                    )}
                   </div>
                   <h3 className="font-display text-ink text-[24px] md:text-[32px] leading-[1.15] tracking-snug mb-3">
                     {b.case}
