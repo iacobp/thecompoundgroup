@@ -5,6 +5,7 @@ import { StarfieldHero } from "@/components/barque/StarfieldHero";
 import { LiveForecasts } from "@/components/barque/LiveForecasts";
 import { TrackRecord } from "@/components/barque/TrackRecord";
 import { Methodology } from "@/components/barque/Methodology";
+import { DawnBriefsPreview } from "@/components/barque/DawnBriefsPreview";
 import { EmailCapture } from "@/components/barque/EmailCapture";
 
 const title = "Barque — Cross-signal forecasting for The Compound";
@@ -36,6 +37,7 @@ export default function BarquePage() {
       <LiveForecasts />
       <TrackRecord />
       <Methodology />
+      <DawnBriefsPreview />
       <EmailCapture />
       <Footer />
     </main>
