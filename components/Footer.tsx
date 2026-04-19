@@ -80,7 +80,7 @@ export function Footer() {
                 >
                   <div className="flex items-baseline justify-between">
                     <span className="font-display text-cream text-[22px]">
-                      GLP-1 Tracker
+                      Titrate
                     </span>
                     <span
                       aria-hidden
@@ -90,7 +90,30 @@ export function Footer() {
                     </span>
                   </div>
                   <div className="text-[12px] text-cream/55 mt-1">
-                    Companion app — In development
+                    Peptide & GLP-1 tracker — In development
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://revolume.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block border-b border-cream/15 pb-4 hover:border-cream/60 transition-colors"
+                >
+                  <div className="flex items-baseline justify-between">
+                    <span className="font-display text-cream text-[22px]">
+                      Revolume
+                    </span>
+                    <span
+                      aria-hidden
+                      className="text-cream/50 text-[14px] transition-transform duration-500 group-hover:translate-x-1 group-hover:text-cream"
+                    >
+                      →
+                    </span>
+                  </div>
+                  <div className="text-[12px] text-cream/55 mt-1">
+                    Skin scan for GLP-1 — In development
                   </div>
                 </a>
               </li>

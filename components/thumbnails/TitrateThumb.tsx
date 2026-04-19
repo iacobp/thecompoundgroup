@@ -1,8 +1,9 @@
 /**
- * Editorial thumbnail for GLP-1 Tracker.
- * A phone on a warm backdrop with surrounding product marginalia.
+ * Editorial thumbnail for Titrate.
+ * Peptide + GLP-1 multi-compound tracker. A phone on warm backdrop
+ * with the clinical, compound-pharmacy vocabulary the app uses.
  */
-export function GLP1TrackerThumb() {
+export function TitrateThumb() {
   return (
     <div className="plate relative aspect-[4/3] w-full overflow-hidden rounded-[14px] bg-gradient-to-br from-[#EFEBE4] via-[#E8E2D3] to-[#DCD5C4]">
       {/* Soft corner light */}
@@ -14,26 +15,26 @@ export function GLP1TrackerThumb() {
       {/* Top-left editorial label */}
       <div className="absolute top-5 left-5 z-10">
         <div className="text-[9px] uppercase tracking-[0.26em] text-ink/55">
-          Ship Date
+          Titrate
         </div>
         <div className="font-display italic text-ink text-[22px] leading-none mt-1.5">
-          2026
+          Peptide & GLP-1
         </div>
         <div className="mt-3 h-px w-10 bg-ink/25" />
-        <div className="mt-3 text-[10px] text-ink/60 leading-[1.4] max-w-[140px]">
-          Track daily doses.<br />
-          Compare providers.<br />
-          Switch with one tap.
+        <div className="mt-3 text-[10px] text-ink/60 leading-[1.4] max-w-[150px]">
+          Reconstitution, doses,<br />
+          stacks, side effects.<br />
+          One app. Every unit.
         </div>
       </div>
 
       {/* Bottom-right tiny data annotation */}
       <div className="absolute bottom-4 right-5 z-10 text-right">
         <div className="font-display italic text-sage text-[13px]">
-          iOS · Android
+          iOS first
         </div>
         <div className="text-[9px] uppercase tracking-[0.22em] text-ink/45">
-          Launching soon
+          Launching 2026
         </div>
       </div>
 
@@ -56,13 +57,13 @@ export function GLP1TrackerThumb() {
             {/* Content */}
             <div className="absolute inset-x-0 top-[8%] px-[8%]">
               <div className="font-display italic text-muted text-[6px]">
-                Tuesday, April 14
+                Monday, April 14
               </div>
               <div className="font-display text-ink text-[11px] leading-none mt-1">
-                Your dose
+                Today's stack
               </div>
 
-              {/* Dose card */}
+              {/* Stack card — 2 compounds */}
               <div className="mt-2.5 rounded-[8px] bg-sage p-2.5 text-cream relative overflow-hidden">
                 <div
                   className="absolute -right-4 -top-4 h-16 w-16 rounded-full opacity-30"
@@ -71,19 +72,28 @@ export function GLP1TrackerThumb() {
                   }}
                 />
                 <div className="text-[4.5px] uppercase tracking-[0.18em] opacity-80">
-                  Semaglutide
+                  Tirzepatide
                 </div>
                 <div className="font-display text-[13px] leading-none mt-1">
-                  0.5 <span className="text-[9px] opacity-85">mg</span>
+                  5.0 <span className="text-[9px] opacity-85">mg</span>
                 </div>
                 <div className="text-[4.5px] opacity-75 mt-1">
-                  Due today · Left thigh
+                  Due today · Left abdomen
                 </div>
-                <div className="mt-1.5 flex items-center gap-1">
-                  <div className="flex-1 h-0.5 rounded-full bg-cream/25">
-                    <div className="h-full w-[60%] bg-cream rounded-full" />
+              </div>
+
+              {/* Peptide row */}
+              <div className="mt-2 rounded-[6px] border border-ink/10 bg-cream/60 p-1.5 flex items-center justify-between">
+                <div>
+                  <div className="text-[4.5px] uppercase tracking-[0.18em] text-muted">
+                    BPC-157
                   </div>
-                  <span className="text-[4.5px] opacity-90">Week 12</span>
+                  <div className="font-display text-ink text-[9px] leading-none mt-0.5">
+                    250 <span className="text-[6px] text-muted">mcg</span>
+                  </div>
+                </div>
+                <div className="text-[5px] text-sage font-semibold uppercase tracking-[0.2em]">
+                  ✓ Logged
                 </div>
               </div>
 
@@ -109,6 +119,17 @@ export function GLP1TrackerThumb() {
                 })}
               </div>
 
+              {/* Reconstitution calc nudge */}
+              <div className="mt-3 rounded-md border border-sage/25 bg-cream/60 p-1.5">
+                <div className="text-[4.5px] uppercase tracking-[0.18em] text-sage">
+                  Reconstitution
+                </div>
+                <div className="text-[6px] text-ink leading-[1.3] mt-0.5">
+                  10 mg vial · 2 mL BAC ·{" "}
+                  <span className="font-semibold">0.25 mL per 1.25 mg</span>
+                </div>
+              </div>
+
               {/* Weight row */}
               <div className="mt-3 flex items-baseline gap-2">
                 <div>
@@ -121,17 +142,6 @@ export function GLP1TrackerThumb() {
                 </div>
                 <div className="font-display italic text-sage text-[9px]">
                   −12.4
-                </div>
-              </div>
-
-              {/* Switch nudge */}
-              <div className="mt-3 rounded-md border border-sage/25 bg-cream/60 p-1.5">
-                <div className="text-[4.5px] uppercase tracking-[0.18em] text-sage">
-                  Savings
-                </div>
-                <div className="text-[6px] text-ink leading-[1.3] mt-0.5">
-                  Switch to Eden Health and save{" "}
-                  <span className="font-semibold">$60/mo</span> →
                 </div>
               </div>
             </div>

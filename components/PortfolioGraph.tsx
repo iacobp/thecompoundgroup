@@ -48,9 +48,10 @@ const initialNodes: GraphNode[] = [
   { id: "cg", label: "The Compound Group", kind: "hub", x: CX, y: CY, vx: 0, vy: 0, radius: 30, pinned: true, visibleAt: 0 },
 
   { id: "glp1picks", label: "GLP-1 Picks", sub: "Live", kind: "live", x: CX - 220, y: CY - 120, vx: 0, vy: 0, radius: 24, visibleAt: 280 },
-  { id: "glp1tracker", label: "GLP-1 Tracker", sub: "In development", kind: "dev", x: CX - 200, y: CY + 120, vx: 0, vy: 0, radius: 21, visibleAt: 500 },
+  { id: "titrate", label: "Titrate", sub: "In development", kind: "dev", x: CX - 230, y: CY + 140, vx: 0, vy: 0, radius: 21, visibleAt: 500 },
+  { id: "revolume", label: "Revolume", sub: "In development", kind: "dev", x: CX - 80, y: CY + 230, vx: 0, vy: 0, radius: 21, visibleAt: 620 },
 
-  { id: "supplements", label: "Supplement Index", sub: "Planned 2026", kind: "planned", x: CX + 220, y: CY - 190, vx: 0, vy: 0, radius: 19, visibleAt: 720 },
+  { id: "supplements", label: "Supplement Index", sub: "Planned 2026", kind: "planned", x: CX + 220, y: CY - 190, vx: 0, vy: 0, radius: 19, visibleAt: 760 },
   { id: "pet", label: "Pet Health", sub: "Planned 2026–27", kind: "planned", x: CX + 290, y: CY - 40, vx: 0, vy: 0, radius: 19, visibleAt: 880 },
   { id: "peptides", label: "Peptide Index", sub: "Planned Q3 2026", kind: "planned", x: CX + 240, y: CY + 110, vx: 0, vy: 0, radius: 19, visibleAt: 1040 },
   { id: "neuro", label: "Neuroscience Index", sub: "Planned 2027", kind: "planned", x: CX + 180, y: CY + 230, vx: 0, vy: 0, radius: 19, visibleAt: 1200 },
@@ -64,14 +65,16 @@ const initialNodes: GraphNode[] = [
 
 const links: GraphLink[] = [
   { source: "cg", target: "glp1picks", kind: "structural" },
-  { source: "cg", target: "glp1tracker", kind: "structural" },
+  { source: "cg", target: "titrate", kind: "structural" },
+  { source: "cg", target: "revolume", kind: "structural" },
   { source: "cg", target: "supplements", kind: "structural" },
   { source: "cg", target: "pet", kind: "structural" },
   { source: "cg", target: "peptides", kind: "structural" },
   { source: "cg", target: "neuro", kind: "structural" },
   { source: "cg", target: "plasticity", kind: "structural" },
 
-  { source: "glp1picks", target: "glp1tracker", kind: "feeds" },
+  { source: "glp1picks", target: "titrate", kind: "feeds" },
+  { source: "glp1picks", target: "revolume", kind: "feeds" },
   { source: "glp1picks", target: "supplements", kind: "feeds" },
   { source: "glp1picks", target: "peptides", kind: "feeds" },
   { source: "supplements", target: "pet", kind: "feeds" },
@@ -79,7 +82,8 @@ const links: GraphLink[] = [
   { source: "neuro", target: "plasticity", kind: "feeds" },
 
   { source: "methodology", target: "glp1picks" },
-  { source: "methodology", target: "glp1tracker" },
+  { source: "methodology", target: "titrate" },
+  { source: "methodology", target: "revolume" },
   { source: "methodology", target: "supplements" },
   { source: "methodology", target: "pet" },
   { source: "methodology", target: "peptides" },
@@ -87,7 +91,7 @@ const links: GraphLink[] = [
   { source: "methodology", target: "plasticity" },
 
   { source: "database", target: "glp1picks" },
-  { source: "database", target: "glp1tracker" },
+  { source: "database", target: "titrate" },
   { source: "database", target: "supplements" },
   { source: "database", target: "peptides" },
 
@@ -97,6 +101,7 @@ const links: GraphLink[] = [
   { source: "review", target: "supplements" },
 
   { source: "editorial", target: "glp1picks" },
+  { source: "editorial", target: "revolume" },
   { source: "editorial", target: "supplements" },
   { source: "editorial", target: "pet" },
   { source: "editorial", target: "neuro" },

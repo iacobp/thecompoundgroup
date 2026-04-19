@@ -1,5 +1,6 @@
 import { GLP1PicksThumb } from "./thumbnails/GLP1PicksThumb";
-import { GLP1TrackerThumb } from "./thumbnails/GLP1TrackerThumb";
+import { TitrateThumb } from "./thumbnails/TitrateThumb";
+import { RevolumeThumb } from "./thumbnails/RevolumeThumb";
 import { Reveal } from "./Reveal";
 
 type Status = "live" | "in-development" | "planned";
@@ -39,21 +40,39 @@ const items: PortfolioItem[] = [
   },
   {
     num: "II",
-    name: "GLP-1 Tracker",
+    name: "Titrate",
     tagline:
-      "A tracking app designed around the decisions a GLP-1 patient keeps making — from the dose to the refill to the program itself.",
+      "A peptide and GLP-1 tracker built around the decisions a patient keeps making — dose, reconstitution, stack, refill, program.",
     body:
-      "The core logging works the way these apps should: doses, weight trends, side effects, and injection-site rotation. The layer we're adding is decision support. As programs update their pricing structures, formularies, and dose-escalation policies, the app surfaces the ones that continue to fit your situation — so the next refill is a deliberate choice.",
+      "The core logging works the way these apps should: doses, weight trends, side effects, injection-site rotation. The layer we're adding is decision support. Reconstitution calculators with a unit toggle the category has been missing. Multi-compound stacking past the three-peptide ceiling most apps cap at. And as programs update their pricing structures, formularies, and dose-escalation policies, the app surfaces the ones that continue to fit your situation — so the next refill is a deliberate choice.",
     status: "in-development",
     mode: "built",
     href: "/tracker",
-    thumb: <GLP1TrackerThumb />,
+    thumb: <TitrateThumb />,
     meta: [
-      { label: "Type", value: "Mobile app" },
+      { label: "Type", value: "iOS app" },
       { label: "Revenue", value: "Subscription + affiliate" },
       { label: "Launch", value: "Q3 2026" },
     ],
     cta: "Join the waitlist",
+  },
+  {
+    num: "III",
+    name: "Revolume",
+    tagline:
+      "The skin scan built for GLP-1 — because the weight comes off, and the face follows.",
+    body:
+      "Sixty-five percent of patients on semaglutide, tirzepatide, or compounded GLP-1s experience facial volume loss within their first six months on the medication. Revolume is a private, on-device skin scan that measures the fifteen markers specific to post-rapid-weight-loss skin — volume, jawline definition, nasolabial depth, laxity — and routes the user to the routine, the telehealth prescription, or the in-clinic procedure that actually fits the stage they're at.",
+    status: "in-development",
+    mode: "built",
+    href: "https://revolume.app",
+    thumb: <RevolumeThumb />,
+    meta: [
+      { label: "Type", value: "Web scan + iOS app" },
+      { label: "Revenue", value: "Affiliate + procedure referral" },
+      { label: "Launch", value: "2026" },
+    ],
+    cta: "Visit revolume.app",
   },
 ];
 

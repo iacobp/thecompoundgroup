@@ -26,7 +26,7 @@ const body = Inter({
 const siteUrl = "https://thecompound.group";
 const siteName = "The Compound Group";
 const description =
-  "A studio building honest consumer health brands. Portfolio includes GLP-1 Picks, GLP-1 Tracker, and emerging products in supplements, peptides, and neuroscience.";
+  "A studio building honest consumer health brands. Portfolio includes GLP-1 Picks, Titrate, Revolume, and emerging products in supplements, peptides, and neuroscience.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -87,9 +87,17 @@ const organizationJsonLd = {
     },
     {
       "@type": "Organization",
-      name: "GLP-1 Tracker",
+      name: "Titrate",
       url: `${siteUrl}/tracker`,
-      description: "Choose, track, and switch GLP-1 providers in one app.",
+      description:
+        "Peptide and GLP-1 multi-compound tracker with reconstitution calculator and decision support.",
+    },
+    {
+      "@type": "Organization",
+      name: "Revolume",
+      url: "https://revolume.app",
+      description:
+        "Private on-device skin scan for GLP-1 users — fifteen markers specific to post-rapid-weight-loss facial change.",
     },
   ],
 };
