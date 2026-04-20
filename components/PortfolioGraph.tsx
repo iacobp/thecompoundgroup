@@ -22,6 +22,8 @@ type GraphNode = {
   id: string;
   label: string;
   sub?: string;
+  description?: string;
+  href?: string;
   kind: NodeKind;
   x: number;
   y: number;
@@ -45,22 +47,190 @@ const CX = WIDTH / 2;
 const CY = HEIGHT / 2;
 
 const initialNodes: GraphNode[] = [
-  { id: "cg", label: "The Compound Group", kind: "hub", x: CX, y: CY, vx: 0, vy: 0, radius: 30, pinned: true, visibleAt: 0 },
+  {
+    id: "cg",
+    label: "The Compound Group",
+    kind: "hub",
+    description:
+      "Research-led consumer-health studio. Owns the methodology, the datasets, and the editorial standards that every property below inherits.",
+    x: CX,
+    y: CY,
+    vx: 0,
+    vy: 0,
+    radius: 30,
+    pinned: true,
+    visibleAt: 0,
+  },
 
-  { id: "glp1picks", label: "GLP-1 Picks", sub: "Live", kind: "live", x: CX - 220, y: CY - 120, vx: 0, vy: 0, radius: 24, visibleAt: 280 },
-  { id: "titrate", label: "Titrate", sub: "In development", kind: "dev", x: CX - 230, y: CY + 140, vx: 0, vy: 0, radius: 21, visibleAt: 500 },
-  { id: "revolume", label: "Revolume", sub: "In development", kind: "dev", x: CX - 80, y: CY + 230, vx: 0, vy: 0, radius: 21, visibleAt: 620 },
+  {
+    id: "glp1picks",
+    label: "GLP-1 Picks",
+    sub: "Live",
+    kind: "live",
+    href: "https://glp1picks.com",
+    description:
+      "Independent comparison of 40 GLP-1 telehealth programs. Ranked by annual cost, clinical credentialing, and pricing transparency — with affiliate disclosures on every page.",
+    x: CX - 220,
+    y: CY - 120,
+    vx: 0,
+    vy: 0,
+    radius: 24,
+    visibleAt: 280,
+  },
+  {
+    id: "titrate",
+    label: "Titrate",
+    sub: "In development",
+    kind: "dev",
+    href: "/tracker",
+    description:
+      "Peptide and GLP-1 multi-compound tracker. Reconstitution calculator with a unit toggle the category has been missing. Stacking past the three-peptide ceiling.",
+    x: CX - 230,
+    y: CY + 140,
+    vx: 0,
+    vy: 0,
+    radius: 21,
+    visibleAt: 500,
+  },
+  {
+    id: "revolume",
+    label: "Revolume",
+    sub: "In development",
+    kind: "dev",
+    href: "https://revolume.app",
+    description:
+      "Private, on-device skin scan built for GLP-1 users. Sixteen clinically-derived markers, a personalized routine, a procedure shortlist — what to do about facial volume loss, in plain language.",
+    x: CX - 80,
+    y: CY + 230,
+    vx: 0,
+    vy: 0,
+    radius: 21,
+    visibleAt: 620,
+  },
 
-  { id: "supplements", label: "Supplement Index", sub: "Planned 2026", kind: "planned", x: CX + 220, y: CY - 190, vx: 0, vy: 0, radius: 19, visibleAt: 760 },
-  { id: "pet", label: "Pet Health", sub: "Planned 2026–27", kind: "planned", x: CX + 290, y: CY - 40, vx: 0, vy: 0, radius: 19, visibleAt: 880 },
-  { id: "peptides", label: "Peptide Index", sub: "Planned Q3 2026", kind: "planned", x: CX + 240, y: CY + 110, vx: 0, vy: 0, radius: 19, visibleAt: 1040 },
-  { id: "neuro", label: "Neuroscience Index", sub: "Planned 2027", kind: "planned", x: CX + 180, y: CY + 230, vx: 0, vy: 0, radius: 19, visibleAt: 1200 },
-  { id: "plasticity", label: "Neuroplasticity Lab", sub: "Planned 2027", kind: "planned", x: CX + 30, y: CY + 260, vx: 0, vy: 0, radius: 19, visibleAt: 1360 },
+  {
+    id: "supplements",
+    label: "Supplement Index",
+    sub: "Planned 2026",
+    kind: "planned",
+    description:
+      "Reviews site for the supplements GLP-1 users actually reach for — protein, fiber, electrolytes, basic micronutrients, plus nootropics. Sourced from peer-reviewed evidence where it exists.",
+    x: CX + 220,
+    y: CY - 190,
+    vx: 0,
+    vy: 0,
+    radius: 19,
+    visibleAt: 760,
+  },
+  {
+    id: "pet",
+    label: "Pet Health",
+    sub: "Planned 2026–27",
+    kind: "planned",
+    description:
+      "Same methodology, new audience. Pet obesity, veterinary GLP-1 therapy, and supplement research — a category where pricing is opaque and independent review is rare.",
+    x: CX + 290,
+    y: CY - 40,
+    vx: 0,
+    vy: 0,
+    radius: 19,
+    visibleAt: 880,
+  },
+  {
+    id: "peptides",
+    label: "Peptide Index",
+    sub: "Planned Q3 2026",
+    kind: "planned",
+    description:
+      "Research-backed index for BPC-157, TB-500, ipamorelin, and adjacent compounds. Publishing after the July 2026 FDA advisory panel clarifies what the regulation permits.",
+    x: CX + 240,
+    y: CY + 110,
+    vx: 0,
+    vy: 0,
+    radius: 19,
+    visibleAt: 1040,
+  },
+  {
+    id: "neuro",
+    label: "Neuroscience Index",
+    sub: "Planned 2027",
+    kind: "planned",
+    description:
+      "Nootropics, neuroprotective compounds, cognitive-aging formulas — reviewed with the same rigor we apply to GLP-1. What has clinical trials, and what is still hopeful biochemistry.",
+    x: CX + 180,
+    y: CY + 230,
+    vx: 0,
+    vy: 0,
+    radius: 19,
+    visibleAt: 1200,
+  },
+  {
+    id: "plasticity",
+    label: "Neuroplasticity Lab",
+    sub: "Planned 2027",
+    kind: "planned",
+    description:
+      "The behavioral counterpart to the Neuroscience Index. Cognitive apps, neurofeedback hardware, meditation platforms, small protocols with measurable effects.",
+    x: CX + 30,
+    y: CY + 260,
+    vx: 0,
+    vy: 0,
+    radius: 19,
+    visibleAt: 1360,
+  },
 
-  { id: "methodology", label: "Published methodology", kind: "resource", x: CX - 130, y: CY - 260, vx: 0, vy: 0, radius: 13, visibleAt: 1520 },
-  { id: "database", label: "Live datasets", kind: "resource", x: CX - 310, y: CY + 30, vx: 0, vy: 0, radius: 13, visibleAt: 1620 },
-  { id: "review", label: "Peer-reviewed sources", kind: "resource", x: CX - 180, y: CY + 270, vx: 0, vy: 0, radius: 13, visibleAt: 1720 },
-  { id: "editorial", label: "Editorial standards", kind: "resource", x: CX + 80, y: CY - 290, vx: 0, vy: 0, radius: 13, visibleAt: 1820 },
+  {
+    id: "methodology",
+    label: "Published methodology",
+    kind: "resource",
+    description:
+      "The scoring framework, source-weighting, and review process — published in full so every ranking can be audited against it.",
+    x: CX - 130,
+    y: CY - 260,
+    vx: 0,
+    vy: 0,
+    radius: 13,
+    visibleAt: 1520,
+  },
+  {
+    id: "database",
+    label: "Live datasets",
+    kind: "resource",
+    description:
+      "Continuously updated pricing, formulary, and clinical-credential data. Every property pulls from the same source of record.",
+    x: CX - 310,
+    y: CY + 30,
+    vx: 0,
+    vy: 0,
+    radius: 13,
+    visibleAt: 1620,
+  },
+  {
+    id: "review",
+    label: "Peer-reviewed sources",
+    kind: "resource",
+    description:
+      "Citation-anchored source library. Every claim in every property can be traced to the underlying study.",
+    x: CX - 180,
+    y: CY + 270,
+    vx: 0,
+    vy: 0,
+    radius: 13,
+    visibleAt: 1720,
+  },
+  {
+    id: "editorial",
+    label: "Editorial standards",
+    kind: "resource",
+    description:
+      "Disclosure rules, ranking integrity rules, and the line between editorial recommendation and paid placement. Non-negotiable across the portfolio.",
+    x: CX + 80,
+    y: CY - 290,
+    vx: 0,
+    vy: 0,
+    radius: 13,
+    visibleAt: 1820,
+  },
 ];
 
 const links: GraphLink[] = [
@@ -576,7 +746,7 @@ export function PortfolioGraph() {
                     style={{ transformOrigin: "center" }}
                   />
 
-                  {/* Label */}
+                  {/* Label — stroked background for readability over overlapping nodes */}
                   {showLabel && (
                     <motion.text
                       y={node.radius + 22}
@@ -588,7 +758,13 @@ export function PortfolioGraph() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: isDimmed ? 0.5 : 1 }}
                       transition={{ duration: 0.7, ease: "easeOut" }}
-                      style={{ pointerEvents: "none" }}
+                      style={{
+                        pointerEvents: "none",
+                        paintOrder: "stroke",
+                        stroke: "#FAF7F0",
+                        strokeWidth: 5,
+                        strokeLinejoin: "round",
+                      }}
                     >
                       {node.label}
                     </motion.text>
@@ -605,7 +781,13 @@ export function PortfolioGraph() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: isDimmed ? 0.5 : 0.85 }}
                       transition={{ duration: 0.7, ease: "easeOut" }}
-                      style={{ pointerEvents: "none" }}
+                      style={{
+                        pointerEvents: "none",
+                        paintOrder: "stroke",
+                        stroke: "#FAF7F0",
+                        strokeWidth: 4,
+                        strokeLinejoin: "round",
+                      }}
                     >
                       {node.sub.toUpperCase()}
                     </motion.text>
@@ -625,26 +807,51 @@ export function PortfolioGraph() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={softSpring}
-                className="absolute top-4 left-4 md:top-6 md:left-6 max-w-[280px] bg-ink text-cream rounded-md px-4 py-3 shadow-xl pointer-events-none"
+                className="absolute top-4 left-4 md:top-6 md:left-6 max-w-[340px] bg-ink text-cream rounded-lg px-5 py-4 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] pointer-events-auto border border-cream/10"
               >
-                <div className="text-[10px] uppercase tracking-[0.24em] text-cream/60 mb-1">
-                  {hoveredNode.kind === "hub"
-                    ? "Parent"
-                    : hoveredNode.kind === "live"
-                    ? "Live product"
-                    : hoveredNode.kind === "dev"
-                    ? "In development"
-                    : hoveredNode.kind === "planned"
-                    ? "Planned"
-                    : "Public resource"}
+                <div className="flex items-baseline justify-between gap-4">
+                  <div className="text-[10px] uppercase tracking-[0.24em] text-cream/55">
+                    {hoveredNode.kind === "hub"
+                      ? "Parent · Studio"
+                      : hoveredNode.kind === "live"
+                      ? "Live product"
+                      : hoveredNode.kind === "dev"
+                      ? "In development"
+                      : hoveredNode.kind === "planned"
+                      ? "Planned"
+                      : "Public resource"}
+                  </div>
+                  {hoveredNode.sub && (
+                    <div className="text-[10px] uppercase tracking-[0.2em] text-cream/40">
+                      {hoveredNode.sub}
+                    </div>
+                  )}
                 </div>
-                <div className="font-display text-cream text-[20px] leading-tight mb-0.5">
+                <div className="font-display text-cream text-[24px] leading-tight mt-1.5">
                   {hoveredNode.label}
                 </div>
-                {hoveredNode.sub && (
-                  <div className="text-[12px] text-cream/70">
-                    {hoveredNode.sub}
-                  </div>
+                {hoveredNode.description && (
+                  <p className="mt-3 text-[13px] leading-[1.55] text-cream/75">
+                    {hoveredNode.description}
+                  </p>
+                )}
+                {hoveredNode.href && (
+                  <a
+                    href={hoveredNode.href}
+                    target={
+                      hoveredNode.href.startsWith("http")
+                        ? "_blank"
+                        : undefined
+                    }
+                    rel={
+                      hoveredNode.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    className="mt-4 inline-flex items-center gap-1.5 text-[12px] italic font-display text-sage hover:text-cream transition-colors"
+                  >
+                    Visit →
+                  </a>
                 )}
               </motion.div>
             ) : (
@@ -656,7 +863,7 @@ export function PortfolioGraph() {
                 transition={{ duration: 0.6 }}
                 className="absolute top-4 left-4 md:top-6 md:left-6 text-[11px] uppercase tracking-[0.24em] text-muted/80 pointer-events-none"
               >
-                Hover or grab a node
+                Hover or tap a node
               </motion.div>
             )}
           </AnimatePresence>
