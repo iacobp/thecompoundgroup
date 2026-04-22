@@ -107,8 +107,26 @@ function parseFrontmatter(raw: string): {
 }
 
 /**
+ * Section names that are forbidden in public renders. §5 Work Orders
+ * (operational, per-product) and §6 Strategic Memo (private, portfolio-
+ * level decisions) must never reach /barque/log. The parser strips
+ * these keys defensively before any downstream lookup so no future
+ * code path can accidentally surface them even if called with a
+ * matching key. Defense-in-depth on top of the private-repo boundary.
+ */
+const PRIVATE_SECTION_KEYS = new Set([
+  "work orders",
+  "section 5",
+  "§5",
+  "strategic memo",
+  "section 6",
+  "§6",
+]);
+
+/**
  * Split a brief body into a map of section-name → content by `## ` headers.
- * Keys are normalised to lower-case with single spaces.
+ * Keys are normalised to lower-case with single spaces. §5/§6 keys are
+ * stripped before the map is returned.
  */
 function splitSections(body: string): Record<string, string> {
   const sections: Record<string, string> = {};
@@ -129,6 +147,10 @@ function splitSections(body: string): Record<string, string> {
     }
   }
   flush();
+  // Strip private sections defensively — these must never render publicly.
+  for (const key of Object.keys(sections)) {
+    if (PRIVATE_SECTION_KEYS.has(key)) delete sections[key];
+  }
   return sections;
 }
 
