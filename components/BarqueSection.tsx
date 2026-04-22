@@ -55,6 +55,10 @@ export function BarqueSection() {
               scenarios, Brier-scored forecasts. It tells us what to build,
               what to skip, and when the window opens.
             </p>
+            <p className="mt-4 md:mt-5 text-[13px] sm:text-[14px] md:text-[16px] leading-[1.6] text-ink/55 max-w-[52ch]">
+              Informs every page at GLP-1 Picks, every feature in GLP-1
+              Tracker, and the next verticals we&apos;re scouting.
+            </p>
 
             <Reveal delay={200}>
               <div className="mt-10 md:mt-14 flex items-center gap-6">

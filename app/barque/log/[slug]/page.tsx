@@ -23,6 +23,7 @@ export async function generateMetadata(props: {
   });
   const title = `Dawn Brief · ${dateLong} — Barque`;
   const description =
+    brief.plainEnglish[0]?.slice(0, 180) ??
     brief.metaCognition[0]?.slice(0, 180) ??
     `Ra's ${brief.kind} run for ${dateLong}.`;
 

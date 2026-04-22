@@ -1,10 +1,19 @@
 import Link from "next/link";
-import type { Brief } from "@/lib/barque-briefs";
+import type { Brief, ForecastUpdate } from "@/lib/barque-briefs";
 
 /**
  * Full brief layout for /barque/log/[slug]. Editorial prose-first render
- * of a Ra run: meta-cognition, forecast updates, Augur picks, and —
- * on weekly editions — Stoic, Premortem, and new-forecast candidates.
+ * of a Ra run, organised around the four public sections of the
+ * six-section council-prompt schema:
+ *
+ *   §I   In Plain English     (jargon-free lede)
+ *   §II  Signal Detail        (forecast updates + Augur + Premortem + candidates)
+ *   §III Resolutions & Upcoming
+ *   §IV  How Barque Got Smarter  (with weekly Stoic actionable/noise split)
+ *
+ * §V Work Orders and §VI Strategic Memo never surface here — §V lives
+ * in git for routine consumption but is filtered server-side by the
+ * parser; §VI never exists on disk per the strict firewall.
  */
 export function BriefRenderer({ brief }: { brief: Brief }) {
   const dateLong = new Date(brief.date).toLocaleDateString("en-GB", {
@@ -46,265 +55,212 @@ export function BriefRenderer({ brief }: { brief: Brief }) {
           ) : null}
         </header>
 
-        {/* Section 1 — Meta-cognition */}
-        <section className="mb-16 md:mb-24">
-          <div className="flex items-baseline gap-4 mb-8 md:mb-10">
-            <span className="font-display italic text-sage-soft text-[18px]">
-              I
-            </span>
-            <h2 className="text-[11px] uppercase tracking-[0.3em] text-ink/55">
-              How Barque got smarter today
-            </h2>
-          </div>
-
-          <ul className="space-y-6 md:space-y-8">
-            {brief.metaCognition.map((bullet, i) => (
-              <li
-                key={i}
-                className="flex gap-4 md:gap-6 text-[15px] md:text-[17px] leading-[1.6] text-ink/80"
-              >
-                <span
-                  aria-hidden
-                  className="font-display italic text-sage-soft text-[14px] pt-1 shrink-0"
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="max-w-[62ch]">{bullet}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {/* Section 2 — Forecast updates */}
-        <section className="mb-16 md:mb-24">
-          <div className="flex items-baseline gap-4 mb-8 md:mb-10">
-            <span className="font-display italic text-sage-soft text-[18px]">
-              II
-            </span>
-            <h2 className="text-[11px] uppercase tracking-[0.3em] text-ink/55">
-              Forecast updates
-            </h2>
-          </div>
-
-          <div className="space-y-10 md:space-y-12">
-            {brief.forecastUpdates.map((u) => {
-              const delta = u.newProb - u.priorProb;
-              const deltaSign = delta > 0 ? "+" : delta < 0 ? "" : "±";
-              const deltaStr = Math.abs(delta) < 0.005 ? "0" : delta.toFixed(2);
-              return (
-                <article key={u.forecastId} className="grid grid-cols-12 gap-4 md:gap-6">
-                  <div className="col-span-12 md:col-span-4">
-                    <div className="text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-2">
-                      {u.entity}
-                    </div>
-                    <div className="flex items-baseline gap-3">
-                      <div className="font-display text-ink text-[32px] md:text-[40px] leading-none tracking-tightest">
-                        {Math.round(u.newProb * 100)}
-                        <span className="text-[16px] md:text-[18px] text-ink/55 ml-0.5">
-                          %
-                        </span>
-                      </div>
-                      <div
-                        className={`font-display italic text-[15px] md:text-[16px] ${
-                          delta > 0
-                            ? "text-sage"
-                            : delta < 0
-                            ? "text-bronze"
-                            : "text-ink/45"
-                        }`}
-                      >
-                        {deltaSign}
-                        {deltaStr}
-                      </div>
-                      {u.flagged ? (
-                        <span className="text-[10px] uppercase tracking-[0.2em] text-sage-soft border border-sage-soft/40 rounded-full px-2 py-0.5">
-                          Flagged
-                        </span>
-                      ) : null}
-                    </div>
-                    <div className="text-[12px] text-ink/50 mt-2">
-                      was {Math.round(u.priorProb * 100)}%
-                    </div>
-                  </div>
-
-                  <div className="col-span-12 md:col-span-8">
-                    <p className="text-[15px] md:text-[16px] leading-[1.65] text-ink/80 max-w-[56ch]">
-                      {u.signal}
-                    </p>
-                    {u.counterNarrative ? (
-                      <div className="mt-4 border-l-2 border-sage-soft/40 pl-4">
-                        <div className="text-[10px] uppercase tracking-[0.22em] text-ink/45 mb-1">
-                          Counter-narrative
-                        </div>
-                        <p className="text-[14px] md:text-[15px] leading-[1.6] text-ink/70 max-w-[56ch]">
-                          {u.counterNarrative}
-                        </p>
-                      </div>
-                    ) : null}
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* Section 3 — Augur picks */}
-        {brief.augurPicks.length > 0 ? (
+        {/* §I — In Plain English */}
+        {brief.plainEnglish.length > 0 ? (
           <section className="mb-16 md:mb-24">
-            <div className="flex items-baseline gap-4 mb-8 md:mb-10">
-              <span className="font-display italic text-sage-soft text-[18px]">
-                III
-              </span>
-              <h2 className="text-[11px] uppercase tracking-[0.3em] text-ink/55">
-                The Augur&apos;s picks
-              </h2>
-            </div>
-
-            <div className="space-y-6">
-              {brief.augurPicks.map((a, i) => (
-                <div
+            <SectionHeader numeral="I" label="In plain English" />
+            <div className="space-y-5 md:space-y-6">
+              {brief.plainEnglish.map((p, i) => (
+                <p
                   key={i}
-                  className="relative pl-8 md:pl-10 py-2"
+                  className="text-[17px] md:text-[20px] leading-[1.55] text-ink/85 max-w-[60ch]"
                 >
-                  <span
-                    aria-hidden
-                    className="absolute left-0 top-3 font-display italic text-sage-soft text-[20px]"
-                  >
-                    ✦
-                  </span>
-                  <p className="font-display italic text-ink text-[17px] md:text-[20px] leading-[1.5] max-w-[60ch]">
-                    {a.body}
-                  </p>
-                </div>
+                  {p}
+                </p>
               ))}
             </div>
           </section>
         ) : null}
 
-        {/* Section 4 — Stoic (weekly only) */}
-        {brief.stoic ? (
+        {/* §II — Signal Detail */}
+        {brief.forecastUpdates.length > 0 ||
+        brief.augurPicks.length > 0 ||
+        brief.premortem ||
+        (brief.newForecastCandidates && brief.newForecastCandidates.length > 0) ? (
           <section className="mb-16 md:mb-24">
-            <div className="flex items-baseline gap-4 mb-8 md:mb-10">
-              <span className="font-display italic text-sage-soft text-[18px]">
-                IV
-              </span>
-              <h2 className="text-[11px] uppercase tracking-[0.3em] text-ink/55">
-                Actionable · noise
-              </h2>
-            </div>
+            <SectionHeader numeral="II" label="Signal detail" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-              <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-sage mb-4">
-                  Actionable
-                </div>
-                <ul className="space-y-4">
-                  {brief.stoic.actionable.map((a, i) => (
-                    <li
-                      key={i}
-                      className="flex gap-3 text-[14px] md:text-[15px] leading-[1.6] text-ink/80"
-                    >
+            {/* Forecast updates */}
+            {brief.forecastUpdates.length > 0 ? (
+              <div className="space-y-10 md:space-y-12">
+                {brief.forecastUpdates.map((u) => (
+                  <ForecastUpdateRow key={u.forecastId} update={u} />
+                ))}
+              </div>
+            ) : null}
+
+            {/* Augur picks */}
+            {brief.augurPicks.length > 0 ? (
+              <div className="mt-14 md:mt-20 pt-10 md:pt-12 border-t border-ink/10">
+                <h3 className="text-[11px] uppercase tracking-[0.3em] text-sage-soft mb-6 md:mb-8">
+                  The Augur&apos;s picks
+                </h3>
+                <div className="space-y-6">
+                  {brief.augurPicks.map((a, i) => (
+                    <div key={i} className="relative pl-8 md:pl-10 py-2">
                       <span
                         aria-hidden
-                        className="font-display italic text-sage shrink-0"
+                        className="absolute left-0 top-3 font-display italic text-sage-soft text-[20px]"
                       >
-                        —
+                        ✦
                       </span>
-                      <span>{a}</span>
-                    </li>
+                      <p className="font-display italic text-ink text-[17px] md:text-[20px] leading-[1.5] max-w-[60ch]">
+                        {a.body}
+                      </p>
+                    </div>
                   ))}
-                </ul>
-              </div>
-
-              <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-ink/45 mb-4">
-                  Noise
                 </div>
-                <ul className="space-y-4">
-                  {brief.stoic.noise.map((n, i) => (
-                    <li
-                      key={i}
-                      className="flex gap-3 text-[14px] md:text-[15px] leading-[1.6] text-ink/55"
-                    >
-                      <span
-                        aria-hidden
-                        className="font-display italic text-ink/30 shrink-0"
-                      >
-                        —
-                      </span>
-                      <span>{n}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
-            </div>
-          </section>
-        ) : null}
+            ) : null}
 
-        {/* Section 5 — Premortem (weekly only) */}
-        {brief.premortem ? (
-          <section className="mb-16 md:mb-24">
-            <div className="flex items-baseline gap-4 mb-8 md:mb-10">
-              <span className="font-display italic text-sage-soft text-[18px]">
-                V
-              </span>
-              <h2 className="text-[11px] uppercase tracking-[0.3em] text-ink/55">
-                Premortem — {brief.premortem.entity}
-              </h2>
-            </div>
-            <p className="font-display italic text-ink text-[18px] md:text-[22px] leading-[1.4] max-w-[56ch]">
-              {brief.premortem.body}
-            </p>
-            {brief.premortem.impliedDelta ? (
-              <p className="mt-5 text-[13px] uppercase tracking-[0.22em] text-sage-soft">
-                {brief.premortem.impliedDelta}
-              </p>
+            {/* Premortem (weekly) */}
+            {brief.premortem ? (
+              <div className="mt-14 md:mt-20 border border-ink/15 bg-ink/[0.02] p-6 md:p-8">
+                <h3 className="text-[11px] uppercase tracking-[0.3em] text-sage-soft mb-4">
+                  Premortem — {brief.premortem.entity}
+                </h3>
+                <p className="font-display italic text-ink text-[17px] md:text-[20px] leading-[1.4] max-w-[56ch]">
+                  {brief.premortem.body}
+                </p>
+                {brief.premortem.impliedDelta ? (
+                  <p className="mt-4 text-[12px] uppercase tracking-[0.22em] text-sage-soft">
+                    {brief.premortem.impliedDelta}
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
+
+            {/* Candidates for the log */}
+            {brief.newForecastCandidates &&
+            brief.newForecastCandidates.length > 0 ? (
+              <div className="mt-14 md:mt-20 pt-10 md:pt-12 border-t border-ink/10">
+                <h3 className="text-[11px] uppercase tracking-[0.3em] text-sage-soft mb-6 md:mb-8">
+                  Candidates for the log
+                </h3>
+                <div className="space-y-8">
+                  {brief.newForecastCandidates.map((c, i) => (
+                    <article
+                      key={i}
+                      className="grid grid-cols-12 gap-4 md:gap-6"
+                    >
+                      <div className="col-span-12 md:col-span-3">
+                        <div className="font-display text-ink text-[28px] md:text-[36px] leading-none tracking-tightest">
+                          {Math.round(c.probability * 100)}%
+                        </div>
+                        <div className="text-[12px] text-ink/50 mt-2">
+                          Resolves{" "}
+                          {new Date(c.resolutionDate).toLocaleDateString(
+                            "en-GB",
+                            {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            },
+                          )}
+                        </div>
+                      </div>
+                      <div className="col-span-12 md:col-span-9">
+                        <p className="font-display text-ink text-[17px] md:text-[20px] leading-[1.3] max-w-[48ch] mb-3">
+                          {c.statement}
+                        </p>
+                        <p className="text-[14px] leading-[1.6] text-ink/70 max-w-[56ch]">
+                          {c.rationale}
+                        </p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
             ) : null}
           </section>
         ) : null}
 
-        {/* Section 6 — New forecast candidates */}
-        {brief.newForecastCandidates && brief.newForecastCandidates.length > 0 ? (
+        {/* §III — Resolutions & Upcoming */}
+        {brief.resolutions && brief.resolutions.length > 0 ? (
           <section className="mb-16 md:mb-24">
-            <div className="flex items-baseline gap-4 mb-8 md:mb-10">
-              <span className="font-display italic text-sage-soft text-[18px]">
-                VI
-              </span>
-              <h2 className="text-[11px] uppercase tracking-[0.3em] text-ink/55">
-                Candidates for the log
-              </h2>
-            </div>
-
-            <div className="space-y-8">
-              {brief.newForecastCandidates.map((c, i) => (
-                <article
+            <SectionHeader numeral="III" label="Resolutions & upcoming" />
+            <div className="space-y-5 md:space-y-6">
+              {brief.resolutions.map((r, i) => (
+                <p
                   key={i}
-                  className="border-t border-ink/15 pt-6 md:pt-8 grid grid-cols-12 gap-4 md:gap-6"
+                  className="text-[15px] md:text-[17px] leading-[1.65] text-ink/80 max-w-[58ch]"
                 >
-                  <div className="col-span-12 md:col-span-3">
-                    <div className="font-display text-ink text-[32px] md:text-[40px] leading-none tracking-tightest">
-                      {Math.round(c.probability * 100)}%
-                    </div>
-                    <div className="text-[12px] text-ink/50 mt-2">
-                      Resolves{" "}
-                      {new Date(c.resolutionDate).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </div>
-                  </div>
-                  <div className="col-span-12 md:col-span-9">
-                    <p className="font-display text-ink text-[18px] md:text-[22px] leading-[1.3] max-w-[48ch] mb-3">
-                      {c.statement}
-                    </p>
-                    <p className="text-[14px] leading-[1.6] text-ink/70 max-w-[56ch]">
-                      {c.rationale}
-                    </p>
-                  </div>
-                </article>
+                  {r.body}
+                </p>
               ))}
             </div>
+          </section>
+        ) : null}
+
+        {/* §IV — How Barque Got Smarter */}
+        {brief.metaCognition.length > 0 ? (
+          <section className="mb-16 md:mb-24">
+            <SectionHeader numeral="IV" label="How Barque got smarter today" />
+
+            <ul className="space-y-6 md:space-y-8">
+              {brief.metaCognition.map((bullet, i) => (
+                <li
+                  key={i}
+                  className="flex gap-4 md:gap-6 text-[15px] md:text-[17px] leading-[1.6] text-ink/80"
+                >
+                  <span
+                    aria-hidden
+                    className="font-display italic text-sage-soft text-[14px] pt-1 shrink-0"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="max-w-[62ch]">{bullet}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Stoic split (weekly) — actionable vs noise */}
+            {brief.stoic ? (
+              <div className="mt-14 md:mt-20 pt-10 md:pt-12 border-t border-ink/10 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <div>
+                  <div className="text-[11px] uppercase tracking-[0.22em] text-sage mb-4">
+                    Actionable
+                  </div>
+                  <ul className="space-y-4">
+                    {brief.stoic.actionable.map((a, i) => (
+                      <li
+                        key={i}
+                        className="flex gap-3 text-[14px] md:text-[15px] leading-[1.6] text-ink/80"
+                      >
+                        <span
+                          aria-hidden
+                          className="font-display italic text-sage shrink-0"
+                        >
+                          —
+                        </span>
+                        <span>{a}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <div className="text-[11px] uppercase tracking-[0.22em] text-ink/45 mb-4">
+                    Noise
+                  </div>
+                  <ul className="space-y-4">
+                    {brief.stoic.noise.map((n, i) => (
+                      <li
+                        key={i}
+                        className="flex gap-3 text-[14px] md:text-[15px] leading-[1.6] text-ink/55"
+                      >
+                        <span
+                          aria-hidden
+                          className="font-display italic text-ink/30 shrink-0"
+                        >
+                          —
+                        </span>
+                        <span>{n}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : null}
           </section>
         ) : null}
 
@@ -315,6 +271,85 @@ export function BriefRenderer({ brief }: { brief: Brief }) {
               {brief.authorsNote}
             </p>
           </section>
+        ) : null}
+      </div>
+    </article>
+  );
+}
+
+function SectionHeader({
+  numeral,
+  label,
+}: {
+  numeral: string;
+  label: string;
+}) {
+  return (
+    <div className="flex items-baseline gap-4 mb-8 md:mb-10">
+      <span className="font-display italic text-sage-soft text-[18px]">
+        {numeral}
+      </span>
+      <h2 className="text-[11px] uppercase tracking-[0.3em] text-ink/55">
+        {label}
+      </h2>
+    </div>
+  );
+}
+
+function ForecastUpdateRow({ update: u }: { update: ForecastUpdate }) {
+  const delta = u.newProb - u.priorProb;
+  const deltaSign = delta > 0 ? "+" : delta < 0 ? "" : "±";
+  const deltaStr = Math.abs(delta) < 0.005 ? "0" : delta.toFixed(2);
+
+  return (
+    <article className="grid grid-cols-12 gap-4 md:gap-6">
+      <div className="col-span-12 md:col-span-4">
+        <div className="text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-2">
+          {u.entity}
+        </div>
+        <div className="flex items-baseline gap-3">
+          <div className="font-display text-ink text-[32px] md:text-[40px] leading-none tracking-tightest">
+            {Math.round(u.newProb * 100)}
+            <span className="text-[16px] md:text-[18px] text-ink/55 ml-0.5">
+              %
+            </span>
+          </div>
+          <div
+            className={`font-display italic text-[15px] md:text-[16px] ${
+              delta > 0
+                ? "text-sage"
+                : delta < 0
+                  ? "text-bronze"
+                  : "text-ink/45"
+            }`}
+          >
+            {deltaSign}
+            {deltaStr}
+          </div>
+          {u.flagged ? (
+            <span className="text-[10px] uppercase tracking-[0.2em] text-sage-soft border border-sage-soft/40 rounded-full px-2 py-0.5">
+              Flagged
+            </span>
+          ) : null}
+        </div>
+        <div className="text-[12px] text-ink/50 mt-2">
+          was {Math.round(u.priorProb * 100)}%
+        </div>
+      </div>
+
+      <div className="col-span-12 md:col-span-8">
+        <p className="text-[15px] md:text-[16px] leading-[1.65] text-ink/80 max-w-[56ch]">
+          {u.signal}
+        </p>
+        {u.counterNarrative ? (
+          <div className="mt-4 border-l-2 border-sage-soft/40 pl-4">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-ink/45 mb-1">
+              Counter-narrative
+            </div>
+            <p className="text-[14px] md:text-[15px] leading-[1.6] text-ink/70 max-w-[56ch]">
+              {u.counterNarrative}
+            </p>
+          </div>
         ) : null}
       </div>
     </article>

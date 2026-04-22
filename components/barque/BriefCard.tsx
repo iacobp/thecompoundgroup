@@ -7,11 +7,11 @@ import type { Brief } from "@/lib/barque-briefs";
  * a couple of meta-cognition bullets.
  */
 export function BriefCard({ brief }: { brief: Brief }) {
-  const firstBullet = brief.metaCognition[0];
+  const teaser = brief.plainEnglish[0] ?? brief.metaCognition[0] ?? "";
   const updateCount = brief.forecastUpdates.length;
   const flaggedCount = brief.forecastUpdates.filter((u) => u.flagged).length;
   const materialMoves = brief.forecastUpdates.filter(
-    (u) => Math.abs(u.newProb - u.priorProb) >= 0.01
+    (u) => Math.abs(u.newProb - u.priorProb) >= 0.01,
   ).length;
 
   return (
@@ -45,7 +45,7 @@ export function BriefCard({ brief }: { brief: Brief }) {
             </div>
           ) : null}
           <p className="text-[15px] md:text-[17px] leading-[1.6] text-ink/80 max-w-[58ch]">
-            {firstBullet}
+            {teaser}
           </p>
           <div className="mt-5 inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.22em] text-ink/55 group-hover:text-sage-soft transition-colors">
             <span>Read the brief</span>

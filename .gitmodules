@@ -1,0 +1,3 @@
+[submodule "barque"]
+	path = barque
+	url = https://github.com/iacobp/barque.git

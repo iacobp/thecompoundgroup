@@ -47,10 +47,11 @@ export function DawnBriefsPreview() {
 
         <Reveal delay={120}>
           <p className="text-[15px] sm:text-[16px] md:text-[18px] leading-[1.6] text-ink/70 max-w-[58ch] mb-12 md:mb-20">
-            Ra runs each dawn. On Sundays the brief expands — the week&apos;s
-            material moves, a rotated premortem, the Augur&apos;s weird
-            signals, and candidate forecasts awaiting approval. This is what
-            the log publishes.
+            Ra runs each dawn. Every brief opens in plain English before the
+            rigorous layer — forecasts, Augur picks, resolutions, and the
+            meta-cognition of how Barque got smarter. On Sundays it expands
+            with a rotated premortem and candidate forecasts awaiting
+            approval. This is what the log publishes.
           </p>
         </Reveal>
 
