@@ -1,9 +1,20 @@
+import fs from "node:fs";
+import path from "node:path";
+
 /**
- * Barque data — forecasts and backtests.
+ * Barque data — forecasts, ra_log, resolutions, backtests.
  *
- * Mirrored from ~/Documents/barque/forecasts.tsv and historical-cases.md.
- * Kept as a typed module so the site renders at build time without file IO.
- * When forecasts.tsv updates, update this module and push — Vercel redeploys.
+ * Pulls three TSVs from the `barque` submodule at build time:
+ *   ./barque/forecasts.tsv       — live + historical forecasts (source of truth)
+ *   ./barque/ra/ra_log.tsv       — per-run re-evaluations (trajectory)
+ *   ./barque/resolutions.tsv     — resolved forecasts (operator-written)
+ *
+ * Backtests stay hardcoded — historical cases for calibration, not a live
+ * dataset.
+ *
+ * Each pending forecast has a stable `id` column (matches forecast_id in
+ * ra_log.tsv). `getForecastArc(id)` composes a forecast's full trajectory
+ * from creation through every Ra run through resolution.
  */
 
 export type Resolution = "pending" | "true" | "false";
@@ -20,7 +31,38 @@ export type Forecast = {
   resolution: Resolution;
   brier: number | null;
   signalStrength: number;
+  sources: string[];
   notes: string;
+};
+
+export type RaLogRow = {
+  runDate: string;
+  forecastId: string;
+  trigger: string;
+  newProbability: number;
+  delta: number;
+  newSignalStrength: number;
+  signalsCited: string[];
+  counterNarrative: string;
+  notes: string;
+  flagged: boolean;
+};
+
+export type ForecastResolution = {
+  resolutionDate: string;
+  forecastId: string;
+  originalProbability: number;
+  finalOutcome: "true" | "false";
+  finalBrier: number;
+  leadTimeDays: number;
+  contrarian: boolean;
+  notes: string;
+};
+
+export type ForecastArc = {
+  forecast: Forecast;
+  runs: RaLogRow[];
+  resolution: ForecastResolution | null;
 };
 
 export type Backtest = {
@@ -34,66 +76,156 @@ export type Backtest = {
   brier: number;
   signalStrength: number;
   leadTimeMonths: number;
-  /**
-   * Contrarian = the forecast materially diverged from the market/media
-   * consensus at the time of the cutoff. Measured qualitatively against
-   * the prevailing narrative, not Polymarket odds (which didn't exist
-   * for most of these).
-   */
   contrarian: boolean;
   insight: string;
 };
 
-export const forecasts: Forecast[] = [
-  {
-    id: "bpc157-pcac-2026",
-    dateMade: "2026-04-18",
-    domain: "peptides-longevity",
-    entity: "BPC-157",
-    prediction:
-      "PCAC does NOT recommend Category 1 (unrestricted compounding) for BPC-157 at the 2026-07-23 meeting.",
-    probability: 0.70,
-    horizonDays: 96,
-    resolutionDate: "2026-07-23",
-    resolution: "pending",
-    brier: null,
-    signalStrength: 42,
-    notes:
-      "Regulator agent dominates regulatory decisions. FDA default on unapproved peptides without US safety dossier = not-Cat-1.",
-  },
-  {
-    id: "medicare-glp1-bridge-uptake",
-    dateMade: "2026-04-18",
-    domain: "glp1-metabolic",
-    entity: "Medicare GLP-1 Bridge",
-    prediction:
-      "CMS reports fewer than 1,000,000 Medicare GLP-1 Bridge enrollees by 2026-12-31.",
-    probability: 0.65,
-    horizonDays: 257,
-    resolutionDate: "2026-12-31",
-    resolution: "pending",
-    brier: null,
-    signalStrength: 55,
-    notes:
-      "Base rate: new Medicare Part D programs enroll slowly in year one (10–15% of eligible). 1M ≈ 7% of 14M eligible.",
-  },
-  {
-    id: "compound-peptide-affiliate-share",
-    dateMade: "2026-04-18",
-    domain: "thecompound-portfolio",
-    entity: "Peptide affiliate revenue share",
-    prediction:
-      "Peptide vendor affiliate revenue is less than 30% of total Compound affiliate revenue by 2026-12-31.",
-    probability: 0.85,
-    horizonDays: 257,
-    resolutionDate: "2026-12-31",
-    resolution: "pending",
-    brier: null,
-    signalStrength: 64,
-    notes:
-      "Peptide affiliate CPA ~10–30× lower than GLP-1 affiliate CPA ($8–40 vs $260). Math dominates.",
-  },
-];
+// ---------- TSV parsing ----------
+
+const BARQUE_DIR = path.join(process.cwd(), "barque");
+
+function readTsv(filePath: string): Record<string, string>[] {
+  if (!fs.existsSync(filePath)) return [];
+  const raw = fs.readFileSync(filePath, "utf-8");
+  const lines = raw.split(/\r?\n/).filter((l) => l.trim() !== "");
+  if (lines.length < 2) return [];
+  const header = lines[0].split("\t").map((h) => h.trim());
+  return lines.slice(1).map((line) => {
+    const cols = line.split("\t");
+    const obj: Record<string, string> = {};
+    header.forEach((h, i) => {
+      obj[h] = (cols[i] ?? "").trim();
+    });
+    return obj;
+  });
+}
+
+function splitPipes(s: string | undefined): string[] {
+  if (!s) return [];
+  return s
+    .split(/\s*\|\s*/)
+    .map((x) => x.trim())
+    .filter(Boolean);
+}
+
+function parseForecasts(): Forecast[] {
+  const rows = readTsv(path.join(BARQUE_DIR, "forecasts.tsv"));
+  return rows
+    .filter((r) => r.id)
+    .map((r) => ({
+      id: r.id,
+      dateMade: r.date_made,
+      domain: r.domain,
+      entity: r.entity,
+      prediction: r.prediction,
+      probability: parseFloat(r.probability),
+      horizonDays: parseInt(r.horizon_days, 10) || 0,
+      resolutionDate: r.resolution_date,
+      resolution: (["pending", "true", "false"].includes(r.resolution)
+        ? r.resolution
+        : "pending") as Resolution,
+      brier:
+        r.brier === "pending" || r.brier === "" ? null : parseFloat(r.brier),
+      signalStrength: parseInt(r.signal_strength, 10) || 0,
+      sources: splitPipes(r.sources),
+      notes: r.notes ?? "",
+    }));
+}
+
+function parseRaLog(): RaLogRow[] {
+  const rows = readTsv(path.join(BARQUE_DIR, "ra", "ra_log.tsv"));
+  return rows
+    .filter((r) => r.forecast_id)
+    .map((r) => ({
+      runDate: r.run_date,
+      forecastId: r.forecast_id,
+      trigger: r.trigger,
+      newProbability: parseFloat(r.new_probability),
+      delta: parseFloat(r.delta),
+      newSignalStrength: parseInt(r.new_signal_strength, 10) || 0,
+      signalsCited: splitPipes(r.signals_cited),
+      counterNarrative: r.counter_narrative ?? "",
+      notes: r.notes ?? "",
+      flagged: r.flagged === "true",
+    }));
+}
+
+function parseResolutions(): ForecastResolution[] {
+  const rows = readTsv(path.join(BARQUE_DIR, "resolutions.tsv"));
+  return rows
+    .filter((r) => r.forecast_id)
+    .map((r) => ({
+      resolutionDate: r.resolution_date,
+      forecastId: r.forecast_id,
+      originalProbability: parseFloat(r.original_probability),
+      finalOutcome: (r.final_outcome === "true" ? "true" : "false") as
+        | "true"
+        | "false",
+      finalBrier: parseFloat(r.final_brier),
+      leadTimeDays: parseInt(r.lead_time_days, 10) || 0,
+      contrarian: r.contrarian === "true",
+      notes: r.notes ?? "",
+    }));
+}
+
+// ---------- cached module-level exports ----------
+
+export const forecasts: Forecast[] = parseForecasts();
+export const raLog: RaLogRow[] = parseRaLog();
+export const resolutions: ForecastResolution[] = parseResolutions();
+
+// ---------- helpers ----------
+
+function todayIsoUtc(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
+export function getForecastById(id: string): Forecast | undefined {
+  return forecasts.find((f) => f.id === id);
+}
+
+export function getForecastArc(id: string): ForecastArc | null {
+  const forecast = getForecastById(id);
+  if (!forecast) return null;
+  const runs = raLog
+    .filter((r) => r.forecastId === id)
+    .sort((a, b) => (a.runDate < b.runDate ? -1 : 1));
+  const resolution = resolutions.find((r) => r.forecastId === id) ?? null;
+  return { forecast, runs, resolution };
+}
+
+export function getOverdueForecasts(today: string = todayIsoUtc()): Forecast[] {
+  return forecasts.filter(
+    (f) => f.resolution === "pending" && f.resolutionDate < today,
+  );
+}
+
+export function getLiveForecasts(today: string = todayIsoUtc()): Forecast[] {
+  return forecasts.filter(
+    (f) => f.resolution === "pending" && f.resolutionDate >= today,
+  );
+}
+
+/**
+ * For a given forecast, return the most recent Ra run (or null if none).
+ * The "current" probability on the site is this run's new_probability,
+ * not the original probability from forecasts.tsv.
+ */
+export function getLatestRun(id: string): RaLogRow | null {
+  const runs = raLog.filter((r) => r.forecastId === id);
+  if (runs.length === 0) return null;
+  return runs.reduce((latest, r) =>
+    r.runDate > latest.runDate ? r : latest,
+  );
+}
+
+/** Current probability = latest Ra update, fallback to original. */
+export function getCurrentProbability(f: Forecast): number {
+  const latest = getLatestRun(f.id);
+  return latest ? latest.newProbability : f.probability;
+}
+
+// ---------- historical backtests (hardcoded — these don't live in a TSV) ----------
 
 export const backtests: Backtest[] = [
   {
@@ -103,12 +235,12 @@ export const backtests: Backtest[] = [
     cutoff: "2022-08-31",
     prediction:
       "GLP-1-class drugs become #1 US weight-loss Rx by 2024-12-31",
-    probability: 0.80,
+    probability: 0.8,
     outcome: "true",
     brier: 0.04,
     signalStrength: 450,
     leadTimeMonths: 28,
-    contrarian: false, // Consensus was already bullish by Q3 2022; we were explicit, not contrarian
+    contrarian: false,
     insight:
       "Novo raising guidance while supply-constrained was the cardinal signal. When an incumbent raises guidance under rationing, demand signal is maxed.",
   },
@@ -124,7 +256,7 @@ export const backtests: Backtest[] = [
     brier: 0.0625,
     signalStrength: 5,
     leadTimeMonths: 27,
-    contrarian: true, // a16z was rumored to be leading a $4B round; consensus was "new dominant platform"
+    contrarian: true,
     insight:
       "Agent divergence capped signal strength. 3 of 5 agents negative override loud 2-agent positive (capital + celebrity). Incumbent clones shipping during peak hype is a kill signal.",
   },
@@ -135,12 +267,12 @@ export const backtests: Backtest[] = [
     cutoff: "2022-12-31",
     prediction:
       "NMN remains widely available despite FDA exclusion letter",
-    probability: 0.80,
+    probability: 0.8,
     outcome: "true",
     brier: 0.04,
     signalStrength: 207,
     leadTimeMonths: 24,
-    contrarian: true, // Industry trade press was in panic mode about imminent enforcement
+    contrarian: true,
     insight:
       "FDA warning letters without injunction or court action historically do not remove supplements from market within 24 months. Industry lobby + litigation + consumer demand compound.",
   },
@@ -156,36 +288,34 @@ export const backtests: Backtest[] = [
     brier: 0.1225,
     signalStrength: 48,
     leadTimeMonths: 6,
-    contrarian: false, // Industry insiders already expected this; not a contrarian call
+    contrarian: false,
     insight:
       "Weak signal environment. Protocol correctly expressed lower confidence via probability. Self-calibration working — weaker signal → wider error bars.",
   },
 ];
 
-/** Aggregate stats — computed at build time */
+// ---------- aggregate stats ----------
+
 export const stats = {
-  forecastsLive: forecasts.filter((f) => f.resolution === "pending").length,
+  forecastsLive: getLiveForecasts().length,
+  forecastsOverdue: getOverdueForecasts().length,
   backtestsResolved: backtests.length,
   hits: backtests.filter((b) => b.outcome === "true").length,
   avgBrier:
     backtests.reduce((sum, b) => sum + b.brier, 0) / backtests.length,
   avgLeadMonths:
-    backtests.reduce((sum, b) => sum + b.leadTimeMonths, 0) / backtests.length,
+    backtests.reduce((sum, b) => sum + b.leadTimeMonths, 0) /
+    backtests.length,
   contrarianCount: backtests.filter((b) => b.contrarian).length,
-  /**
-   * Coverage — % of resolvable events in our domains we forecast.
-   * We don't claim a number yet; the measurement cycle starts Q3 2026
-   * after Ra (the daily re-evaluation agent) has run for a full quarter.
-   * Showing this transparently is better than inventing a number.
-   */
   coverageAuditStart: "Q3 2026",
 };
 
-/** Domain display names */
 export const domainLabel: Record<string, string> = {
   "glp1-metabolic": "GLP-1 / Metabolic",
   "menopause-queenager": "Menopause / HRT",
   "peptides-longevity": "Peptides / Longevity",
   "thecompound-portfolio": "Compound Portfolio",
   "consumer-tech": "Consumer Tech",
+  "skincare": "Skincare",
+  "pet-health": "Pet Health",
 };
