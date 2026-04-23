@@ -4,6 +4,15 @@ import type {
   RaLogRow,
 } from "@/lib/barque-data";
 import { domainLabel } from "@/lib/barque-data";
+import { briefs } from "@/lib/barque-briefs";
+
+const BRIEF_SLUGS = new Set(briefs.map((b) => b.slug));
+
+function briefSlugForRunDate(runDate: string): string | null {
+  // ra_log runDate is typically "YYYY-MM-DD HH:MM UTC" — brief slug is "YYYY-MM-DD".
+  const dateOnly = runDate.slice(0, 10);
+  return BRIEF_SLUGS.has(dateOnly) ? dateOnly : null;
+}
 
 /**
  * Full-arc layout for /barque/log/forecast/[id].
@@ -383,6 +392,7 @@ function TimelineRun({ run }: { run: RaLogRow }) {
   const deltaSign = run.delta > 0 ? "+" : "";
   const deltaStr =
     Math.abs(run.delta) < 0.005 ? "0" : run.delta.toFixed(2);
+  const briefSlug = briefSlugForRunDate(run.runDate);
 
   return (
     <li>
@@ -391,6 +401,14 @@ function TimelineRun({ run }: { run: RaLogRow }) {
         {run.runDate} · Ra run
         {run.flagged ? (
           <span className="ml-3 text-sage-soft">· flagged</span>
+        ) : null}
+        {briefSlug ? (
+          <Link
+            href={`/barque/log/${briefSlug}`}
+            className="ml-3 text-sage-soft hover:text-sage transition-colors normal-case tracking-normal"
+          >
+            read brief →
+          </Link>
         ) : null}
       </div>
       <div className="flex items-baseline gap-3 mb-3">

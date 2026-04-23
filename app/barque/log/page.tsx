@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import Link from "next/link";
 import { BriefCard } from "@/components/barque/BriefCard";
 import { briefs, briefStats } from "@/lib/barque-briefs";
+import { getOverdueForecasts } from "@/lib/barque-data";
 
 const title = "Dawn Log — Barque";
 const description =
@@ -27,6 +29,7 @@ export const metadata: Metadata = {
 
 export default function BarqueLogIndexPage() {
   const sorted = [...briefs].sort((a, b) => (a.date < b.date ? 1 : -1));
+  const overdue = getOverdueForecasts();
 
   return (
     <main className="min-h-screen bg-cream text-ink">
@@ -65,6 +68,32 @@ export default function BarqueLogIndexPage() {
                 )}`
               : ""}
           </div>
+
+          {overdue.length > 0 ? (
+            <div className="mt-10 md:mt-12 border border-bronze/40 bg-bronze/5 rounded-lg p-5 md:p-6 max-w-[620px]">
+              <div className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-bronze mb-2">
+                Overdue · {overdue.length}
+              </div>
+              <p className="text-[14px] md:text-[15px] leading-[1.55] text-ink/80 mb-3">
+                {overdue.length === 1
+                  ? "One forecast is past its resolution date and awaiting the operator to resolve or re-forecast."
+                  : `${overdue.length} forecasts are past their resolution date and awaiting the operator to resolve or re-forecast.`}
+              </p>
+              <ul className="space-y-1">
+                {overdue.map((f) => (
+                  <li key={f.id} className="text-[13px] md:text-[14px] leading-[1.5]">
+                    <Link
+                      href={`/barque/forecasts/${f.id}`}
+                      className="text-ink/75 hover:text-sage-soft underline decoration-ink/20 hover:decoration-sage-soft underline-offset-4"
+                    >
+                      {f.entity}
+                    </Link>
+                    <span className="text-ink/55"> · was {f.resolutionDate}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </section>
 

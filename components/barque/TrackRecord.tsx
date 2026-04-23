@@ -1,7 +1,27 @@
+import Link from "next/link";
 import { Reveal } from "../Reveal";
-import { backtests, stats } from "@/lib/barque-data";
+import {
+  backtests,
+  resolutions,
+  forecasts as allForecasts,
+  stats,
+} from "@/lib/barque-data";
 
 export function TrackRecord() {
+  // Merge backtests + live resolutions for the headline stats. When no
+  // forecasts have resolved yet (resolutions.tsv is empty) the numbers
+  // are backtest-only — they scale automatically once the first live
+  // forecast resolves.
+  const liveHits = resolutions.filter((r) => r.finalOutcome === "true").length;
+  const totalResolved = stats.backtestsResolved + resolutions.length;
+  const totalHits = stats.hits + liveHits;
+  const totalBrierSum =
+    backtests.reduce((s, b) => s + b.brier, 0) +
+    resolutions.reduce((s, r) => s + r.finalBrier, 0);
+  const avgBrier = totalResolved > 0 ? totalBrierSum / totalResolved : 0;
+  const totalContrarian =
+    stats.contrarianCount + resolutions.filter((r) => r.contrarian).length;
+
   return (
     <section
       id="track-record"
@@ -36,17 +56,19 @@ export function TrackRecord() {
           <Reveal>
             <div>
               <div className="font-display text-ink text-[40px] sm:text-[48px] md:text-[72px] leading-none tracking-tightest">
-                {stats.backtestsResolved}
+                {totalResolved}
               </div>
               <div className="text-[12px] md:text-[13px] text-ink/60 mt-3 leading-[1.5] max-w-[24ch]">
-                Backtests resolved against historical events
+                {resolutions.length > 0
+                  ? `Resolved — ${stats.backtestsResolved} backtests + ${resolutions.length} live`
+                  : "Backtests resolved against historical events"}
               </div>
             </div>
           </Reveal>
           <Reveal delay={80}>
             <div>
               <div className="font-display text-ink text-[40px] sm:text-[48px] md:text-[72px] leading-none tracking-tightest">
-                {stats.hits}/{stats.backtestsResolved}
+                {totalHits}/{totalResolved}
               </div>
               <div className="text-[12px] md:text-[13px] text-ink/60 mt-3 leading-[1.5] max-w-[24ch]">
                 Direction correct (outcome matched higher-probability side)
@@ -56,7 +78,7 @@ export function TrackRecord() {
           <Reveal delay={160}>
             <div>
               <div className="font-display text-ink text-[40px] sm:text-[48px] md:text-[72px] leading-none tracking-tightest">
-                {stats.avgBrier.toFixed(3)}
+                {avgBrier.toFixed(3)}
               </div>
               <div className="text-[12px] md:text-[13px] text-ink/60 mt-3 leading-[1.5] max-w-[24ch]">
                 Average Brier score · lower is better, &lt; 0.10 is strong
@@ -79,7 +101,7 @@ export function TrackRecord() {
           <Reveal delay={320}>
             <div>
               <div className="font-display text-ink text-[40px] sm:text-[48px] md:text-[72px] leading-none tracking-tightest">
-                {stats.contrarianCount}/{stats.backtestsResolved}
+                {totalContrarian}/{totalResolved}
               </div>
               <div className="text-[12px] md:text-[13px] text-ink/60 mt-3 leading-[1.5] max-w-[24ch]">
                 Contrarian calls · divergent from market/media consensus at cutoff
@@ -100,6 +122,110 @@ export function TrackRecord() {
             </div>
           </Reveal>
         </div>
+
+        {/* Live forecast resolutions (only when any have resolved) */}
+        {resolutions.length > 0 ? (
+          <>
+            <Reveal>
+              <div className="flex items-baseline gap-5 mb-10 md:mb-14">
+                <span className="font-display italic text-sage-soft text-[14px] md:text-[16px]">
+                  Live
+                </span>
+                <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-sage-soft">
+                  Forecasts resolved · {resolutions.length}
+                </span>
+              </div>
+            </Reveal>
+            <div className="space-y-10 md:space-y-14 mb-20 md:mb-28 pb-12 md:pb-16 border-b border-ink/15">
+              {resolutions.map((r, i) => {
+                const f = allForecasts.find((x) => x.id === r.forecastId);
+                return (
+                  <Reveal key={r.forecastId} delay={60 * i}>
+                    <article className="grid grid-cols-12 gap-x-4 gap-y-5 md:gap-8">
+                      <div className="col-span-12 md:col-span-1">
+                        <div className="font-display italic text-sage-soft text-[14px] md:text-[16px]">
+                          {String(i + 1).padStart(2, "0")}
+                        </div>
+                      </div>
+                      <div className="col-span-12 md:col-span-5">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
+                          <div className="text-[11px] uppercase tracking-[0.22em] text-ink/50">
+                            Resolved · {r.resolutionDate}
+                          </div>
+                          {r.contrarian ? (
+                            <span className="text-[10px] uppercase tracking-[0.2em] text-sage-soft border border-sage-soft/40 rounded-full px-2 py-0.5">
+                              Contrarian
+                            </span>
+                          ) : null}
+                        </div>
+                        {f ? (
+                          <Link
+                            href={`/barque/forecasts/${f.id}`}
+                            className="block font-display text-ink text-[22px] sm:text-[24px] md:text-[32px] leading-[1.15] tracking-snug mb-3 hover:text-sage transition-colors"
+                          >
+                            {f.entity}
+                          </Link>
+                        ) : null}
+                        <p className="text-[14px] sm:text-[15px] leading-[1.55] text-ink/75 max-w-[46ch]">
+                          {f?.prediction ?? r.notes}
+                        </p>
+                      </div>
+                      <div className="col-span-12 md:col-span-6">
+                        <div className="grid grid-cols-3 gap-x-3 sm:gap-x-4 md:gap-6">
+                          <div>
+                            <div className="text-[10px] uppercase tracking-[0.22em] text-ink/45">
+                              Called
+                            </div>
+                            <div className="font-display text-ink text-[22px] sm:text-[28px] md:text-[32px] leading-none tracking-tightest mt-2">
+                              {Math.round(r.originalProbability * 100)}%
+                            </div>
+                          </div>
+                          <div>
+                            <div className="text-[10px] uppercase tracking-[0.22em] text-ink/45">
+                              Outcome
+                            </div>
+                            <div
+                              className={`font-display text-[18px] sm:text-[22px] md:text-[24px] leading-tight tracking-snug mt-2 capitalize ${
+                                r.finalOutcome === "true"
+                                  ? "text-sage"
+                                  : "text-bronze"
+                              }`}
+                            >
+                              {r.finalOutcome}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="text-[10px] uppercase tracking-[0.22em] text-ink/45">
+                              Brier
+                            </div>
+                            <div className="font-display text-ink text-[22px] sm:text-[28px] md:text-[32px] leading-none tracking-tightest mt-2">
+                              {r.finalBrier.toFixed(3)}
+                            </div>
+                          </div>
+                        </div>
+                        {r.notes ? (
+                          <p className="mt-5 text-[13px] md:text-[14px] leading-[1.6] text-ink/65 max-w-[56ch] border-l-2 border-sage-soft/50 pl-4">
+                            {r.notes}
+                          </p>
+                        ) : null}
+                      </div>
+                    </article>
+                  </Reveal>
+                );
+              })}
+            </div>
+            <Reveal>
+              <div className="flex items-baseline gap-5 mb-10 md:mb-14">
+                <span className="font-display italic text-sage-soft text-[14px] md:text-[16px]">
+                  Historical
+                </span>
+                <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-ink/55">
+                  Backtests · {backtests.length}
+                </span>
+              </div>
+            </Reveal>
+          </>
+        ) : null}
 
         {/* Backtest log */}
         <div className="space-y-10 md:space-y-14">

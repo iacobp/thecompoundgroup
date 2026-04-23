@@ -33,11 +33,17 @@ export default function BarquePage() {
   return (
     <main className="min-h-screen bg-ink">
       <Nav variant="dark" />
+      {/* Hero — identity. */}
       <StarfieldHero />
+      {/* Live state — what we're predicting right now. Freshest data. */}
       <LiveForecasts />
-      <TrackRecord />
-      <Methodology />
+      {/* Today's thinking — most recent brief. Rewards engaged readers with the newest signal. */}
       <DawnBriefsPreview />
+      {/* Credibility — calibration proof from historical + live resolutions. */}
+      <TrackRecord />
+      {/* Explanation — how the council operates. Answers "how do we trust this?" */}
+      <Methodology />
+      {/* CTA at the end. */}
       <EmailCapture />
       <Footer />
     </main>

@@ -304,9 +304,18 @@ function ForecastUpdateRow({ update: u }: { update: ForecastUpdate }) {
   return (
     <article className="grid grid-cols-12 gap-4 md:gap-6">
       <div className="col-span-12 md:col-span-4">
-        <div className="text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-2">
+        <Link
+          href={`/barque/forecasts/${u.forecastId}`}
+          className="group/entity inline-block text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-2 hover:text-sage-soft transition-colors"
+        >
           {u.entity}
-        </div>
+          <span
+            aria-hidden
+            className="ml-2 opacity-0 group-hover/entity:opacity-100 transition-opacity"
+          >
+            →
+          </span>
+        </Link>
         <div className="flex items-baseline gap-3">
           <div className="font-display text-ink text-[32px] md:text-[40px] leading-none tracking-tightest">
             {Math.round(u.newProb * 100)}
