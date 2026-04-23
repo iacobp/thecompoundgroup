@@ -80,7 +80,7 @@ export function LiveForecasts() {
             return (
               <Reveal key={f.id} delay={Math.min(120 * i, 600)}>
                 <Link
-                  href={`/barque/log/forecast/${f.id}`}
+                  href={`/barque/forecasts/${f.id}`}
                   className="group grid grid-cols-12 gap-x-4 gap-y-5 md:gap-8 py-8 md:py-10 border-t border-ink/10 transition-colors hover:border-ink/30"
                 >
                   <div className="col-span-12 md:col-span-2 flex items-baseline md:block gap-3">

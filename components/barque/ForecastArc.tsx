@@ -61,11 +61,11 @@ export function ForecastArc({ arc }: { arc: ForecastArcData }) {
         {/* Header */}
         <header className="mb-14 md:mb-20 border-b border-ink/15 pb-10 md:pb-14">
           <Link
-            href="/barque/log"
+            href="/barque/forecasts"
             className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-ink/50 hover:text-sage-soft transition-colors mb-8"
           >
             <span aria-hidden>←</span>
-            <span>All briefs</span>
+            <span>All forecasts</span>
           </Link>
 
           <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2 mb-6 md:mb-8">

@@ -27,10 +27,10 @@ export async function generateMetadata(props: {
   return {
     title,
     description,
-    alternates: { canonical: `/barque/log/forecast/${forecast.id}` },
+    alternates: { canonical: `/barque/forecasts/${forecast.id}` },
     openGraph: {
       type: "article",
-      url: `https://thecompound.group/barque/log/forecast/${forecast.id}`,
+      url: `https://thecompound.group/barque/forecasts/${forecast.id}`,
       title,
       description,
       publishedTime: forecast.dateMade,
