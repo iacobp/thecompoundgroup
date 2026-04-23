@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Brief, ForecastUpdate } from "@/lib/barque-briefs";
+import { renderInlineMarkdown } from "@/lib/barque-markdown";
 
 /**
  * Full brief layout for /barque/log/[slug]. Editorial prose-first render
@@ -65,7 +66,7 @@ export function BriefRenderer({ brief }: { brief: Brief }) {
                   key={i}
                   className="text-[17px] md:text-[20px] leading-[1.55] text-ink/85 max-w-[60ch]"
                 >
-                  {p}
+                  {renderInlineMarkdown(p)}
                 </p>
               ))}
             </div>
@@ -105,7 +106,7 @@ export function BriefRenderer({ brief }: { brief: Brief }) {
                         ✦
                       </span>
                       <p className="font-display italic text-ink text-[17px] md:text-[20px] leading-[1.5] max-w-[60ch]">
-                        {a.body}
+                        {renderInlineMarkdown(a.body)}
                       </p>
                     </div>
                   ))}
@@ -120,7 +121,7 @@ export function BriefRenderer({ brief }: { brief: Brief }) {
                   Premortem — {brief.premortem.entity}
                 </h3>
                 <p className="font-display italic text-ink text-[17px] md:text-[20px] leading-[1.4] max-w-[56ch]">
-                  {brief.premortem.body}
+                  {renderInlineMarkdown(brief.premortem.body)}
                 </p>
                 {brief.premortem.impliedDelta ? (
                   <p className="mt-4 text-[12px] uppercase tracking-[0.22em] text-sage-soft">
@@ -161,10 +162,10 @@ export function BriefRenderer({ brief }: { brief: Brief }) {
                       </div>
                       <div className="col-span-12 md:col-span-9">
                         <p className="font-display text-ink text-[17px] md:text-[20px] leading-[1.3] max-w-[48ch] mb-3">
-                          {c.statement}
+                          {renderInlineMarkdown(c.statement)}
                         </p>
                         <p className="text-[14px] leading-[1.6] text-ink/70 max-w-[56ch]">
-                          {c.rationale}
+                          {renderInlineMarkdown(c.rationale)}
                         </p>
                       </div>
                     </article>
@@ -185,7 +186,7 @@ export function BriefRenderer({ brief }: { brief: Brief }) {
                   key={i}
                   className="text-[15px] md:text-[17px] leading-[1.65] text-ink/80 max-w-[58ch]"
                 >
-                  {r.body}
+                  {renderInlineMarkdown(r.body)}
                 </p>
               ))}
             </div>
@@ -209,7 +210,7 @@ export function BriefRenderer({ brief }: { brief: Brief }) {
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="max-w-[62ch]">{bullet}</span>
+                  <span className="max-w-[62ch]">{renderInlineMarkdown(bullet)}</span>
                 </li>
               ))}
             </ul>
@@ -233,7 +234,7 @@ export function BriefRenderer({ brief }: { brief: Brief }) {
                         >
                           —
                         </span>
-                        <span>{a}</span>
+                        <span>{renderInlineMarkdown(a)}</span>
                       </li>
                     ))}
                   </ul>
@@ -254,7 +255,7 @@ export function BriefRenderer({ brief }: { brief: Brief }) {
                         >
                           —
                         </span>
-                        <span>{n}</span>
+                        <span>{renderInlineMarkdown(n)}</span>
                       </li>
                     ))}
                   </ul>
@@ -348,7 +349,7 @@ function ForecastUpdateRow({ update: u }: { update: ForecastUpdate }) {
 
       <div className="col-span-12 md:col-span-8">
         <p className="text-[15px] md:text-[16px] leading-[1.65] text-ink/80 max-w-[56ch]">
-          {u.signal}
+          {renderInlineMarkdown(u.signal)}
         </p>
         {u.counterNarrative ? (
           <div className="mt-4 border-l-2 border-sage-soft/40 pl-4">
@@ -356,7 +357,7 @@ function ForecastUpdateRow({ update: u }: { update: ForecastUpdate }) {
               Counter-narrative
             </div>
             <p className="text-[14px] md:text-[15px] leading-[1.6] text-ink/70 max-w-[56ch]">
-              {u.counterNarrative}
+              {renderInlineMarkdown(u.counterNarrative)}
             </p>
           </div>
         ) : null}

@@ -5,6 +5,7 @@ import type {
 } from "@/lib/barque-data";
 import { domainLabel } from "@/lib/barque-data";
 import { briefs } from "@/lib/barque-briefs";
+import { renderInlineMarkdown } from "@/lib/barque-markdown";
 
 const BRIEF_SLUGS = new Set(briefs.map((b) => b.slug));
 
@@ -183,7 +184,7 @@ export function ForecastArc({ arc }: { arc: ForecastArcData }) {
           </p>
           {forecast.notes ? (
             <p className="text-[14px] md:text-[16px] leading-[1.65] text-ink/70 max-w-[58ch]">
-              {forecast.notes}
+              {renderInlineMarkdown(forecast.notes)}
             </p>
           ) : null}
         </section>
@@ -215,8 +216,9 @@ export function ForecastArc({ arc }: { arc: ForecastArcData }) {
                 </div>
               </div>
               <p className="text-[14px] md:text-[15px] leading-[1.6] text-ink/70 max-w-[56ch]">
-                {forecast.notes ||
-                  "Forecast opened. The council begins re-evaluation each dawn."}
+                {forecast.notes
+                  ? renderInlineMarkdown(forecast.notes)
+                  : "Forecast opened. The council begins re-evaluation each dawn."}
               </p>
             </li>
 
@@ -268,7 +270,7 @@ export function ForecastArc({ arc }: { arc: ForecastArcData }) {
                 </div>
                 {resolution.notes ? (
                   <p className="text-[14px] md:text-[15px] leading-[1.6] text-ink/70 max-w-[56ch]">
-                    {resolution.notes}
+                    {renderInlineMarkdown(resolution.notes)}
                   </p>
                 ) : null}
               </li>
@@ -428,7 +430,7 @@ function TimelineRun({ run }: { run: RaLogRow }) {
       </div>
       {run.notes ? (
         <p className="text-[14px] md:text-[15px] leading-[1.6] text-ink/75 max-w-[56ch] mb-3">
-          {run.notes}
+          {renderInlineMarkdown(run.notes)}
         </p>
       ) : null}
       {run.counterNarrative ? (
@@ -437,7 +439,7 @@ function TimelineRun({ run }: { run: RaLogRow }) {
             Counter-narrative
           </div>
           <p className="text-[13px] md:text-[14px] leading-[1.55] text-ink/65 max-w-[56ch]">
-            {run.counterNarrative}
+            {renderInlineMarkdown(run.counterNarrative)}
           </p>
         </div>
       ) : null}
