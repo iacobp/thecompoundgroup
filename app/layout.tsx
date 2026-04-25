@@ -26,21 +26,27 @@ const body = Inter({
 const siteUrl = "https://thecompound.group";
 const siteName = "The Compound Group";
 const description =
-  "A studio building honest consumer health brands. Portfolio includes GLP-1 Picks, Titrate, Revolume, and emerging products in supplements, peptides, and neuroscience.";
+  "A consumer biotech media studio building honest comparison tools, trackers, and editorial across GLP-1, peptides, supplements, neuroscience, and pet health. Portfolio includes GLP-1 Picks, Titrate, and Revolume.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteName} — Consumer health, built honestly`,
+    default: `${siteName} — Consumer biotech, built honestly`,
     template: `%s — ${siteName}`,
   },
   description,
   keywords: [
+    "consumer biotech",
+    "consumer biotech media",
+    "consumer biotech studio",
+    "consumer biotech infrastructure",
     "consumer health",
     "health studio",
     "health holding company",
     "GLP-1",
     "GLP-1 comparison",
+    "GLP-1 telehealth",
+    "peptide tracker",
     "health venture studio",
   ],
   creator: siteName,
@@ -49,14 +55,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: `${siteName} — Consumer health, built honestly`,
+    title: `${siteName} — Consumer biotech, built honestly`,
     description,
     siteName,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteName} — Consumer health, built honestly`,
+    title: `${siteName} — Consumer biotech, built honestly`,
     description,
   },
   robots: {

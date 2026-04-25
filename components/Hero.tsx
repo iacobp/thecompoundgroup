@@ -43,7 +43,7 @@ export function Hero() {
             <span>Volume 01 · Est. 2026</span>
             <span className="hidden md:inline opacity-50">·</span>
             <span className="hidden md:inline opacity-80">
-              A research studio for consumer health
+              A research-led consumer biotech studio
             </span>
           </div>
         </Reveal>
@@ -81,7 +81,7 @@ export function Hero() {
             className="col-span-12 md:col-span-7 md:col-start-4"
           >
             <p className="text-[16px] sm:text-[17px] md:text-[20px] leading-[1.5] text-cream/90 font-light">
-              A studio for consumer health.{" "}
+              A consumer biotech media studio.{" "}
               <em className="italic text-cream">GLP-1</em> to{" "}
               <em className="italic text-cream">neuroscience</em>.{" "}
               <em className="italic text-cream">Supplements</em> to{" "}
