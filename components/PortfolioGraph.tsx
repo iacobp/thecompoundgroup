@@ -117,16 +117,16 @@ const initialNodes: GraphNode[] = [
     radius: 19,
   },
   {
-    id: "pet",
-    label: "Pet Health",
-    sub: "Planned 2026–27",
-    kind: "planned",
-    href: "#portfolio",
+    id: "glp1pets",
+    label: "GLP-1 Pets",
+    sub: "Live",
+    kind: "live",
+    href: "https://glp1pets.com",
     description:
-      "Same methodology, new audience. Pet obesity, veterinary GLP-1 therapy, and supplement research — a category where pricing is opaque and independent review is rare.",
+      "Independent tracker for veterinary GLP-1 weight loss drugs. Okava's MEOW-1 cat trial (summer 2026 readout), Akston AKS-562c at Cornell, and the road to canine GLP-1. Same methodology, applied to the pet chemistry class.",
     x: CX + 290,
     y: CY - 40,
-    radius: 19,
+    radius: 22,
   },
   {
     id: "peptides",
@@ -213,45 +213,47 @@ const initialNodes: GraphNode[] = [
 
 const links: GraphLink[] = [
   { source: "cg", target: "glp1picks", kind: "structural" },
+  { source: "cg", target: "glp1pets", kind: "structural" },
   { source: "cg", target: "titrate", kind: "structural" },
   { source: "cg", target: "revolume", kind: "structural" },
   { source: "cg", target: "supplements", kind: "structural" },
-  { source: "cg", target: "pet", kind: "structural" },
   { source: "cg", target: "peptides", kind: "structural" },
   { source: "cg", target: "neuro", kind: "structural" },
   { source: "cg", target: "plasticity", kind: "structural" },
 
+  { source: "glp1picks", target: "glp1pets", kind: "feeds" },
   { source: "glp1picks", target: "titrate", kind: "feeds" },
   { source: "glp1picks", target: "revolume", kind: "feeds" },
   { source: "glp1picks", target: "supplements", kind: "feeds" },
   { source: "glp1picks", target: "peptides", kind: "feeds" },
-  { source: "supplements", target: "pet", kind: "feeds" },
   { source: "supplements", target: "neuro", kind: "feeds" },
   { source: "neuro", target: "plasticity", kind: "feeds" },
 
   { source: "methodology", target: "glp1picks" },
+  { source: "methodology", target: "glp1pets" },
   { source: "methodology", target: "titrate" },
   { source: "methodology", target: "revolume" },
   { source: "methodology", target: "supplements" },
-  { source: "methodology", target: "pet" },
   { source: "methodology", target: "peptides" },
   { source: "methodology", target: "neuro" },
   { source: "methodology", target: "plasticity" },
 
   { source: "database", target: "glp1picks" },
+  { source: "database", target: "glp1pets" },
   { source: "database", target: "titrate" },
   { source: "database", target: "supplements" },
   { source: "database", target: "peptides" },
 
+  { source: "review", target: "glp1pets" },
   { source: "review", target: "peptides" },
   { source: "review", target: "neuro" },
   { source: "review", target: "plasticity" },
   { source: "review", target: "supplements" },
 
   { source: "editorial", target: "glp1picks" },
+  { source: "editorial", target: "glp1pets" },
   { source: "editorial", target: "revolume" },
   { source: "editorial", target: "supplements" },
-  { source: "editorial", target: "pet" },
   { source: "editorial", target: "neuro" },
 ];
 
@@ -1003,11 +1005,11 @@ export function PortfolioGraph() {
 
         <Reveal>
           <p className="mt-14 md:mt-20 max-w-[60ch] text-[15px] md:text-[16px] leading-[1.75] text-ink/70">
-            Two properties are live or shipping. Five more come online across
-            2026 and 2027. As they do, the graph densifies — a shared
-            methodology, shared datasets, and an audience that overlaps more
-            than any one product suggests on its own. The compounding, when
-            it works, lives in the edges — in how the nodes connect.
+            Two properties are live, two more in development. Four more come
+            online across 2026 and 2027. As they do, the graph densifies — a
+            shared methodology, shared datasets, and an audience that overlaps
+            more than any one product suggests on its own. The compounding,
+            when it works, lives in the edges — in how the nodes connect.
           </p>
         </Reveal>
       </div>

@@ -1,4 +1,5 @@
 import { GLP1PicksThumb } from "./thumbnails/GLP1PicksThumb";
+import { GLP1PetsThumb } from "./thumbnails/GLP1PetsThumb";
 import { TitrateThumb } from "./thumbnails/TitrateThumb";
 import { RevolumeThumb } from "./thumbnails/RevolumeThumb";
 import { Reveal } from "./Reveal";
@@ -40,6 +41,24 @@ const items: PortfolioItem[] = [
   },
   {
     num: "II",
+    name: "GLP-1 Pets",
+    tagline:
+      "The first dedicated tracker for veterinary GLP-1 — same methodology as the human-side index, applied to the pet chemistry class.",
+    body:
+      "Sixty-one percent of US cats and fifty-nine percent of US dogs are overweight or obese (APOP). The first pharmaceutical answer is on its way: Okava's MEOW-1 cat trial of an exenatide-releasing implant reads out summer 2026, and Akston Biosciences is running a once-weekly injection at Cornell. Realistic FDA approval for cats is 2027–28, dogs 2028–30. We track every trial milestone, regulatory action, and pricing signal — and tell readers what works today (food, portions, body-condition scoring) until the science lands.",
+    status: "live",
+    mode: "built",
+    href: "https://glp1pets.com",
+    thumb: <GLP1PetsThumb />,
+    meta: [
+      { label: "Type", value: "Authority site" },
+      { label: "Revenue", value: "Affiliate (post-launch)" },
+      { label: "Since", value: "2026" },
+    ],
+    cta: "Visit glp1pets.com",
+  },
+  {
+    num: "III",
     name: "Titrate",
     tagline:
       "A peptide and GLP-1 tracker built around the decisions a patient keeps making — dose, reconstitution, stack, refill, program.",
@@ -57,7 +76,7 @@ const items: PortfolioItem[] = [
     cta: "Join the waitlist",
   },
   {
-    num: "III",
+    num: "IV",
     name: "Revolume",
     tagline:
       "The skin scan built for GLP-1 — because the weight comes off, and the face follows.",
@@ -88,15 +107,6 @@ const upcoming = [
   },
   {
     num: "04",
-    name: "Pet Health",
-    tag: "Same methodology, new audience",
-    note:
-      "Pet health is a category where the information landscape is especially scattered — pricing is opaque, most resources are written by people selling something, and independent research is rare. We're extending the same methodology to pet obesity, veterinary GLP-1 therapy, and supportive supplement research.",
-    when: "2026–27",
-    mode: "built" as Mode,
-  },
-  {
-    num: "05",
     name: "Peptide Index",
     tag: "Post-FDA clarity",
     note:
@@ -105,7 +115,7 @@ const upcoming = [
     mode: "built" as Mode,
   },
   {
-    num: "06",
+    num: "05",
     name: "Neuroscience Index",
     tag: "Cognitive supplements",
     note:
@@ -114,7 +124,7 @@ const upcoming = [
     mode: "built" as Mode,
   },
   {
-    num: "07",
+    num: "06",
     name: "Neuroplasticity Lab",
     tag: "Training & tools",
     note:
