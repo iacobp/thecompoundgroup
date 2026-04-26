@@ -217,6 +217,66 @@ lottery-ticket forecasting. But cultural inflection as *input* to a
 market/regulatory/adoption forecast is exactly the kind of cross-domain
 fusion that is Barque's actual edge.
 
+## Public/Private Firewall
+
+The Barque log has two audiences. They must not bleed.
+
+**The audience reads** (rendered at `thecompound.com/barque`, source synced to the public `iacobp/thecompoundgroup` repo):
+
+- Forecasts — predictions, probabilities, resolutions, Brier scores
+- Dawn briefs — Ra's narrative explainers
+- Methodology — this protocol, `domains.md`, `data-sources.md`, `historical-cases.md`, `ra/program.md`, `ra/council-prompt.md`
+- Trajectory — `ra/ra_log.tsv` (the per-run re-evaluation history)
+
+What the audience sees is the **calibration record**. Honest, falsifiable, scored, misses included. The log itself is the brand argument.
+
+**We read** (private `iacobp/barque` repo only — never crosses to the public website):
+
+- `opportunities.tsv` — build candidates. Which Ring 1/2 entities Compound might spin a new product around.
+- `opportunity-status.tsv` — proposed/in-progress/built status with operator notes.
+- `work-orders.tsv` — update queue across every Compound product (GLP-1 Picks, Revolume, Titrate, website, etc.). What to ship, where, why, when.
+- `work-order-status.tsv` — status of each work order.
+- `CLAUDE.md` — operating instructions, sibling-project context.
+- Any future `products.md` or strategic notes.
+
+What we see is the **action layer**. Strategic intent, build pipeline, update queue, kill list. None of this informs the public surface.
+
+**Enforced where it matters — at the publish boundary, not the commit boundary.** The rsync step in `.github/workflows/email-brief.yml` carries an explicit `PUBLIC_FILES` allowlist; anything not on it stays in the private repo. New files are private by default. Promotion to public requires editing the allowlist deliberately and stating why in the commit.
+
+**Rule of thumb:** if a competitor reading it would learn what Compound is about to build, change, or kill, it's private. If it informs the calibration record or the methodology, it's public. When in doubt, private.
+
+## Build vs Update Decision Rule
+
+When a Ring 1 forecast issues, a Ring 2 entity graduates, or any cross-source signal lands (Firehose, SEO, news, competitor move, Ra re-evaluation, operator research), the operator triages into one of two queues:
+
+- **Update an existing Compound product** → `work-orders.tsv`
+  - The signal touches an entity already covered by a product page (provider card, comparison table, hero data, llms.txt fact, schema, blog post).
+  - Action target is a specific file, page slug, or data field.
+  - Fast turnaround. Hours to days.
+- **Build a new product** → `opportunities.tsv`
+  - The signal exposes an unserved Ring 1 entity, or a Ring 2 entity graduating with two consecutive weekly cumulations.
+  - Triggers Signal protocol to size the opportunity before any code is written.
+  - Slow turnaround. Weeks to months.
+
+If neither applies, the signal stays a forecast (or a Ring 3 listen item) and waits for additional confirmation. **Not every forecast triggers an action.** Discipline beats activity.
+
+Ring 3 signals never generate an opportunity or work-order alone — they must touch a Ring 1 forecast or already-tracked entity first.
+
+## The Cross-Source Action Queue
+
+`work-orders.tsv` and `opportunities.tsv` are the convergence point for every signal type, not just Barque forecasts. Both carry a `source` column (one of the values below) and a `source_id` column (the upstream row's ID, brief slug, tap name, ahrefs URL, etc.):
+
+- `barque-forecast` — a forecast in `forecasts.tsv` resolves or shifts probability
+- `ra-update` — a Ra re-evaluation flips a forecast's probability ≥10 points or surfaces new disconfirming evidence
+- `firehose-hit` — a Firehose tap matches (brand monitoring, competitor content, regulatory filing)
+- `seo-signal` — Ahrefs Rank Tracker movement, GSC anomaly, search volume shift on a tracked keyword
+- `news` — a news event with material implications for a Compound product
+- `competitor-move` — a tracked competitor ships, prices, or pivots
+- `market-shift` — a category-level change (insurance coverage, pharma pipeline, telehealth regulation)
+- `operator-research` — manual finding from an operator session (Iacob or me, not auto-generated)
+
+The schema is uniform across the queue — one queue, one prioritization, one place to look. Both files are private (see firewall above).
+
 ## Relationship to Other Protocols
 
 - **Signal** (`~/Documents/signal/program.md`) finds complaint-driven opportunities to BUILD. Barque finds predictable outcomes to ANTICIPATE. A Signal output can become a Barque domain if the opportunity is big enough to warrant ongoing tracking.
@@ -238,3 +298,8 @@ Append dated notes when the protocol materially changes. Never delete entries; p
   - **Four resolution metrics, not one.** Brier (calibration), Lead time (we-saw-it-first-ness), Contrarian flag (divergence from consensus at cutoff), Coverage (fraction of resolvable domain events forecast). Coverage audit begins Q3 2026 after Ra has run for a full quarter.
   - **Cultural signals are first-class inputs.** Previous copy implied Barque excludes "cultural prediction" — that was wrong. Memes, celebrity adoption, TikTok velocity, Reddit vocabulary shifts are core inputs to scorable forecasts. What Barque refuses is predicting *which specific meme* goes viral (no ground truth). Cultural inflection as input to market/regulatory/adoption forecasts is Barque's actual edge.
 - 2026-04-19 — **v0.4 — Scope locked as three concentric rings.** Previous "Domains suitable / domains not" framing replaced with explicit Ring 1 (core, daily, forecasts issued), Ring 2 (scouted, weekly, no forecasts), Ring 3 (cross-domain inputs, continuous, Augur's food). Ring 1 today: GLP-1/metabolic, peptides/longevity, skincare (topical peptides), menopause/HRT, pet health. Ring 2 today: mental wellness, fertility, home medical, elder care, cosmetic procedures, sleep, functional medicine. Ring 3: cultural, technological, political, capital signals that move Ring 1. The rule: forecast in Ring 1, scout in Ring 2, listen in Ring 3, never forecast outside Ring 1.
+- 2026-04-25 — **v0.5 — Public/private firewall, build-vs-update rule, cross-source action queue.** Three additions, all triggered by recognising that the website (`iacobp/thecompoundgroup`) is PUBLIC while the barque repo is PRIVATE, and the previous rsync auto-publish copied the entire barque tree minus `.git/.github/.DS_Store` — meaning any file we committed to barque (e.g. `CLAUDE.md`, future `opportunities.tsv`, future `work-orders.tsv`) leaked to the public website on the next brief push.
+  - **Public/private firewall codified.** New section in `program.md` names what crosses (forecasts, briefs, methodology) vs what stays (build pipeline, update queue, sibling-project notes). Enforced at the publish boundary: `.github/workflows/email-brief.yml` rsync replaced with explicit `PUBLIC_FILES` allowlist. New files are private by default.
+  - **Build-vs-update decision rule.** Any signal (Barque forecast, Ra update, Firehose hit, SEO movement, news, competitor move, market shift, operator research) triages into one of two queues: `work-orders.tsv` (update an existing Compound product) or `opportunities.tsv` (build a new product, requires Signal protocol sizing first). Not every forecast triggers an action — discipline beats activity.
+  - **Cross-source action queue.** `work-orders.tsv` and `opportunities.tsv` schemas bumped to carry `source` + `source_id` columns instead of the previous brief-only `source_brief_slug`. One queue, one place to look, regardless of which signal stream surfaced the item. Existing 3 opportunities migrated (`source = operator-research`).
+  - **Self-healing on next brief push.** The allowlist also wipes orphan files from the public website's `barque/` directory — `CLAUDE.md` will disappear from the public repo on the next sync. No manual cleanup required.
