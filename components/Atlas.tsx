@@ -207,8 +207,8 @@ export function Atlas() {
                     x2={d.x}
                     y2={d.y}
                     stroke="#1C1C1A"
-                    strokeOpacity={hoveredId === d.id || selectedId === d.id ? 0.45 : 0.12}
-                    strokeWidth={hoveredId === d.id || selectedId === d.id ? 0.18 : 0.1}
+                    strokeOpacity={hoveredId === d.id || selectedId === d.id ? 0.6 : 0.28}
+                    strokeWidth={hoveredId === d.id || selectedId === d.id ? 0.22 : 0.14}
                     strokeDasharray="0.8 0.6"
                     style={{ transition: "stroke-opacity 0.5s, stroke-width 0.5s" }}
                   />
@@ -252,20 +252,43 @@ export function Atlas() {
                     r={d.radius}
                     fill="none"
                     stroke={color}
-                    strokeWidth={0.15}
-                    strokeOpacity={0.35}
+                    strokeWidth={0.18}
+                    strokeOpacity={0.45}
                     className="atlas-pulse"
+                  />
+
+                  {/* Cream backdrop disc — gives the colored dot/ring a
+                      consistent contrast surface so the marker reads against
+                      sage vegetation, bronze stone, or ink-dark architecture
+                      uniformly. Dropshadow simulated via a slightly larger
+                      ink-tinted outer disc behind. */}
+                  <circle
+                    cx={d.x}
+                    cy={d.y + 0.18}
+                    r={d.radius * 0.78}
+                    fill="#1C1C1A"
+                    fillOpacity={0.18}
+                  />
+                  <circle
+                    cx={d.x}
+                    cy={d.y}
+                    r={d.radius * 0.78}
+                    fill="#FAF7F0"
+                    fillOpacity={0.94}
+                    stroke="#1C1C1A"
+                    strokeWidth={0.08}
+                    strokeOpacity={0.35}
                   />
 
                   {/* Inner ring with hover state */}
                   <circle
                     cx={d.x}
                     cy={d.y}
-                    r={d.radius * 0.6}
+                    r={d.radius * 0.55}
                     fill="none"
                     stroke={color}
-                    strokeWidth={isHovered || isSelected ? 0.28 : 0.18}
-                    strokeOpacity={isHovered || isSelected ? 0.9 : 0.55}
+                    strokeWidth={isHovered || isSelected ? 0.32 : 0.22}
+                    strokeOpacity={isHovered || isSelected ? 1 : 0.85}
                     style={{ transition: "stroke-opacity 0.3s, stroke-width 0.3s" }}
                   />
 
@@ -273,7 +296,7 @@ export function Atlas() {
                   <circle
                     cx={d.x}
                     cy={d.y}
-                    r={isHovered || isSelected ? 0.6 : 0.45}
+                    r={isHovered || isSelected ? 0.85 : 0.7}
                     fill={color}
                     style={{ transition: "r 0.3s" }}
                   />
@@ -300,16 +323,14 @@ export function Atlas() {
                 <motion.div
                   initial={false}
                   animate={{
-                    opacity: visible ? 1 : 0.55,
+                    opacity: visible ? 1 : 0.85,
                     y: visible ? 4 : 0,
                   }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="font-display text-ink text-center whitespace-nowrap"
+                  className="inline-flex items-center justify-center font-display text-ink text-center whitespace-nowrap rounded-full bg-cream/95 border border-ink/15 px-2.5 py-0.5 shadow-[0_2px_8px_-2px_rgba(28,28,26,0.18)] backdrop-blur-sm"
                   style={{
-                    fontSize: "clamp(10px, 1vw, 14px)",
-                    paintOrder: "stroke",
-                    textShadow:
-                      "0 0 8px rgba(250,247,240,0.95), 0 0 4px rgba(250,247,240,0.95)",
+                    fontSize: "clamp(10px, 1vw, 13px)",
+                    lineHeight: 1.2,
                   }}
                 >
                   {d.name}
@@ -328,7 +349,7 @@ export function Atlas() {
         </div>
 
         {/* Hint */}
-        <div className="absolute bottom-6 md:bottom-10 right-6 md:right-12 z-20 text-[10px] md:text-[11px] uppercase tracking-[0.24em] text-muted/80">
+        <div className="absolute bottom-6 md:bottom-10 right-6 md:right-12 z-20 text-[10px] md:text-[11px] uppercase tracking-[0.24em] text-ink/75 bg-cream/90 backdrop-blur-sm border border-border rounded-full px-3 py-1.5">
           Hover to read · Click to enter
         </div>
       </div>
