@@ -20,10 +20,10 @@ Inspired by Signal's autoresearch pattern (Karpathy-style constrained scope, cle
 
 ```
 OBSERVE  → pull new items from configured sources across tracked domains
-ENCODE   → tag each item {domain, entity, novelty, velocity, sentiment}
+ENCODE   → tag each item {domain, entity, novelty, velocity, sentiment, durability, spillover}
 CLUSTER  → group items by emerging entity (new drug, new term, new actor)
 SITUATE  → place entity on causal graph: who wins, who loses, what must precede
-SIMULATE → 5-agent scenario (regulator, incumbent, DTC marketer, patient, investor)
+SIMULATE → 6-agent scenario (regulator, incumbent, DTC marketer, patient, investor, discourse)
 SCORE    → composite: signal-strength × narrative-coherence × cross-domain-confirmation
 PREDICT  → write specific, dated, probabilistic forecast
 LOG      → append to forecasts.tsv
@@ -49,6 +49,18 @@ measured on four axes, not one.
 
 **Signal Strength = (volume × cross-domain × velocity × novelty × causal) / 100.**
 Forecasts require Signal Strength ≥ 20 to be worth logging. Below 20, you're guessing.
+
+**Velocity must be durable to score above 5.** A single-week exponential
+spike with no platform spillover and no continued chatter at +14d caps
+velocity at 5/10. To score 7+ on velocity, the topic must satisfy at least
+one of: (a) **durability** — alive ≥14 days post-discovery in its origin
+community at the same or rising volume, (b) **cross-platform spillover** —
+jumped venues (Reddit → TikTok, niche sub → general feed, narrow Discord
+→ Twitter trend, podcast circuit → mainstream press), or (c) **influencer
+adoption** — picked up by ≥2 named voices with >100k reach who hadn't
+previously talked about the entity. This kills the "exponential spike that
+died Tuesday" overweight problem and is what the Discourse Agent below
+is on the hook to flag.
 
 **At resolution time — four measures, all public:**
 
@@ -100,8 +112,9 @@ date_made	domain	entity	prediction	probability	horizon_days	resolution_date	reso
 
 ### Intake (first run of the day/week)
 1. Query mempalace: `mempalace_search query:"barque"` + `mempalace_list_rooms wing:"thecompound"`
-2. Read `forecasts.tsv`. Identify predictions that resolved since last session. Update `resolution` and `brier` for each. Compute rolling Brier score by domain.
-3. Identify stale predictions (approaching resolution date) and prepare to resolve them.
+2. **Read `products.md`.** This is the live-vs-opportunity manifest. Build-vs-update routing keys off it. Without this read, you will route signals about already-shipped products as new build opportunities, which is exactly the failure mode `products.md` exists to prevent.
+3. Read `forecasts.tsv`. Identify predictions that resolved since last session. Update `resolution` and `brier` for each. Compute rolling Brier score by domain.
+4. Identify stale predictions (approaching resolution date) and prepare to resolve them.
 
 ### Observe (new signals)
 4. Pull new signals from sources in `data-sources.md` for each tracked domain.
@@ -120,15 +133,16 @@ date_made	domain	entity	prediction	probability	horizon_days	resolution_date	reso
 
 ## Agent Scenario Framework
 
-When simulating what happens next, role-play exactly these five agents. Each answers independently, then you aggregate:
+When simulating what happens next, role-play exactly these six agents. Each answers independently, then you aggregate:
 
 1. **The Regulator** — FDA, DEA, EMA, state medical boards. What do they see, what do they do, on what timeline?
 2. **The Incumbent** — the large player with the most to lose or gain. What's their defensive/offensive move? What does their earnings call reveal about their belief?
 3. **The DTC Marketer** — performance marketer at a telehealth/supplement brand. What new ad angle opens? What search terms emerge? What CAC changes?
-4. **The Patient/Consumer** — the actual end user. What do they search for, complain about, pay for? Where do they organize (Reddit, TikTok, Discord)?
+4. **The Patient/Consumer** — the actual end user. What do they search for, complain about, pay for? What's their job-to-be-done, what budget, what alternatives have they tried?
 5. **The Investor** — VC or hedge fund. Where does capital flow? What's priced in, what isn't? What gets funded in the next 6 months?
+6. **The Discourse** — the meme economy / echo-chamber system itself, not any single user. Plays amplification vs backlash, tribal capture, cross-platform spillover, valence shifts. Where does the conversation live (Reddit thread, TikTok hashtag, Twitter quote-tweet chain, podcast circuit, mainstream press)? Has it broken out of its origin community, or is it captured? Is the dominant valence acceleration, exhaustion, or backlash? What kills momentum (incumbent reframing, scandal, boredom, regulator move, algorithm shift)? Which named voices have adopted vs. dismissed the entity? **Distinct from the Patient/Consumer agent: that one plays the user; the Discourse agent plays the system that processes the meme.** This agent is also the one on the hook for the durability/spillover check that gates high velocity scores (see Probability Discipline above).
 
-If 4 of 5 agents' stories rhyme, the cross-domain confirmation score is high. If they diverge, the signal is weaker than it looks — or you're seeing two futures, not one.
+If 5 of 6 agents' stories rhyme, the cross-domain confirmation score is high. If they diverge, the signal is weaker than it looks — or you're seeing two futures, not one. The v0.2 dissent rule still applies: when ≥2 agents are negative, cross-domain confirmation cannot score above 3, regardless of how loud the positive signals are.
 
 ## Rules
 
@@ -298,6 +312,12 @@ Append dated notes when the protocol materially changes. Never delete entries; p
   - **Four resolution metrics, not one.** Brier (calibration), Lead time (we-saw-it-first-ness), Contrarian flag (divergence from consensus at cutoff), Coverage (fraction of resolvable domain events forecast). Coverage audit begins Q3 2026 after Ra has run for a full quarter.
   - **Cultural signals are first-class inputs.** Previous copy implied Barque excludes "cultural prediction" — that was wrong. Memes, celebrity adoption, TikTok velocity, Reddit vocabulary shifts are core inputs to scorable forecasts. What Barque refuses is predicting *which specific meme* goes viral (no ground truth). Cultural inflection as input to market/regulatory/adoption forecasts is Barque's actual edge.
 - 2026-04-19 — **v0.4 — Scope locked as three concentric rings.** Previous "Domains suitable / domains not" framing replaced with explicit Ring 1 (core, daily, forecasts issued), Ring 2 (scouted, weekly, no forecasts), Ring 3 (cross-domain inputs, continuous, Augur's food). Ring 1 today: GLP-1/metabolic, peptides/longevity, skincare (topical peptides), menopause/HRT, pet health. Ring 2 today: mental wellness, fertility, home medical, elder care, cosmetic procedures, sleep, functional medicine. Ring 3: cultural, technological, political, capital signals that move Ring 1. The rule: forecast in Ring 1, scout in Ring 2, listen in Ring 3, never forecast outside Ring 1.
+- 2026-04-28 — **v0.6 — Discourse agent (6th agent), durability + cross-platform spillover, daily domain-hunt artifact.**
+  Triggered by recognising that social-media reception and echo-chamber dynamics — already acknowledged as Ring 3 inputs and listed in ENCODE as `velocity`/`sentiment` — were not pulled all the way into the agent simulation, leaving the Patient/Consumer agent overloaded with both end-user behavior AND discourse dynamics. v0.6 separates them.
+  - **6th agent: The Discourse.** Plays amplification vs backlash, tribal capture, cross-platform spillover, valence shifts, named-voice adoption. Distinct from Patient/Consumer (who plays the user); Discourse plays the system that processes the meme. SIMULATE step now references 6 agents, not 5. Aggregation rule "4 of 5 rhyme" rescaled to "5 of 6 rhyme." The v0.2 dissent threshold (≥2 negative agents caps cross-domain confirmation at 3) carries forward unchanged — the threshold is 2 absolute, not a ratio.
+  - **ENCODE adds `durability` and `cross_platform_spillover`** alongside existing `velocity`/`sentiment`. New Probability Discipline rule: velocity scores cap at 5/10 until durability (≥14d alive at same/rising volume in origin community) OR spillover (jumps venues) OR named influencer adoption (≥2 voices with >100k reach) is confirmed. Kills the "exponential spike that died Tuesday" overweight problem.
+  - **Daily domain-hunt artifact added.** New `scripts/domain-hunt.sh` runs as a step in `email-brief.yml`, queries DataForSEO Labs for long-tail keyword expansions on Ring 1 entities (volume ≥200, KD ≤30, ≥3 words), generates `.com` candidates from each (exact-match + stopword-stripped variants), RDAP-checks availability against Verisign, scores by `volume × (100−KD) / 100`, and appends candidates to the daily Resend email. Persists to private `domain-hunt.tsv` (not in PUBLIC_FILES allowlist; commit-back step in the workflow with `contents: write` permission). Operator manually verifies $10 hand-reg price at the registrar before buying — RDAP confirms availability, not pricing; long-tail multi-word .coms are virtually never premium.
+
 - 2026-04-25 — **v0.5 — Public/private firewall, build-vs-update rule, cross-source action queue.** Three additions, all triggered by recognising that the website (`iacobp/thecompoundgroup`) is PUBLIC while the barque repo is PRIVATE, and the previous rsync auto-publish copied the entire barque tree minus `.git/.github/.DS_Store` — meaning any file we committed to barque (e.g. `CLAUDE.md`, future `opportunities.tsv`, future `work-orders.tsv`) leaked to the public website on the next brief push.
   - **Public/private firewall codified.** New section in `program.md` names what crosses (forecasts, briefs, methodology) vs what stays (build pipeline, update queue, sibling-project notes). Enforced at the publish boundary: `.github/workflows/email-brief.yml` rsync replaced with explicit `PUBLIC_FILES` allowlist. New files are private by default.
   - **Build-vs-update decision rule.** Any signal (Barque forecast, Ra update, Firehose hit, SEO movement, news, competitor move, market shift, operator research) triages into one of two queues: `work-orders.tsv` (update an existing Compound product) or `opportunities.tsv` (build a new product, requires Signal protocol sizing first). Not every forecast triggers an action — discipline beats activity.

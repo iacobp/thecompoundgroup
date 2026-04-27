@@ -26,17 +26,18 @@ Two distinct triggers. Both matter.
 
 The nightly voyage. Every day Ra:
 
-1. Reads `../forecasts.tsv`. Identifies all rows where `resolution = pending`.
-2. For each, pulls fresh signals from the configured sources in
+1. **Reads `../products.md`** — the live-vs-opportunity manifest. Without this, Ra writes work-orders against products that don't exist or proposes opportunities for products already shipped (the exact failure mode that surfaced 2026-04-27 with glp1pets).
+2. Reads `../forecasts.tsv`. Identifies all rows where `resolution = pending`.
+3. For each, pulls fresh signals from the configured sources in
    `../data-sources.md` that are relevant to that forecast's `domain` and
    `entity`. Filter to items added since the last Ra run.
-3. Runs the 5-agent scenario from `../program.md` with the combined
+4. Runs the 5-agent scenario from `../program.md` with the combined
    signal set (original-at-cutoff + new-since-cutoff) and produces a new
    probability.
-4. Writes a row to `ra_log.tsv` with: forecast_id, run_date,
+5. Writes a row to `ra_log.tsv` with: forecast_id, run_date,
    new_probability, delta_from_original, new_signal_strength, signals
    cited, and notes.
-5. If `abs(delta) >= 0.15`, flag the forecast for human review — a
+6. If `abs(delta) >= 0.15`, flag the forecast for human review — a
    material revision is not autonomous; a human decides whether the
    forecast is still structurally sound or needs superseding.
 
