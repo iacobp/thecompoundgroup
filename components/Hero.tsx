@@ -1,9 +1,96 @@
+"use client";
+
+import { useRef } from "react";
+import { gsap } from "gsap";
+import { SplitText } from "gsap/SplitText";
+import { useGSAP } from "@gsap/react";
 import { Reveal } from "./Reveal";
 import { Monogram } from "./Monogram";
+import { registerGsap, prefersReducedMotion } from "@/lib/animations";
 
+/**
+ * Hero — full-bleed video background + editorial H1 with GSAP SplitText
+ * character-level reveal on the display headline. The italic emphasis spans
+ * ("that should exist", "the ones that already do") get a slight overshoot
+ * via the signature compound-hero ease.
+ *
+ * Honors prefers-reduced-motion: no character animation, headline shows in place.
+ */
 export function Hero() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useGSAP(
+    () => {
+      registerGsap();
+      gsap.registerPlugin(SplitText);
+
+      const root = containerRef.current;
+      if (!root) return;
+
+      const lines = root.querySelectorAll<HTMLElement>("[data-hero-line]");
+      const emphasis =
+        root.querySelectorAll<HTMLElement>("[data-hero-emphasis]");
+
+      if (prefersReducedMotion()) {
+        gsap.set([lines, emphasis], { autoAlpha: 1, yPercent: 0 });
+        return;
+      }
+
+      // Pre-state: hide lines until SplitText is ready (avoids flash of unstyled chars)
+      gsap.set(lines, { autoAlpha: 1 });
+
+      const splits: SplitText[] = [];
+      lines.forEach((line) => {
+        const split = SplitText.create(line, {
+          type: "chars,words",
+          // Ensure the line collapses correctly when chars are wrapped
+          wordsClass: "inline-block overflow-hidden",
+          charsClass: "inline-block will-change-transform",
+        });
+        splits.push(split);
+      });
+
+      const tl = gsap.timeline({ delay: 0.1 });
+
+      splits.forEach((split, i) => {
+        tl.from(
+          split.chars,
+          {
+            yPercent: 110,
+            autoAlpha: 0,
+            duration: 0.95,
+            stagger: 0.018,
+            ease: "compound-hero",
+          },
+          i === 0 ? 0 : "-=0.7"
+        );
+      });
+
+      // Italic emphasis: subtle scale pop after the char reveal lands
+      tl.from(
+        emphasis,
+        {
+          scale: 1.06,
+          duration: 0.7,
+          ease: "compound",
+          stagger: 0.12,
+        },
+        "-=0.4"
+      );
+
+      // Cleanup splits when unmounting
+      return () => {
+        splits.forEach((s) => s.revert());
+      };
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <section className="relative min-h-[88vh] md:min-h-[94vh] overflow-hidden flex flex-col">
+    <section
+      ref={containerRef}
+      className="relative min-h-[88vh] md:min-h-[94vh] overflow-hidden flex flex-col"
+    >
       {/* Background video */}
       <video
         className="absolute inset-0 h-full w-full object-cover object-[65%_35%] md:object-[center_35%]"
@@ -50,27 +137,35 @@ export function Hero() {
 
         <div className="flex-1 min-h-[56px] sm:min-h-[80px] md:min-h-[160px]" />
 
-        {/* Thesis headline — Cole Schafer: rhythm, specificity, one unexpected turn */}
+        {/* Thesis headline — SplitText character reveal */}
         <div className="grid grid-cols-12">
           <h1 className="col-span-12 font-display text-cream tracking-tightest leading-[0.92] text-[40px] sm:text-[64px] md:text-[88px] lg:text-[108px] drop-shadow-[0_2px_40px_rgba(0,0,0,0.35)] max-w-[16ch]">
-            <Reveal delay={120}>
-              <span className="block">
-                We build the health
-              </span>
-            </Reveal>
-            <Reveal delay={240}>
-              <span className="block">
-                companies{" "}
-                <em className="italic text-sage-soft">that should exist</em>.
-              </span>
-            </Reveal>
-            <Reveal delay={360}>
-              <span className="block mt-4 md:mt-6 text-[24px] sm:text-[38px] md:text-[52px] lg:text-[64px] text-cream/85">
-                Then we quietly acquire{" "}
-                <em className="italic text-sage-soft">the ones that already do</em>
-                <span className="text-sage-soft">.</span>
-              </span>
-            </Reveal>
+            <span data-hero-line className="block">
+              We build the health
+            </span>
+            <span data-hero-line className="block">
+              companies{" "}
+              <em
+                data-hero-emphasis
+                className="italic text-sage-soft inline-block"
+              >
+                that should exist
+              </em>
+              .
+            </span>
+            <span
+              data-hero-line
+              className="block mt-4 md:mt-6 text-[24px] sm:text-[38px] md:text-[52px] lg:text-[64px] text-cream/85"
+            >
+              Then we quietly acquire{" "}
+              <em
+                data-hero-emphasis
+                className="italic text-sage-soft inline-block"
+              >
+                the ones that already do
+              </em>
+              <span className="text-sage-soft">.</span>
+            </span>
           </h1>
         </div>
 
@@ -104,8 +199,8 @@ export function Hero() {
               <span className="font-display italic text-sage-soft">¹</span>
               <span>
                 Footnoted as in every stat has a source, every methodology is
-                public, every ranking shows our work — the standard we&apos;d want
-                applied to anything we&apos;d use ourselves.
+                public, every ranking shows our work — the standard we&apos;d
+                want applied to anything we&apos;d use ourselves.
               </span>
             </div>
           </Reveal>

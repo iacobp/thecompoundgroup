@@ -1,5 +1,6 @@
 import { Reveal } from "./Reveal";
 import { Monogram } from "./Monogram";
+import { MagneticButton } from "./MagneticButton";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -30,13 +31,17 @@ export function Footer() {
               <em className="italic text-sage-soft">and acquisitions.</em>
             </h2>
 
-            <a
+            <MagneticButton
               href="mailto:hello@thecompound.group"
-              className="inline-flex items-center gap-3 font-display italic text-cream text-[20px] sm:text-[24px] md:text-[32px] link-line break-all"
+              ariaLabel="Email hello@thecompound.group"
+              strength={0.25}
+              className="font-display italic text-cream text-[20px] sm:text-[24px] md:text-[32px] link-line break-all"
             >
-              hello@thecompound.group
-              <span aria-hidden className="text-[0.6em] opacity-70">→</span>
-            </a>
+              <span className="inline-flex items-center gap-3">
+                hello@thecompound.group
+                <span aria-hidden className="text-[0.6em] opacity-70">→</span>
+              </span>
+            </MagneticButton>
 
             <p className="mt-10 max-w-[52ch] text-[14px] md:text-[15px] leading-[1.7] text-cream/65">
               The inbox is read by a human — a single principal, working with
