@@ -146,22 +146,24 @@ export function Hero() {
 
         <div className="flex-1 min-h-[56px] sm:min-h-[80px] md:min-h-[160px]" />
 
-        {/* Thesis headline — SplitText character reveal */}
+        {/* Thesis headline — SplitText character reveal.
+            Periods live INSIDE the em wrappers so "exist." and "do." are
+            single SplitText words and never orphan onto their own line. */}
         <div className="grid grid-cols-12">
-          <h1 className="col-span-12 font-display text-cream tracking-tightest leading-[0.92] text-[40px] sm:text-[64px] md:text-[88px] lg:text-[108px] drop-shadow-[0_2px_40px_rgba(0,0,0,0.35)] max-w-[16ch]">
+          <h1 className="col-span-12 font-display text-cream tracking-tightest leading-[0.92] text-[40px] sm:text-[64px] md:text-[88px] lg:text-[108px] drop-shadow-[0_2px_40px_rgba(0,0,0,0.35)] max-w-[16ch] [text-wrap:balance]">
             <span data-hero-line className="block">
               We build the health
             </span>
             <span data-hero-line className="block">
               companies{" "}
-              <em data-hero-emphasis className="italic text-sage-soft">that should exist</em>.
+              <em data-hero-emphasis className="italic text-sage-soft">that should exist.</em>
             </span>
             <span
               data-hero-line
               className="block mt-4 md:mt-6 text-[24px] sm:text-[38px] md:text-[52px] lg:text-[64px] text-cream/85"
             >
               Then we quietly acquire{" "}
-              <em data-hero-emphasis className="italic text-sage-soft">the ones that already do</em><span className="text-sage-soft">.</span>
+              <em data-hero-emphasis className="italic text-sage-soft">the ones that already do.</em>
             </span>
           </h1>
         </div>
