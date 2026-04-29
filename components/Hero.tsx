@@ -28,22 +28,23 @@ export function Hero() {
       if (!root) return;
 
       const lines = root.querySelectorAll<HTMLElement>("[data-hero-line]");
-      const emphasis =
-        root.querySelectorAll<HTMLElement>("[data-hero-emphasis]");
 
       if (prefersReducedMotion()) {
-        gsap.set([lines, emphasis], { autoAlpha: 1, yPercent: 0 });
+        gsap.set(lines, { autoAlpha: 1, yPercent: 0 });
         return;
       }
 
-      // Pre-state: hide lines until SplitText is ready (avoids flash of unstyled chars)
+      // Pre-state: lines visible (chars start hidden, animate up via SplitText)
       gsap.set(lines, { autoAlpha: 1 });
 
       const splits: SplitText[] = [];
       lines.forEach((line) => {
         const split = SplitText.create(line, {
           type: "chars,words",
-          // Ensure the line collapses correctly when chars are wrapped
+          // Words wrap as inline-block so chars can yPercent from below the
+          // overflow window. The em wrapper stays as plain inline so the
+          // surrounding text (including the trailing period) flows naturally
+          // and does not orphan onto its own line.
           wordsClass: "inline-block overflow-hidden",
           charsClass: "inline-block will-change-transform",
         });
@@ -66,17 +67,25 @@ export function Hero() {
         );
       });
 
-      // Italic emphasis: subtle scale pop after the char reveal lands
-      tl.from(
-        emphasis,
-        {
-          scale: 1.06,
-          duration: 0.7,
-          ease: "compound",
-          stagger: 0.12,
-        },
-        "-=0.4"
+      // Subtle color brighten on emphasis chars after they land — the
+      // animation effect that replaces the old scale-pop (which required
+      // transform on the em wrapper, breaking inline flow).
+      const emphasisChars = root.querySelectorAll<HTMLElement>(
+        "[data-hero-emphasis] .will-change-transform"
       );
+      if (emphasisChars.length > 0) {
+        tl.fromTo(
+          emphasisChars,
+          { filter: "brightness(1.4)" },
+          {
+            filter: "brightness(1)",
+            duration: 0.9,
+            ease: "compound",
+            stagger: 0.02,
+          },
+          "-=0.5"
+        );
+      }
 
       // Cleanup splits when unmounting
       return () => {
@@ -145,26 +154,14 @@ export function Hero() {
             </span>
             <span data-hero-line className="block">
               companies{" "}
-              <em
-                data-hero-emphasis
-                className="italic text-sage-soft inline-block"
-              >
-                that should exist
-              </em>
-              .
+              <em data-hero-emphasis className="italic text-sage-soft">that should exist</em>.
             </span>
             <span
               data-hero-line
               className="block mt-4 md:mt-6 text-[24px] sm:text-[38px] md:text-[52px] lg:text-[64px] text-cream/85"
             >
               Then we quietly acquire{" "}
-              <em
-                data-hero-emphasis
-                className="italic text-sage-soft inline-block"
-              >
-                the ones that already do
-              </em>
-              <span className="text-sage-soft">.</span>
+              <em data-hero-emphasis className="italic text-sage-soft">the ones that already do</em><span className="text-sage-soft">.</span>
             </span>
           </h1>
         </div>
