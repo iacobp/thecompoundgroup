@@ -41,11 +41,9 @@ export function Hero() {
       lines.forEach((line) => {
         const split = SplitText.create(line, {
           type: "chars,words",
-          // Words wrap as inline-block so chars can yPercent from below the
-          // overflow window. The em wrapper stays as plain inline so the
-          // surrounding text (including the trailing period) flows naturally
-          // and does not orphan onto its own line.
-          wordsClass: "inline-block overflow-hidden",
+          // No wordsClass — words stay as plain inline spans so the H1's
+          // max-w-[16ch] can wrap them normally. Chars are inline-block so
+          // they can be transformed individually.
           charsClass: "inline-block will-change-transform",
         });
         splits.push(split);
@@ -54,14 +52,20 @@ export function Hero() {
       const tl = gsap.timeline({ delay: 0.1 });
 
       splits.forEach((split, i) => {
+        // Layout-safe reveal: small y + scale + autoAlpha, no overflow:hidden
+        // needed on parents because the chars are nearly invisible during
+        // the small y journey (autoAlpha animates faster than y travels at
+        // the start of the compound-hero ease).
         tl.from(
           split.chars,
           {
-            yPercent: 110,
+            y: 24,
+            scale: 0.94,
             autoAlpha: 0,
             duration: 0.95,
             stagger: 0.018,
             ease: "compound-hero",
+            transformOrigin: "center bottom",
           },
           i === 0 ? 0 : "-=0.7"
         );
