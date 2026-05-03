@@ -259,26 +259,37 @@ What we see is the **action layer**. Strategic intent, build pipeline, update qu
 
 **Rule of thumb:** if a competitor reading it would learn what Compound is about to build, change, or kill, it's private. If it informs the calibration record or the methodology, it's public. When in doubt, private.
 
-## Build vs Update Decision Rule
+## Build vs Update vs Probe Decision Rule
 
-When a Ring 1 forecast issues, a Ring 2 entity graduates, or any cross-source signal lands (Firehose, SEO, news, competitor move, Ra re-evaluation, operator research), the operator triages into one of two queues:
+When a Ring 1 forecast issues, a Ring 2 entity graduates, or any cross-source signal lands (Firehose, SEO, news, competitor move, Ra re-evaluation, operator research), the operator triages into one of three queues:
 
 - **Update an existing Compound product** → `work-orders.tsv`
   - The signal touches an entity already covered by a product page (provider card, comparison table, hero data, llms.txt fact, schema, blog post).
   - Action target is a specific file, page slug, or data field.
+  - Use when fit is high-confidence and update is well-scoped.
   - Fast turnaround. Hours to days.
+- **Probe via existing distribution channel** → `probe-orders.tsv`
+  - The signal *might* fit a live product or *might* warrant a new build, but cheap validation would clarify before committing.
+  - Action is a small, time-bounded distribution test (1 SEO post, 1 newsletter feature, 1 Pinterest pin, 1 Firehose tap) with an explicit escalation threshold.
+  - Each probe carries `validation_cost`, `escalation_threshold`, `escalation_paths`, and `cross_product_alternates` per the spec at `probe-orders-spec.md`.
+  - Escalates to a work-order (deeper update), an opportunity (build candidate), or `kill` based on the result metric.
+  - Use when fit is uncertain or when an out-of-scope product (e.g. Crown Years) would be the better channel — the probe runs on the closest in-scope channel and documents the cross-product alternate for future fork consideration.
+  - Mid turnaround. Days to weeks.
 - **Build a new product** → `opportunities.tsv`
   - The signal exposes an unserved Ring 1 entity, or a Ring 2 entity graduating with two consecutive weekly cumulations.
   - Triggers Signal protocol to size the opportunity before any code is written.
+  - Use when size warrants a new product and channel cost rules out a probe.
   - Slow turnaround. Weeks to months.
 
-If neither applies, the signal stays a forecast (or a Ring 3 listen item) and waits for additional confirmation. **Not every forecast triggers an action.** Discipline beats activity.
+If none applies, the signal stays a forecast (or a Ring 3 listen item) and waits for additional confirmation. **Not every forecast triggers an action.** Discipline beats activity.
 
-Ring 3 signals never generate an opportunity or work-order alone — they must touch a Ring 1 forecast or already-tracked entity first.
+Ring 3 signals never generate a probe, opportunity, or work-order alone — they must touch a Ring 1 forecast or already-tracked entity first.
+
+**Triage order**: try UPDATE first (cheapest if fit is confirmed). If uncertain, drop to PROBE (cheapest if fit is not confirmed). Only escalate to BUILD when size warrants and channel cost rules out a probe. The default for ambiguous-fit signals is PROBE — the previous default of UPDATE-into-closest-in-scope-product or DROP was lossy and obscured cross-product fit alternatives.
 
 ## The Cross-Source Action Queue
 
-`work-orders.tsv` and `opportunities.tsv` are the convergence point for every signal type, not just Barque forecasts. Both carry a `source` column (one of the values below) and a `source_id` column (the upstream row's ID, brief slug, tap name, ahrefs URL, etc.):
+`work-orders.tsv`, `probe-orders.tsv`, and `opportunities.tsv` are the convergence point for every signal type, not just Barque forecasts. All three carry a `source` column (one of the values below) and a `source_id` column (the upstream row's ID, brief slug, tap name, ahrefs URL, etc.). Probes additionally carry a `parent_signal_id` column linking back to the upstream signal (forecast id, opportunity id, brief slug, etc.):
 
 - `barque-forecast` — a forecast in `forecasts.tsv` resolves or shifts probability
 - `ra-update` — a Ra re-evaluation flips a forecast's probability ≥10 points or surfaces new disconfirming evidence
@@ -307,6 +318,7 @@ Append dated notes when the protocol materially changes. Never delete entries; p
   - **Novelty is inverse to media saturation.** At peak coverage, novelty must score 1–2, not 9–10. The insight must be non-obvious. If every outlet is writing about it, the edge is gone.
   - **Agent divergence caps signal strength.** When ≥2 of 5 agents are negative, cross-domain confirmation cannot score above 3, regardless of how loud the positive signals are. Loud-in-narrow-domain < quiet-across-many-domains.
   - **Incumbent distribution timing is a kill signal for single-purpose apps.** When FAANG/incumbent clones ship during the target's hype window, causal path must score ≤ 3 unless the target has a non-replicable moat (network, data, regulation). Historical base rate: single-purpose social/audio/tool apps almost never survive FAANG-clone distribution at launch.
+- 2026-05-02 — **v0.5 — Probe layer added.** Build-vs-update rule expanded to build-vs-update-vs-probe. New `probe-orders.tsv` + `probe-order-status.tsv` files for cheap distribution-channel validation experiments. Schema and decision tree in `probe-orders-spec.md`. Migrated `glp1picks-consider-menopause-glp1-crossover` work-order to probe `glp1picks-probe-menopause-bone-density` as the inaugural example — Crown Years out-of-scope-but-better-fit case is now documented in `cross_product_alternates` rather than dropped.
 - 2026-04-19 — **v0.3 — Ra sub-agent, four-axis metrics, cultural signals clarified:**
   - **Ra introduced** as the recurring re-evaluation agent. Daily time-triggered + event-triggered on Firehose/EDGAR/FDA matches. Counter-narrative check mandatory on every run. See `ra/program.md`.
   - **Four resolution metrics, not one.** Brier (calibration), Lead time (we-saw-it-first-ness), Contrarian flag (divergence from consensus at cutoff), Coverage (fraction of resolvable domain events forecast). Coverage audit begins Q3 2026 after Ra has run for a full quarter.
