@@ -82,15 +82,15 @@ const items: PortfolioItem[] = [
     tagline:
       "A peptide and GLP-1 tracker built around the decisions a patient keeps making — dose, reconstitution, stack, refill, program.",
     body:
-      "The core logging works the way these apps should: doses, weight trends, side effects, injection-site rotation. The layer we're adding is decision support. Reconstitution calculators with a unit toggle the category has been missing. Multi-compound stacking past the three-peptide ceiling most apps cap at. And as programs update their pricing structures, formularies, and dose-escalation policies, the app surfaces the ones that continue to fit your situation — so the next refill is a deliberate choice.",
-    status: "in-development",
+      "The core logging works the way these apps should: doses, weight trends, side effects, injection-site rotation. The decision-support layer is where Titrate departs from the category. Reconstitution calculators with a unit toggle the category has been missing. Multi-compound stacking past the three-peptide ceiling most apps cap at. And as programs update their pricing structures, formularies, and dose-escalation policies, the app surfaces the ones that continue to fit your situation — so the next refill is a deliberate choice. Now shipping on the App Store; the marketing site at titrate.health is the way in.",
+    status: "live",
     mode: "built",
     href: "https://titrate.health",
     thumb: <TitrateThumb />,
     meta: [
       { label: "Type", value: "iOS app" },
       { label: "Revenue", value: "Subscription + affiliate" },
-      { label: "Launch", value: "Q3 2026" },
+      { label: "Since", value: "May 2026" },
     ],
     cta: "Visit titrate.health",
   },

@@ -94,11 +94,11 @@ const initialNodes: GraphNode[] = [
   {
     id: "titrate",
     label: "Titrate",
-    sub: "In development",
-    kind: "dev",
+    sub: "Live",
+    kind: "live",
     href: "https://titrate.health",
     description:
-      "Peptide and GLP-1 multi-compound tracker. Reconstitution calculator with a unit toggle the category has been missing. Stacking past the three-peptide ceiling.",
+      "Peptide and GLP-1 multi-compound tracker. Reconstitution calculator with a unit toggle the category has been missing. Stacking past the three-peptide ceiling. Shipping on the App Store since May 2026; the marketing site at titrate.health is the way in.",
     x: CX - 230,
     y: CY + 140,
     radius: 21,
@@ -1024,7 +1024,7 @@ export function PortfolioGraph() {
 
         <Reveal>
           <p className="mt-14 md:mt-20 max-w-[60ch] text-[15px] md:text-[16px] leading-[1.75] text-ink/70">
-            Three properties are live, two more in development. Four more come
+            Four properties are live, one more in development. Four more come
             online across 2026 and 2027. As they do, the graph densifies — a
             shared methodology, shared datasets, and an audience that overlaps
             more than any one product suggests on its own. The compounding,

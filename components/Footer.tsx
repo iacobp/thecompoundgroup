@@ -143,7 +143,7 @@ export function Footer() {
                     </span>
                   </div>
                   <div className="text-[12px] text-cream/55 mt-1">
-                    Peptide & GLP-1 tracker — In development
+                    Peptide & GLP-1 tracker — Live
                   </div>
                 </a>
               </li>

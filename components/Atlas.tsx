@@ -77,13 +77,12 @@ const districts: District[] = [
     x: 17,
     y: 68,
     radius: 5.5,
-    status: "in-development",
-    badge: "In development",
-    // href + description below — corrected to titrate.health (landing live)
+    status: "live",
+    badge: "Live",
     description:
-      "The precision laboratory. Peptide and GLP-1 multi-compound tracker with the reconstitution calculator the category has been missing. Stacking past the three-peptide ceiling.",
+      "The precision laboratory. Peptide and GLP-1 multi-compound tracker with the reconstitution calculator the category has been missing. Stacking past the three-peptide ceiling. Shipping on the App Store since May 2026; titrate.health is the way in.",
     href: "https://titrate.health",
-    hrefLabel: "Join the waitlist",
+    hrefLabel: "Visit titrate.health",
     artifacts: ["Reconstitution calculator", "Multi-compound stacking", "Refill decision support"],
   },
   {

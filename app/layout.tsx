@@ -114,7 +114,7 @@ const organizationJsonLd = {
       name: "Titrate",
       url: "https://titrate.health",
       description:
-        "Peptide and GLP-1 multi-compound tracker with reconstitution calculator and decision support.",
+        "Peptide and GLP-1 multi-compound tracker for iOS with reconstitution calculator and decision support. Live on the App Store since May 2026.",
     },
     {
       "@type": "Organization",
