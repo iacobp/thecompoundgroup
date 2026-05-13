@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Brief } from "@/lib/barque-briefs";
+import { renderInlineMarkdown } from "@/lib/barque-markdown";
 
 /**
  * Compact card for the /barque/log index + the DawnBriefsPreview on
@@ -45,7 +46,7 @@ export function BriefCard({ brief }: { brief: Brief }) {
             </div>
           ) : null}
           <p className="text-[15px] md:text-[17px] leading-[1.6] text-ink/80 max-w-[58ch]">
-            {teaser}
+            {renderInlineMarkdown(teaser)}
           </p>
           <div className="mt-5 inline-flex items-center gap-2 text-[13px] uppercase tracking-[0.22em] text-ink/55 group-hover:text-sage-soft transition-colors">
             <span>Read the brief</span>
