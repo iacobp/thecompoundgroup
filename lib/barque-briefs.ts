@@ -141,7 +141,14 @@ function splitSections(body: string): Record<string, string> {
     const m = line.match(/^##\s+(.+?)\s*$/);
     if (m) {
       flush();
-      current = m[1].trim().toLowerCase().replace(/\s+/g, " ");
+      // Normalise: lowercase, single-space, AND strip leading numeral
+      // prefixes that drift across brief vintages (e.g. "## 1. In Plain
+      // English", "## §2 Signal Detail", "## 4. How Barque Got Smarter
+      // Today"). Without this, the parser misses any brief that switches
+      // numbering style — which Ra started doing on 2026-05-09.
+      let key = m[1].trim().toLowerCase().replace(/\s+/g, " ");
+      key = key.replace(/^(?:§\s*)?\d+\.?\s+/, "");
+      current = key;
     } else if (current) {
       buf.push(line);
     }
@@ -152,6 +159,23 @@ function splitSections(body: string): Record<string, string> {
     if (PRIVATE_SECTION_KEYS.has(key)) delete sections[key];
   }
   return sections;
+}
+
+/**
+ * Turn a forecast-id like "bpc157-pcac-2026" into a human-readable entity
+ * label "BPC-157 PCAC 2026" — used as a fallback when the new inline brief
+ * format (`**forecast-id: holds 0.55.**`) doesn't supply an explicit name
+ * the way the legacy `### Entity (id)` header did.
+ */
+function humanizeForecastId(id: string): string {
+  return id
+    .split("-")
+    .map((part) => {
+      if (/^\d/.test(part)) return part.toUpperCase();
+      if (part.length <= 4) return part.toUpperCase();
+      return part[0].toUpperCase() + part.slice(1);
+    })
+    .join(" ");
 }
 
 function parseParagraphs(text: string): string[] {
@@ -186,6 +210,11 @@ function parseBullets(text: string): string[] {
 function parseSignalDetail(text: string): ForecastUpdate[] {
   if (!text.trim()) return [];
   const out: ForecastUpdate[] = [];
+
+  // --- Legacy format: `### Entity Name (forecast-id)` h3 sections ---
+  //
+  // Used by the pre-markdown brief and a handful of early markdown briefs.
+  // Kept first so it still parses if Ra reverts to the explicit header.
   const subsections = text.split(/\r?\n(?=###\s)/g);
   for (const sub of subsections) {
     const head = sub.match(/^###\s+(.+?)\s*\(([^)]+)\)\s*\r?\n/);
@@ -222,6 +251,87 @@ function parseSignalDetail(text: string): ForecastUpdate[] {
       flagged: Math.abs(newProb - priorProb) >= 0.15,
     });
   }
+  if (out.length > 0) return out;
+
+  // --- New inline formats (Ra circa 2026-05-04 onwards) ---
+  //
+  // Each forecast is a paragraph that opens with one of three shapes:
+  //
+  //   **forecast-id: holds 0.55.**                       (current, May 10+)
+  //   **forecast-id: 0.84 → 0.86 (+0.02).**              (current, when moving)
+  //   *forecast-id* — prior 0.85, posterior 0.86 (+0.01) (transitional, May 9)
+  //
+  // The trailing period is tolerated in either position inside the bold
+  // wrapper. Signal prose runs from the end of the marker to the start
+  // of the next marker (or the end of the section).
+  const BOLD_RE =
+    /\*\*([a-z][a-z0-9-]+):\s*(?:holds\s+([\d.]+)|([\d.]+)\s*(?:→|->)\s*([\d.]+))\s*(?:\(([+-]?[\d.]+)\))?\s*\.?\s*\*\*\.?/gi;
+  const ITALIC_RE =
+    /\*([a-z][a-z0-9-]+)\*\s*[—–-]\s*prior\s+([\d.]+),\s*posterior\s+([\d.]+)(?:\s*\(([+-]?[\d.]+)\))?\.?/gi;
+
+  type Hit = {
+    start: number;
+    end: number;
+    forecastId: string;
+    priorProb: number;
+    newProb: number;
+  };
+  const hits: Hit[] = [];
+  let m: RegExpExecArray | null;
+
+  while ((m = BOLD_RE.exec(text)) !== null) {
+    const forecastId = m[1];
+    let priorProb: number;
+    let newProb: number;
+    if (m[2] !== undefined) {
+      priorProb = parseFloat(m[2]);
+      newProb = priorProb;
+    } else {
+      priorProb = parseFloat(m[3]);
+      newProb = parseFloat(m[4]);
+    }
+    hits.push({
+      start: m.index,
+      end: m.index + m[0].length,
+      forecastId,
+      priorProb,
+      newProb,
+    });
+  }
+
+  if (hits.length === 0) {
+    while ((m = ITALIC_RE.exec(text)) !== null) {
+      hits.push({
+        start: m.index,
+        end: m.index + m[0].length,
+        forecastId: m[1],
+        priorProb: parseFloat(m[2]),
+        newProb: parseFloat(m[3]),
+      });
+    }
+  }
+
+  for (let i = 0; i < hits.length; i++) {
+    const h = hits[i];
+    const nextStart = i + 1 < hits.length ? hits[i + 1].start : text.length;
+    const signalRaw = text.slice(h.end, nextStart).trim();
+    // Trim trailing horizontal-rule / sibling-subheading noise that may
+    // belong to a later subsection inside the same Signal Detail body
+    // (e.g. an `### Augur` block following the Direct updates list).
+    const signal = signalRaw
+      .replace(/\n\s*---+\s*\n[\s\S]*$/, "")
+      .replace(/\n\s*###\s+[\s\S]*$/, "")
+      .trim();
+    out.push({
+      forecastId: h.forecastId,
+      entity: humanizeForecastId(h.forecastId),
+      priorProb: h.priorProb,
+      newProb: h.newProb,
+      signal,
+      flagged: Math.abs(h.newProb - h.priorProb) >= 0.15,
+    });
+  }
+
   return out;
 }
 
@@ -243,9 +353,15 @@ function parseMarkdownBrief(filePath: string): Brief | null {
     const dayOfWeek = meta.dayOfWeek || DAYS[dateObj.getUTCDay()];
     const kind: BriefKind = meta.kind === "weekly" ? "weekly" : "daily";
 
-    const plainEnglish = sections["in plain english"]
-      ? parseParagraphs(sections["in plain english"])
-      : [];
+    // "Summary" is the newer (post-2026-05-10) alias for the jargon-free
+    // lede section that older briefs label "In Plain English".
+    const plainKey =
+      "in plain english" in sections
+        ? "in plain english"
+        : "summary" in sections
+          ? "summary"
+          : null;
+    const plainEnglish = plainKey ? parseParagraphs(sections[plainKey]) : [];
 
     const signalSectionText =
       sections["signal detail"] ??
