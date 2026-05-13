@@ -1,5 +1,6 @@
 import { GLP1PicksThumb } from "./thumbnails/GLP1PicksThumb";
 import { GLP1PetsThumb } from "./thumbnails/GLP1PetsThumb";
+import { HRTPicksThumb } from "./thumbnails/HRTPicksThumb";
 import { TitrateThumb } from "./thumbnails/TitrateThumb";
 import { RevolumeThumb } from "./thumbnails/RevolumeThumb";
 import { Reveal } from "./Reveal";
@@ -27,7 +28,7 @@ const items: PortfolioItem[] = [
     tagline:
       "A clear-eyed comparison of the major GLP-1 telehealth programs, priced the way a patient actually pays for them.",
     body:
-      "We review forty GLP-1 telehealth programs on three dimensions: the full monthly cost over a typical year, the quality and credentials of the clinical care, and the transparency of the program's pricing structure. The scoring methodology is published in full, the affiliate relationships are disclosed on every page, and the rankings follow directly from the methodology. When we earn a commission on a visit, the page you're reading says so.",
+      "We review forty-eight GLP-1 telehealth programs on three dimensions: the full monthly cost over a typical year, the quality and credentials of the clinical care, and the transparency of the program's pricing structure. The scoring methodology is published in full, the affiliate relationships are disclosed on every page, and the rankings follow directly from the methodology. When we earn a commission on a visit, the page you're reading says so.",
     status: "live",
     mode: "built",
     href: "https://glp1picks.com",
@@ -41,6 +42,24 @@ const items: PortfolioItem[] = [
   },
   {
     num: "II",
+    name: "HRT Picks",
+    tagline:
+      "The cleanest read on the HRT telehealth market — built for the women navigating a black-box-warning rewrite and a national patch shortage at the same time.",
+    body:
+      "In November 2025 the FDA removed black-box warnings from six menopausal hormone therapy products; demand doubled within months and the estradiol patch went into nationwide shortage. We compare every major HRT telehealth — Midi Health, Alloy, Winona, Evernow, Gennev, and the rest — on cost, formulary breadth, clinical depth, patient experience, and transparency. Insurance versus cash-pay is flagged on every page. Affiliate disclosures, too. The score is methodology-driven; affiliate status never moves the rank.",
+    status: "live",
+    mode: "built",
+    href: "https://hrtpicks.vercel.app",
+    thumb: <HRTPicksThumb />,
+    meta: [
+      { label: "Type", value: "Comparison site" },
+      { label: "Revenue", value: "Affiliate" },
+      { label: "Since", value: "2026" },
+    ],
+    cta: "Visit hrtpicks.com",
+  },
+  {
+    num: "III",
     name: "GLP-1 Pets",
     tagline:
       "The first dedicated tracker for veterinary GLP-1 — same methodology as the human-side index, applied to the pet chemistry class.",
@@ -58,7 +77,7 @@ const items: PortfolioItem[] = [
     cta: "Visit glp1pets.com",
   },
   {
-    num: "III",
+    num: "IV",
     name: "Titrate",
     tagline:
       "A peptide and GLP-1 tracker built around the decisions a patient keeps making — dose, reconstitution, stack, refill, program.",
@@ -66,17 +85,17 @@ const items: PortfolioItem[] = [
       "The core logging works the way these apps should: doses, weight trends, side effects, injection-site rotation. The layer we're adding is decision support. Reconstitution calculators with a unit toggle the category has been missing. Multi-compound stacking past the three-peptide ceiling most apps cap at. And as programs update their pricing structures, formularies, and dose-escalation policies, the app surfaces the ones that continue to fit your situation — so the next refill is a deliberate choice.",
     status: "in-development",
     mode: "built",
-    href: "/tracker",
+    href: "https://titrate.health",
     thumb: <TitrateThumb />,
     meta: [
       { label: "Type", value: "iOS app" },
       { label: "Revenue", value: "Subscription + affiliate" },
       { label: "Launch", value: "Q3 2026" },
     ],
-    cta: "Join the waitlist",
+    cta: "Visit titrate.health",
   },
   {
-    num: "IV",
+    num: "V",
     name: "Revolume",
     tagline:
       "The skin scan built for GLP-1 — because the weight comes off, and the face follows.",
@@ -97,16 +116,16 @@ const items: PortfolioItem[] = [
 
 const upcoming = [
   {
-    num: "03",
+    num: "06",
     name: "Supplement Index",
     tag: "Adjacent category",
     note:
-      "A reviews site for the supplements GLP-1 users tend to look for — protein, fiber, electrolytes, basic micronutrient support — alongside the broader nootropics and cognitive categories. Sourced from peer-reviewed evidence where it exists; the methodology notes where the research is still thin.",
+      "A reviews site for the supplements GLP-1 and HRT users tend to look for — protein, fiber, electrolytes, micronutrient support, plus the menopause-specific category (Estroven, Amberen, Wile). Sourced from peer-reviewed evidence where it exists; the methodology notes where the research is still thin.",
     when: "2026",
     mode: "built" as Mode,
   },
   {
-    num: "04",
+    num: "07",
     name: "Peptide Index",
     tag: "Post-FDA clarity",
     note:
@@ -115,7 +134,7 @@ const upcoming = [
     mode: "built" as Mode,
   },
   {
-    num: "05",
+    num: "08",
     name: "Neuroscience Index",
     tag: "Cognitive supplements",
     note:
@@ -124,7 +143,7 @@ const upcoming = [
     mode: "built" as Mode,
   },
   {
-    num: "06",
+    num: "09",
     name: "Neuroplasticity Lab",
     tag: "Training & tools",
     note:

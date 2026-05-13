@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
 
 /**
  * The Compound Atlas — an illustrated map of the studio's universe.
@@ -65,10 +66,10 @@ const districts: District[] = [
     status: "live",
     badge: "Live",
     description:
-      "The apothecary tower. Independent comparison of forty GLP-1 telehealth programs, ranked on annual cost, clinical credentialing, and pricing transparency. Affiliate-disclosed on every page.",
+      "The apothecary tower. Independent comparison of forty-eight GLP-1 telehealth programs, ranked on annual cost, clinical credentialing, and pricing transparency. Affiliate-disclosed on every page.",
     href: "https://glp1picks.com",
     hrefLabel: "Visit glp1picks.com",
-    artifacts: ["40 telehealth programs", "Three-pillar scoring", "Live pricing data"],
+    artifacts: ["48 telehealth programs", "Three-pillar scoring", "Live pricing data"],
   },
   {
     id: "titrate",
@@ -78,9 +79,10 @@ const districts: District[] = [
     radius: 5.5,
     status: "in-development",
     badge: "In development",
+    // href + description below — corrected to titrate.health (landing live)
     description:
       "The precision laboratory. Peptide and GLP-1 multi-compound tracker with the reconstitution calculator the category has been missing. Stacking past the three-peptide ceiling.",
-    href: "/tracker",
+    href: "https://titrate.health",
     hrefLabel: "Join the waitlist",
     artifacts: ["Reconstitution calculator", "Multi-compound stacking", "Refill decision support"],
   },
@@ -164,6 +166,21 @@ export function Atlas() {
 
   return (
     <section className="relative bg-cream min-h-[100vh]">
+      {/* Back to home — sits above the kicker, top-left */}
+      <Link
+        href="/"
+        aria-label="Back to The Compound Group"
+        className="group absolute top-6 md:top-10 right-6 md:right-12 z-20 inline-flex items-center gap-2 text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-muted hover:text-ink transition-colors bg-cream/85 backdrop-blur-sm border border-border rounded-full px-3.5 py-1.5"
+      >
+        <span
+          aria-hidden
+          className="transition-transform duration-500 ease-out group-hover:-translate-x-1"
+        >
+          ←
+        </span>
+        <span>Back to The Compound</span>
+      </Link>
+
       {/* Top kicker */}
       <div className="absolute top-6 md:top-10 left-6 md:left-12 z-20 flex items-baseline gap-4">
         <span className="font-display italic text-bronze text-[24px] md:text-[30px]">

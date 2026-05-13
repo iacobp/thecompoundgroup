@@ -80,6 +80,29 @@ export function Footer() {
               </li>
               <li>
                 <a
+                  href="https://hrtpicks.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block border-b border-cream/15 pb-4 hover:border-cream/60 transition-colors"
+                >
+                  <div className="flex items-baseline justify-between">
+                    <span className="font-display text-cream text-[22px]">
+                      HRT Picks
+                    </span>
+                    <span
+                      aria-hidden
+                      className="text-cream/50 text-[14px] transition-transform duration-500 group-hover:translate-x-1 group-hover:text-cream"
+                    >
+                      ↗
+                    </span>
+                  </div>
+                  <div className="text-[12px] text-cream/55 mt-1">
+                    HRT telehealth comparison — Live
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://glp1pets.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -103,7 +126,9 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="/tracker"
+                  href="https://titrate.health"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group block border-b border-cream/15 pb-4 hover:border-cream/60 transition-colors"
                 >
                   <div className="flex items-baseline justify-between">
@@ -114,7 +139,7 @@ export function Footer() {
                       aria-hidden
                       className="text-cream/50 text-[14px] transition-transform duration-500 group-hover:translate-x-1 group-hover:text-cream"
                     >
-                      →
+                      ↗
                     </span>
                   </div>
                   <div className="text-[12px] text-cream/55 mt-1">

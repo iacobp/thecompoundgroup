@@ -74,17 +74,29 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://glp1picks.com",
     description:
-      "Independent comparison of 40 GLP-1 telehealth programs. Ranked by annual cost, clinical credentialing, and pricing transparency — with affiliate disclosures on every page.",
+      "Independent comparison of 48 GLP-1 telehealth programs. Ranked by annual cost, clinical credentialing, and pricing transparency — with affiliate disclosures on every page.",
     x: CX - 220,
     y: CY - 120,
     radius: 24,
+  },
+  {
+    id: "hrtpicks",
+    label: "HRT Picks",
+    sub: "Live",
+    kind: "live",
+    href: "https://hrtpicks.vercel.app",
+    description:
+      "Independent comparison of the major menopause HRT telehealth platforms — Midi, Alloy, Winona, Evernow, Gennev — scored on cost, formulary breadth, clinical depth, patient experience, and transparency. Insurance vs cash-pay flagged on every page. The estradiol patch shortage tracked in real time.",
+    x: CX - 320,
+    y: CY + 30,
+    radius: 22,
   },
   {
     id: "titrate",
     label: "Titrate",
     sub: "In development",
     kind: "dev",
-    href: "/tracker",
+    href: "https://titrate.health",
     description:
       "Peptide and GLP-1 multi-compound tracker. Reconstitution calculator with a unit toggle the category has been missing. Stacking past the three-peptide ceiling.",
     x: CX - 230,
@@ -213,6 +225,7 @@ const initialNodes: GraphNode[] = [
 
 const links: GraphLink[] = [
   { source: "cg", target: "glp1picks", kind: "structural" },
+  { source: "cg", target: "hrtpicks", kind: "structural" },
   { source: "cg", target: "glp1pets", kind: "structural" },
   { source: "cg", target: "titrate", kind: "structural" },
   { source: "cg", target: "revolume", kind: "structural" },
@@ -221,15 +234,18 @@ const links: GraphLink[] = [
   { source: "cg", target: "neuro", kind: "structural" },
   { source: "cg", target: "plasticity", kind: "structural" },
 
+  { source: "glp1picks", target: "hrtpicks", kind: "feeds" },
   { source: "glp1picks", target: "glp1pets", kind: "feeds" },
   { source: "glp1picks", target: "titrate", kind: "feeds" },
   { source: "glp1picks", target: "revolume", kind: "feeds" },
   { source: "glp1picks", target: "supplements", kind: "feeds" },
   { source: "glp1picks", target: "peptides", kind: "feeds" },
+  { source: "hrtpicks", target: "supplements", kind: "feeds" },
   { source: "supplements", target: "neuro", kind: "feeds" },
   { source: "neuro", target: "plasticity", kind: "feeds" },
 
   { source: "methodology", target: "glp1picks" },
+  { source: "methodology", target: "hrtpicks" },
   { source: "methodology", target: "glp1pets" },
   { source: "methodology", target: "titrate" },
   { source: "methodology", target: "revolume" },
@@ -239,18 +255,21 @@ const links: GraphLink[] = [
   { source: "methodology", target: "plasticity" },
 
   { source: "database", target: "glp1picks" },
+  { source: "database", target: "hrtpicks" },
   { source: "database", target: "glp1pets" },
   { source: "database", target: "titrate" },
   { source: "database", target: "supplements" },
   { source: "database", target: "peptides" },
 
   { source: "review", target: "glp1pets" },
+  { source: "review", target: "hrtpicks" },
   { source: "review", target: "peptides" },
   { source: "review", target: "neuro" },
   { source: "review", target: "plasticity" },
   { source: "review", target: "supplements" },
 
   { source: "editorial", target: "glp1picks" },
+  { source: "editorial", target: "hrtpicks" },
   { source: "editorial", target: "glp1pets" },
   { source: "editorial", target: "revolume" },
   { source: "editorial", target: "supplements" },
@@ -1005,7 +1024,7 @@ export function PortfolioGraph() {
 
         <Reveal>
           <p className="mt-14 md:mt-20 max-w-[60ch] text-[15px] md:text-[16px] leading-[1.75] text-ink/70">
-            Two properties are live, two more in development. Four more come
+            Three properties are live, two more in development. Four more come
             online across 2026 and 2027. As they do, the graph densifies — a
             shared methodology, shared datasets, and an audience that overlaps
             more than any one product suggests on its own. The compounding,

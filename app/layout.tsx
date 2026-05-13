@@ -27,7 +27,7 @@ const body = Inter({
 const siteUrl = "https://thecompound.group";
 const siteName = "The Compound Group";
 const description =
-  "A consumer biotech media studio building honest comparison tools, trackers, and editorial across GLP-1, peptides, supplements, neuroscience, and pet health. Portfolio includes GLP-1 Picks, GLP-1 Pets, Titrate, and Revolume.";
+  "A consumer biotech media studio building honest comparison tools, trackers, and editorial across GLP-1, HRT, peptides, supplements, neuroscience, and pet health. Portfolio includes GLP-1 Picks, HRT Picks, GLP-1 Pets, Titrate, and Revolume.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -47,6 +47,9 @@ export const metadata: Metadata = {
     "GLP-1",
     "GLP-1 comparison",
     "GLP-1 telehealth",
+    "HRT comparison",
+    "HRT telehealth",
+    "menopause telehealth",
     "peptide tracker",
     "health venture studio",
   ],
@@ -94,6 +97,13 @@ const organizationJsonLd = {
     },
     {
       "@type": "Organization",
+      name: "HRT Picks",
+      url: "https://hrtpicks.vercel.app",
+      description:
+        "Independent comparison of menopause HRT telehealth platforms — scored on cost, formulary, clinical depth, and transparency, with insurance vs cash-pay flagged on every page.",
+    },
+    {
+      "@type": "Organization",
       name: "GLP-1 Pets",
       url: "https://glp1pets.com",
       description:
@@ -102,7 +112,7 @@ const organizationJsonLd = {
     {
       "@type": "Organization",
       name: "Titrate",
-      url: `${siteUrl}/tracker`,
+      url: "https://titrate.health",
       description:
         "Peptide and GLP-1 multi-compound tracker with reconstitution calculator and decision support.",
     },
