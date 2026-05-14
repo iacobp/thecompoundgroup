@@ -8,6 +8,7 @@ type NavVariant = "auto" | "dark";
 
 const links = [
   { href: "/#portfolio", label: "Portfolio" },
+  { href: "/numbers", label: "Numbers" },
   { href: "/atlas", label: "Atlas" },
   { href: "/barque", label: "Barque" },
   { href: "/#approach", label: "Approach" },
