@@ -26,18 +26,33 @@ Two distinct triggers. Both matter.
 
 The nightly voyage. Every day Ra:
 
-1. **Reads `../products.md`** — the live-vs-opportunity manifest. Without this, Ra writes work-orders against products that don't exist or proposes opportunities for products already shipped (the exact failure mode that surfaced 2026-04-27 with glp1pets).
-2. Reads `../forecasts.tsv`. Identifies all rows where `resolution = pending`.
-3. For each, pulls fresh signals from the configured sources in
-   `../data-sources.md` that are relevant to that forecast's `domain` and
-   `entity`. Filter to items added since the last Ra run.
-4. Runs the 5-agent scenario from `../program.md` with the combined
+1. **Reads `../morning-sources/SOURCES-PACK.md`** — the canonical
+   pre-deliberation source pack, aggregated at 04:00 UTC by
+   `../scripts/aggregate-morning-sources.py`. Contains overnight
+   first-party-data deltas (Katalys + GSC) plus Firehose stream
+   matches captured in the last 24h, scored and grouped by forecast
+   relevance. This is the **highest-signal-density input Ra receives**
+   and replaces ad-hoc web-search as the primary source layer. Web
+   searches in this run should now go to **verifying** signals from
+   the pack, not re-deriving them.
+2. **Reads `../products.md`** — the live-vs-opportunity manifest. Without this, Ra writes work-orders against products that don't exist or proposes opportunities for products already shipped (the exact failure mode that surfaced 2026-04-27 with glp1pets).
+3. Reads `../forecasts.tsv`. Identifies all rows where `resolution = pending`.
+4. For each, cross-references signals in the SOURCES-PACK against
+   the forecast's `domain` and `entity`. Filter to items added since
+   the last Ra run. The pack already pre-groups by forecast_id, so
+   most of this routing is done before Ra opens the file.
+5. Where the SOURCES-PACK is thin on a specific forecast (no Firehose
+   matches, no first-party delta), fall back to `../data-sources.md`
+   and the 8-12 web-search budget.
+6. Runs the 5-agent scenario from `../program.md` with the combined
    signal set (original-at-cutoff + new-since-cutoff) and produces a new
    probability.
-5. Writes a row to `ra_log.tsv` with: forecast_id, run_date,
+7. Writes a row to `ra_log.tsv` with: forecast_id, run_date,
    new_probability, delta_from_original, new_signal_strength, signals
-   cited, and notes.
-6. If `abs(delta) >= 0.15`, flag the forecast for human review — a
+   cited, and notes. **Signals cited should preferentially be ones
+   from the SOURCES-PACK** — those are the proprietary edge over any
+   other LLM running similar protocols on commodity sources.
+8. If `abs(delta) >= 0.15`, flag the forecast for human review — a
    material revision is not autonomous; a human decides whether the
    forecast is still structurally sound or needs superseding.
 
@@ -138,9 +153,12 @@ publish in full, redact, or summarize weekly.
   time trigger, and webhook endpoints for the event triggers.
 - Uses Claude API (prompt caching enabled) for the 5-agent scenario.
   Cost per run: ~$0.05–0.15 depending on signal volume.
-- Reads from the same data sources listed in `../data-sources.md`. No
-  new paid sources. No exotic data. The edge is cross-domain fusion,
-  not unique inputs.
+- Reads from the same data sources listed in `../data-sources.md`. Plus
+  the morning-sources pipeline (added 2026-05-15) which pre-fetches
+  the proprietary signal layer at 04:00 UTC into `../morning-sources/SOURCES-PACK.md`
+  for Ra to read at session start. The edge is no longer pure
+  cross-domain fusion — it's fusion *over* proprietary sources nobody
+  else has access to.
 - State file: `ra/state.json` tracking last-run timestamp per forecast
   and the watermark for Firehose event consumption.
 
@@ -149,3 +167,29 @@ publish in full, redact, or summarize weekly.
 - 2026-04-19 — Ra protocol v0.1 defined. Not yet implemented. First
   build target: the time-triggered daily run against the 3 live
   forecasts currently in `../forecasts.tsv`. Event triggers come in v0.2.
+
+- 2026-05-15 — Source pipeline added. Ra no longer starts cold from
+  ad-hoc web search; instead reads `../morning-sources/SOURCES-PACK.md`
+  produced by a 04:00 UTC aggregation job. The pack combines:
+    * **First-party pulse** — Katalys 7d delta + GSC 7d delta + top-
+      partner table + top-page table. Compound's own revenue and
+      demand data, no public analyst can reproduce this.
+    * **Firehose overnight** — 11 Lucene rules across PCAC/peptide,
+      Hims, peptide safety, HRT/menopause, peptide-DTC commerce,
+      Medicare GLP-1, pipeline drugs, FDA, competitor content, brand
+      mentions, and partner-news. Captured continuously by
+      `scripts/firehose-listener.py` (long-lived SSE consumer)
+      writing JSONL daily logs; digested at 04:00 UTC by
+      `scripts/morning-firehose-digest.py` into a forecast-grouped
+      markdown.
+  The earlier "no exotic data, edge is fusion-only" note in
+  Implementation Notes is now retired — the proprietary edge IS the
+  source-pack, and fusion runs on top.
+
+  Future source layers (Reddit-pulse, X-named-voices, primary-source
+  pulls from ClinicalTrials/FDA dockets/SEC EDGAR/PubMed) will be
+  added to the same pack as discrete digests. Add a new layer by:
+    1. Producing a digest script in `scripts/` that writes
+       `morning-sources/<layer>.md`
+    2. Adding the filename to `PACK_ORDER` in
+       `scripts/aggregate-morning-sources.py`
