@@ -43,7 +43,7 @@ export type PortfolioMetrics = {
 };
 
 export const portfolioMetrics: PortfolioMetrics = {
-  refreshedOn: "2026-05-30",
+  refreshedOn: "2026-05-31",
   cadence:
     "Refreshed weekly. Numbers are point-in-time and may lag the underlying systems by a day or two depending on data-source freshness.",
 
@@ -51,7 +51,7 @@ export const portfolioMetrics: PortfolioMetrics = {
     { label: "Properties live", value: "4" },
     { label: "In development", value: "1" },
     { label: "Pages indexed", value: "1,800+", context: "across the portfolio" },
-    { label: "Email subscribers", value: "~35", context: "all audiences combined" },
+    { label: "Email subscribers", value: "~40", context: "all audiences combined" },
     {
       label: "Affiliate revenue (30d)",
       value: "$1,930",
@@ -74,15 +74,15 @@ export const portfolioMetrics: PortfolioMetrics = {
       metrics: [
         { label: "Providers reviewed", value: "48" },
         { label: "Pages indexed", value: "960+" },
-        { label: "Organic impressions", value: "10,290", context: "30-day window" },
-        { label: "Organic clicks", value: "68", context: "30-day window" },
-        { label: "Affiliate clicks", value: "595", context: "30-day window via Katalys" },
+        { label: "Organic impressions", value: "10,793", context: "30-day window" },
+        { label: "Organic clicks", value: "76", context: "30-day window" },
+        { label: "Affiliate clicks", value: "673", context: "30-day window via Katalys" },
         { label: "Conversions", value: "7", context: "30-day window" },
         { label: "Affiliate payout", value: "$1,930", context: "30-day window" },
-        { label: "EPC", value: "$3.24", context: "earnings per click" },
-        { label: "Email subscribers", value: "37" },
+        { label: "EPC", value: "$2.87", context: "earnings per click" },
+        { label: "Email subscribers", value: "39" },
       ],
-      asOf: "2026-05-30",
+      asOf: "2026-05-31",
       note: "First conversion April 23, 2026 (Eden Health, $300). Unit economics are healthy at the click level; the constraint is organic visibility on commercial queries.",
     },
     {
