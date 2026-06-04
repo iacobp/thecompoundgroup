@@ -43,7 +43,7 @@ export type PortfolioMetrics = {
 };
 
 export const portfolioMetrics: PortfolioMetrics = {
-  refreshedOn: "2026-06-03",
+  refreshedOn: "2026-06-04",
   cadence:
     "Refreshed weekly. Numbers are point-in-time and may lag the underlying systems by a day or two depending on data-source freshness.",
 
@@ -54,7 +54,7 @@ export const portfolioMetrics: PortfolioMetrics = {
     { label: "Email subscribers", value: "~40", context: "all audiences combined" },
     {
       label: "Affiliate revenue (30d)",
-      value: "$1,581",
+      value: "$1,514",
       context: "verified payouts, GLP-1 Picks only — other properties pre-monetization",
     },
   ],
@@ -74,15 +74,15 @@ export const portfolioMetrics: PortfolioMetrics = {
       metrics: [
         { label: "Providers reviewed", value: "48" },
         { label: "Pages indexed", value: "960+" },
-        { label: "Organic impressions", value: "11,015", context: "30-day window" },
-        { label: "Organic clicks", value: "88", context: "30-day window" },
+        { label: "Organic impressions", value: "10,397", context: "30-day window" },
+        { label: "Organic clicks", value: "86", context: "30-day window" },
         { label: "Affiliate clicks", value: "769", context: "30-day window via Katalys" },
-        { label: "Conversions", value: "6", context: "30-day window" },
-        { label: "Affiliate payout", value: "$1,581", context: "30-day window" },
-        { label: "EPC", value: "$2.06", context: "earnings per click" },
+        { label: "Conversions", value: "5", context: "30-day window" },
+        { label: "Affiliate payout", value: "$1,514", context: "30-day window" },
+        { label: "EPC", value: "$1.97", context: "earnings per click" },
         { label: "Email subscribers", value: "40" },
       ],
-      asOf: "2026-06-03",
+      asOf: "2026-06-04",
       note: "First conversion April 23, 2026 (Eden Health, $300). Unit economics are healthy at the click level; the constraint is organic visibility on commercial queries.",
     },
     {
