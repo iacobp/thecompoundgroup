@@ -43,7 +43,7 @@ export type PortfolioMetrics = {
 };
 
 export const portfolioMetrics: PortfolioMetrics = {
-  refreshedOn: "2026-06-10",
+  refreshedOn: "2026-06-11",
   cadence:
     "Refreshed weekly. Numbers are point-in-time and may lag the underlying systems by a day or two depending on data-source freshness.",
 
@@ -54,7 +54,7 @@ export const portfolioMetrics: PortfolioMetrics = {
     { label: "Email subscribers", value: "~45", context: "all audiences combined" },
     {
       label: "Affiliate revenue (30d)",
-      value: "$765",
+      value: "$1,265",
       context: "verified payouts, GLP-1 Picks only — other properties pre-monetization",
     },
   ],
@@ -74,15 +74,15 @@ export const portfolioMetrics: PortfolioMetrics = {
       metrics: [
         { label: "Providers reviewed", value: "48" },
         { label: "Pages indexed", value: "960+" },
-        { label: "Organic impressions", value: "9,717", context: "30-day window" },
-        { label: "Organic clicks", value: "95", context: "30-day window" },
-        { label: "Affiliate clicks", value: "869", context: "30-day window via Katalys" },
-        { label: "Conversions", value: "3", context: "30-day window" },
-        { label: "Affiliate payout", value: "$765", context: "30-day window" },
-        { label: "EPC", value: "$0.88", context: "earnings per click" },
+        { label: "Organic impressions", value: "9,655", context: "30-day window" },
+        { label: "Organic clicks", value: "98", context: "30-day window" },
+        { label: "Affiliate clicks", value: "896", context: "30-day window via Katalys" },
+        { label: "Conversions", value: "4", context: "30-day window" },
+        { label: "Affiliate payout", value: "$1,265", context: "30-day window" },
+        { label: "EPC", value: "$1.41", context: "earnings per click" },
         { label: "Email subscribers", value: "46" },
       ],
-      asOf: "2026-06-10",
+      asOf: "2026-06-11",
       note: "First conversion April 23, 2026 (Eden Health, $300). Unit economics are healthy at the click level; the constraint is organic visibility on commercial queries.",
     },
     {
