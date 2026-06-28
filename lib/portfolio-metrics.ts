@@ -43,7 +43,7 @@ export type PortfolioMetrics = {
 };
 
 export const portfolioMetrics: PortfolioMetrics = {
-  refreshedOn: "2026-06-27",
+  refreshedOn: "2026-06-28",
   cadence:
     "Refreshed weekly. Numbers are point-in-time and may lag the underlying systems by a day or two depending on data-source freshness.",
 
@@ -74,15 +74,15 @@ export const portfolioMetrics: PortfolioMetrics = {
       metrics: [
         { label: "Providers reviewed", value: "48" },
         { label: "Pages indexed", value: "960+" },
-        { label: "Organic impressions", value: "9,790", context: "30-day window" },
-        { label: "Organic clicks", value: "150", context: "30-day window" },
-        { label: "Affiliate clicks", value: "1358", context: "30-day window via Katalys" },
+        { label: "Organic impressions", value: "10,076", context: "30-day window" },
+        { label: "Organic clicks", value: "155", context: "30-day window" },
+        { label: "Affiliate clicks", value: "1362", context: "30-day window via Katalys" },
         { label: "Conversions", value: "2", context: "30-day window" },
         { label: "Affiliate payout", value: "$849", context: "30-day window" },
-        { label: "EPC", value: "$0.63", context: "earnings per click" },
+        { label: "EPC", value: "$0.62", context: "earnings per click" },
         { label: "Email subscribers", value: "54" },
       ],
-      asOf: "2026-06-27",
+      asOf: "2026-06-28",
       note: "First conversion April 23, 2026 (Eden Health, $300). Unit economics are healthy at the click level; the constraint is organic visibility on commercial queries.",
     },
     {
