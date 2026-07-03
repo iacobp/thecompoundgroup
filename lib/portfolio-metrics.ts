@@ -43,7 +43,7 @@ export type PortfolioMetrics = {
 };
 
 export const portfolioMetrics: PortfolioMetrics = {
-  refreshedOn: "2026-07-02",
+  refreshedOn: "2026-07-03",
   cadence:
     "Refreshed weekly. Numbers are point-in-time and may lag the underlying systems by a day or two depending on data-source freshness.",
 
@@ -51,10 +51,10 @@ export const portfolioMetrics: PortfolioMetrics = {
     { label: "Properties live", value: "4" },
     { label: "In development", value: "1" },
     { label: "Pages indexed", value: "1,800+", context: "across the portfolio" },
-    { label: "Email subscribers", value: "~55", context: "all audiences combined" },
+    { label: "Email subscribers", value: "~60", context: "all audiences combined" },
     {
       label: "Affiliate revenue (30d)",
-      value: "$1,149",
+      value: "$1,449",
       context: "verified payouts, GLP-1 Picks only — other properties pre-monetization",
     },
   ],
@@ -74,15 +74,15 @@ export const portfolioMetrics: PortfolioMetrics = {
       metrics: [
         { label: "Providers reviewed", value: "48" },
         { label: "Pages indexed", value: "960+" },
-        { label: "Organic impressions", value: "9,072", context: "30-day window" },
-        { label: "Organic clicks", value: "156", context: "30-day window" },
-        { label: "Affiliate clicks", value: "1422", context: "30-day window via Katalys" },
-        { label: "Conversions", value: "3", context: "30-day window" },
-        { label: "Affiliate payout", value: "$1,149", context: "30-day window" },
-        { label: "EPC", value: "$0.81", context: "earnings per click" },
-        { label: "Email subscribers", value: "56" },
+        { label: "Organic impressions", value: "9,302", context: "30-day window" },
+        { label: "Organic clicks", value: "159", context: "30-day window" },
+        { label: "Affiliate clicks", value: "1520", context: "30-day window via Katalys" },
+        { label: "Conversions", value: "4", context: "30-day window" },
+        { label: "Affiliate payout", value: "$1,449", context: "30-day window" },
+        { label: "EPC", value: "$0.95", context: "earnings per click" },
+        { label: "Email subscribers", value: "58" },
       ],
-      asOf: "2026-07-02",
+      asOf: "2026-07-03",
       note: "First conversion April 23, 2026 (Eden Health, $300). Unit economics are healthy at the click level; the constraint is organic visibility on commercial queries.",
     },
     {
