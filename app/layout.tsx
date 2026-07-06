@@ -98,9 +98,9 @@ const organizationJsonLd = {
     {
       "@type": "Organization",
       name: "HRT Picks",
-      url: "https://hrtpicks.vercel.app",
+      url: "https://hrtpicks.com",
       description:
-        "Independent comparison of menopause HRT telehealth platforms — scored on cost, formulary, clinical depth, and transparency, with insurance vs cash-pay flagged on every page.",
+        "Independent comparison of HRT and TRT telehealth providers — 14 providers scored on a five-dimension methodology, with a Price Transparency Grade (A–F) and verified prices on every page.",
     },
     {
       "@type": "Organization",

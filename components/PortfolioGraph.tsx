@@ -84,9 +84,9 @@ const initialNodes: GraphNode[] = [
     label: "HRT Picks",
     sub: "Live",
     kind: "live",
-    href: "https://hrtpicks.vercel.app",
+    href: "https://hrtpicks.com",
     description:
-      "Independent comparison of the major menopause HRT telehealth platforms — Midi, Alloy, Winona, Evernow, Gennev — scored on cost, formulary breadth, clinical depth, patient experience, and transparency. Insurance vs cash-pay flagged on every page. The estradiol patch shortage tracked in real time.",
+      "Independent comparison of 14 hormone telehealth providers across two wings — women's menopause HRT and men's TRT — scored on a five-dimension methodology, with a Price Transparency Grade (A–F) on every provider. Verified prices, no pay-for-placement. The estradiol patch shortage tracked in real time.",
     x: CX - 320,
     y: CY + 30,
     radius: 22,

@@ -80,7 +80,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://hrtpicks.vercel.app"
+                  href="https://hrtpicks.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group block border-b border-cream/15 pb-4 hover:border-cream/60 transition-colors"
@@ -97,7 +97,7 @@ export function Footer() {
                     </span>
                   </div>
                   <div className="text-[12px] text-cream/55 mt-1">
-                    HRT telehealth comparison — Live
+                    Hormone telehealth comparison — Live
                   </div>
                 </a>
               </li>

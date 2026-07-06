@@ -44,12 +44,12 @@ const items: PortfolioItem[] = [
     num: "II",
     name: "HRT Picks",
     tagline:
-      "The cleanest read on the HRT telehealth market — built for the women navigating a black-box-warning rewrite and a national patch shortage at the same time.",
+      "The independent hormone-care comparison — verified prices, transparency grades, and a rank no provider can buy.",
     body:
-      "In November 2025 the FDA removed black-box warnings from six menopausal hormone therapy products; demand doubled within months and the estradiol patch went into nationwide shortage. We compare every major HRT telehealth — Midi Health, Alloy, Winona, Evernow, Gennev, and the rest — on cost, formulary breadth, clinical depth, patient experience, and transparency. Insurance versus cash-pay is flagged on every page. Affiliate disclosures, too. The score is methodology-driven; affiliate status never moves the rank.",
+      "In November 2025 the FDA removed black-box warnings from six menopausal hormone therapy products; demand doubled within months and the estradiol patch went into nationwide shortage. We compare fourteen hormone telehealth providers across two wings — women's menopause HRT at the front door, men's TRT alongside it — on a five-dimension methodology, and grade every provider's pricing candor from A to F with a Price Transparency Grade no other comparison publishes. Verified prices, affiliate disclosures on every page, no pay-for-placement. The score is methodology-driven; affiliate status never moves the rank.",
     status: "live",
     mode: "built",
-    href: "https://hrtpicks.vercel.app",
+    href: "https://hrtpicks.com",
     thumb: <HRTPicksThumb />,
     meta: [
       { label: "Type", value: "Comparison site" },
