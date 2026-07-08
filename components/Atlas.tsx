@@ -136,13 +136,12 @@ const districts: District[] = [
     status: "planned",
     badge: "Planned 2026–27",
     description:
-      "The misty horizon. Five products under construction: Supplement Index, Pet Health, Peptide Index, Neuroscience Index, Neuroplasticity Lab. Each extends the same methodology to an adjacent category.",
+      "The misty horizon. Four products under construction: Supplement Index, Pet Health, Neuroscience Index, Neuroplasticity Lab. Each extends the same methodology to an adjacent category.",
     href: "/#portfolio",
     hrefLabel: "See the roadmap",
     artifacts: [
       "Supplement Index (2026)",
       "Pet Health (2026–27)",
-      "Peptide Index (Q3 2026, post-FDA panel)",
       "Neuroscience Index (2027)",
       "Neuroplasticity Lab (2027)",
     ],

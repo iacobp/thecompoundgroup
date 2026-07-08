@@ -27,7 +27,7 @@ const body = Inter({
 const siteUrl = "https://thecompound.group";
 const siteName = "The Compound Group";
 const description =
-  "A consumer biotech media studio building honest comparison tools, trackers, and editorial across GLP-1, HRT, peptides, supplements, neuroscience, and pet health. Portfolio includes GLP-1 Picks, HRT Picks, GLP-1 Pets, Titrate, and Revolume.";
+  "A consumer biotech media studio building honest comparison tools, trackers, and editorial across GLP-1, HRT, peptides, supplements, neuroscience, and pet health. Portfolio includes GLP-1 Picks, HRT Picks, GLP-1 Pets, Titrate, Revolume, and Best Peptide For That.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -122,6 +122,13 @@ const organizationJsonLd = {
       url: "https://revolume.app",
       description:
         "Private on-device skin scan for GLP-1 users — fifteen markers specific to post-rapid-weight-loss facial change.",
+    },
+    {
+      "@type": "Organization",
+      name: "Best Peptide For That",
+      url: "https://bestpeptideforthat.com",
+      description:
+        "Evidence-graded index of sixteen research peptides, scored A to F by human proof, with each compound's legal status and the July 2026 FDA vote tracked. Cited to primary sources.",
     },
   ],
 };

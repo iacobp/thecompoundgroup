@@ -3,6 +3,7 @@ import { GLP1PetsThumb } from "./thumbnails/GLP1PetsThumb";
 import { HRTPicksThumb } from "./thumbnails/HRTPicksThumb";
 import { TitrateThumb } from "./thumbnails/TitrateThumb";
 import { RevolumeThumb } from "./thumbnails/RevolumeThumb";
+import { BestPeptideForThatThumb } from "./thumbnails/BestPeptideForThatThumb";
 import { Reveal } from "./Reveal";
 
 type Status = "live" | "in-development" | "planned";
@@ -96,6 +97,24 @@ const items: PortfolioItem[] = [
   },
   {
     num: "V",
+    name: "Best Peptide For That",
+    tagline:
+      "Every research peptide, graded A to F by the strength of actual human evidence, and honest about what is legal.",
+    body:
+      "Peptide therapy sits in a regulatory transition, and most of what sells online is gray-market with animal-only evidence. We grade sixteen research peptides, from BPC-157 and TB-500 to retatrutide and tesamorelin, on an A to F scale set by the strength of published human proof, alongside a plain account of each compound's legal status and the July 2026 FDA advisory vote that decides which become legally compoundable. Every claim is cited to a primary source, and we never point anyone to gray-market sourcing. The grade follows the evidence, not the affiliate.",
+    status: "live",
+    mode: "built",
+    href: "https://bestpeptideforthat.com",
+    thumb: <BestPeptideForThatThumb />,
+    meta: [
+      { label: "Type", value: "Evidence index" },
+      { label: "Revenue", value: "Affiliate (post-launch)" },
+      { label: "Since", value: "2026" },
+    ],
+    cta: "Visit bestpeptideforthat.com",
+  },
+  {
+    num: "VI",
     name: "Revolume",
     tagline:
       "The skin scan built for GLP-1 — because the weight comes off, and the face follows.",
@@ -126,15 +145,6 @@ const upcoming = [
   },
   {
     num: "07",
-    name: "Peptide Index",
-    tag: "Post-FDA clarity",
-    note:
-      "Peptide therapy sits in a regulatory transition. After the July 2026 FDA advisory panel, we intend to publish a research-backed index covering BPC-157, TB-500, ipamorelin, and adjacent compounds — with pricing from licensed providers, the underlying evidence for each claim, and a clear account of what the regulation now permits.",
-    when: "Q3 2026",
-    mode: "built" as Mode,
-  },
-  {
-    num: "08",
     name: "Neuroscience Index",
     tag: "Cognitive supplements",
     note:
@@ -143,7 +153,7 @@ const upcoming = [
     mode: "built" as Mode,
   },
   {
-    num: "09",
+    num: "08",
     name: "Neuroplasticity Lab",
     tag: "Training & tools",
     note:
