@@ -43,7 +43,7 @@ export type PortfolioMetrics = {
 };
 
 export const portfolioMetrics: PortfolioMetrics = {
-  refreshedOn: "2026-07-07",
+  refreshedOn: "2026-07-08",
   cadence:
     "Refreshed weekly. Numbers are point-in-time and may lag the underlying systems by a day or two depending on data-source freshness.",
 
@@ -54,7 +54,7 @@ export const portfolioMetrics: PortfolioMetrics = {
     { label: "Email subscribers", value: "~60", context: "all audiences combined" },
     {
       label: "Affiliate revenue (30d)",
-      value: "$1,800",
+      value: "$2,849",
       context: "verified payouts, GLP-1 Picks only — other properties pre-monetization",
     },
   ],
@@ -74,15 +74,15 @@ export const portfolioMetrics: PortfolioMetrics = {
       metrics: [
         { label: "Providers reviewed", value: "48" },
         { label: "Pages indexed", value: "960+" },
-        { label: "Organic impressions", value: "10,881", context: "30-day window" },
-        { label: "Organic clicks", value: "189", context: "30-day window" },
-        { label: "Affiliate clicks", value: "1801", context: "30-day window via Katalys" },
-        { label: "Conversions", value: "5", context: "30-day window" },
-        { label: "Affiliate payout", value: "$1,800", context: "30-day window" },
-        { label: "EPC", value: "$1.00", context: "earnings per click" },
-        { label: "Email subscribers", value: "58" },
+        { label: "Organic impressions", value: "10,568", context: "30-day window" },
+        { label: "Organic clicks", value: "186", context: "30-day window" },
+        { label: "Affiliate clicks", value: "1874", context: "30-day window via Katalys" },
+        { label: "Conversions", value: "8", context: "30-day window" },
+        { label: "Affiliate payout", value: "$2,849", context: "30-day window" },
+        { label: "EPC", value: "$1.52", context: "earnings per click" },
+        { label: "Email subscribers", value: "59" },
       ],
-      asOf: "2026-07-07",
+      asOf: "2026-07-08",
       note: "First conversion April 23, 2026 (Eden Health, $300). Unit economics are healthy at the click level; the constraint is organic visibility on commercial queries.",
     },
     {
