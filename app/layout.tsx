@@ -128,7 +128,7 @@ const organizationJsonLd = {
       name: "Best Peptide For That",
       url: "https://bestpeptideforthat.com",
       description:
-        "Evidence-graded index of sixteen research peptides, scored A to F by human proof, with each compound's legal status and the July 2026 FDA vote tracked. Cited to primary sources.",
+        "Evidence-graded index of forty-six research peptides, scored A to F by human proof, with each compound's legal status and the July 2026 FDA vote tracked. Cited to primary sources.",
     },
   ],
 };

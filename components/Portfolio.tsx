@@ -101,7 +101,7 @@ const items: PortfolioItem[] = [
     tagline:
       "Every research peptide, graded A to F by the strength of actual human evidence, and honest about what is legal.",
     body:
-      "Peptide therapy sits in a regulatory transition, and most of what sells online is gray-market with animal-only evidence. We grade sixteen research peptides, from BPC-157 and TB-500 to retatrutide and tesamorelin, on an A to F scale set by the strength of published human proof, alongside a plain account of each compound's legal status and the July 2026 FDA advisory vote that decides which become legally compoundable. Every claim is cited to a primary source, and we never point anyone to gray-market sourcing. The grade follows the evidence, not the affiliate.",
+      "Peptide therapy sits in a regulatory transition, and most of what sells online is gray-market with animal-only evidence. We grade forty-six research peptides, from BPC-157 and TB-500 to the GLP-1 medications, tesamorelin and PT-141, on an A to F scale set by the strength of published human proof, alongside a plain account of each compound's legal status and the July 2026 FDA advisory vote that decides which become legally compoundable. Every claim is cited to a primary source, and we never point anyone to gray-market sourcing. The grade follows the evidence, not the affiliate.",
     status: "live",
     mode: "built",
     href: "https://bestpeptideforthat.com",

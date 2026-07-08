@@ -45,7 +45,7 @@ export function BestPeptideForThatThumb() {
             graded by the evidence.
           </div>
           <div className="text-[7.5px] tracking-[0.22em] text-muted mt-1.5 uppercase">
-            16 peptides · Cited to primary sources
+            46 peptides · Cited to primary sources
           </div>
         </div>
 
