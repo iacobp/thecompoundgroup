@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/barque/log" },
   openGraph: {
     type: "website",
-    url: "https://thecompound.group/barque/log",
+    url: "https://thecompoundgroup.com/barque/log",
     title,
     description,
   },

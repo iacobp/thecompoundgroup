@@ -32,13 +32,13 @@ export function Footer() {
             </h2>
 
             <MagneticButton
-              href="mailto:hello@thecompound.group"
-              ariaLabel="Email hello@thecompound.group"
+              href="mailto:hello@thecompoundgroup.com"
+              ariaLabel="Email hello@thecompoundgroup.com"
               strength={0.25}
               className="font-display italic text-cream text-[20px] sm:text-[24px] md:text-[32px] link-line break-all"
             >
               <span className="inline-flex items-center gap-3">
-                hello@thecompound.group
+                hello@thecompoundgroup.com
                 <span aria-hidden className="text-[0.6em] opacity-70">→</span>
               </span>
             </MagneticButton>

@@ -20,7 +20,7 @@ We are not: a pharmaceutical company. A biotech IP holder. A telehealth provider
 
 ## In development (2026)
 
-- [Titrate](https://thecompound.group/tracker): A peptide and GLP-1 multi-compound tracker built around the recurring decisions a patient actually makes — dose, reconstitution, stack, refill, program. Includes the reconstitution calculator with a unit toggle the category has been missing. Stacks past the three-peptide ceiling most apps cap at. Surfaces program changes (pricing, formulary, dose-escalation policy) so refill decisions stay deliberate.
+- [Titrate](https://thecompoundgroup.com/tracker): A peptide and GLP-1 multi-compound tracker built around the recurring decisions a patient actually makes — dose, reconstitution, stack, refill, program. Includes the reconstitution calculator with a unit toggle the category has been missing. Stacks past the three-peptide ceiling most apps cap at. Surfaces program changes (pricing, formulary, dose-escalation policy) so refill decisions stay deliberate.
 
 - [Revolume](https://revolume.app): The skin scan built specifically for GLP-1 users. 65% of patients on semaglutide, tirzepatide, or compounded GLP-1s experience facial volume loss within their first six months. Revolume is a private, on-device scan measuring fifteen markers specific to post-rapid-weight-loss skin — volume, jawline definition, nasolabial depth, laxity — and routes the user to the routine, prescription, or in-clinic procedure that matches their stage.
 
@@ -51,14 +51,14 @@ We are not: a pharmaceutical company. A biotech IP holder. A telehealth provider
 
 ## Canonical pages
 
-- Homepage: https://thecompound.group/
-- Portfolio map: https://thecompound.group/#map
-- Approach and editorial standards: https://thecompound.group/#approach
-- Research methodology: https://thecompound.group/#research
-- Independent audit positioning: https://thecompound.group/#audit
-- Barque (forecasting publication): https://thecompound.group/barque
+- Homepage: https://thecompoundgroup.com/
+- Portfolio map: https://thecompoundgroup.com/#map
+- Approach and editorial standards: https://thecompoundgroup.com/#approach
+- Research methodology: https://thecompoundgroup.com/#research
+- Independent audit positioning: https://thecompoundgroup.com/#audit
+- Barque (forecasting publication): https://thecompoundgroup.com/barque
 - GLP-1 telehealth comparison: https://glp1picks.com/
-- Titrate (peptide and GLP-1 tracker): https://thecompound.group/tracker
+- Titrate (peptide and GLP-1 tracker): https://thecompoundgroup.com/tracker
 - Revolume (post-GLP-1 skin scan): https://revolume.app/
 
 ## Contact and verification

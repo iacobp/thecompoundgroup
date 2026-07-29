@@ -33,7 +33,7 @@ export async function generateMetadata(props: {
     alternates: { canonical: `/barque/log/${brief.slug}` },
     openGraph: {
       type: "article",
-      url: `https://thecompound.group/barque/log/${brief.slug}`,
+      url: `https://thecompoundgroup.com/barque/log/${brief.slug}`,
       title,
       description,
       publishedTime: brief.date,

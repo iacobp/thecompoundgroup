@@ -24,7 +24,7 @@ const body = Inter({
   display: "swap",
 });
 
-const siteUrl = "https://thecompound.group";
+const siteUrl = "https://thecompoundgroup.com";
 const siteName = "The Compound Group";
 const description =
   "A consumer biotech media studio building honest comparison tools, trackers, and editorial across GLP-1, HRT, peptides, supplements, neuroscience, and pet health. Portfolio includes GLP-1 Picks, HRT Picks, GLP-1 Pets, Titrate, Revolume, and Best Peptide For That.";

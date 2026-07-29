@@ -72,7 +72,7 @@ export default async function Image() {
           }}
         >
           <span>Arsenal Productions · Est. 2026</span>
-          <span style={{ fontStyle: "italic" }}>thecompound.group</span>
+          <span style={{ fontStyle: "italic" }}>thecompoundgroup.com</span>
         </div>
       </div>
     ),

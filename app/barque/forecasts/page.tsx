@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/barque/forecasts" },
   openGraph: {
     type: "website",
-    url: "https://thecompound.group/barque/forecasts",
+    url: "https://thecompoundgroup.com/barque/forecasts",
     title,
     description,
   },
