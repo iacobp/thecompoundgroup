@@ -414,7 +414,7 @@ export function PricingAudit() {
                   {data.length}
                 </div>
                 <div className="text-[13px] text-muted mt-1 leading-[1.5]">
-                  Sampled from the forty-eight-program index on glp1picks.com
+                  Sampled from the fifty-three-program index on glp1picks.com
                 </div>
               </div>
 

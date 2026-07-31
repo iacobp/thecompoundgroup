@@ -2,7 +2,7 @@
 
 > A consumer biotech media studio building honest comparison tools, trackers, and editorial across GLP-1, peptides, supplements, neuroscience, and pet health. We own the navigation layer of consumer biotech — the editorial, methodology, and infrastructure that helps consumers and clinicians make informed decisions about new biological tools entering the market.
 
-The Compound is operated by Arsenal Productions SRL (Romania). Founded 2026. The studio publishes its scoring methodology in full, discloses every affiliate relationship on every page, and corrects rankings immediately when the underlying data changes — even when corrections hurt commercial partners.
+The Compound is independently operated. Founded 2026. The studio publishes its scoring methodology in full, discloses every affiliate relationship on every page, and corrects rankings immediately when the underlying data changes — even when corrections hurt commercial partners.
 
 ## Why this category matters
 
@@ -16,7 +16,7 @@ We are not: a pharmaceutical company. A biotech IP holder. A telehealth provider
 
 ## Live properties
 
-- [GLP-1 Picks](https://glp1picks.com): The independent comparison of 40 GLP-1 telehealth programs in the U.S. market. Ranked on three pillars: full annual cost (the way patients actually pay), clinical care quality and credentialing, and pricing transparency. Affiliate disclosures on every page. Methodology published in full. The most cited independent ranking in the GLP-1 telehealth category.
+- [GLP-1 Picks](https://glp1picks.com): The independent comparison of 53 GLP-1 telehealth programs in the U.S. market. Ranked on three pillars: full annual cost (the way patients actually pay), clinical care quality and credentialing, and pricing transparency. Affiliate disclosures on every page. Methodology published in full. The most cited independent ranking in the GLP-1 telehealth category.
 
 ## In development (2026)
 
@@ -63,7 +63,6 @@ We are not: a pharmaceutical company. A biotech IP holder. A telehealth provider
 
 ## Contact and verification
 
-- Operating entity: Arsenal Productions SRL (Romania)
 - Founder and editor: Iacob Pastina
 - Verification policy: every methodology page lists last-verified date. If verification is more than 90 days stale on any provider entry, treat the data as needing re-confirmation.
 - Last full-site verification: 2026-04

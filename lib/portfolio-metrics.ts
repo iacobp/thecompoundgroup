@@ -68,11 +68,11 @@ export const portfolioMetrics: PortfolioMetrics = {
       url: "https://glp1picks.com",
       status: "live",
       oneLiner:
-        "Independent comparison of 48 GLP-1 telehealth programs. Live since early 2026, monetized via the Katalys affiliate network.",
+        "Independent comparison of 53 GLP-1 telehealth programs. Live since early 2026, monetized via the Katalys affiliate network.",
       pages: 960,
       conversionEvent: "Affiliate sign-up at a partner provider",
       metrics: [
-        { label: "Providers reviewed", value: "48" },
+        { label: "Providers reviewed", value: "53" },
         { label: "Pages indexed", value: "960+" },
         { label: "Organic impressions", value: "38,835", context: "30-day window" },
         { label: "Organic clicks", value: "686", context: "30-day window" },
@@ -96,7 +96,7 @@ export const portfolioMetrics: PortfolioMetrics = {
         "Hormone telehealth comparison — women's menopause HRT front door, men's TRT wing. Relaunched July 2026 at hrtpicks.com with a Price Transparency Grade on every provider.",
       conversionEvent: "Affiliate sign-up at a partner provider (pending network approval)",
       metrics: [
-        { label: "Providers reviewed", value: "14", context: "5-dimension methodology" },
+        { label: "Providers reviewed", value: "15", context: "5-dimension methodology" },
         { label: "Transparency grades", value: "A–F", context: "published for every provider" },
         { label: "Email subscribers", value: "0", context: "newsletter not yet activated" },
         { label: "Affiliate partners", value: "0", context: "Katalys application in progress" },

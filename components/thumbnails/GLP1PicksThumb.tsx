@@ -26,7 +26,7 @@ export function GLP1PicksThumb() {
               The Pricing Index
             </div>
             <div className="text-[8px] tracking-[0.22em] text-muted mt-1.5 uppercase">
-              48 providers · Updated May 2026
+              53 providers · Updated May 2026
             </div>
           </div>
           <div className="text-right">

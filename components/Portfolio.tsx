@@ -29,7 +29,7 @@ const items: PortfolioItem[] = [
     tagline:
       "A clear-eyed comparison of the major GLP-1 telehealth programs, priced the way a patient actually pays for them.",
     body:
-      "We review forty-eight GLP-1 telehealth programs on three dimensions: the full monthly cost over a typical year, the quality and credentials of the clinical care, and the transparency of the program's pricing structure. The scoring methodology is published in full, the affiliate relationships are disclosed on every page, and the rankings follow directly from the methodology. When we earn a commission on a visit, the page you're reading says so.",
+      "We review fifty-three GLP-1 telehealth programs on three dimensions: the full monthly cost over a typical year, the quality and credentials of the clinical care, and the transparency of the program's pricing structure. The scoring methodology is published in full, the affiliate relationships are disclosed on every page, and the rankings follow directly from the methodology. When we earn a commission on a visit, the page you're reading says so.",
     status: "live",
     mode: "built",
     href: "https://glp1picks.com",
@@ -47,7 +47,7 @@ const items: PortfolioItem[] = [
     tagline:
       "The independent hormone-care comparison — verified prices, transparency grades, and a rank no provider can buy.",
     body:
-      "In November 2025 the FDA removed black-box warnings from six menopausal hormone therapy products; demand doubled within months and the estradiol patch went into nationwide shortage. We compare fourteen hormone telehealth providers across two wings — women's menopause HRT at the front door, men's TRT alongside it — on a five-dimension methodology, and grade every provider's pricing candor from A to F with a Price Transparency Grade no other comparison publishes. Verified prices, affiliate disclosures on every page, no pay-for-placement. The score is methodology-driven; affiliate status never moves the rank.",
+      "In November 2025 the FDA removed black-box warnings from six menopausal hormone therapy products; demand doubled within months and the estradiol patch went into nationwide shortage. We compare fifteen hormone telehealth providers across two wings — women's menopause HRT at the front door, men's TRT alongside it — on a five-dimension methodology, and grade every provider's pricing candor from A to F with a Price Transparency Grade no other comparison publishes. Verified prices, affiliate disclosures on every page, no pay-for-placement. The score is methodology-driven; affiliate status never moves the rank.",
     status: "live",
     mode: "built",
     href: "https://hrtpicks.com",

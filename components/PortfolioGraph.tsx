@@ -74,7 +74,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://glp1picks.com",
     description:
-      "Independent comparison of 48 GLP-1 telehealth programs. Ranked by annual cost, clinical credentialing, and pricing transparency — with affiliate disclosures on every page.",
+      "Independent comparison of 53 GLP-1 telehealth programs. Ranked by annual cost, clinical credentialing, and pricing transparency — with affiliate disclosures on every page.",
     x: CX - 220,
     y: CY - 120,
     radius: 24,
@@ -86,7 +86,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://hrtpicks.com",
     description:
-      "Independent comparison of 14 hormone telehealth providers across two wings — women's menopause HRT and men's TRT — scored on a five-dimension methodology, with a Price Transparency Grade (A–F) on every provider. Verified prices, no pay-for-placement. The estradiol patch shortage tracked in real time.",
+      "Independent comparison of 15 hormone telehealth providers across two wings — women's menopause HRT and men's TRT — scored on a five-dimension methodology, with a Price Transparency Grade (A–F) on every provider. Verified prices, no pay-for-placement. The estradiol patch shortage tracked in real time.",
     x: CX - 320,
     y: CY + 30,
     radius: 22,

@@ -44,7 +44,7 @@ export function HRTPicksThumb() {
             hormone-care comparison.
           </div>
           <div className="text-[7.5px] tracking-[0.22em] text-muted mt-1.5 uppercase">
-            14 providers · No pay-for-placement
+            15 providers · No pay-for-placement
           </div>
         </div>
 

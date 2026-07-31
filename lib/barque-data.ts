@@ -121,8 +121,12 @@ function parseForecasts(): Forecast[] {
       probability: parseFloat(r.probability),
       horizonDays: parseInt(r.horizon_days, 10) || 0,
       resolutionDate: r.resolution_date,
-      resolution: (["pending", "true", "false"].includes(r.resolution)
-        ? r.resolution
+      // Ra writes TRUE/FALSE in upper case; lower-case before the check or
+      // every resolved forecast falls through to "pending".
+      resolution: (["pending", "true", "false"].includes(
+        r.resolution?.toLowerCase(),
+      )
+        ? r.resolution.toLowerCase()
         : "pending") as Resolution,
       brier:
         r.brier === "pending" || r.brier === "" ? null : parseFloat(r.brier),
@@ -158,9 +162,11 @@ function parseResolutions(): ForecastResolution[] {
       resolutionDate: r.resolution_date,
       forecastId: r.forecast_id,
       originalProbability: parseFloat(r.original_probability),
-      finalOutcome: (r.final_outcome === "true" ? "true" : "false") as
-        | "true"
-        | "false",
+      // Same upper-case source data as forecasts.tsv. Compare lower-cased or
+      // every resolution renders as a miss.
+      finalOutcome: (r.final_outcome?.toLowerCase() === "true"
+        ? "true"
+        : "false") as "true" | "false",
       finalBrier: parseFloat(r.final_brier),
       leadTimeDays: parseInt(r.lead_time_days, 10) || 0,
       contrarian: r.contrarian === "true",

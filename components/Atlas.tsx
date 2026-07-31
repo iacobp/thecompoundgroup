@@ -49,7 +49,7 @@ const districts: District[] = [
     status: "studio",
     badge: "Studio",
     description:
-      "The observatory at the center. Owns the methodology, the datasets, and the editorial standards every other district inherits. Founded 2026, operated by Arsenal Productions SRL.",
+      "The observatory at the center. Owns the methodology, the datasets, and the editorial standards every other district inherits. Founded 2026, independently operated.",
     artifacts: [
       "Published scoring methodology",
       "Continuously-updated datasets",
@@ -66,10 +66,10 @@ const districts: District[] = [
     status: "live",
     badge: "Live",
     description:
-      "The apothecary tower. Independent comparison of forty-eight GLP-1 telehealth programs, ranked on annual cost, clinical credentialing, and pricing transparency. Affiliate-disclosed on every page.",
+      "The apothecary tower. Independent comparison of fifty-three GLP-1 telehealth programs, ranked on annual cost, clinical credentialing, and pricing transparency. Affiliate-disclosed on every page.",
     href: "https://glp1picks.com",
     hrefLabel: "Visit glp1picks.com",
-    artifacts: ["48 telehealth programs", "Three-pillar scoring", "Live pricing data"],
+    artifacts: ["53 telehealth programs", "Three-pillar scoring", "Live pricing data"],
   },
   {
     id: "titrate",

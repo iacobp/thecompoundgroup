@@ -71,7 +71,7 @@ export default async function Image() {
             color: "#6B6A66",
           }}
         >
-          <span>Arsenal Productions · Est. 2026</span>
+          <span>Independently operated · Est. 2026</span>
           <span style={{ fontStyle: "italic" }}>thecompoundgroup.com</span>
         </div>
       </div>
