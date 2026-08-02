@@ -266,6 +266,27 @@ none of which are anchor subjects. If a ledger section ever states a provider or
 peptide count as a figure, give it its own generated file rather than widening
 that list.
 
+## The operating-system canvas
+
+`components/OperatingSystem.tsx` is the homepage explanation of how the
+portfolio runs: Signal → Decision → Publish → Learn. It is deliberately
+server-rendered, static markup with no API calls, counters, or live dashboard
+logic. Its job is to make the operating model legible to a prospective
+acquirer without creating a second numbers surface.
+
+The division is strict:
+
+- `OperatingSystem` explains the repeatable loop and the human control points.
+- `/numbers` is the only public surface for operating figures and links to the
+  evidence trail.
+- Any new loop must be described here first, then get a generated measurement
+  in the ledger only when a private source exists. Never invent a live metric
+  for the canvas.
+
+This section shipped on 2026-08-02 in the `Add public operating system canvas`
+commit. Keep it lightweight. The public promise is an inspectable operating
+model, not a black-box automation claim.
+
 ## The portfolio sync rule
 
 When a Compound product is created, renamed or materially changed, this site
