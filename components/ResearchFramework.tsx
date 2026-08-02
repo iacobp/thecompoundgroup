@@ -2,6 +2,19 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Reveal } from "./Reveal";
+import { anchorValue } from "@/lib/generated/anchors";
+
+/**
+ * Pillar stats. A pillar shows a number only when the anchor supplies one.
+ * Three of the five used to carry figures with no source anywhere: a datapoint
+ * total, a per-brand mapped-query total, and a telehealth-program count that
+ * was well under the anchored one. Those are gone rather than approximated,
+ * because this is the section that claims the work is auditable.
+ */
+const recordsMaintained =
+  Number(anchorValue("glp1picks", "providerCount")) +
+  Number(anchorValue("hrtpicks", "providerCount")) +
+  Number(anchorValue("bestpeptideforthat", "peptideCount"));
 
 type Pillar = {
   key: string;
@@ -9,7 +22,8 @@ type Pillar = {
   label: string;
   body: string;
   detail: string;
-  stat: { value: string; note: string };
+  /** Present only when the anchor carries a figure for this pillar. */
+  stat?: { value: string; note: string };
 };
 
 const pillars: Pillar[] = [
@@ -18,10 +32,13 @@ const pillars: Pillar[] = [
     num: "01",
     label: "Databases",
     body:
-      "Every ranking is grounded in data we maintain ourselves, audited on a weekly cycle.",
+      "Every ranking is grounded in data we maintain ourselves, in one file per property that everything else reads from.",
     detail:
-      "Pricing, dosing schedules, FDA alerts, state-level Medicaid coverage, and the terms of our affiliate partnerships all live in structured datasets that are audited each week. The numbers on the page are the numbers in the database, and when something shifts — a new formulation, a revised policy, a price change — the process catches it within days.",
-    stat: { value: "12,400+", note: "Datapoints in structured databases, refreshed weekly" },
+      "Pricing, dosing schedules, FDA alerts, state-level Medicaid coverage, and the terms of our affiliate partnerships live in one structured file per property. Every page reads from it rather than restating it, including this one: the figures on this site are generated out of those files and carry the date they were read. When something shifts, a new formulation or a revised policy or a price change, the one file changes and every page follows.",
+    stat: {
+      value: `${recordsMaintained}`,
+      note: "Provider and compound records maintained across the GLP-1, hormone and peptide indices",
+    },
   },
   {
     key: "intent",
@@ -31,17 +48,17 @@ const pillars: Pillar[] = [
       "Every piece of content begins with the underlying question someone is actually trying to answer.",
     detail:
       "Before writing, we map the queries users are running — the comparative questions, the specific dosing concerns, the coverage questions underneath each search. The goal is a page that resolves the question, from the first click to the next decision.",
-    stat: { value: "3,200+", note: "Search queries mapped per brand in the portfolio" },
+    // No stat. The mapped-query total this pillar used to show came from no
+    // system that counts them, so the pillar makes its case in prose instead.
   },
   {
     key: "mind",
     num: "03",
     label: "Mind",
     body:
-      "Cognitive supplements and neuroplasticity protocols, evaluated against the same evidence standards.",
+      "Cognitive supplements and neuroplasticity protocols, the next category in, held to the same evidence standards.",
     detail:
-      "Nootropics, cognitive-support formulas, and the behavioral side of neuroplasticity are reviewed through the same filter we apply everywhere: plausible mechanism, validated dosing, independent testing, and peer-reviewed human trials. Where the evidence is inconclusive, the page says so.",
-    stat: { value: "∞", note: "Recommendations updated continuously as evidence evolves" },
+      "Nootropics, cognitive-support formulas, and the behavioral side of neuroplasticity go through the same filter we apply everywhere: plausible mechanism, validated dosing, independent testing, peer-reviewed human trials. Where the evidence is inconclusive, the page says so. Nothing is published in this category yet. The Neuroscience Index and the Neuroplasticity Lab are the two properties that will carry it, and both are in the pipeline rather than live.",
   },
   {
     key: "body",
@@ -51,7 +68,10 @@ const pillars: Pillar[] = [
       "The visible interventions — GLP-1, peptides, hormones — tracked through their full customer experience.",
     detail:
       "This is where the practical comparison work lives: which telehealth programs are offering what, which compounding pharmacies serve which regions, and how starter pricing relates to ongoing monthly cost. The same comparison methodology is being extended to the pet-health side, where the information gap is even more pronounced.",
-    stat: { value: "40+", note: "Telehealth programs actively reviewed" },
+    stat: {
+      value: `${anchorValue("glp1picks", "providerCount")}`,
+      note: "GLP-1 telehealth programs in the index, each with a published price and score",
+    },
   },
   {
     key: "protocols",
@@ -60,8 +80,7 @@ const pillars: Pillar[] = [
     body:
       "Recommendations are versioned, so readers can see how a conclusion has changed over time.",
     detail:
-      "A 2026 Q2 recommendation is stamped with that version. When a new trial publishes, a pharmacy receives a warning letter, or a program materially changes its pricing structure, we issue an update and publish a public note describing what changed and why. The reader sees the full edit history alongside the current opinion.",
-    stat: { value: "Q/Q", note: "Reviewed on a quarterly cadence, with a public changelog" },
+      "A 2026 Q2 recommendation is stamped with that version. When a new trial publishes, a pharmacy receives a warning letter, or a program materially changes its pricing structure, we issue an update and publish a dated note describing what changed and why. GLP-1 Picks keeps that log at /changelog, and corrections run there even when they cost a commercial partner its position.",
   },
 ];
 
@@ -304,16 +323,18 @@ export function ResearchFramework() {
                   {activePillar.detail}
                 </p>
 
-                <div className="border-t border-cream/15 pt-6 flex items-baseline gap-5 md:gap-6">
-                  <div>
-                    <div className="font-display text-cream text-[40px] sm:text-[48px] md:text-[64px] leading-none tracking-tightest">
-                      {activePillar.stat.value}
+                {activePillar.stat && (
+                  <div className="border-t border-cream/15 pt-6 flex items-baseline gap-5 md:gap-6">
+                    <div>
+                      <div className="font-display text-cream text-[40px] sm:text-[48px] md:text-[64px] leading-none tracking-tightest">
+                        {activePillar.stat.value}
+                      </div>
+                    </div>
+                    <div className="flex-1 text-[12px] md:text-[14px] text-cream/60 leading-[1.5]">
+                      {activePillar.stat.note}
                     </div>
                   </div>
-                  <div className="flex-1 text-[12px] md:text-[14px] text-cream/60 leading-[1.5]">
-                    {activePillar.stat.note}
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>

@@ -76,6 +76,25 @@ const prices = anchors.products.glp1picks.facts.providerPrices.value;
 asks for a number the anchor does not carry must fail at build time rather
 than render a stale literal.
 
+### Where the numbers actually come from now
+
+Reference for the next session, so nobody re-derives it:
+
+| Surface | Reads |
+|---|---|
+| `components/Metrics.tsx` | glp1picks provider, state-guide, blog-post, comparison and partner counts. The page total is a named sum of four route families, not a sitemap count |
+| `components/PricingAudit.tsx` | `providerPrices` against `providerPriceCeiling`, every program with a tier table. The ones without are named, never plotted on the parity line |
+| `components/Portfolio.tsx`, `PortfolioGraph.tsx`, `Atlas.tsx` | provider, peptide and readout-window facts interpolated into the copy |
+| `components/thumbnails/GLP1PicksThumb.tsx` | top five by anchored `rank`, with anchored name, price and score |
+| `components/thumbnails/HRTPicksThumb.tsx` | top three by anchored `score`, with anchored name and transparency grade |
+| `components/thumbnails/BestPeptideForThatThumb.tsx` | editorial choice of which peptides appear, anchored grade for each. `anchorFact` throws at build if one leaves the index |
+| `lib/portfolio-metrics.ts` | every product fact. The live measurements stay plain string literals because `refresh-portfolio-metrics.py` rewrites them by regex |
+| `public/llms.txt` | static literals that the audit forces to equal the anchor. It cannot import, so the gate is what keeps it honest |
+
+`components/CountUp.tsx` initialises to the target rather than to zero, so the
+server-rendered HTML carries the anchored figure. Before 2026-08-02 every
+Metrics tile served a zero to anything that did not run JavaScript.
+
 ### `unanchored` is not a gap to paper over
 
 The generated file also carries an `unanchored` block per product: facts this
@@ -121,13 +140,20 @@ PASS WITH DEBT rather than PASS, because a gate that prints an unqualified pass
 over live contradictions is the phantom-green failure this whole layer exists
 to end.
 
-Baseline as of 2026-08-02: 38 findings. hrtpicks published as 15 providers in
-five places against an anchor of 16; the MEOW-1 readout published as summer
-2026 in four places against an anchor of Summer 2027; Revolume marker counts in
-eight places with no anchor behind any of them; twelve of the sixteen prices in
-`PricingAudit` no longer matching `glp1picks/src/data/providers.ts`; `Metrics`
-publishing 40 providers, 20 affiliate partners and 960+ pages; Titrate priced
-at $19.99/yr and $2.99/mo on `/numbers` against an anchor of $49.99 and $9.99.
+**Baseline as of 2026-08-02: EMPTY.** It opened that morning at 38 findings and
+was purged the same day. The run now prints PASS rather than PASS WITH DEBT,
+and that is the state to hold: any future entry is a regression, and the only
+legitimate reason to add one is a number this site cannot yet source, declared
+out loud with the reason.
+
+What the 38 were, so the classes are recognisable if they come back: an HRT
+provider count five places behind the anchor; a trial readout published a year
+early in four places; Revolume marker counts in eight places with no anchor
+behind any of them; twelve of sixteen prices in `PricingAudit` no longer
+matching their source, on a second axis that had never had a source at all;
+`Metrics` publishing portfolio figures "as of April" that were well under the
+anchored ones; Titrate priced on `/numbers` at roughly a third of its real
+subscription.
 
 After removing a hardcoded number, run `--ratchet` in the same commit. It
 rewrites the baseline down to what is currently found and refuses to add or

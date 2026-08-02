@@ -5,6 +5,17 @@ import { TitrateThumb } from "./thumbnails/TitrateThumb";
 import { RevolumeThumb } from "./thumbnails/RevolumeThumb";
 import { BestPeptideForThatThumb } from "./thumbnails/BestPeptideForThatThumb";
 import { Reveal } from "./Reveal";
+import { anchors, anchorValue } from "@/lib/generated/anchors";
+
+/**
+ * Every product number in the copy below is interpolated from
+ * lib/generated/anchors.ts. None is typed in. Where a claim has no anchored
+ * value behind it, the claim is gone rather than approximated: Revolume has
+ * no anchor at all, so this file no longer states a marker count, and the
+ * pet-approval timeline was a forecast nothing in the pipeline anchor
+ * supports.
+ */
+const petReadouts = anchors.products.glp1pets.facts.readoutWindows.value;
 
 type Status = "live" | "in-development" | "planned";
 type Mode = "built" | "acquired";
@@ -28,8 +39,10 @@ const items: PortfolioItem[] = [
     name: "GLP-1 Picks",
     tagline:
       "A clear-eyed comparison of the major GLP-1 telehealth programs, priced the way a patient actually pays for them.",
-    body:
-      "We review fifty-three GLP-1 telehealth programs on three dimensions: the full monthly cost over a typical year, the quality and credentials of the clinical care, and the transparency of the program's pricing structure. The scoring methodology is published in full, the affiliate relationships are disclosed on every page, and the rankings follow directly from the methodology. When we earn a commission on a visit, the page you're reading says so.",
+    body: `We review ${anchorValue(
+      "glp1picks",
+      "providerCount",
+    )} GLP-1 telehealth programs on three dimensions: the full monthly cost over a typical year, the quality and credentials of the clinical care, and the transparency of the program's pricing structure. The scoring methodology is published in full, the affiliate relationships are disclosed on every page, and the rankings follow directly from the methodology. When we earn a commission on a visit, the page you're reading says so.`,
     status: "live",
     mode: "built",
     href: "https://glp1picks.com",
@@ -46,8 +59,10 @@ const items: PortfolioItem[] = [
     name: "HRT Picks",
     tagline:
       "The independent hormone-care comparison — verified prices, transparency grades, and a rank no provider can buy.",
-    body:
-      "In November 2025 the FDA removed black-box warnings from six menopausal hormone therapy products; demand doubled within months and the estradiol patch went into nationwide shortage. We compare fifteen hormone telehealth providers across two wings — women's menopause HRT at the front door, men's TRT alongside it — on a five-dimension methodology, and grade every provider's pricing candor from A to F with a Price Transparency Grade no other comparison publishes. Verified prices, affiliate disclosures on every page, no pay-for-placement. The score is methodology-driven; affiliate status never moves the rank.",
+    body: `In November 2025 the FDA removed black-box warnings from six menopausal hormone therapy products; demand doubled within months and the estradiol patch went into nationwide shortage. We compare ${anchorValue(
+      "hrtpicks",
+      "providerCount",
+    )} hormone telehealth providers across two wings, women's menopause HRT at the front door and men's TRT alongside it, on a five-dimension methodology, and grade every provider's pricing candor from A to F with a Price Transparency Grade no other comparison publishes. Verified prices, affiliate disclosures on every page, no pay-for-placement. The score is methodology-driven; affiliate status never moves the rank.`,
     status: "live",
     mode: "built",
     href: "https://hrtpicks.com",
@@ -64,8 +79,11 @@ const items: PortfolioItem[] = [
     name: "GLP-1 Pets",
     tagline:
       "The first dedicated tracker for veterinary GLP-1 — same methodology as the human-side index, applied to the pet chemistry class.",
-    body:
-      "Sixty-one percent of US cats and fifty-nine percent of US dogs are overweight or obese (APOP). The first pharmaceutical answer is on its way: Okava's MEOW-1 cat trial of an exenatide-releasing implant reads out summer 2026, and Akston Biosciences is running a once-weekly injection at Cornell. Realistic FDA approval for cats is 2027–28, dogs 2028–30. We track every trial milestone, regulatory action, and pricing signal — and tell readers what works today (food, portions, body-condition scoring) until the science lands.",
+    body: `Sixty-one percent of US cats and fifty-nine percent of US dogs are overweight or obese (APOP). The pharmaceutical answer is still in trials. Okava's MEOW-1 study of an exenatide-releasing implant in cats reads out ${
+      petReadouts["okv-119"]
+    }, and Akston Biosciences is running a once-weekly injection at Cornell with a readout window of ${
+      petReadouts["aks-562c"]
+    }. Neither is approved and neither is something an owner can buy. We track every trial milestone, regulatory action and pricing signal, and tell readers what works today (food, portions, body-condition scoring) until the science lands.`,
     status: "live",
     mode: "built",
     href: "https://glp1pets.com",
@@ -100,8 +118,10 @@ const items: PortfolioItem[] = [
     name: "Best Peptide For That",
     tagline:
       "Every research peptide, graded A to F by the strength of actual human evidence, and honest about what is legal.",
-    body:
-      "Peptide therapy sits in a regulatory transition, and most of what sells online is gray-market with animal-only evidence. We grade forty-six research peptides, from BPC-157 and TB-500 to the GLP-1 medications, tesamorelin and PT-141, on an A to F scale set by the strength of published human proof, alongside a plain account of each compound's legal status and the July 2026 FDA advisory vote that decides which become legally compoundable. Every claim is cited to a primary source, and we never point anyone to gray-market sourcing. The grade follows the evidence, not the affiliate.",
+    body: `Peptide therapy sits in a regulatory transition, and most of what sells online is gray-market with animal-only evidence. We grade ${anchorValue(
+      "bestpeptideforthat",
+      "peptideCount",
+    )} research peptides, from BPC-157 and TB-500 to the GLP-1 medications, tesamorelin and PT-141, on an A to F scale set by the strength of published human proof, alongside a plain account of each compound's legal status and the July 2026 FDA advisory vote that decides which become legally compoundable. Every claim is cited to a primary source, and we never point anyone to gray-market sourcing. The grade follows the evidence, not the affiliate.`,
     status: "live",
     mode: "built",
     href: "https://bestpeptideforthat.com",
@@ -119,7 +139,7 @@ const items: PortfolioItem[] = [
     tagline:
       "The skin scan built for GLP-1 — because the weight comes off, and the face follows.",
     body:
-      "Sixty-five percent of patients on semaglutide, tirzepatide, or compounded GLP-1s experience facial volume loss within their first six months on the medication. Revolume is a private, on-device skin scan that measures the fifteen markers specific to post-rapid-weight-loss skin — volume, jawline definition, nasolabial depth, laxity — and routes the user to the routine, the telehealth prescription, or the in-clinic procedure that actually fits the stage they're at.",
+      "Sixty-five percent of patients on semaglutide, tirzepatide, or compounded GLP-1s experience facial volume loss within their first six months on the medication. Revolume is a private, on-device skin scan that measures the markers specific to post-rapid-weight-loss skin, volume and jawline definition and nasolabial depth and laxity, then routes the user to the routine, the telehealth prescription, or the in-clinic procedure that actually fits the stage they're at.",
     status: "in-development",
     mode: "built",
     href: "https://revolume.app",

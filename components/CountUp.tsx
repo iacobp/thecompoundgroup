@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+/**
+ * useLayoutEffect on the client, useEffect on the server, so the reset below
+ * runs before the first paint without React logging the SSR warning.
+ */
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 type CountUpProps = {
   /** Target number to count to. */
@@ -16,8 +23,14 @@ type CountUpProps = {
 };
 
 /**
- * Animates a number from 0 → target when it enters the viewport.
- * Uses IntersectionObserver + requestAnimationFrame for smooth ease-out.
+ * Animates a number from 0 to target when it enters the viewport.
+ * Uses IntersectionObserver plus requestAnimationFrame for a smooth ease-out.
+ *
+ * The initial state is the TARGET, not zero, so the server-rendered HTML
+ * carries the real number. It used to render zero, which meant every crawler
+ * and every reader without JS was served an empty count under a label that
+ * promised a figure. The reset happens in a layout effect, before the browser
+ * paints, so a human still sees the count run.
  */
 export function CountUp({
   to,
@@ -26,9 +39,13 @@ export function CountUp({
   format = true,
   className,
 }: CountUpProps) {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(to);
   const ref = useRef<HTMLSpanElement | null>(null);
   const startedRef = useRef(false);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!startedRef.current) setValue(0);
+  }, [to]);
 
   useEffect(() => {
     const el = ref.current;

@@ -1,3 +1,25 @@
+import { anchors } from "@/lib/generated/anchors";
+
+/**
+ * The rows below are the leaders by `rank` in the glp1picks anchor, with that
+ * anchor's own name, price and score. Nothing is typed in. Until 2026-08-02
+ * this replica showed providers that no longer lead, at prices that had each
+ * moved by a wide margin, which is a worse lie than a blank card: it is a
+ * screenshot of a ranking we do not publish.
+ */
+const g = anchors.products.glp1picks.facts;
+
+const leaderboard = Object.keys(g.providerRanks.value)
+  .map((slug) => ({
+    slug,
+    rank: Number((g.providerRanks.value as Record<string, number>)[slug]),
+    name: (g.providerNames.value as Record<string, string>)[slug],
+    price: Number((g.providerPrices.value as Record<string, number>)[slug]),
+    score: Number((g.providerScores.value as Record<string, number>)[slug]),
+  }))
+  .sort((a, b) => a.rank - b.rank)
+  .slice(0, 5);
+
 /**
  * Editorial thumbnail for GLP-1 Picks — a stylized browser view of the
  * rankings index. Designed to feel like a product screenshot without
@@ -26,7 +48,8 @@ export function GLP1PicksThumb() {
               The Pricing Index
             </div>
             <div className="text-[8px] tracking-[0.22em] text-muted mt-1.5 uppercase">
-              53 providers · Updated May 2026
+              {g.providerCount.value} providers · Updated{" "}
+              {g.providerRanks.asOf}
             </div>
           </div>
           <div className="text-right">
@@ -44,14 +67,16 @@ export function GLP1PicksThumb() {
               Editor&apos;s Top Pick
             </div>
             <div className="font-display text-ink text-[14px] leading-none">
-              Eden Health
+              {leaderboard[0].name}
             </div>
             <div className="text-[9px] text-ink/60 mt-0.5">
-              $249/mo · All-in · No hidden fees
+              ${leaderboard[0].price}/mo · All-in · No hidden fees
             </div>
           </div>
           <div className="text-right">
-            <div className="font-display italic text-sage text-[22px] leading-none">8.9</div>
+            <div className="font-display italic text-sage text-[22px] leading-none">
+              {leaderboard[0].score}
+            </div>
             <div className="text-[7.5px] uppercase tracking-widest text-muted mt-0.5">
               of 10
             </div>
@@ -60,25 +85,20 @@ export function GLP1PicksThumb() {
 
         {/* Rank rows */}
         <div className="mt-3 flex-1">
-          {[
-            { r: "02", n: "Sprout Health", p: "$259", s: "8.6" },
-            { r: "03", n: "Strut Health", p: "$269", s: "8.4" },
-            { r: "04", n: "Sesame Care", p: "$189", s: "8.2" },
-            { r: "05", n: "Enhance MD", p: "$299", s: "8.0" },
-          ].map((row) => (
+          {leaderboard.slice(1).map((row) => (
             <div
-              key={row.r}
+              key={row.slug}
               className="grid grid-cols-[auto_1fr_auto_auto] gap-3 items-baseline py-1.5 border-b border-ink/5"
             >
               <span className="font-display italic text-bronze text-[11px] w-6">
-                {row.r}
+                {String(row.rank).padStart(2, "0")}
               </span>
-              <span className="text-[11px] font-medium text-ink">{row.n}</span>
+              <span className="text-[11px] font-medium text-ink">{row.name}</span>
               <span className="text-[9.5px] text-muted tabular-nums">
-                {row.p}/mo
+                ${row.price}/mo
               </span>
               <span className="font-display italic text-ink text-[12px] tabular-nums w-6 text-right">
-                {row.s}
+                {row.score}
               </span>
             </div>
           ))}

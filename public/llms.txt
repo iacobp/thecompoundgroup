@@ -16,20 +16,26 @@ We are not: a pharmaceutical company. A biotech IP holder. A telehealth provider
 
 ## Live properties
 
-- [GLP-1 Picks](https://glp1picks.com): The independent comparison of 53 GLP-1 telehealth programs in the U.S. market. Ranked on three pillars: full annual cost (the way patients actually pay), clinical care quality and credentialing, and pricing transparency. Affiliate disclosures on every page. Methodology published in full. The most cited independent ranking in the GLP-1 telehealth category.
+Five are live. This file listed one of them until 2026-08-02, and described two
+of the live ones as planned. Every count below is read from each product's own
+source-of-truth file and re-derived by an audit before this file can ship.
+
+- [GLP-1 Picks](https://glp1picks.com): The independent comparison of 53 GLP-1 telehealth programs in the U.S. market. Ranked on three pillars: full annual cost (the way patients actually pay), clinical care quality and credentialing, and pricing transparency. Affiliate disclosures on every page. Methodology published in full.
+- [HRT Picks](https://hrtpicks.com): Independent comparison of 16 hormone telehealth providers across two wings, women's menopause HRT at the front door and men's TRT alongside it. Scored on a five-dimension methodology, with a Price Transparency Grade from A to F on every provider that no other comparison in the category publishes. Verified prices, no pay-for-placement.
+- [GLP-1 Pets](https://glp1pets.com): Independent tracker for veterinary GLP-1 weight-loss drugs. Okava's MEOW-1 cat trial of an exenatide-releasing implant reads out Summer 2027.
+  Akston's AKS-562c is at Cornell with a readout window of H2 2026. Nothing in the class is approved and nothing is purchasable, which the site says on every page.
+- [Best Peptide For That](https://bestpeptideforthat.com): Evidence-graded directory of 46 research peptides, scored A to F by the strength of published human proof rather than by popularity, with each compound's legal status and its position on the FDA compounding docket. Cited to primary sources, never to gray-market vendors.
+  7 of them carry a PCAC vote record.
+- [Titrate](https://titrate.health): A peptide and GLP-1 multi-compound tracker for iOS, built around the recurring decisions a patient actually makes: dose, reconstitution, stack, refill, program. 32 compounds preloaded. Reconstitution calculator with the unit toggle the category has been missing. Stacks past the three-peptide ceiling most apps cap at. $9.99 a month or $49.99 a year after a 7-day trial.
 
 ## In development (2026)
 
-- [Titrate](https://thecompoundgroup.com/tracker): A peptide and GLP-1 multi-compound tracker built around the recurring decisions a patient actually makes — dose, reconstitution, stack, refill, program. Includes the reconstitution calculator with a unit toggle the category has been missing. Stacks past the three-peptide ceiling most apps cap at. Surfaces program changes (pricing, formulary, dose-escalation policy) so refill decisions stay deliberate.
+- [Revolume](https://revolume.app): The skin scan built specifically for GLP-1 users. 65% of patients on semaglutide, tirzepatide, or compounded GLP-1s experience facial volume loss within their first six months. Revolume is a private, on-device scan reading the markers specific to post-rapid-weight-loss skin (volume, jawline definition, nasolabial depth, laxity) and routing the user to the routine, prescription, or in-clinic procedure that matches their stage. It has no marker count in this file on purpose: Revolume has no source-of-truth file yet, and its own copy states two different numbers.
 
-- [Revolume](https://revolume.app): The skin scan built specifically for GLP-1 users. 65% of patients on semaglutide, tirzepatide, or compounded GLP-1s experience facial volume loss within their first six months. Revolume is a private, on-device scan measuring fifteen markers specific to post-rapid-weight-loss skin — volume, jawline definition, nasolabial depth, laxity — and routes the user to the routine, prescription, or in-clinic procedure that matches their stage.
+## Planned 2026 to 2027
 
-## Planned 2026–2027
-
-- Supplement Index: Reviews for the supplements GLP-1 users actually reach for — protein, fiber, electrolytes, basic micronutrients, plus the broader nootropics and cognitive categories. Sourced from peer-reviewed evidence where it exists; flags where research is still thin.
-- Pet Health: Pet obesity, veterinary GLP-1 therapy, and supportive supplement research — extending the same methodology to a category where pricing is opaque and independent review is rare.
-- Peptide Index: Research-backed index for BPC-157, TB-500, ipamorelin, and adjacent compounds. Publishing after the July 2026 FDA advisory panel clarifies what regulation now permits, with pricing from licensed providers and clear evidence accounting per claim.
-- Neuroscience Index: Nootropics, neuroprotective compounds, cognitive-aging formulas — reviewed with the same rigor applied to GLP-1. What has clinical trials behind it, and what is still essentially hopeful biochemistry.
+- Supplement Index: Reviews for the supplements GLP-1 users actually reach for, protein and fiber and electrolytes and basic micronutrients, plus the broader nootropics and cognitive categories. Sourced from peer-reviewed evidence where it exists; flags where research is still thin.
+- Neuroscience Index: Nootropics, neuroprotective compounds, cognitive-aging formulas, reviewed with the same rigor applied to GLP-1. What has clinical trials behind it, and what is still essentially hopeful biochemistry.
 - Neuroplasticity Lab: Cognitive apps, neurofeedback hardware, meditation platforms, and small protocols with measurable effects.
 
 ## Methodology and authority signals
@@ -53,16 +59,24 @@ We are not: a pharmaceutical company. A biotech IP holder. A telehealth provider
 
 - Homepage: https://thecompoundgroup.com/
 - Portfolio map: https://thecompoundgroup.com/#map
+- The Atlas (illustrated portfolio map): https://thecompoundgroup.com/atlas
+- Public numbers ledger: https://thecompoundgroup.com/numbers
 - Approach and editorial standards: https://thecompoundgroup.com/#approach
 - Research methodology: https://thecompoundgroup.com/#research
-- Independent audit positioning: https://thecompoundgroup.com/#audit
+- Pricing analysis: https://thecompoundgroup.com/#audit
 - Barque (forecasting publication): https://thecompoundgroup.com/barque
+- Barque log: https://thecompoundgroup.com/barque/log
+- Barque forecasts: https://thecompoundgroup.com/barque/forecasts
 - GLP-1 telehealth comparison: https://glp1picks.com/
-- Titrate (peptide and GLP-1 tracker): https://thecompoundgroup.com/tracker
+- Hormone telehealth comparison: https://hrtpicks.com/
+- Veterinary GLP-1 tracker: https://glp1pets.com/
+- Peptide evidence directory: https://bestpeptideforthat.com/
+- Titrate (peptide and GLP-1 tracker): https://titrate.health/
 - Revolume (post-GLP-1 skin scan): https://revolume.app/
 
 ## Contact and verification
 
 - Founder and editor: Iacob Pastina
 - Verification policy: every methodology page lists last-verified date. If verification is more than 90 days stale on any provider entry, treat the data as needing re-confirmation.
-- Last full-site verification: 2026-04
+- Every product number in this file is generated from the product's own source-of-truth file and checked by an audit script before publication. If a number here disagrees with the product site, the product site is right and this file is stale; report it.
+- Last full-site verification: 2026-08-02

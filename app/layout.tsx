@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { anchorValue } from "@/lib/generated/anchors";
 
 /**
  * Display: Fraunces — variable editorial serif (optical size + SOFT axis).
@@ -100,7 +101,10 @@ const organizationJsonLd = {
       name: "HRT Picks",
       url: "https://hrtpicks.com",
       description:
-        "Independent comparison of HRT and TRT telehealth providers — 15 providers scored on a five-dimension methodology, with a Price Transparency Grade (A–F) and verified prices on every page.",
+        `Independent comparison of HRT and TRT telehealth providers. ${anchorValue(
+          "hrtpicks",
+          "providerCount",
+        )} providers scored on a five-dimension methodology, with a Price Transparency Grade (A to F) and verified prices on every page.`,
     },
     {
       "@type": "Organization",
@@ -121,14 +125,17 @@ const organizationJsonLd = {
       name: "Revolume",
       url: "https://revolume.app",
       description:
-        "Private on-device skin scan for GLP-1 users — fifteen markers specific to post-rapid-weight-loss facial change.",
+        "Private on-device skin scan for GLP-1 users, reading the markers specific to post-rapid-weight-loss facial change.",
     },
     {
       "@type": "Organization",
       name: "Best Peptide For That",
       url: "https://bestpeptideforthat.com",
       description:
-        "Evidence-graded index of forty-six research peptides, scored A to F by human proof, with each compound's legal status and the July 2026 FDA vote tracked. Cited to primary sources.",
+        `Evidence-graded index of ${anchorValue(
+          "bestpeptideforthat",
+          "peptideCount",
+        )} research peptides, scored A to F by human proof, with each compound's legal status and the July 2026 FDA vote tracked. Cited to primary sources.`,
     },
   ],
 };

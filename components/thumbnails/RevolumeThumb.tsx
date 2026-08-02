@@ -56,7 +56,7 @@ export function RevolumeThumb() {
 
           {/* Subhead */}
           <div className="mt-3 text-[8.5px] leading-[1.45] text-ink/60 max-w-[28ch]">
-            Track facial volume changes on GLP-1. 15 skin markers in 60 seconds.
+            Track facial volume changes on GLP-1. A skin scan in 60 seconds.
           </div>
 
           {/* CTA */}
@@ -148,8 +148,10 @@ export function RevolumeThumb() {
           <div className="absolute right-0 top-[66%] text-[6px] text-[#8a3a4a] font-medium tracking-tight">
             Jawline laxity
           </div>
+          {/* No marker count. Revolume declares no anchor and its own copy
+              states two different numbers, so this card states neither. */}
           <div className="absolute bottom-0 right-0 font-display italic text-[#2e6b5f] text-[10px] leading-none">
-            15 markers
+            Marker map
           </div>
         </div>
       </div>

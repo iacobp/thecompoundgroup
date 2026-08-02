@@ -1,3 +1,12 @@
+import { anchors } from "@/lib/generated/anchors";
+
+// The readout window and the trial name both come from the glp1pets
+// pipeline anchor. This card published a readout a full year earlier than the
+// anchor carries, which was the most-repeated wrong fact on the site.
+const pets = anchors.products.glp1pets.facts;
+const readouts = pets.readoutWindows.value as Record<string, string>;
+const trialNames = pets.trialNames.value as Record<string, string>;
+
 /**
  * Editorial thumbnail for GLP-1 Pets — a stylized browser view of the
  * pet GLP-1 trial tracker hero. Designed to feel like the live site
@@ -45,8 +54,9 @@ export function GLP1PetsThumb() {
 
         {/* Subhead */}
         <div className="text-[8px] text-ink/55 leading-[1.5] max-w-[36ch] mb-3">
-          The independent tracker for veterinary GLP-1 drugs. Okava&apos;s MEOW-1 cat
-          trial reads out summer 2026.
+          The independent tracker for veterinary GLP-1 drugs. Okava&apos;s{" "}
+          {trialNames["okv-119"]} cat trial reads out{" "}
+          {readouts["okv-119"].toLowerCase()}.
         </div>
 
         {/* CTAs */}

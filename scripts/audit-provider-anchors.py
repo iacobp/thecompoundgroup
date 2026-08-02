@@ -219,10 +219,25 @@ SUBJECTS: list[Subject] = [
 
 
 # Season/quarter readout windows, checked against a named programme fact.
+#
+# One entry per programme the anchor carries a window for, so a page naming
+# AKS-562c is checked against AKS-562c's window instead of being read as a
+# second claim about MEOW-1. Widening coverage this way, rather than shrinking
+# the lookahead, is the rule in CLAUDE.md: a page that states the wrong window
+# for the Akston trial should fail, and before this entry existed it could not.
 DATE_SUBJECTS = [
     ("glp1pets.meow1", "glp1pets", "meow1ReadoutWindow",
      re.compile(r"MEOW\W?1", re.I)),
+    ("glp1pets.aks562c", "glp1pets", ("readoutWindows", "aks-562c"),
+     re.compile(r"AKS\W?562\W?c", re.I)),
+    ("glp1pets.loy002", "glp1pets", ("readoutWindows", "loy-002"),
+     re.compile(r"LOY\W?002", re.I)),
 ]
+
+# A programme's lookahead stops at the next programme name, so one bullet
+# mentioning two trials produces one claim per trial rather than two claims
+# about whichever was named first.
+DATE_BOUNDARY = re.compile(r"MEOW\W?1|AKS\W?562\W?c|LOY\W?002", re.I)
 DATE_TOKEN = re.compile(
     r"\b(spring|summer|autumn|fall|winter|H1|H2|Q[1-4])\s+(20\d\d)\b", re.I
 )
@@ -511,9 +526,24 @@ def scan_dates(anchor: dict, path: Path, text: str, in_scope: list) -> Iterator[
     relpath = rel(path)
     sev = "WARN" if is_archive(relpath) else "ERROR"
     for sid, product, factkey, marker in DATE_SUBJECTS:
-        state, expected = lookup(anchor, product, factkey)
+        if isinstance(factkey, tuple):
+            mapkey, subkey = factkey
+            state, table = lookup(anchor, product, mapkey)
+            if state == "fact" and isinstance(table, dict):
+                if subkey in table:
+                    expected = table[subkey]
+                else:
+                    state, expected = "absent", None
+            else:
+                state, expected = "absent", None
+            factkey = f"{mapkey}[{subkey}]"
+        else:
+            state, expected = lookup(anchor, product, factkey)
         for m in marker.finditer(text):
             window = text[m.start(): m.start() + 420]
+            nxt = DATE_BOUNDARY.search(window, m.end() - m.start())
+            if nxt:
+                window = window[: nxt.start()]
             for dm in DATE_TOKEN.finditer(window):
                 in_scope.append(sid)
                 claimed = f"{dm.group(1)} {dm.group(2)}"

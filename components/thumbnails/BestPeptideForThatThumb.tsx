@@ -1,3 +1,36 @@
+import { anchors, anchorFact } from "@/lib/generated/anchors";
+
+/**
+ * Which peptides appear is an editorial choice, deliberately spanning the
+ * grade range so the famous one shows its D. What grade each one carries is
+ * not a choice: it is read from the bestpeptideforthat anchor by name, and
+ * anchorFact throws at build time if that peptide leaves the index.
+ */
+const b = anchors.products.bestpeptideforthat.facts;
+
+const GRADES = anchorFact("bestpeptideforthat", "peptideGrades").value as Record<
+  string,
+  string
+>;
+
+const FEATURED: { name: string; evidence: string }[] = [
+  { name: "Tesamorelin", evidence: "Human RCTs" },
+  { name: "Sermorelin", evidence: "Human data" },
+  { name: "BPC-157", evidence: "Animal only" },
+];
+
+const rows = FEATURED.map((f) => {
+  const grade = GRADES[f.name];
+  if (!grade) {
+    throw new Error(
+      `No anchored evidence grade for "${f.name}". It left the index, or its ` +
+        `display name changed. Pick a peptide the anchor carries; do not type ` +
+        `the grade in.`,
+    );
+  }
+  return { ...f, grade };
+});
+
 /**
  * Editorial thumbnail for Best Peptide For That — a stylized browser view of
  * the peptide evidence index (July 2026). Mirrors the GLP-1 Picks / HRT Picks
@@ -45,7 +78,7 @@ export function BestPeptideForThatThumb() {
             graded by the evidence.
           </div>
           <div className="text-[7.5px] tracking-[0.22em] text-muted mt-1.5 uppercase">
-            46 peptides · Cited to primary sources
+            {b.peptideCount.value} peptides · Cited to primary sources
           </div>
         </div>
 
@@ -72,30 +105,26 @@ export function BestPeptideForThatThumb() {
 
         {/* Graded rows — honest spread: the famous one grades a D */}
         <div className="mt-2.5 flex-1">
-          {[
-            { r: "01", n: "Tesamorelin", g: "A", s: "Human RCTs" },
-            { r: "02", n: "Sermorelin", g: "B", s: "Human data" },
-            { r: "03", n: "BPC-157", g: "D", s: "Animal only" },
-          ].map((row) => (
+          {rows.map((row, i) => (
             <div
-              key={row.r}
+              key={row.name}
               className="grid grid-cols-[auto_1fr_auto_auto] gap-3 items-center py-1.5 border-b border-ink/5"
             >
               <span className="font-display italic text-bronze text-[11px] w-6">
-                {row.r}
+                {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="text-[11px] font-medium text-ink">{row.n}</span>
+              <span className="text-[11px] font-medium text-ink">{row.name}</span>
               <span
                 className={`inline-flex h-4 w-4 items-center justify-center rounded-[4px] font-display italic text-[9px] leading-none ${
-                  row.g === "A"
+                  row.grade === "A"
                     ? "bg-sage/10 border border-sage/40 text-sage"
                     : "bg-bronze/10 border border-bronze/40 text-bronze"
                 }`}
               >
-                {row.g}
+                {row.grade}
               </span>
               <span className="text-[8px] uppercase tracking-[0.14em] text-muted w-14 text-right">
-                {row.s}
+                {row.evidence}
               </span>
             </div>
           ))}

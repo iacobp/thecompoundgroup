@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { anchorValue } from "@/lib/generated/anchors";
 
 /**
  * The Compound Atlas — an illustrated map of the studio's universe.
@@ -66,10 +67,14 @@ const districts: District[] = [
     status: "live",
     badge: "Live",
     description:
-      "The apothecary tower. Independent comparison of fifty-three GLP-1 telehealth programs, ranked on annual cost, clinical credentialing, and pricing transparency. Affiliate-disclosed on every page.",
+      `The apothecary tower. Independent comparison of ${anchorValue("glp1picks", "providerCount")} GLP-1 telehealth programs, ranked on annual cost, clinical credentialing, and pricing transparency. Affiliate-disclosed on every page.`,
     href: "https://glp1picks.com",
     hrefLabel: "Visit glp1picks.com",
-    artifacts: ["53 telehealth programs", "Three-pillar scoring", "Live pricing data"],
+    artifacts: [
+      `${anchorValue("glp1picks", "providerCount")} telehealth programs`,
+      "Three-pillar scoring",
+      "Live pricing data",
+    ],
   },
   {
     id: "titrate",
@@ -94,10 +99,10 @@ const districts: District[] = [
     status: "in-development",
     badge: "In development",
     description:
-      "The conservatory chamber. Private on-device skin scan for GLP-1 users — sixteen markers specific to post-rapid-weight-loss facial change, routed to a personalized routine, prescription, or procedure.",
+      "The conservatory chamber. Private on-device skin scan for GLP-1 users, reading the markers specific to post-rapid-weight-loss facial change and routing to a personalized routine, prescription, or procedure.",
     href: "https://revolume.app",
     hrefLabel: "Visit revolume.app",
-    artifacts: ["16 facial markers", "On-device privacy", "Procedure shortlist"],
+    artifacts: ["Facial-marker scan", "On-device privacy", "Procedure shortlist"],
   },
   {
     id: "methodology",

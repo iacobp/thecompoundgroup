@@ -422,6 +422,9 @@ const LEGACY_BRIEFS: Brief[] = [
     plainEnglish: [],
     metaCognition: [
       'New heuristic promoted. "Incumbent acquires facility 12+ months before the policy window opens" is a reusable signal pattern. Hims acquired its California peptide facility Feb 2025 — fourteen months before the April 22 2026 Category 2 reclassification. Same structural class as Novo\'s 2021 Kalundborg expansion preceding Wegovy mainstreaming by 18 months. "Pre-positioning-by-M&A" added to the reference class for regulatory-adjacent forecasts.',
+      // anchor-override: the 12 here counts peptides that exited FDA Category 2
+      // in the April 15 2026 wave, a regulatory event. It is not a count of the
+      // Best Peptide For That index, and the archived brief is dated.
       "Failure mode caught. On the original BPC-157 single-peptide forecast (p=0.70 NOT Cat 1), we anchored to a pre-reclassification prior. The April 15 wave — 12 peptides exiting Cat 2 at once — is a structural break the original prior didn't anticipate. The revised multi-peptide forecast at p=0.52 is the honest update; the original row stays in the log as historical evidence of anchoring bias.",
       'Voice calibration. The Augur\'s threshold is too loose — three of four recent picks were things other voices would have surfaced anyway. Tightening the Augur\'s brief to "signals the Historian and Skeptic would not see" for the next run.',
       'Reference-class expansion. Adding "mass-contamination reveals in unregulated consumer categories" as a reference class for peptide-safety forecasts. Analogues: NAC/NMN mis-testing 2023, ConsumerLab creatine adulteration, 2008 heparin contamination. Not all produced firestorms; base rate for ">=40% contamination leading to a Top-5 outlet feature within 12 months" is closer to 0.50 than the 0.70 we priced.',

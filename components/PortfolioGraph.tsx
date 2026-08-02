@@ -14,6 +14,12 @@ import {
   type SimulationLinkDatum,
 } from "d3-force";
 import { Reveal } from "./Reveal";
+import { anchors, anchorValue } from "@/lib/generated/anchors";
+
+// Node descriptions state product numbers. Every one is interpolated from
+// lib/generated/anchors.ts. Revolume has no anchor, so its node no longer
+// states a marker count instead of picking one of the two its own site uses.
+const petReadouts = anchors.products.glp1pets.facts.readoutWindows.value;
 
 /**
  * Force-directed portfolio graph, powered by d3-force (the same engine
@@ -74,7 +80,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://glp1picks.com",
     description:
-      "Independent comparison of 53 GLP-1 telehealth programs. Ranked by annual cost, clinical credentialing, and pricing transparency — with affiliate disclosures on every page.",
+      `Independent comparison of ${anchorValue("glp1picks", "providerCount")} GLP-1 telehealth programs. Ranked by annual cost, clinical credentialing, and pricing transparency, with affiliate disclosures on every page.`,
     x: CX - 220,
     y: CY - 120,
     radius: 24,
@@ -86,7 +92,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://hrtpicks.com",
     description:
-      "Independent comparison of 15 hormone telehealth providers across two wings — women's menopause HRT and men's TRT — scored on a five-dimension methodology, with a Price Transparency Grade (A–F) on every provider. Verified prices, no pay-for-placement. The estradiol patch shortage tracked in real time.",
+      `Independent comparison of ${anchorValue("hrtpicks", "providerCount")} hormone telehealth providers across two wings, women's menopause HRT and men's TRT, scored on a five-dimension methodology, with a Price Transparency Grade (A to F) on every provider. Verified prices, no pay-for-placement. The estradiol patch shortage tracked in real time.`,
     x: CX - 320,
     y: CY + 30,
     radius: 22,
@@ -110,7 +116,7 @@ const initialNodes: GraphNode[] = [
     kind: "dev",
     href: "https://revolume.app",
     description:
-      "Private, on-device skin scan built for GLP-1 users. Sixteen clinically-derived markers, a personalized routine, a procedure shortlist — what to do about facial volume loss, in plain language.",
+      "Private, on-device skin scan built for GLP-1 users. Clinically-derived markers, a personalized routine, a procedure shortlist: what to do about facial volume loss, in plain language.",
     x: CX - 80,
     y: CY + 230,
     radius: 21,
@@ -135,7 +141,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://glp1pets.com",
     description:
-      "Independent tracker for veterinary GLP-1 weight loss drugs. Okava's MEOW-1 cat trial (summer 2026 readout), Akston AKS-562c at Cornell, and the road to canine GLP-1. Same methodology, applied to the pet chemistry class.",
+      `Independent tracker for veterinary GLP-1 weight loss drugs. Okava's MEOW-1 cat trial (${petReadouts["okv-119"]} readout), Akston AKS-562c at Cornell (${petReadouts["aks-562c"]}), and the road to canine GLP-1. Same methodology, applied to the pet chemistry class.`,
     x: CX + 290,
     y: CY - 40,
     radius: 22,
@@ -147,7 +153,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://bestpeptideforthat.com",
     description:
-      "Evidence-graded index of forty-six research peptides, scored A to F by the strength of published human proof, with legal status and the July 2026 FDA advisory vote tracked on every compound. Cited to primary sources, never gray-market sourcing.",
+      `Evidence-graded index of ${anchorValue("bestpeptideforthat", "peptideCount")} research peptides, scored A to F by the strength of published human proof, with legal status and the July 2026 FDA advisory vote tracked on every compound. Cited to primary sources, never gray-market sourcing.`,
     x: CX + 240,
     y: CY + 110,
     radius: 22,

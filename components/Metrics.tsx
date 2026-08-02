@@ -1,5 +1,6 @@
 import { Reveal } from "./Reveal";
 import { CountUp } from "./CountUp";
+import { anchors } from "@/lib/generated/anchors";
 
 type Numeric = {
   to: number;
@@ -8,11 +9,47 @@ type Numeric = {
   note: string;
 };
 
+/**
+ * Every figure here is read from lib/generated/anchors.ts, and every one of
+ * them is a GLP-1 Picks number, which the eyebrow now says out loud. It used
+ * to publish a page total, a provider count and a partner count as portfolio
+ * figures "as of April", each of them well below what the anchor carries.
+ *
+ * There is no anchored total page count: the anchor records it as no-anchor,
+ * because a total is a property of the rendered sitemap and no sitemap
+ * snapshot is committed anywhere the generator can read. The anchor's own
+ * instruction is to sum the route families and name them, which is what the
+ * first tile does.
+ */
+const g = anchors.products.glp1picks.facts;
+
+const routeFamilyPages =
+  Number(g.providerCount.value) +
+  Number(g.comparisonPageCount.value) +
+  Number(g.stateGuideCount.value) +
+  Number(g.blogPostCount.value);
+
 const numbers: Numeric[] = [
-  { to: 960, suffix: "+", label: "Pages published", note: "Each tied to its sources" },
-  { to: 40, label: "Providers reviewed", note: "Scored on all-in monthly cost" },
-  { to: 51, label: "State-level guides", note: "Including Medicaid coverage detail" },
-  { to: 20, label: "Affiliate partners", note: "Disclosed on every relevant page" },
+  {
+    to: routeFamilyPages,
+    label: "Pages in four route families",
+    note: "Reviews, head-to-head comparisons, state guides, articles",
+  },
+  {
+    to: Number(g.providerCount.value),
+    label: "Providers reviewed",
+    note: "Scored on all-in monthly cost",
+  },
+  {
+    to: Number(g.stateGuideCount.value),
+    label: "State-level guides",
+    note: "Including Medicaid coverage detail",
+  },
+  {
+    to: Number(g.affiliatePartnerCount.value),
+    label: "Affiliate partners",
+    note: "Disclosed on every relevant page",
+  },
 ];
 
 export function Metrics() {
@@ -25,7 +62,7 @@ export function Metrics() {
               ¶
             </span>
             <span className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-muted">
-              Where we stand, as of April
+              GLP-1 Picks · Read from the index on {g.providerCount.asOf}
             </span>
           </div>
         </Reveal>
