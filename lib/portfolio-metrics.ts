@@ -43,7 +43,7 @@ export type PortfolioMetrics = {
 };
 
 export const portfolioMetrics: PortfolioMetrics = {
-  refreshedOn: "2026-08-01",
+  refreshedOn: "2026-08-02",
   cadence:
     "Refreshed weekly. Numbers are point-in-time and may lag the underlying systems by a day or two depending on data-source freshness.",
 
@@ -54,7 +54,7 @@ export const portfolioMetrics: PortfolioMetrics = {
     { label: "Email subscribers", value: "~65", context: "all audiences combined" },
     {
       label: "Affiliate revenue (30d)",
-      value: "$4,149",
+      value: "$3,849",
       context: "verified payouts, GLP-1 Picks only — other properties pre-monetization",
     },
   ],
@@ -74,15 +74,15 @@ export const portfolioMetrics: PortfolioMetrics = {
       metrics: [
         { label: "Providers reviewed", value: "53" },
         { label: "Pages indexed", value: "960+" },
-        { label: "Organic impressions", value: "40,534", context: "30-day window" },
-        { label: "Organic clicks", value: "716", context: "30-day window" },
-        { label: "Affiliate clicks", value: "3899", context: "30-day window via Katalys" },
-        { label: "Conversions", value: "16", context: "30-day window" },
-        { label: "Affiliate payout", value: "$4,149", context: "30-day window" },
-        { label: "EPC", value: "$1.06", context: "earnings per click" },
+        { label: "Organic impressions", value: "45,615", context: "30-day window" },
+        { label: "Organic clicks", value: "788", context: "30-day window" },
+        { label: "Affiliate clicks", value: "3917", context: "30-day window via Katalys" },
+        { label: "Conversions", value: "15", context: "30-day window" },
+        { label: "Affiliate payout", value: "$3,849", context: "30-day window" },
+        { label: "EPC", value: "$0.98", context: "earnings per click" },
         { label: "Email subscribers", value: "63" },
       ],
-      asOf: "2026-08-01",
+      asOf: "2026-08-02",
       note: "First conversion April 23, 2026 (Eden Health, $300). Unit economics are healthy at the click level; the constraint is organic visibility on commercial queries.",
     },
     {
