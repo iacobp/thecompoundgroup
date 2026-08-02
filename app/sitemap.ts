@@ -61,6 +61,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${BASE}/acquisition`,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${BASE}/atlas`,
       changeFrequency: "monthly",
       priority: 0.6,

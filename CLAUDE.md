@@ -274,9 +274,24 @@ server-rendered, static markup with no API calls, counters, or live dashboard
 logic. Its job is to make the operating model legible to a prospective
 acquirer without creating a second numbers surface.
 
+`/acquisition` is the dedicated public acquisition canvas. It is deliberately
+plain, semantic, and low-compute: the purpose is to make the operating model,
+transfer boundaries, human control points, and verification path clear to a
+potential acquirer. `app/acquisition/brief/route.ts` is its matching static
+machine-readable brief for agents and research tools. They state no operating
+figures; `/numbers` remains the single public operating-numbers surface.
+
+The acquisition canvas is an orientation layer, not a sale listing or a
+substitute for diligence. Never add a projection, promised return, live browser
+polling, or a claim that a loop runs autonomously. When the model changes,
+update the visual canvas and structured brief together. When figures change,
+update the generated ledger only.
+
 The division is strict:
 
 - `OperatingSystem` explains the repeatable loop and the human control points.
+- `/acquisition` explains what a future operator inherits and where a serious
+  diligence process begins.
 - `/numbers` is the only public surface for operating figures and links to the
   evidence trail.
 - Any new loop must be described here first, then get a generated measurement

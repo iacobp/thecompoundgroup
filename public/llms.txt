@@ -61,6 +61,8 @@ source-of-truth file and re-derived by an audit before this file can ship.
 - Portfolio map: https://thecompoundgroup.com/#map
 - The Atlas (illustrated portfolio map): https://thecompoundgroup.com/atlas
 - The ledger (revenue, search, forecast accuracy, incidents, spend): https://thecompoundgroup.com/numbers
+- Acquisition brief (operating model, transfer boundaries, and verification path): https://thecompoundgroup.com/acquisition
+- Machine-readable acquisition brief: https://thecompoundgroup.com/acquisition/brief
 - Approach and editorial standards: https://thecompoundgroup.com/#approach
 - Research methodology: https://thecompoundgroup.com/#research
 - Pricing analysis: https://thecompoundgroup.com/#audit

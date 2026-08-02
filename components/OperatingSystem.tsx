@@ -59,11 +59,11 @@ export function OperatingSystem() {
             </p>
 
             <Link
-              href="/numbers"
+              href="/acquisition"
               className="group mt-10 inline-flex items-baseline gap-3 text-cream hover:text-sage transition-colors"
             >
               <span className="font-display text-[22px] md:text-[26px] tracking-tightest">
-                Inspect the evidence trail
+                Inspect the operating canvas
               </span>
               <span aria-hidden className="transition-transform group-hover:translate-x-1">
                 →
