@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { Portfolio } from "@/components/Portfolio";
 import { PortfolioGraph } from "@/components/PortfolioGraph";
 import { LedgerCallout } from "@/components/LedgerCallout";
+import { OperatingSystem } from "@/components/OperatingSystem";
 import { PricingAudit } from "@/components/PricingAudit";
 import { ResearchFramework } from "@/components/ResearchFramework";
 import { BarqueSection } from "@/components/BarqueSection";
@@ -18,6 +19,7 @@ export default function Home() {
       <Portfolio />
       <PortfolioGraph />
       <LedgerCallout />
+      <OperatingSystem />
       <PricingAudit />
       <ResearchFramework />
       <BarqueSection />
