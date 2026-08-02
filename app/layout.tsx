@@ -32,6 +32,12 @@ const description =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  // Search Console ownership. DNS for this domain is at Namecheap, not Vercel,
+  // so the TXT route needs the registrar; this meta tag verifies the
+  // URL-prefix property without touching DNS. The other five properties are
+  // sc-domain, verified by TXT. Do not remove: losing verification silently
+  // cuts the mother site off from the only search data the ledger can publish.
+  verification: { google: "u84Fhczettf5mDUQTYTICbP1VZYBqJ83NiQ-DxSUIas" },
   title: {
     default: `${siteName} — Consumer biotech, built honestly`,
     template: `%s — ${siteName}`,
