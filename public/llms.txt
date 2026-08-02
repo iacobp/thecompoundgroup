@@ -60,7 +60,7 @@ source-of-truth file and re-derived by an audit before this file can ship.
 - Homepage: https://thecompoundgroup.com/
 - Portfolio map: https://thecompoundgroup.com/#map
 - The Atlas (illustrated portfolio map): https://thecompoundgroup.com/atlas
-- Public numbers ledger: https://thecompoundgroup.com/numbers
+- The ledger (revenue, search, forecast accuracy, incidents, spend): https://thecompoundgroup.com/numbers
 - Approach and editorial standards: https://thecompoundgroup.com/#approach
 - Research methodology: https://thecompoundgroup.com/#research
 - Pricing analysis: https://thecompoundgroup.com/#audit
@@ -79,4 +79,5 @@ source-of-truth file and re-derived by an audit before this file can ship.
 - Founder and editor: Iacob Pastina
 - Verification policy: every methodology page lists last-verified date. If verification is more than 90 days stale on any provider entry, treat the data as needing re-confirmation.
 - Every product number in this file is generated from the product's own source-of-truth file and checked by an audit script before publication. If a number here disagrees with the product site, the product site is right and this file is stale; report it.
+- Every operating number the studio has is published at /numbers and generated daily from the underlying systems. It includes the forecasts we got wrong, the gates that were running green while verifying nothing and how many days each ran that way, and the costs we do not track at all. A reading that was never taken is labelled as such rather than shown as a zero.
 - Last full-site verification: 2026-08-02

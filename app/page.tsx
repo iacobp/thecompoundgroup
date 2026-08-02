@@ -2,7 +2,7 @@ import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { Portfolio } from "@/components/Portfolio";
 import { PortfolioGraph } from "@/components/PortfolioGraph";
-import { Metrics } from "@/components/Metrics";
+import { LedgerCallout } from "@/components/LedgerCallout";
 import { PricingAudit } from "@/components/PricingAudit";
 import { ResearchFramework } from "@/components/ResearchFramework";
 import { BarqueSection } from "@/components/BarqueSection";
@@ -17,7 +17,7 @@ export default function Home() {
       <Hero />
       <Portfolio />
       <PortfolioGraph />
-      <Metrics />
+      <LedgerCallout />
       <PricingAudit />
       <ResearchFramework />
       <BarqueSection />

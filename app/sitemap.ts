@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { briefs } from "@/lib/barque-briefs";
 import { forecasts, raLog } from "@/lib/barque-data";
-import { portfolioMetrics } from "@/lib/portfolio-metrics";
+import { ledger } from "@/lib/generated/ledger";
 
 /**
  * Sitemap. Every route the site actually serves.
@@ -11,8 +11,8 @@ import { portfolioMetrics } from "@/lib/portfolio-metrics";
  * same deploy that publishes it. Nothing here is hardcoded.
  *
  * `lastModified` is always a real date out of the underlying data (a
- * brief's own date, a forecast's latest Ra run, the metrics refresh
- * stamp). Routes with no dated data source ship without a lastmod
+ * brief's own date, a forecast's latest Ra run, the date the ledger was
+ * generated). Routes with no dated data source ship without a lastmod
  * rather than with a build-time timestamp, which is what made the one
  * URL in the old sitemap look freshly changed on every deploy.
  */
@@ -41,7 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const latestRunDayOverall =
     runDays.length > 0 ? runDays[runDays.length - 1] : undefined;
 
-  const homeDays = [latestBriefDay, portfolioMetrics.refreshedOn]
+  const homeDays = [latestBriefDay, ledger.generatedAt]
     .filter((d): d is string => Boolean(d))
     .sort();
   const homeDay =
@@ -56,8 +56,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE}/numbers`,
-      lastModified: portfolioMetrics.refreshedOn,
-      changeFrequency: "weekly",
+      lastModified: ledger.generatedAt,
+      changeFrequency: "daily",
       priority: 0.8,
     },
     {

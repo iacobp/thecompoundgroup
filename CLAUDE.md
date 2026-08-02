@@ -1,6 +1,7 @@
 # The Compound mother site (thecompoundgroup.com)
 
 Anchor: lib/generated/anchors.ts
+Ledger: lib/generated/ledger.ts
 
 <!-- GATE W1 (thecompound/CLAUDE.md, Model Split canon 2026-08-01): a writing
      brief may only be issued for this product while the line above names an
@@ -82,18 +83,18 @@ Reference for the next session, so nobody re-derives it:
 
 | Surface | Reads |
 |---|---|
-| `components/Metrics.tsx` | glp1picks provider, state-guide, blog-post, comparison and partner counts. The page total is a named sum of four route families, not a sitemap count |
 | `components/PricingAudit.tsx` | `providerPrices` against `providerPriceCeiling`, every program with a tier table. The ones without are named, never plotted on the parity line |
 | `components/Portfolio.tsx`, `PortfolioGraph.tsx`, `Atlas.tsx` | provider, peptide and readout-window facts interpolated into the copy |
 | `components/thumbnails/GLP1PicksThumb.tsx` | top five by anchored `rank`, with anchored name, price and score |
 | `components/thumbnails/HRTPicksThumb.tsx` | top three by anchored `score`, with anchored name and transparency grade |
 | `components/thumbnails/BestPeptideForThatThumb.tsx` | editorial choice of which peptides appear, anchored grade for each. `anchorFact` throws at build if one leaves the index |
-| `lib/portfolio-metrics.ts` | every product fact. The live measurements stay plain string literals because `refresh-portfolio-metrics.py` rewrites them by regex |
+| `components/LedgerCallout.tsx` | nothing. It replaced the homepage metrics board on 2026-08-02 and states no number at all, only the ledger's generated date |
 | `public/llms.txt` | static literals that the audit forces to equal the anchor. It cannot import, so the gate is what keeps it honest |
 
 `components/CountUp.tsx` initialises to the target rather than to zero, so the
-server-rendered HTML carries the anchored figure. Before 2026-08-02 every
-Metrics tile served a zero to anything that did not run JavaScript.
+server-rendered HTML carries the real figure. Before 2026-08-02 every animated
+tile served a zero to anything that did not run JavaScript. It is now used only
+by the ledger headline on `/numbers`.
 
 ### `unanchored` is not a gap to paper over
 
@@ -179,17 +180,91 @@ read the run log. `gh` is not guaranteed to exist in a CCR container (measured
 missing 2026-07-29). Without it, say so and mark the anchor state UNVERIFIED
 rather than assuming it is current.
 
-## Other generated data
+## The ledger, and the one-surface rule
 
-`lib/portfolio-metrics.ts` powers `/numbers` and is refreshed by
-`barque/scripts/refresh-portfolio-metrics.py` inside `morning-sources.yml`. It
-carries live measurements: Katalys 30-day payouts, GSC 30-day organic, Resend
-audience sizes. Those are dated readings, not anchored facts, and the refresh
-only touches fields with a live source; hand-curated copy survives.
+**`/numbers` is the only page on this site permitted to state an operating
+number, and every number it states is read out of `lib/generated/ledger.ts`.**
 
-Product facts inside that file (provider counts, readout windows, app pricing)
-are NOT live measurements and are covered by the anchor rule like everything
-else. Several of them are in the debt baseline right now.
+That file is GENERATED, by `barque/scripts/generate-ledger.py`, on the same
+principle as the anchor: every figure is a fact about a private repo, this repo
+is public and cannot import from them, so a script runs where they are visible
+and writes one committed bridge file. Workflow
+`barque/.github/workflows/portfolio-ledger.yml`, daily at 11:52 UTC, after the
+Search Console snapshot at 06:11 and the glp1picks data snapshot at about 11:05.
+
+Eight sections: revenue and conversions, search performance per property,
+forecast accuracy, work-order throughput, what broke, content published and
+whether it ranked after 30 days, AI citation share, and spend. It grows by
+gaining a section. It does not spawn a route, because a number that lives in two
+places eventually disagrees with itself, and this site was in exactly that state
+until 2026-08-02 with portfolio scale stated across four surfaces on four dates.
+
+### Anchor or ledger, which one
+
+| | Anchor | Ledger |
+|---|---|---|
+| Carries | what a product IS: counts, prices, grades, readout windows | how the portfolio PERFORMED: dated readings |
+| Moves | when product data changes | every day |
+| Missing source | the generator refuses to write anything | the section is written as an absence and the page says so |
+| Read by | every component on the site | `/numbers` only |
+
+### The six states, which are the whole point
+
+`OK`, `EMPTY`, `NOT_FETCHED`, `NOT_CONNECTED`, `NOT_TRACKED`, `WITHHELD`. They
+exist so that "we did not look" can never render the same as "we looked and it
+was zero". Every reading carries one plus the file it came from and the date it
+was taken. `components/ledger/Primitives.tsx` renders an absent state as words,
+never as a figure, and there is no code path from a missing source to a zero.
+
+When you add a section, add its absent branches with the same key set as its
+success branch. The generated file declares a type, so a section that drops keys
+when its source disappears would break the mother-site build on the day a source
+disappears, which is the worst possible moment.
+
+### Partner-level EPC is published on purpose
+
+Per-partner clicks, conversions, payout and earnings per click are on the page.
+The operator decided this on 2026-08-01, having been told first that partner EPC
+is the single field a competitor could act on directly and that the closest
+competitor is run by a business partner.
+
+It is on a flag so reversing it is one edit rather than an excavation:
+`LEDGER_PUBLISH_PARTNER_EPC` in the generator, set in the workflow, default `1`.
+Set it to `0` and the very next run strips the rows from the public file. The
+section then renders `WITHHELD` with the reason, deliberately, because a section
+that disappears reads as a section that had nothing in it.
+
+### Where the ledger reads from
+
+| Section | Source |
+|---|---|
+| Revenue, partners | `glp1picks/docs/seo-snapshot.json` → `revenue_leverage`. Other properties have no committed reading and say so |
+| Search | `barque/data/gsc/<site>.json`, five properties. The mother site has no Search Console property and renders `NOT_CONNECTED` until `thecompound.json` appears, at which point it fills in with no code change |
+| Forecasts | `barque/forecasts.tsv` + `barque/resolutions.tsv`, wrong calls included with their write-ups |
+| Throughput | `barque/work-orders.tsv` + `barque/work-order-status.tsv`. Products this site does not name publicly are counted under "not yet announced" |
+| What broke | `barque/incidents.tsv`, hand-maintained, every row naming the fixing commit |
+| Content | `glp1picks/src/data/posts.ts` joined to the 28-day pages report |
+| AI citations | `glp1picks/docs/seo-snapshot.json` → GA4, folded per engine, never blended, with the known measurement defect published alongside |
+| Spend | `barque/spend.tsv`. One line measured, four declared untracked |
+
+`lib/portfolio-properties.ts` is the only hand-written half of `/numbers`, and it
+holds NO numbers: property names, one-liners, conversion events, notes and the
+methodology prose. If you want to add a number to it, that is the signal to add
+it to the generator instead.
+
+### The audit and the ledger
+
+`lib/generated/ledger.ts` sits in `ARCHIVE_PREFIXES` in the audit script, so
+findings inside it are WARN rather than ERROR. It quotes forecast resolution
+notes and incident write-ups verbatim, and those are dated documents: one of
+them says "all four peptides reviewed on 2026-07-23", a fact about an FDA
+meeting that reads to the matcher as a claim about our index size. Editing a
+record to satisfy a check is falsification. The cost is that a real
+contradiction inside the ledger warns rather than fails, which is tolerable only
+because the ledger's own figures are revenue, sessions, clicks and durations,
+none of which are anchor subjects. If a ledger section ever states a provider or
+peptide count as a figure, give it its own generated file rather than widening
+that list.
 
 ## The portfolio sync rule
 
@@ -203,7 +278,7 @@ updates in the same session. Grep the product name across all of:
 5. `app/layout.tsx` (SEO description plus JSON-LD subOrganization)
 6. `components/thumbnails/<ProductName>Thumb.tsx`
 7. `public/llms.txt`
-8. `lib/portfolio-metrics.ts`
+8. `lib/portfolio-properties.ts` (prose only, never a number)
 
 Thumbnails are editorial replicas of the real product hero, built in Tailwind.
 Browser-chrome mockup for web products, phone frame for mobile. Never stock

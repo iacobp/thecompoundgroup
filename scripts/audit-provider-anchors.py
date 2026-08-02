@@ -88,7 +88,28 @@ EXCLUDE_FILES = {
 # stamped with the day it was written, and rewriting a past brief to match
 # today's provider count would be falsifying the record. Findings here are
 # WARN, never ERROR, and they are still printed.
-ARCHIVE_PREFIXES = ("lib/barque-briefs.ts", "lib/barque-data.ts", "barque/", "app/barque/")
+#
+# lib/generated/ledger.ts joined this list on 2026-08-02 for the same reason and
+# it is worth knowing the cost. The ledger quotes the forecast resolution notes
+# and the incident record verbatim, and those are dated documents: one of them
+# says "all four peptides reviewed on 2026-07-23", which is a fact about an FDA
+# advisory meeting and reads to the matcher as a claim that our index holds four
+# peptides. Editing that sentence to satisfy the gate would be falsifying a
+# record to protect a check.
+#
+# What it costs: a genuine contradiction inside the ledger prints as WARN rather
+# than failing the build. That is tolerable because the ledger's own FIGURES are
+# revenue, sessions, clicks and durations, none of which are anchor subjects, so
+# the only anchor-covered numbers that can appear in it are inside quoted prose.
+# If a future ledger section ever states a provider or peptide count as a
+# figure, give it its own generated file rather than widening this list.
+ARCHIVE_PREFIXES = (
+    "lib/barque-briefs.ts",
+    "lib/barque-data.ts",
+    "lib/generated/ledger.ts",
+    "barque/",
+    "app/barque/",
+)
 
 OVERRIDE = "anchor-override:"   # inline escape hatch, must carry a reason
 

@@ -14,6 +14,8 @@ type CountUpProps = {
   to: number;
   /** Animation duration in ms. */
   duration?: number;
+  /** Optional prefix rendered before the number (e.g. "$"). */
+  prefix?: string;
   /** Optional suffix appended when complete (e.g. "+", "K"). */
   suffix?: string;
   /** Locale number formatting. */
@@ -35,6 +37,7 @@ type CountUpProps = {
 export function CountUp({
   to,
   duration = 1600,
+  prefix = "",
   suffix = "",
   format = true,
   className,
@@ -87,6 +90,7 @@ export function CountUp({
 
   return (
     <span ref={ref} className={className}>
+      {prefix}
       {format ? value.toLocaleString("en-US") : value}
       {suffix}
     </span>
