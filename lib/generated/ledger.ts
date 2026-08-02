@@ -796,7 +796,7 @@ export const ledger: LedgerFile = {
             "state": "NOT_CONNECTED",
             "source": "barque/data/gsc/thecompound.json",
             "asOf": "2026-08-02",
-            "note": "thecompoundgroup.com is not yet one of the properties the reader service account holds in Search Console. The connection is in progress. Until the snapshot file appears, this row stays not-connected rather than showing zeros, because a missing source and a measured zero are not the same reading."
+            "note": "No Search Console snapshot is committed for this property, so this ledger has no reading to publish for it. That is a missing file, not a measured zero, and the row says so rather than showing zeros. It fills in on its own the day barque/data/gsc/thecompound.json appears, which needs thecompoundgroup.com added to the SITES table in barque/scripts/gsc-snapshot.py. When it does appear, expect a genuine zero baseline rather than history: this site published exactly one URL in its sitemap until 2026-08-02 while about 112 pages were live and returning 200, the Barque log among them."
           },
           "figures": []
         }
