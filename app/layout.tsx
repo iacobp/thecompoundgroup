@@ -90,11 +90,22 @@ export const metadata: Metadata = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
   name: "The Compound Group",
   alternateName: "CG",
   url: siteUrl,
   description,
   foundingDate: "2026",
+  founder: {
+    "@type": "Person",
+    "@id": `${siteUrl}/#iacob-pastina`,
+    name: "Iacob Pastina",
+    jobTitle: "Independent Researcher & Publisher",
+    sameAs: [
+      "https://www.linkedin.com/in/iacob-pa%C8%99tina-781743133/",
+      "https://github.com/iacobp",
+    ],
+  },
   subOrganization: [
     {
       "@type": "Organization",

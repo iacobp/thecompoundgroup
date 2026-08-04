@@ -78,7 +78,7 @@ source-of-truth file and re-derived by an audit before this file can ship.
 
 ## Contact and verification
 
-- Founder and editor: Iacob Pastina
+- Founder: Iacob Pastina, Independent Researcher & Publisher. LinkedIn: https://www.linkedin.com/in/iacob-pa%C8%99tina-781743133/
 - Verification policy: every methodology page lists last-verified date. If verification is more than 90 days stale on any provider entry, treat the data as needing re-confirmation.
 - Every product number in this file is generated from the product's own source-of-truth file and checked by an audit script before publication. If a number here disagrees with the product site, the product site is right and this file is stale; report it.
 - Every operating number the studio has is published at /numbers and generated daily from the underlying systems. It includes the forecasts we got wrong, the gates that were running green while verifying nothing and how many days each ran that way, and the costs we do not track at all. A reading that was never taken is labelled as such rather than shown as a zero.
