@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { forecasts } from "./barque-data";
 
 /**
  * Barque · Dawn Briefs
@@ -167,6 +168,26 @@ function splitSections(body: string): Record<string, string> {
  * format (`**forecast-id: holds 0.55.**`) doesn't supply an explicit name
  * the way the legacy `### Entity (id)` header did.
  */
+/**
+ * The ids that actually have an arc page under `/barque/forecasts/[id]`.
+ *
+ * `generateStaticParams` on that route builds one page per row of
+ * `barque/forecasts.tsv`, so anything the brief parser invents outside this
+ * set is a link to a page that was never generated. That is not theoretical:
+ * Ra closes each forecast paragraph with a council summary line, and
+ * `**Curator: holds 0.55.**` has the exact shape of the inline update marker
+ * `**forecast-id: holds 0.55.**`. It parsed as a seventh forecast on every
+ * brief that used the phrasing, each one linking to
+ * `/barque/forecasts/Curator`, which 404s. The portfolio maintenance sweep
+ * caught it on 2026-08-04.
+ *
+ * Matching against the real forecast set rather than blocklisting the five
+ * council names (Historian, Skeptic, Bayesian, Augur, Curator) is deliberate:
+ * a new voice, or any other bolded `Word: holds 0.55.` phrasing, is caught by
+ * the same rule without anyone remembering to add it.
+ */
+const FORECAST_IDS = new Set(forecasts.map((f) => f.id));
+
 function humanizeForecastId(id: string): string {
   return id
     .split("-")
@@ -221,6 +242,7 @@ function parseSignalDetail(text: string): ForecastUpdate[] {
     if (!head) continue;
     const entity = head[1].trim();
     const forecastId = head[2].trim();
+    if (!FORECAST_IDS.has(forecastId)) continue;
     const rest = sub.slice(head[0].length);
     const prob = rest.match(
       /\*\*\s*([\d.]+)\s*→\s*([\d.]+)\s*\*\*(?:\s*·\s*delta\s*([-+]?[\d.]+))?/,
@@ -311,8 +333,15 @@ function parseSignalDetail(text: string): ForecastUpdate[] {
     }
   }
 
+  // The prose boundary is still taken across EVERY hit, including the ones
+  // dropped below. A council summary sits at the end of the paragraph it
+  // summarises, so it already terminates that forecast's signal prose. Filter
+  // before this loop and the summary sentence would be swallowed into the
+  // preceding forecast's text across the whole published archive, which is a
+  // content edit rather than a link fix.
   for (let i = 0; i < hits.length; i++) {
     const h = hits[i];
+    if (!FORECAST_IDS.has(h.forecastId)) continue;
     const nextStart = i + 1 < hits.length ? hits[i + 1].start : text.length;
     const signalRaw = text.slice(h.end, nextStart).trim();
     // Trim trailing horizontal-rule / sibling-subheading noise that may
