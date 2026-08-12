@@ -32,26 +32,16 @@ export function Footer() {
             </h2>
 
             <MagneticButton
-              href="mailto:hello@thecompoundgroup.com"
-              ariaLabel="Email hello@thecompoundgroup.com"
+              href="mailto:thecompoundgroupco@gmail.com"
+              ariaLabel="Email thecompoundgroupco@gmail.com"
               strength={0.25}
               className="font-display italic text-cream text-[20px] sm:text-[24px] md:text-[32px] link-line break-all"
             >
               <span className="inline-flex items-center gap-3">
-                hello@thecompoundgroup.com
+                thecompoundgroupco@gmail.com
                 <span aria-hidden className="text-[0.6em] opacity-70">→</span>
               </span>
             </MagneticButton>
-
-            <p className="mt-6 text-[13px] md:text-[14px] text-cream/60">
-              Or write direct:{" "}
-              <a
-                href="mailto:thecompoundgroupco@gmail.com"
-                className="link-line break-all text-cream/85"
-              >
-                thecompoundgroupco@gmail.com
-              </a>
-            </p>
 
             <p className="mt-10 max-w-[52ch] text-[14px] md:text-[15px] leading-[1.7] text-cream/65">
               The inbox is read by a human — a single principal, working with
