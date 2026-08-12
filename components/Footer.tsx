@@ -43,6 +43,16 @@ export function Footer() {
               </span>
             </MagneticButton>
 
+            <p className="mt-6 text-[13px] md:text-[14px] text-cream/60">
+              Or write direct:{" "}
+              <a
+                href="mailto:thecompoundgroupco@gmail.com"
+                className="link-line break-all text-cream/85"
+              >
+                thecompoundgroupco@gmail.com
+              </a>
+            </p>
+
             <p className="mt-10 max-w-[52ch] text-[14px] md:text-[15px] leading-[1.7] text-cream/65">
               The inbox is read by a human — a single principal, working with
               AI-assisted engineering and content teams. Most inbound messages
