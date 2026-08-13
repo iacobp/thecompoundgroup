@@ -41,7 +41,7 @@ export type UnanchoredFact = {
 };
 
 export const anchors = {
-  "generatedAt": "2026-08-12",
+  "generatedAt": "2026-08-13",
   "generatedBy": "barque/scripts/generate-portfolio-anchors.py",
   "products": {
     "glp1picks": {
@@ -51,34 +51,34 @@ export const anchors = {
       "anchor": "src/data/providers.ts",
       "facts": {
         "providerCount": {
-          "value": 53,
+          "value": 54,
           "source": "src/data/providers.ts",
           "derivedBy": "count of top-level records in `export const providers`",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "affiliatePartnerCount": {
           "value": 30,
           "source": "src/data/providers.ts",
           "derivedBy": "providers whose affiliateUrl carries a tracking domain, mirroring isAffiliatePartner() in the anchor",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "comparisonPageCount": {
-          "value": 1378,
+          "value": 1431,
           "source": "src/data/providers.ts",
           "derivedBy": "every unordered provider pair, n*(n-1)/2, the /compare route family",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "stateGuideCount": {
           "value": 51,
           "source": "src/data/states.ts",
           "derivedBy": "count of top-level records in `export const states`",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "blogPostCount": {
           "value": 44,
           "source": "src/data/posts.ts",
           "derivedBy": "count of top-level records in `export const posts`",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "providerPrices": {
           "value": {
@@ -122,10 +122,11 @@ export const anchors = {
             "sesame-care": 59,
             "shed": 199,
             "skinnyrx": 199,
+            "snagrx": 69,
             "sprout-health": 199,
             "strut-health": 99,
             "synergyrx": 199,
-            "telos-rx": 249,
+            "telos-rx": 99,
             "tmates": 158,
             "tonik-wellness": 149,
             "trimi": 175,
@@ -138,7 +139,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the headline `price` field per provider slug, in USD per month",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "providerScores": {
           "value": {
@@ -182,10 +183,11 @@ export const anchors = {
             "sesame-care": 7.9,
             "shed": 7.8,
             "skinnyrx": 5.3,
+            "snagrx": 3.9,
             "sprout-health": 5.8,
             "strut-health": 6.2,
             "synergyrx": 7.6,
-            "telos-rx": 4.0,
+            "telos-rx": 5.3,
             "tmates": 7.8,
             "tonik-wellness": 7.6,
             "trimi": 4.2,
@@ -198,7 +200,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the methodology `score` field per provider slug, out of 10",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "providerRanks": {
           "value": {
@@ -221,16 +223,16 @@ export const anchors = {
             "gala": 36,
             "gobymeds": 2,
             "goodrx-care": 46,
-            "healthrx": 49,
+            "healthrx": 50,
             "henry-meds": 3,
             "hers": 32,
             "hims": 7,
             "hone-health": 35,
             "ivim-health": 6,
             "lemonaid-health": 39,
-            "livbody": 53,
+            "livbody": 54,
             "mangorx": 24,
-            "maximus": 50,
+            "maximus": 51,
             "medvi": 18,
             "mochi-health": 16,
             "mystart-health": 19,
@@ -242,13 +244,14 @@ export const anchors = {
             "sesame-care": 5,
             "shed": 13,
             "skinnyrx": 48,
+            "snagrx": 53,
             "sprout-health": 47,
             "strut-health": 45,
             "synergyrx": 20,
-            "telos-rx": 52,
+            "telos-rx": 49,
             "tmates": 12,
             "tonik-wellness": 21,
-            "trimi": 51,
+            "trimi": 52,
             "trimrx": 9,
             "weightwatchers": 26,
             "wellorithm": 27,
@@ -258,7 +261,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the `rank` field per provider slug, so a leaderboard replica orders itself the way the product does instead of freezing a past order",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "providerPriceCeiling": {
           "value": {
@@ -297,7 +300,7 @@ export const anchors = {
             "skinnyrx": 299,
             "sprout-health": 375,
             "strut-health": 199,
-            "telos-rx": 449,
+            "telos-rx": 139,
             "tmates": 249,
             "tonik-wellness": 349,
             "trimi": 235,
@@ -310,7 +313,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the highest `price` inside the provider's own `pricingTiers` array, the top of the monthly range that program publishes for itself. Providers declaring no pricingTiers are absent, not defaulted",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "providerNames": {
           "value": {
@@ -354,6 +357,7 @@ export const anchors = {
             "sesame-care": "Sesame Care",
             "shed": "Shed",
             "skinnyrx": "SkinnyRx",
+            "snagrx": "SnagRx",
             "sprout-health": "Sprout Health",
             "strut-health": "Strut Health",
             "synergyrx": "SynergyRx",
@@ -370,19 +374,19 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the display `name` field per provider slug, so a chart labelled by name can be matched back to the anchor",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         }
       },
       "unanchored": {
         "pagesPublished": {
           "state": "no-anchor",
           "reason": "No anchor file states a total page count. The number is a property of the rendered sitemap, which needs a build, and no sitemap snapshot is committed anywhere the generator can read. Sum the route families instead (providerCount + comparisonPageCount + stateGuideCount + blogPostCount) and say which families you summed, or state no total.",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "pagesIndexed": {
           "state": "no-anchor",
           "reason": "Indexed-page counts come from Search Console, not from an anchor. barque/data/gsc/glp1picks.json holds the pages report; it measures pages with impressions, which is a different quantity from pages published, and it is a dated reading rather than a canonical fact.",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         }
       }
     },
@@ -396,25 +400,25 @@ export const anchors = {
           "value": 16,
           "source": "src/data/providers.ts",
           "derivedBy": "count of top-level records in `export const providers`",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "affiliatePartnerCount": {
           "value": 6,
           "source": "src/data/providers.ts",
           "derivedBy": "providers whose affiliateUrl carries a tracking domain, mirroring isAffiliatePartner() in the anchor",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "womensWingCount": {
           "value": 13,
           "source": "src/data/providers.ts",
           "derivedBy": "providers with wing \"women\" or \"both\"",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "mensWingCount": {
           "value": 5,
           "source": "src/data/providers.ts",
           "derivedBy": "providers with wing \"men\" or \"both\"",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "transparencyGrades": {
           "value": {
@@ -425,7 +429,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "distribution of the transparencyGrade field",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "providerNames": {
           "value": {
@@ -448,7 +452,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the display `name` field per provider slug",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "providerScores": {
           "value": {
@@ -471,7 +475,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the methodology `score` field per provider slug, out of 10",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "providerGrades": {
           "value": {
@@ -494,7 +498,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the transparencyGrade field per provider slug, A to F",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         }
       },
       "unanchored": {}
@@ -509,7 +513,7 @@ export const anchors = {
           "value": 46,
           "source": "src/data/peptides.ts",
           "derivedBy": "count of top-level records in `export const peptides`",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "evidenceGrades": {
           "value": {
@@ -521,7 +525,7 @@ export const anchors = {
           },
           "source": "src/data/peptides.ts",
           "derivedBy": "distribution of the evidenceGrade field",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "peptideGrades": {
           "value": {
@@ -574,13 +578,13 @@ export const anchors = {
           },
           "source": "src/data/peptides.ts",
           "derivedBy": "the evidenceGrade field per peptide display name, so a page naming a peptide reads its grade instead of remembering one",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "pcacDocketCount": {
           "value": 7,
           "source": "src/data/peptides.ts",
           "derivedBy": "peptides carrying a pcacVote record",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         }
       },
       "unanchored": {}
@@ -595,13 +599,13 @@ export const anchors = {
           "value": 4,
           "source": "src/data/pipeline.ts",
           "derivedBy": "count of top-level records in `export const programmes`",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "meow1ReadoutWindow": {
           "value": "Summer 2027",
           "source": "src/data/pipeline.ts",
           "derivedBy": "readoutWindow of the okv-119 programme, whose trialName is MEOW-1",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "readoutWindows": {
           "value": {
@@ -611,7 +615,7 @@ export const anchors = {
           },
           "source": "src/data/pipeline.ts",
           "derivedBy": "readoutWindow per programme slug",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "trialNames": {
           "value": {
@@ -619,7 +623,7 @@ export const anchors = {
           },
           "source": "src/data/pipeline.ts",
           "derivedBy": "trialName per programme slug",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         }
       },
       "unanchored": {}
@@ -634,31 +638,31 @@ export const anchors = {
           "value": 32,
           "source": "lib/constants.ts",
           "derivedBy": "COMPOUND_COUNT, the preloaded library size, which takes no plus sign",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "priceMonthlyUsd": {
           "value": 9.99,
           "source": "lib/constants.ts",
           "derivedBy": "PRICE_MONTHLY_USD",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "priceYearlyUsd": {
           "value": 49.99,
           "source": "lib/constants.ts",
           "derivedBy": "PRICE_YEARLY_USD",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "trialDays": {
           "value": 7,
           "source": "lib/constants.ts",
           "derivedBy": "TRIAL_DAYS",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         },
         "appStoreId": {
           "value": "6766338584",
           "source": "lib/constants.ts",
           "derivedBy": "APP_STORE_ID",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         }
       },
       "unanchored": {}
@@ -673,7 +677,7 @@ export const anchors = {
         "facialMarkerCount": {
           "state": "no-anchor",
           "reason": "Revolume declares no anchor: it is absent from barque/registry.yml, has no CLAUDE.md and no audit script. Its own copy states both fifteen and sixteen markers on different pages, so there is no value here that could be promoted to a fact without picking one arbitrarily. Observed: components/sample/data.ts holds 15 demo markers. Give Revolume an anchor before the mother site states a marker count.",
-          "asOf": "2026-08-12"
+          "asOf": "2026-08-13"
         }
       }
     }

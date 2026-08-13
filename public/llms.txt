@@ -20,7 +20,7 @@ Five are live. This file listed one of them until 2026-08-02, and described two
 of the live ones as planned. Every count below is read from each product's own
 source-of-truth file and re-derived by an audit before this file can ship.
 
-- [GLP-1 Picks](https://glp1picks.com): The independent comparison of 53 GLP-1 telehealth programs in the U.S. market. Ranked on three pillars: full annual cost (the way patients actually pay), clinical care quality and credentialing, and pricing transparency. Affiliate disclosures on every page. Methodology published in full.
+- [GLP-1 Picks](https://glp1picks.com): The independent comparison of 54 GLP-1 telehealth programs in the U.S. market. Ranked on three pillars: full annual cost (the way patients actually pay), clinical care quality and credentialing, and pricing transparency. Affiliate disclosures on every page. Methodology published in full.
 - [HRT Picks](https://hrtpicks.com): Independent comparison of 16 hormone telehealth providers across two wings, women's menopause HRT at the front door and men's TRT alongside it. Scored on a five-dimension methodology, with a Price Transparency Grade from A to F on every provider that no other comparison in the category publishes. Verified prices, no pay-for-placement.
 - [GLP-1 Pets](https://glp1pets.com): Independent tracker for veterinary GLP-1 weight-loss drugs. Okava's MEOW-1 cat trial of an exenatide-releasing implant reads out Summer 2027.
   Akston's AKS-562c is at Cornell with a readout window of H2 2026. Nothing in the class is approved and nothing is purchasable, which the site says on every page.
