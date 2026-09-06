@@ -239,7 +239,7 @@ that disappears reads as a section that had nothing in it.
 | Section | Source |
 |---|---|
 | Revenue, partners | `glp1picks/docs/seo-snapshot.json` → `revenue_leverage`. Other properties have no committed reading and say so |
-| Search | `barque/data/gsc/<site>.json`, five properties. The mother site has no Search Console property and renders `NOT_CONNECTED` until `thecompound.json` appears, at which point it fills in with no code change |
+| Search | `barque/data/gsc/<site>.json`, six properties. The mother site is now connected: `thecompound.json` appeared and filled in with no code change, exactly as designed. Snapshot 2026-09-05 carries 5 OK reports and 5 EMPTY, 0 NOT_FETCHED. EMPTY here means a small site with nothing in that window, never a broken bridge |
 | Forecasts | `barque/forecasts.tsv` + `barque/resolutions.tsv`, wrong calls included with their write-ups |
 | Throughput | `barque/work-orders.tsv` + `barque/work-order-status.tsv`. Products this site does not name publicly are counted under "not yet announced" |
 | What broke | `barque/incidents.tsv`, hand-maintained, every row naming the fixing commit |
