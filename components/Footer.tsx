@@ -97,7 +97,7 @@ export function Footer() {
                     </span>
                   </div>
                   <div className="text-[12px] text-cream/55 mt-1">
-                    Hormone telehealth comparison — Live
+                    Menopause HRT · Men’s TRT · Live
                   </div>
                 </a>
               </li>

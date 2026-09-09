@@ -92,7 +92,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://hrtpicks.com",
     description:
-      `Independent comparison of ${anchorValue("hrtpicks", "providerCount")} hormone telehealth providers across two wings, women's menopause HRT and men's TRT, scored on a five-dimension methodology, with a Price Transparency Grade (A to F) on every provider. Verified prices, no pay-for-placement. The estradiol patch shortage tracked in real time.`,
+      "Separate menopause HRT and men's TRT journeys with matching treatment finders, costs, insurance guidance and provider reviews. A shared five-dimension scoring methodology and Price Transparency Grades support both. Review plans link directly to the relevant provider options.",
     x: CX - 320,
     y: CY + 30,
     radius: 22,

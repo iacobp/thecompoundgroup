@@ -118,10 +118,7 @@ const organizationJsonLd = {
       name: "HRT Picks",
       url: "https://hrtpicks.com",
       description:
-        `Independent comparison of HRT and TRT telehealth providers. ${anchorValue(
-          "hrtpicks",
-          "providerCount",
-        )} providers scored on a five-dimension methodology, with a Price Transparency Grade (A to F) and verified prices on every page.`,
+        "Independent hormone telehealth comparison with separate menopause HRT and men's TRT journeys. Matching treatment finders, cost and insurance guidance, provider reviews, and Price Transparency Grades.",
     },
     {
       "@type": "Organization",

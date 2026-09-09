@@ -59,10 +59,7 @@ const items: PortfolioItem[] = [
     name: "HRT Picks",
     tagline:
       "The independent hormone-care comparison — verified prices, transparency grades, and a rank no provider can buy.",
-    body: `In November 2025 the FDA removed black-box warnings from six menopausal hormone therapy products; demand doubled within months and the estradiol patch went into nationwide shortage. We compare ${anchorValue(
-      "hrtpicks",
-      "providerCount",
-    )} hormone telehealth providers across two wings, women's menopause HRT at the front door and men's TRT alongside it, on a five-dimension methodology, and grade every provider's pricing candor from A to F with a Price Transparency Grade no other comparison publishes. Verified prices, affiliate disclosures on every page, no pay-for-placement. The score is methodology-driven; affiliate status never moves the rank.`,
+    body: `In November 2025 the FDA removed black-box warnings from six menopausal hormone therapy products; demand doubled within months and the estradiol patch went into nationwide shortage. We compare hormone telehealth providers through separate menopause HRT and men's TRT journeys, each with a treatment finder, costs, insurance guidance and provider reviews, on a five-dimension methodology, and grade every provider's pricing candor from A to F with a Price Transparency Grade no other comparison publishes. Verified prices, affiliate disclosures on every page, no pay-for-placement. The score is methodology-driven; affiliate status never moves the rank.`,
     status: "live",
     mode: "built",
     href: "https://hrtpicks.com",
