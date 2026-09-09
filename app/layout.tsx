@@ -118,7 +118,7 @@ const organizationJsonLd = {
       name: "HRT Picks",
       url: "https://hrtpicks.com",
       description:
-        "Independent hormone telehealth comparison with separate menopause HRT and men's TRT journeys. Matching treatment finders, cost and insurance guidance, provider reviews, and Price Transparency Grades.",
+        "Approved hormone telehealth affiliate partners compared through separate menopause HRT and men's TRT journeys, with treatment finders, cost and insurance guidance, provider reviews and transparency grades.",
     },
     {
       "@type": "Organization",

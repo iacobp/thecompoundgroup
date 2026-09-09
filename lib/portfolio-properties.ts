@@ -56,7 +56,7 @@ export const portfolioProperties: PortfolioProperty[] = [
     url: "https://hrtpicks.com",
     status: "live",
     oneLiner:
-      "Separate menopause HRT and men’s TRT journeys with matching finders, comparison tools, direct treatment links and provider transparency grades.",
+      "Approved affiliate partners compared through separate menopause HRT and men’s TRT journeys, with matching finders, comparison tools and transparency grades.",
     conversionEvent: "Affiliate sign-up at a partner provider",
     note: "Relaunched on the purchased domain on 6 July 2026. Affiliate partners are live and the per-site revenue split shipped on 1 August, but nothing yet writes a revenue reading for this property into a file the ledger can read. The revenue row therefore says not connected rather than zero.",
   },

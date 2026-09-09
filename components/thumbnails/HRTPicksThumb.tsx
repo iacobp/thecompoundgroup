@@ -11,11 +11,11 @@ export function HRTPicksThumb() {
         <div className="flex rounded-md border border-[#D4C8B4] p-0.5"><span className="rounded bg-[#254D3E] px-2 py-1 text-white">Menopause HRT</span><span className="px-2 py-1">Men’s TRT</span></div>
       </div>
       <div className="px-5 pt-4">
-        <p className="text-[8px] font-semibold text-[#254D3E]">Menopause HRT · Independent comparisons</p>
+        <p className="text-[8px] font-semibold text-[#254D3E]">Menopause HRT · Approved partners</p>
         <p className="mt-2 max-w-[240px] text-[23px] leading-[1.08] tracking-tight">Find your online HRT price in 30 seconds</p>
         <p className="mt-2 text-[8px] leading-relaxed text-ink/65">Compare treatment, delivery method and cost.</p>
         <div className="mt-3 rounded-lg border border-[#D4C8B4] p-3">
-          <p className="text-[7px] uppercase tracking-widest text-ink/60">All-in monthly price finder</p>
+          <p className="text-[7px] uppercase tracking-widest text-ink/60">Approved partner price finder</p>
           <div className="mt-2 grid grid-cols-2 gap-2 text-[9px]"><div><p className="mb-1 text-[7px] text-ink/60">Hormone</p><p className="rounded border border-[#D4C8B4] px-2 py-2">Estradiol <span className="float-right">⌄</span></p></div><div><p className="mb-1 text-[7px] text-ink/60">Delivery</p><p className="rounded border border-[#D4C8B4] px-2 py-2">Any route <span className="float-right">⌄</span></p></div></div>
         </div>
         <div className="mt-3 flex justify-between text-[8px] text-[#254D3E]"><span>Compare providers →</span><span>Costs &amp; insurance →</span></div>

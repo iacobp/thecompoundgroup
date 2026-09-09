@@ -92,7 +92,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://hrtpicks.com",
     description:
-      "Separate menopause HRT and men's TRT journeys with matching treatment finders, costs, insurance guidance and provider reviews. A shared five-dimension scoring methodology and Price Transparency Grades support both. Review plans link directly to the relevant provider options.",
+      "Approved affiliate partners compared through separate menopause HRT and men's TRT journeys, with treatment finders, costs, insurance guidance and provider reviews. Approval governs catalog inclusion; published scoring and transparency grades remain evidence-based.",
     x: CX - 320,
     y: CY + 30,
     radius: 22,
