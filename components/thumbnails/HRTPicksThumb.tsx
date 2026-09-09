@@ -12,11 +12,11 @@ export function HRTPicksThumb() {
       </div>
       <div className="px-5 pt-4">
         <p className="text-[8px] font-semibold text-[#254D3E]">Menopause HRT · Approved partners</p>
-        <p className="mt-2 max-w-[240px] text-[23px] leading-[1.08] tracking-tight">Find your online HRT price in 30 seconds</p>
+        <p className="mt-2 max-w-[240px] text-[23px] font-bold leading-[1.04] tracking-tight">Find your online HRT price <em className="block text-[#0d6e5f]">in 30 seconds</em></p>
         <p className="mt-2 text-[8px] leading-relaxed text-ink/65">Compare treatment, delivery method and cost.</p>
-        <div className="mt-3 rounded-lg border border-[#D4C8B4] p-3">
-          <p className="text-[7px] uppercase tracking-widest text-ink/60">Approved partner price finder</p>
-          <div className="mt-2 grid grid-cols-2 gap-2 text-[9px]"><div><p className="mb-1 text-[7px] text-ink/60">Hormone</p><p className="rounded border border-[#D4C8B4] px-2 py-2">Estradiol <span className="float-right">⌄</span></p></div><div><p className="mb-1 text-[7px] text-ink/60">Delivery</p><p className="rounded border border-[#D4C8B4] px-2 py-2">Any route <span className="float-right">⌄</span></p></div></div>
+        <div className="mt-3 overflow-hidden rounded-lg border border-[#D4C8B4] bg-[#fffdf9]">
+          <p className="bg-[#274a3c] px-3 py-2 text-[7px] font-semibold uppercase tracking-widest text-[#faf8f4]">Approved partner price finder</p>
+          <div className="grid grid-cols-2 gap-2 p-3 text-[9px]"><div><p className="mb-1 text-[7px] text-ink/60">Hormone</p><p className="rounded border border-[#D4C8B4] px-2 py-2">Estradiol <span className="float-right">⌄</span></p></div><div><p className="mb-1 text-[7px] text-ink/60">Delivery</p><p className="rounded border border-[#D4C8B4] px-2 py-2">Any route <span className="float-right">⌄</span></p></div></div>
         </div>
         <div className="mt-3 flex justify-between text-[8px] text-[#254D3E]"><span>Compare providers →</span><span>Costs &amp; insurance →</span></div>
       </div>
