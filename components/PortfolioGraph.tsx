@@ -80,7 +80,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://glp1picks.com",
     description:
-      `Independent comparison of ${anchorValue("glp1picks", "providerCount")} GLP-1 telehealth programs. Ranked by annual cost, clinical credentialing, and pricing transparency, with affiliate disclosures on every page.`,
+      `Independent comparison of ${anchorValue("glp1picks", "providerCount")} approved GLP-1 partner programs, with independent scores and reviews of costs, clinical care and transparency. Partnership determines inclusion, not scores.`,
     x: CX - 220,
     y: CY - 120,
     radius: 24,

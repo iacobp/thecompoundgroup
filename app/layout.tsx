@@ -111,7 +111,7 @@ const organizationJsonLd = {
       "@type": "Organization",
       name: "GLP-1 Picks",
       url: "https://glp1picks.com",
-      description: "Independent GLP-1 telehealth provider comparison.",
+      description: "Independent reviews of approved GLP-1 telehealth partners, comparing costs, care and transparency.",
     },
     {
       "@type": "Organization",

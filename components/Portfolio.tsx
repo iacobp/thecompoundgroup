@@ -38,11 +38,11 @@ const items: PortfolioItem[] = [
     num: "I",
     name: "GLP-1 Picks",
     tagline:
-      "A clear-eyed comparison of the major GLP-1 telehealth programs, priced the way a patient actually pays for them.",
+      "Compare GLP-1 partner programs by cost, care and transparency.",
     body: `We review ${anchorValue(
       "glp1picks",
       "providerCount",
-    )} GLP-1 telehealth programs on three dimensions: the full monthly cost over a typical year, the quality and credentials of the clinical care, and the transparency of the program's pricing structure. The scoring methodology is published in full, the affiliate relationships are disclosed on every page, and the rankings follow directly from the methodology. When we earn a commission on a visit, the page you're reading says so.`,
+    )} approved GLP-1 partner programs using a published scoring methodology. Reviews cover full costs, clinical care and pricing transparency. Partnership determines which providers appear; it does not determine their scores. The scoring methodology is published in full, the affiliate relationships are disclosed on every page, and the rankings follow directly from the methodology. When we earn a commission on a visit, the page you're reading says so.`,
     status: "live",
     mode: "built",
     href: "https://glp1picks.com",
