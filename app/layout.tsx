@@ -123,9 +123,9 @@ const organizationJsonLd = {
     {
       "@type": "Organization",
       name: "GLP-1 Pets",
-      url: "https://glp1pets.com",
+      url: "https://www.glp1pets.com",
       description:
-        "Independent tracker for veterinary GLP-1 weight loss drugs — Okava MEOW-1 cat trial, Akston AKS-562c at Cornell, the canine pipeline.",
+        "Independent pet GLP-1 trial tracker with dog and cat body-condition tools and a dog food portion and cost calculator.",
     },
     {
       "@type": "Organization",

@@ -139,9 +139,9 @@ const initialNodes: GraphNode[] = [
     label: "GLP-1 Pets",
     sub: "Live",
     kind: "live",
-    href: "https://glp1pets.com",
+    href: "https://www.glp1pets.com",
     description:
-      `Independent tracker for veterinary GLP-1 weight loss drugs. Okava's MEOW-1 cat trial (${petReadouts["okv-119"]} readout), Akston AKS-562c at Cornell (${petReadouts["aks-562c"]}), and the road to canine GLP-1. Same methodology, applied to the pet chemistry class.`,
+      `Independent tracker for veterinary GLP-1 weight loss drugs. Okava's MEOW-1 cat trial (${petReadouts["okv-119"]} readout), Akston AKS-562c at Cornell (${petReadouts["aks-562c"]}), and the road to canine GLP-1. Includes body-condition tools and a dog food portion and cost calculator with a printable veterinary-visit summary.`,
     x: CX + 290,
     y: CY - 40,
     radius: 22,

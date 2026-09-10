@@ -103,7 +103,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://glp1pets.com"
+                  href="https://www.glp1pets.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group block border-b border-cream/15 pb-4 hover:border-cream/60 transition-colors"
@@ -120,7 +120,7 @@ export function Footer() {
                     </span>
                   </div>
                   <div className="text-[12px] text-cream/55 mt-1">
-                    Veterinary GLP-1 tracker — Live
+                    Pet GLP-1 trials · Food portions & cost
                   </div>
                 </a>
               </li>

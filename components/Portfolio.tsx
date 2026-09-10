@@ -75,15 +75,15 @@ const items: PortfolioItem[] = [
     num: "III",
     name: "GLP-1 Pets",
     tagline:
-      "The first dedicated tracker for veterinary GLP-1 — same methodology as the human-side index, applied to the pet chemistry class.",
+      "Independent pet GLP-1 trial coverage and practical weight-management tools for owners.",
     body: `Sixty-one percent of US cats and fifty-nine percent of US dogs are overweight or obese (APOP). The pharmaceutical answer is still in trials. Okava's MEOW-1 study of an exenatide-releasing implant in cats reads out ${
       petReadouts["okv-119"]
     }, and Akston Biosciences is running a once-weekly injection at Cornell with a readout window of ${
       petReadouts["aks-562c"]
-    }. Neither is approved and neither is something an owner can buy. We track every trial milestone, regulatory action and pricing signal, and tell readers what works today (food, portions, body-condition scoring) until the science lands.`,
+    }. Neither is approved and neither is something an owner can buy. We track trial milestones, regulatory actions and pricing signals. Owners can also use body-condition tools and a free dog food calculator to turn a veterinary calorie target into portions, daily cost and a printable summary.`,
     status: "live",
     mode: "built",
-    href: "https://glp1pets.com",
+    href: "https://www.glp1pets.com",
     thumb: <GLP1PetsThumb />,
     meta: [
       { label: "Type", value: "Authority site" },
