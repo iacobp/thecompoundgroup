@@ -82,9 +82,9 @@ export const portfolioProperties: PortfolioProperty[] = [
     url: "https://bestpeptideforthat.com",
     status: "live",
     oneLiner:
-      "Peptide directory graded A to F by the strength of published human evidence, not by popularity, plus the FDA compounding-docket record.",
-    conversionEvent: "Not yet monetised",
-    note: "No affiliate partner is live here and no tracking links exist in the data, so revenue for this property is unsized rather than zero. It was live and absent from this page entirely until 2 August 2026, which is the sort of gap the ledger exists to stop.",
+      "GLP-1 and peptide evidence directory with a separate product and provider price board, explicit source gaps and a plan-cost calculator.",
+    conversionEvent: "Affiliate activation pending",
+    note: "The comparison experience links to official sources. BPFT-specific payable offers have not been verified for these destinations, so a provider visit is not evidence of earned commission. Revenue remains unmeasured here until a reconciled source exists.",
   },
   {
     num: "V",

@@ -15,6 +15,7 @@ import {
 } from "d3-force";
 import { Reveal } from "./Reveal";
 import { anchors, anchorValue } from "@/lib/generated/anchors";
+import { comparisonScaffolds } from "@/lib/portfolio-development";
 
 // Node descriptions state product numbers. Every one is interpolated from
 // lib/generated/anchors.ts. Revolume has no anchor, so its node no longer
@@ -125,11 +126,11 @@ const initialNodes: GraphNode[] = [
   {
     id: "supplements",
     label: "Supplement Index",
-    sub: "Planned 2026",
-    kind: "planned",
-    href: "#portfolio",
+    sub: "Scaffold",
+    kind: "dev",
+    href: "#supplement-index",
     description:
-      "Reviews site for the supplements GLP-1 users actually reach for — protein, fiber, electrolytes, basic micronutrients, plus nootropics. Sourced from peer-reviewed evidence where it exists.",
+      "Working comparison scaffold for nutritional products, labels, pack sizes and purchase terms. Not publicly launched; affiliate activation and product verification remain separate release steps.",
     x: CX + 220,
     y: CY - 190,
     radius: 19,
@@ -153,7 +154,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://bestpeptideforthat.com",
     description:
-      `Goal-led directory of ${anchorValue("bestpeptideforthat", "peptideCount")} compounds, connecting evidence profiles, comparisons, calculators, and routes to care. Human evidence and legal status are shown separately from provider availability.`,
+      `Goal-led directory of ${anchorValue("bestpeptideforthat", "peptideCount")} compounds including GLP-1, with separate compound and provider comparisons, sourced advertised prices, missing-term labels and a plan-cost calculator. Evidence, patient prices and affiliate activation stay separate.`,
     x: CX + 240,
     y: CY + 110,
     radius: 22,
@@ -161,11 +162,11 @@ const initialNodes: GraphNode[] = [
   {
     id: "neuro",
     label: "Neuroscience Index",
-    sub: "Planned 2027",
-    kind: "planned",
-    href: "#portfolio",
+    sub: "Scaffold",
+    kind: "dev",
+    href: "#neuroscience-index",
     description:
-      "Nootropics, neuroprotective compounds, cognitive-aging formulas — reviewed with the same rigor we apply to GLP-1. What has clinical trials, and what is still hopeful biochemistry.",
+      "Working comparison scaffold for cognitive products, evidence, labels and recurring costs. Not publicly launched. Supplements and investigational compounds remain distinct.",
     x: CX + 180,
     y: CY + 230,
     radius: 19,
@@ -173,14 +174,26 @@ const initialNodes: GraphNode[] = [
   {
     id: "plasticity",
     label: "Neuroplasticity Lab",
-    sub: "Planned 2027",
+    sub: "Planned",
     kind: "planned",
-    href: "#portfolio",
+    href: "#neuroplasticity-lab",
     description:
       "The behavioral counterpart to the Neuroscience Index. Cognitive apps, neurofeedback hardware, meditation platforms, small protocols with measurable effects.",
     x: CX + 30,
     y: CY + 260,
     radius: 19,
+  },
+
+  {
+    id: "specialist-comparisons",
+    label: "Specialist comparisons",
+    sub: "Scaffolds",
+    kind: "dev",
+    href: "#comparison-studio",
+    description: `${comparisonScaffolds.filter((project) => !["supplement-index", "neuroscience-index"].includes(project.slug)).map((project) => project.name).join(", ")}: working comparison scaffolds for distinct audiences and products. Names are provisional; these sites are not publicly launched or claimed to earn affiliate revenue.`,
+    x: CX + 320,
+    y: CY + 190,
+    radius: 20,
   },
 
   {
@@ -239,6 +252,7 @@ const links: GraphLink[] = [
   { source: "cg", target: "peptides", kind: "structural" },
   { source: "cg", target: "neuro", kind: "structural" },
   { source: "cg", target: "plasticity", kind: "structural" },
+  { source: "cg", target: "specialist-comparisons", kind: "structural" },
 
   { source: "glp1picks", target: "hrtpicks", kind: "feeds" },
   { source: "glp1picks", target: "glp1pets", kind: "feeds" },
@@ -247,6 +261,7 @@ const links: GraphLink[] = [
   { source: "glp1picks", target: "supplements", kind: "feeds" },
   { source: "glp1picks", target: "peptides", kind: "feeds" },
   { source: "peptides", target: "titrate", kind: "feeds" },
+  { source: "peptides", target: "specialist-comparisons", kind: "feeds" },
   { source: "hrtpicks", target: "supplements", kind: "feeds" },
   { source: "supplements", target: "neuro", kind: "feeds" },
   { source: "neuro", target: "plasticity", kind: "feeds" },
@@ -281,6 +296,7 @@ const links: GraphLink[] = [
   { source: "editorial", target: "revolume" },
   { source: "editorial", target: "supplements" },
   { source: "editorial", target: "neuro" },
+  { source: "editorial", target: "specialist-comparisons" },
 ];
 
 // Physics is d3-force. Tuned for drop-and-stay: products feel NO home pull

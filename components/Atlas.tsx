@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { anchorValue } from "@/lib/generated/anchors";
+import { developmentNames, developmentProjects } from "@/lib/portfolio-development";
 
 /**
  * The Compound Atlas — an illustrated map of the studio's universe.
@@ -138,18 +139,13 @@ const districts: District[] = [
     x: 53,
     y: 11,
     radius: 7,
-    status: "planned",
-    badge: "Planned 2026–27",
+    status: "in-development",
+    badge: "Comparison scaffolds",
     description:
-      "The misty horizon. Four products under construction: Supplement Index, Pet Health, Neuroscience Index, Neuroplasticity Lab. Each extends the same methodology to an adjacent category.",
-    href: "/#portfolio",
-    hrefLabel: "See the roadmap",
-    artifacts: [
-      "Supplement Index (2026)",
-      "Pet Health (2026–27)",
-      "Neuroscience Index (2027)",
-      "Neuroplasticity Lab (2027)",
-    ],
+      `Specialist comparison scaffolds: ${developmentNames}. These working identities are not publicly launched. Best Peptide For That continues to cover GLP-1 and the full peptide catalog. Neuroplasticity Lab remains a separate planned project.`,
+    href: "/#comparison-studio",
+    hrefLabel: "See development status",
+    artifacts: developmentProjects.map((project) => `${project.name}: ${project.stage}`),
   },
 ];
 

@@ -4,8 +4,10 @@ import { HRTPicksThumb } from "./thumbnails/HRTPicksThumb";
 import { TitrateThumb } from "./thumbnails/TitrateThumb";
 import { RevolumeThumb } from "./thumbnails/RevolumeThumb";
 import { BestPeptideForThatThumb } from "./thumbnails/BestPeptideForThatThumb";
+import { ComparisonScaffoldThumb } from "./thumbnails/ComparisonScaffoldThumb";
 import { Reveal } from "./Reveal";
 import { anchors, anchorValue } from "@/lib/generated/anchors";
+import { developmentProjects } from "@/lib/portfolio-development";
 
 /**
  * Every product number in the copy below is interpolated from
@@ -114,11 +116,11 @@ const items: PortfolioItem[] = [
     num: "V",
     name: "Best Peptide For That",
     tagline:
-      "Start with a goal. Compare the evidence. Understand the routes to care.",
+      "Compare the evidence, the product and the price.",
     body: `Best Peptide for That brings ${anchorValue(
       "bestpeptideforthat",
       "peptideCount",
-    )} compounds into a goal-led comparison directory. Readers can explore evidence profiles, compare compounds, use practical calculators, and understand prescription and provider-access routes. Published human evidence and legal status stay visible throughout the journey. An overall evidence grade is not a claim that a compound is the best treatment for a particular goal. Recommendations follow the evidence, independently of affiliate relationships.`,
+    )} compounds into a goal-led directory that includes GLP-1. Readers can compare compound evidence separately from products and providers, inspect dated advertised prices and missing terms, and calculate a plan's payment commitment. The provider board spans the wider catalog, including adjacent products clearly identified as such. An overall evidence grade is not a claim that a compound is the best treatment for every goal. Affiliate activation remains separate from the published evidence and pricing records.`,
     status: "live",
     mode: "built",
     href: "https://bestpeptideforthat.com",
@@ -150,35 +152,14 @@ const items: PortfolioItem[] = [
   },
 ];
 
-const upcoming = [
-  {
-    num: "06",
-    name: "Supplement Index",
-    tag: "Adjacent category",
-    note:
-      "A reviews site for the supplements GLP-1 and HRT users tend to look for — protein, fiber, electrolytes, micronutrient support, plus the menopause-specific category (Estroven, Amberen, Wile). Sourced from peer-reviewed evidence where it exists; the methodology notes where the research is still thin.",
-    when: "2026",
-    mode: "built" as Mode,
-  },
-  {
-    num: "07",
-    name: "Neuroscience Index",
-    tag: "Cognitive supplements",
-    note:
-      "The supplement side of cognition — nootropics, neuroprotective compounds, cognitive-aging formulas — reviewed with the same rigor we apply to GLP-1. Less about optimization culture, more about what has clinical trials behind it and what is still essentially hopeful biochemistry.",
-    when: "2027",
-    mode: "built" as Mode,
-  },
-  {
-    num: "08",
-    name: "Neuroplasticity Lab",
-    tag: "Training & tools",
-    note:
-      "The behavioral counterpart to the Neuroscience Index. Rather than what goes into the brain, this asks how the brain can actually be trained — through cognitive apps, neurofeedback hardware, meditation platforms, and the small protocols with measurable effects. A separate product, sharing the same research discipline.",
-    when: "2027",
-    mode: "built" as Mode,
-  },
-];
+const upcoming = developmentProjects.map((project, index) => ({
+  num: String(index + 1).padStart(2, "0"),
+  name: project.name,
+  tag: project.focus,
+  note: project.description,
+  when: project.stage,
+  slug: project.slug,
+}));
 
 function StatusPill({ status }: { status: Status }) {
   const label =
@@ -315,25 +296,30 @@ export function Portfolio() {
         </div>
 
         {/* Pipeline */}
-        <div className="mt-32 md:mt-56 grid grid-cols-12 gap-6 md:gap-14">
+        <div id="comparison-studio" className="mt-32 md:mt-56 grid grid-cols-12 gap-6 md:gap-14 scroll-mt-24">
           <Reveal className="col-span-12 md:col-span-4">
             <div className="flex items-baseline gap-4 mb-6">
               <span className="font-display italic text-bronze text-[22px]">§§</span>
               <span className="text-[11px] uppercase tracking-[0.3em] text-muted">
-                What comes next
+                Specialist sites in development
               </span>
             </div>
             <p className="font-display italic text-ink/80 text-[22px] md:text-[26px] leading-[1.4] max-w-[24ch]">
-              Adjacent categories, where the{" "}
-              <span className="text-ink not-italic">same research methodology transfers</span>{" "}
-              and the consumer is asking the same three questions.
+              Shared comparison tools.{" "}
+              <span className="text-ink not-italic">Different buying decisions.</span>
             </p>
             <p className="mt-6 text-[14px] leading-[1.75] text-muted max-w-[40ch]">
-              What does it cost over the course of a year, what is actually in
-              it, and what is the evidence that it does what the packaging
-              says. We build or acquire where those three questions have no
-              clear answer yet.
+              These specialist websites have working scaffolds and content plans.
+              Each will focus on its audience&apos;s products, price comparisons
+              and evidence questions. BPFT continues to cover the full peptide
+              catalog and GLP-1 alongside them.
             </p>
+            <p className="mt-4 text-[13px] leading-[1.75] text-muted max-w-[40ch]">
+              Names are provisional. These comparison sites are not publicly
+              launched, and no affiliate earnings are implied. Neuroplasticity
+              Lab remains a separate planned project.
+            </p>
+            <div className="mt-8"><ComparisonScaffoldThumb /></div>
           </Reveal>
 
           <Reveal delay={120} className="col-span-12 md:col-span-8">
@@ -341,6 +327,7 @@ export function Portfolio() {
               {upcoming.map((u) => (
                 <li
                   key={u.name}
+                  id={u.slug}
                   className="group grid grid-cols-12 gap-x-3 gap-y-2 md:gap-4 items-baseline py-6 md:py-7"
                 >
                   <span className="col-span-2 md:col-span-1 font-display italic text-bronze text-[14px]">

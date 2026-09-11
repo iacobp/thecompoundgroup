@@ -1,6 +1,7 @@
 import { Reveal } from "./Reveal";
 import { Monogram } from "./Monogram";
 import { MagneticButton } from "./MagneticButton";
+import { comparisonScaffolds } from "@/lib/portfolio-development";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -166,7 +167,7 @@ export function Footer() {
                     </span>
                   </div>
                   <div className="text-[12px] text-cream/55 mt-1">
-                    Evidence, comparisons & tools
+                    GLP-1 &amp; peptide evidence · Provider prices &amp; tools
                   </div>
                 </a>
               </li>
@@ -196,8 +197,9 @@ export function Footer() {
             </ul>
 
             <div className="mt-10 text-[13px] leading-[1.7] text-cream/55">
-              <em className="italic">Forthcoming:</em> Supplement Index, the
-              Neuroscience Index, and the Neuroplasticity Lab as a distinct product alongside it.
+              <a href="/#comparison-studio" className="font-medium text-cream/80 underline underline-offset-4">Comparison scaffolds:</a>{" "}
+              {comparisonScaffolds.map((project, index) => <span key={project.slug}>{index > 0 && ", "}<a href={`/#${project.slug}`} className="hover:text-cream">{project.name}</a></span>)}.
+              <span className="mt-3 block">Working names, not publicly launched. Neuroplasticity Lab remains a separate planned project.</span>
             </div>
           </Reveal>
         </div>

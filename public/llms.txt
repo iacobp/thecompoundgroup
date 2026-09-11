@@ -24,7 +24,7 @@ source-of-truth file and re-derived by an audit before this file can ship.
 - [HRT Picks](https://hrtpicks.com): Approved hormone telehealth affiliate partners compared through separate [menopause HRT](https://hrtpicks.com/) and [men’s TRT](https://hrtpicks.com/trt) journeys. Matching treatment finders, cost and insurance guidance, and provider reviews with direct treatment links. Published scoring and transparency grades; approval determines catalog inclusion, while evidence determines scores.
 - [GLP-1 Pets](https://glp1pets.com): Independent tracker for veterinary GLP-1 weight-loss drugs. Okava's MEOW-1 cat trial of an exenatide-releasing implant reads out Summer 2027.
   Akston's AKS-562c is at Cornell with a readout window of H2 2026. Nothing in the class is approved and nothing is purchasable, which the site says on every page.
-- [Best Peptide For That](https://bestpeptideforthat.com): Goal-led comparison directory of 46 compounds, with evidence profiles, comparisons, practical tools, and routes to care. Evidence grades and legal status are linked to primary sources and shown separately from provider availability.
+- [Best Peptide For That](https://bestpeptideforthat.com): Goal-led comparison directory of 46 compounds including GLP-1. Separate compound evidence and provider comparisons, dated advertised prices, explicit missing terms and a plan-cost calculator. Evidence grades are scoped to their stated indication. Affiliate activation remains pending.
   7 of them carry a PCAC vote record.
 - [Titrate](https://titrate.health): A peptide and GLP-1 multi-compound tracker for iOS, built around the recurring decisions a patient actually makes: dose, reconstitution, stack, refill, program. 32 compounds preloaded. Reconstitution calculator with the unit toggle the category has been missing. Stacks past the three-peptide ceiling most apps cap at. $9.99 a month or $49.99 a year after a 7-day trial.
 
@@ -32,11 +32,20 @@ source-of-truth file and re-derived by an audit before this file can ship.
 
 - [Revolume](https://revolume.app): The skin scan built specifically for GLP-1 users. 65% of patients on semaglutide, tirzepatide, or compounded GLP-1s experience facial volume loss within their first six months. Revolume is a private, on-device scan reading the markers specific to post-rapid-weight-loss skin (volume, jawline definition, nasolabial depth, laxity) and routing the user to the routine, prescription, or in-clinic procedure that matches their stage. It has no marker count in this file on purpose: Revolume has no source-of-truth file yet, and its own copy states two different numbers.
 
-## Planned 2026 to 2027
+## Specialist comparison scaffolds
 
-- Supplement Index: Reviews for the supplements GLP-1 users actually reach for, protein and fiber and electrolytes and basic micronutrients, plus the broader nootropics and cognitive categories. Sourced from peer-reviewed evidence where it exists; flags where research is still thin.
-- Neuroscience Index: Nootropics, neuroprotective compounds, cognitive-aging formulas, reviewed with the same rigor applied to GLP-1. What has clinical trials behind it, and what is still essentially hopeful biochemistry.
-- Neuroplasticity Lab: Cognitive apps, neurofeedback hardware, meditation platforms, and small protocols with measurable effects.
+These working identities have comparison scaffolds and content plans. They are not publicly launched and are not claimed to earn affiliate revenue. Their public domains remain unset. BPFT continues to cover the full peptide catalog, including GLP-1, alongside specialist sites.
+
+- NAD Index: NAD products and adjacent longevity questions, with formulation-specific evidence, prices and payment terms.
+- Hair Index: Hair-care plans and cosmetic scalp products, with distinct product and refill-cost comparisons.
+- Desire Index: Existing sexual-health project, extended with specific care, product and payment comparisons.
+- Skin Index: Topical peptide skincare, product-label and bottle-cost comparisons.
+- Recovery Index: Recovery-related care, product terms and evidence, with investigational questions kept distinct.
+- Neuroscience Index: Cognitive product labels, evidence and recurring costs.
+- Sleep Index: Sleep-related products and services, purchase terms and trial or return conditions.
+- Supplement Index: Ingredients, container sizes, testing disclosures and purchase terms.
+
+Neuroplasticity Lab remains a separate planned project for cognitive apps, devices and training tools. Development status: https://thecompoundgroup.com/#comparison-studio
 
 ## Methodology and authority signals
 

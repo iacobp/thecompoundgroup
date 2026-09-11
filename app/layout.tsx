@@ -3,6 +3,7 @@ import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { anchorValue } from "@/lib/generated/anchors";
+import { developmentProjects } from "@/lib/portfolio-development";
 
 /**
  * Display: Fraunces — variable editorial serif (optical size + SOFT axis).
@@ -28,7 +29,7 @@ const body = Inter({
 const siteUrl = "https://thecompoundgroup.com";
 const siteName = "The Compound Group";
 const description =
-  "A consumer biotech media studio building honest comparison tools, trackers, and editorial across GLP-1, HRT, peptides, supplements, neuroscience, and pet health. Portfolio includes GLP-1 Picks, HRT Picks, GLP-1 Pets, Titrate, Revolume, and Best Peptide For That.";
+  "A consumer health studio behind GLP-1 Picks, HRT Picks and Best Peptide For That. Evidence, provider prices and practical tools, with specialist comparison sites in development.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -149,8 +150,13 @@ const organizationJsonLd = {
         `Goal-led comparison directory of ${anchorValue(
           "bestpeptideforthat",
           "peptideCount",
-        )} compounds, with evidence profiles, comparisons, practical tools, and routes to care. Evidence grades and legal status are linked to primary sources.`,
+        )} compounds including GLP-1, with separate evidence and provider comparisons, sourced advertised prices, missing-term labels and a plan-cost calculator. Affiliate activation is pending.`,
     },
+    ...developmentProjects.map((project) => ({
+      "@type": "Organization",
+      name: project.name,
+      description: `${project.stage} stage, not publicly launched. Working project identity. ${project.description}`,
+    })),
   ],
 };
 
