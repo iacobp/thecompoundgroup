@@ -146,10 +146,10 @@ const organizationJsonLd = {
       name: "Best Peptide For That",
       url: "https://bestpeptideforthat.com",
       description:
-        `Evidence-graded index of ${anchorValue(
+        `Goal-led comparison directory of ${anchorValue(
           "bestpeptideforthat",
           "peptideCount",
-        )} research peptides, scored A to F by human proof, with each compound's legal status and the July 2026 FDA vote tracked. Cited to primary sources.`,
+        )} compounds, with evidence profiles, comparisons, practical tools, and routes to care. Evidence grades and legal status are linked to primary sources.`,
     },
   ],
 };

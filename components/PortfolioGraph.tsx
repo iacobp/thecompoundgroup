@@ -153,7 +153,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://bestpeptideforthat.com",
     description:
-      `Evidence-graded index of ${anchorValue("bestpeptideforthat", "peptideCount")} research peptides, scored A to F by the strength of published human proof, with legal status and the July 2026 FDA advisory vote tracked on every compound. Cited to primary sources, never gray-market sourcing.`,
+      `Goal-led directory of ${anchorValue("bestpeptideforthat", "peptideCount")} compounds, connecting evidence profiles, comparisons, calculators, and routes to care. Human evidence and legal status are shown separately from provider availability.`,
     x: CX + 240,
     y: CY + 110,
     radius: 22,

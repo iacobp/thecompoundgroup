@@ -166,7 +166,7 @@ export function Footer() {
                     </span>
                   </div>
                   <div className="text-[12px] text-cream/55 mt-1">
-                    Peptide evidence index, now live
+                    Evidence, comparisons & tools
                   </div>
                 </a>
               </li>

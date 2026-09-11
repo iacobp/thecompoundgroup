@@ -114,18 +114,18 @@ const items: PortfolioItem[] = [
     num: "V",
     name: "Best Peptide For That",
     tagline:
-      "Every research peptide, graded A to F by the strength of actual human evidence, and honest about what is legal.",
-    body: `Peptide therapy sits in a regulatory transition, and most of what sells online is gray-market with animal-only evidence. We grade ${anchorValue(
+      "Start with a goal. Compare the evidence. Understand the routes to care.",
+    body: `Best Peptide for That brings ${anchorValue(
       "bestpeptideforthat",
       "peptideCount",
-    )} research peptides, from BPC-157 and TB-500 to the GLP-1 medications, tesamorelin and PT-141, on an A to F scale set by the strength of published human proof, alongside a plain account of each compound's legal status and the July 2026 FDA advisory vote that decides which become legally compoundable. Every claim is cited to a primary source, and we never point anyone to gray-market sourcing. The grade follows the evidence, not the affiliate.`,
+    )} compounds into a goal-led comparison directory. Readers can explore evidence profiles, compare compounds, use practical calculators, and understand prescription and provider-access routes. Published human evidence and legal status stay visible throughout the journey. An overall evidence grade is not a claim that a compound is the best treatment for a particular goal. Recommendations follow the evidence, independently of affiliate relationships.`,
     status: "live",
     mode: "built",
     href: "https://bestpeptideforthat.com",
     thumb: <BestPeptideForThatThumb />,
     meta: [
-      { label: "Type", value: "Evidence index" },
-      { label: "Revenue", value: "Affiliate (post-launch)" },
+      { label: "Type", value: "Comparison directory" },
+      { label: "Revenue", value: "Affiliate (activation pending)" },
       { label: "Since", value: "2026" },
     ],
     cta: "Visit bestpeptideforthat.com",
