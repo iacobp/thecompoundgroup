@@ -29,7 +29,7 @@ const body = Inter({
 const siteUrl = "https://thecompoundgroup.com";
 const siteName = "The Compound Group";
 const description =
-  "A consumer health studio behind GLP-1 Picks, HRT Picks and Best Peptide For That. Evidence, provider prices and practical tools, with specialist comparison sites in development.";
+  "A consumer health studio behind GLP-1 Picks, HRT Picks and Best Peptide For That, with Healthspan Picks in development. Evidence, provider prices and practical tools.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -57,6 +57,8 @@ export const metadata: Metadata = {
     "GLP-1 telehealth",
     "HRT comparison",
     "HRT telehealth",
+    "NAD+ comparison",
+    "healthspan comparison",
     "menopause telehealth",
     "peptide tracker",
     "health venture studio",

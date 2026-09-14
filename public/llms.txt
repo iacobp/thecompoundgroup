@@ -36,7 +36,7 @@ source-of-truth file and re-derived by an audit before this file can ship.
 
 These working identities have comparison scaffolds and content plans. They are not publicly launched and are not claimed to earn affiliate revenue. Their public domains remain unset. BPFT continues to cover the full peptide catalog, including GLP-1, alongside specialist sites.
 
-- NAD Index: NAD products and adjacent longevity questions, with formulation-specific evidence, prices and payment terms.
+- Healthspan Picks: working NAD+ comparison identity with route-specific evidence, provider prices and payment terms. Not publicly launched.
 - Hair Index: Hair-care plans and cosmetic scalp products, with distinct product and refill-cost comparisons.
 - Desire Index: Existing sexual-health project, extended with specific care, product and payment comparisons.
 - Skin Index: Topical peptide skincare, product-label and bottle-cost comparisons.

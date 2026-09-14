@@ -309,7 +309,8 @@ export function Portfolio() {
               <span className="text-ink not-italic">Different buying decisions.</span>
             </p>
             <p className="mt-6 text-[14px] leading-[1.75] text-muted max-w-[40ch]">
-              These specialist websites have working scaffolds and content plans.
+              Healthspan Picks leads these specialist websites with a working NAD+
+              comparison scaffold. The other identities have working scaffolds and content plans.
               Each will focus on its audience&apos;s products, price comparisons
               and evidence questions. BPFT continues to cover the full peptide
               catalog and GLP-1 alongside them.
