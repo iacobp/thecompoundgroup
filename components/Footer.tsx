@@ -194,6 +194,29 @@ export function Footer() {
                   </div>
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://longevityranked.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block border-b border-cream/15 pb-4 hover:border-cream/60 transition-colors"
+                >
+                  <div className="flex items-baseline justify-between">
+                    <span className="font-display text-cream text-[22px]">
+                      Longevity Ranked
+                    </span>
+                    <span
+                      aria-hidden
+                      className="text-cream/50 text-[14px] transition-transform duration-500 group-hover:translate-x-1 group-hover:text-cream"
+                    >
+                      ↗
+                    </span>
+                  </div>
+                  <div className="text-[12px] text-cream/55 mt-1">
+                    NAD+ &amp; sermorelin comparisons · Live
+                  </div>
+                </a>
+              </li>
             </ul>
 
             <div className="mt-10 text-[13px] leading-[1.7] text-cream/55">

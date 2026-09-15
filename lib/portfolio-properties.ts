@@ -101,6 +101,19 @@ export const portfolioProperties: PortfolioProperty[] = [
   },
   {
     num: "VI",
+    slug: "longevity-ranked",
+    ledgerKey: "longevityranked",
+    name: "Longevity Ranked",
+    domain: "longevityranked.com",
+    url: "https://longevityranked.com",
+    status: "live",
+    oneLiner:
+      "Longevity-related provider and price comparisons, starting with NAD+ and sermorelin guides, payment terms and provider reviews.",
+    conversionEvent: "Outbound visit to an official provider site",
+    note: "Provider coverage does not imply an affiliate partnership. Affiliate activation is pending; official-source visits are not evidence of commission. This property has no reconciled performance reading in the public ledger yet.",
+  },
+  {
+    num: "VII",
     slug: "revolume",
     ledgerKey: "revolume",
     name: "Revolume",

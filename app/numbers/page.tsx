@@ -91,7 +91,7 @@ function RevenueSection() {
           mark="§"
           eyebrow="One"
           title="Revenue and conversions"
-          lede="One property in the portfolio earns money. The other five do not, and each of them says why rather than reporting a zero it did not measure."
+          lede="Reconciled revenue readings are shown where a source exists. Missing readings are labelled explicitly rather than reported as zero."
           meta={S.revenue.meta}
         />
       </Reveal>
@@ -255,7 +255,7 @@ function SearchSection() {
           mark="§"
           eyebrow="Two"
           title="Search performance, per property"
-          lede="Read from Search Console by a service account and committed as a dated snapshot. Six properties, five of them connected."
+          lede="Read from Search Console by a service account and committed as a dated snapshot. Each recorded property shows its own connection and data status."
           meta={S.search.meta}
         />
       </Reveal>

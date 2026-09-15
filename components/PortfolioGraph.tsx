@@ -124,6 +124,18 @@ const initialNodes: GraphNode[] = [
   },
 
   {
+    id: "longevityranked",
+    label: "Longevity Ranked",
+    sub: "Live",
+    kind: "live",
+    href: "https://longevityranked.com",
+    description:
+      "NAD+ and sermorelin provider and price comparisons. Treatment guides, payment terms and source-linked reviews keep product evidence separate from commercial arrangements.",
+    x: CX + 65,
+    y: CY - 170,
+    radius: 22,
+  },
+  {
     id: "supplements",
     label: "Supplement Index",
     sub: "Scaffold",
@@ -245,6 +257,7 @@ const initialNodes: GraphNode[] = [
 const links: GraphLink[] = [
   { source: "cg", target: "glp1picks", kind: "structural" },
   { source: "cg", target: "hrtpicks", kind: "structural" },
+  { source: "cg", target: "longevityranked", kind: "structural" },
   { source: "cg", target: "glp1pets", kind: "structural" },
   { source: "cg", target: "titrate", kind: "structural" },
   { source: "cg", target: "revolume", kind: "structural" },
@@ -261,6 +274,8 @@ const links: GraphLink[] = [
   { source: "glp1picks", target: "supplements", kind: "feeds" },
   { source: "glp1picks", target: "peptides", kind: "feeds" },
   { source: "peptides", target: "titrate", kind: "feeds" },
+  { source: "peptides", target: "longevityranked", kind: "feeds" },
+  { source: "glp1picks", target: "longevityranked", kind: "feeds" },
   { source: "peptides", target: "specialist-comparisons", kind: "feeds" },
   { source: "hrtpicks", target: "supplements", kind: "feeds" },
   { source: "supplements", target: "neuro", kind: "feeds" },
@@ -268,6 +283,7 @@ const links: GraphLink[] = [
 
   { source: "methodology", target: "glp1picks" },
   { source: "methodology", target: "hrtpicks" },
+  { source: "methodology", target: "longevityranked" },
   { source: "methodology", target: "glp1pets" },
   { source: "methodology", target: "titrate" },
   { source: "methodology", target: "revolume" },
@@ -278,6 +294,7 @@ const links: GraphLink[] = [
 
   { source: "database", target: "glp1picks" },
   { source: "database", target: "hrtpicks" },
+  { source: "database", target: "longevityranked" },
   { source: "database", target: "glp1pets" },
   { source: "database", target: "titrate" },
   { source: "database", target: "supplements" },
@@ -292,6 +309,7 @@ const links: GraphLink[] = [
 
   { source: "editorial", target: "glp1picks" },
   { source: "editorial", target: "hrtpicks" },
+  { source: "editorial", target: "longevityranked" },
   { source: "editorial", target: "glp1pets" },
   { source: "editorial", target: "revolume" },
   { source: "editorial", target: "supplements" },

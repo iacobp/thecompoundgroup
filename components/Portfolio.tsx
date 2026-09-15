@@ -4,7 +4,7 @@ import { HRTPicksThumb } from "./thumbnails/HRTPicksThumb";
 import { TitrateThumb } from "./thumbnails/TitrateThumb";
 import { RevolumeThumb } from "./thumbnails/RevolumeThumb";
 import { BestPeptideForThatThumb } from "./thumbnails/BestPeptideForThatThumb";
-import { ComparisonScaffoldThumb } from "./thumbnails/ComparisonScaffoldThumb";
+import { LongevityRankedThumb } from "./thumbnails/LongevityRankedThumb";
 import { Reveal } from "./Reveal";
 import { anchors, anchorValue } from "@/lib/generated/anchors";
 import { developmentProjects } from "@/lib/portfolio-development";
@@ -134,6 +134,22 @@ const items: PortfolioItem[] = [
   },
   {
     num: "VI",
+    name: "Longevity Ranked",
+    tagline: "Compare NAD+ and sermorelin providers, prices and plans.",
+    body: "Longevity Ranked helps readers compare longevity-related care, starting with NAD+ and sermorelin. Separate treatment guides, provider reviews and price comparisons make the product, payment schedule and missing terms visible before a reader visits a provider. These are distinct categories, not interchangeable treatments. Commercial arrangements remain separate from the presentation of evidence and costs.",
+    status: "live",
+    mode: "built",
+    href: "https://longevityranked.com",
+    thumb: <LongevityRankedThumb />,
+    meta: [
+      { label: "Type", value: "Comparison site" },
+      { label: "Focus", value: "NAD+ & sermorelin" },
+      { label: "Since", value: "2026" },
+    ],
+    cta: "Visit longevityranked.com",
+  },
+  {
+    num: "VII",
     name: "Revolume",
     tagline:
       "The skin scan built for GLP-1 — because the weight comes off, and the face follows.",
@@ -309,9 +325,8 @@ export function Portfolio() {
               <span className="text-ink not-italic">Different buying decisions.</span>
             </p>
             <p className="mt-6 text-[14px] leading-[1.75] text-muted max-w-[40ch]">
-              Healthspan Picks leads these specialist websites with a working NAD+
-              comparison scaffold. The other identities have working scaffolds and content plans.
-              Each will focus on its audience&apos;s products, price comparisons
+              Following Longevity Ranked, these specialist websites have working
+              scaffolds and content plans. Each will focus on its audience&apos;s products, price comparisons
               and evidence questions. BPFT continues to cover the full peptide
               catalog and GLP-1 alongside them.
             </p>
@@ -320,7 +335,6 @@ export function Portfolio() {
               launched, and no affiliate earnings are implied. Neuroplasticity
               Lab remains a separate planned project.
             </p>
-            <div className="mt-8"><ComparisonScaffoldThumb /></div>
           </Reveal>
 
           <Reveal delay={120} className="col-span-12 md:col-span-8">

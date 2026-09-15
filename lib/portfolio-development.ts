@@ -1,7 +1,6 @@
 // Public development inventory. These are working identities, not live domains
 // or evidence of an activated affiliate business.
 export const comparisonScaffolds = [
-  { slug: "healthspan-picks", name: "Healthspan Picks", focus: "NAD+ and healthspan", description: "A working NAD+ provider and price comparison identity with route differences, cash commitment, payment terms and evidence kept distinct." },
   { slug: "hair-index", name: "Hair Index", focus: "Hair care", description: "Hair-care plan and product comparisons, separating prescription care from cosmetic scalp products and their refill costs." },
   { slug: "desire-index", name: "Desire Index", focus: "Sexual health", description: "The existing sexual-health project, extended with product-specific care, access and cost comparisons for distinct concerns." },
   { slug: "skin-index", name: "Skin Index", focus: "Skin & copper peptides", description: "Topical peptide skincare comparisons organized around product labels, bottle size, delivered cost and cosmetic claims." },

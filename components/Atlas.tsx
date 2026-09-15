@@ -134,6 +134,20 @@ const districts: District[] = [
     artifacts: ["Affiliate disclosure", "Correction policy", "Recommendation vs placement"],
   },
   {
+    id: "longevity",
+    name: "Longevity Ranked",
+    x: 35,
+    y: 23,
+    radius: 5,
+    status: "live",
+    badge: "Live",
+    description:
+      "A guide to comparing longevity-related care, starting with separate NAD+ and sermorelin categories. Published prices, payment terms and provider reviews help readers see what they are considering before visiting a provider.",
+    href: "https://longevityranked.com",
+    hrefLabel: "Visit longevityranked.com",
+    artifacts: ["NAD+ comparisons", "Sermorelin comparisons", "Provider prices and payment terms"],
+  },
+  {
     id: "frontier",
     name: "The Frontier",
     x: 53,

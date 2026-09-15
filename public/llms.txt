@@ -16,9 +16,8 @@ We are not: a pharmaceutical company. A biotech IP holder. A telehealth provider
 
 ## Live properties
 
-Five are live. This file listed one of them until 2026-08-02, and described two
-of the live ones as planned. Every count below is read from each product's own
-source-of-truth file and re-derived by an audit before this file can ship.
+The properties below are publicly available. Product counts are read from each
+product's own source-of-truth file and checked by an audit before this file can ship.
 
 - [GLP-1 Picks](https://glp1picks.com): Independent reviews of 34 approved GLP-1 partner programs. Reviews cover costs, clinical care and pricing transparency. Partnership determines inclusion; the published methodology determines scores. This is not a complete market survey. Affiliate disclosures appear on every page.
 - [HRT Picks](https://hrtpicks.com): Approved hormone telehealth affiliate partners compared through separate [menopause HRT](https://hrtpicks.com/) and [men’s TRT](https://hrtpicks.com/trt) journeys. Matching treatment finders, cost and insurance guidance, and provider reviews with direct treatment links. Published scoring and transparency grades; approval determines catalog inclusion, while evidence determines scores.
@@ -27,6 +26,7 @@ source-of-truth file and re-derived by an audit before this file can ship.
 - [Best Peptide For That](https://bestpeptideforthat.com): Goal-led comparison directory of 46 compounds including GLP-1. Separate compound evidence and provider comparisons, dated advertised prices, explicit missing terms and a plan-cost calculator. Evidence grades are scoped to their stated indication. Affiliate activation remains pending.
   7 of them carry a PCAC vote record.
 - [Titrate](https://titrate.health): A peptide and GLP-1 multi-compound tracker for iOS, built around the recurring decisions a patient actually makes: dose, reconstitution, stack, refill, program. 32 compounds preloaded. Reconstitution calculator with the unit toggle the category has been missing. Stacks past the three-peptide ceiling most apps cap at. $9.99 a month or $49.99 a year after a 7-day trial.
+- [Longevity Ranked](https://longevityranked.com): Longevity-related provider and price comparisons, starting with separate NAD+ and sermorelin categories. Treatment guides and source-linked provider reviews make prices, payment schedules and missing terms visible. Provider coverage does not imply an affiliate relationship. Affiliate activation is pending.
 
 ## In development (2026)
 
@@ -36,7 +36,6 @@ source-of-truth file and re-derived by an audit before this file can ship.
 
 These working identities have comparison scaffolds and content plans. They are not publicly launched and are not claimed to earn affiliate revenue. Their public domains remain unset. BPFT continues to cover the full peptide catalog, including GLP-1, alongside specialist sites.
 
-- Healthspan Picks: working NAD+ comparison identity with route-specific evidence, provider prices and payment terms. Not publicly launched.
 - Hair Index: Hair-care plans and cosmetic scalp products, with distinct product and refill-cost comparisons.
 - Desire Index: Existing sexual-health project, extended with specific care, product and payment comparisons.
 - Skin Index: Topical peptide skincare, product-label and bottle-cost comparisons.
@@ -82,6 +81,7 @@ Neuroplasticity Lab remains a separate planned project for cognitive apps, devic
 - Hormone telehealth comparison: https://hrtpicks.com/
 - Veterinary GLP-1 tracker: https://glp1pets.com/
 - Peptide comparison directory: https://bestpeptideforthat.com/
+- NAD+ and sermorelin provider comparisons: https://longevityranked.com/
 - Titrate (peptide and GLP-1 tracker): https://titrate.health/
 - Revolume (post-GLP-1 skin scan): https://revolume.app/
 

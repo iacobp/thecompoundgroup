@@ -29,14 +29,14 @@ const body = Inter({
 const siteUrl = "https://thecompoundgroup.com";
 const siteName = "The Compound Group";
 const description =
-  "A consumer health studio behind GLP-1 Picks, HRT Picks and Best Peptide For That, with Healthspan Picks in development. Evidence, provider prices and practical tools.";
+  "A consumer health studio behind GLP-1 Picks, HRT Picks, Best Peptide For That and Longevity Ranked. Evidence, provider prices and practical tools.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   // Search Console ownership. DNS for this domain is at Namecheap, not Vercel,
   // so the TXT route needs the registrar; this meta tag verifies the
-  // URL-prefix property without touching DNS. The other five properties are
-  // sc-domain, verified by TXT. Do not remove: losing verification silently
+  // URL-prefix property without touching DNS. Domain properties elsewhere in
+  // the portfolio are verified by TXT. Do not remove: losing verification silently
   // cuts the mother site off from the only search data the ledger can publish.
   verification: { google: "u84Fhczettf5mDUQTYTICbP1VZYBqJ83NiQ-DxSUIas" },
   title: {
@@ -58,7 +58,8 @@ export const metadata: Metadata = {
     "HRT comparison",
     "HRT telehealth",
     "NAD+ comparison",
-    "healthspan comparison",
+    "longevity comparison",
+    "sermorelin comparison",
     "menopause telehealth",
     "peptide tracker",
     "health venture studio",
@@ -153,6 +154,13 @@ const organizationJsonLd = {
           "bestpeptideforthat",
           "peptideCount",
         )} compounds including GLP-1, with separate evidence and provider comparisons, sourced advertised prices, missing-term labels and a plan-cost calculator. Affiliate activation is pending.`,
+    },
+    {
+      "@type": "Organization",
+      name: "Longevity Ranked",
+      url: "https://longevityranked.com",
+      description:
+        "Longevity-related provider and price comparisons, starting with separate NAD+ and sermorelin categories. Treatment guides and source-linked reviews distinguish evidence, payment terms and commercial arrangements.",
     },
     ...developmentProjects.map((project) => ({
       "@type": "Organization",
