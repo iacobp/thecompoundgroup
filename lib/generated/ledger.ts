@@ -225,7 +225,7 @@ export type LedgerFile = {
 };
 
 export const ledger: LedgerFile = {
-  "generatedAt": "2026-09-15",
+  "generatedAt": "2026-09-16",
   "generatedBy": "barque/scripts/generate-ledger.py",
   "publishPartnerDetail": true,
   "sectionTitles": {
@@ -243,14 +243,14 @@ export const ledger: LedgerFile = {
       "meta": {
         "state": "OK",
         "source": "glp1picks/docs/seo-snapshot.json, barque/registry.yml",
-        "asOf": "2026-09-15"
+        "asOf": "2026-09-16"
       },
       "totals": {
-        "payout": 6050,
-        "conversions": 42,
-        "clicks": 3830,
+        "payout": 6350,
+        "conversions": 44,
+        "clicks": 4159,
         "window": "30-day window",
-        "asOf": "2026-09-15"
+        "asOf": "2026-09-16"
       },
       "properties": [
         {
@@ -259,27 +259,27 @@ export const ledger: LedgerFile = {
           "meta": {
             "state": "OK",
             "source": "glp1picks/docs/seo-snapshot.json",
-            "asOf": "2026-09-15"
+            "asOf": "2026-09-16"
           },
           "figures": [
             {
               "label": "Affiliate payout",
-              "value": "$6,050",
+              "value": "$6,350",
               "context": "30-day window"
             },
             {
               "label": "Conversions",
-              "value": "42",
+              "value": "44",
               "context": "30-day window"
             },
             {
               "label": "Affiliate clicks",
-              "value": "3,830",
+              "value": "4,159",
               "context": "30-day window"
             },
             {
               "label": "Conversion rate",
-              "value": "1.10%",
+              "value": "1.06%",
               "context": "clicks to a partner that became a paid conversion"
             },
             {
@@ -289,12 +289,12 @@ export const ledger: LedgerFile = {
             },
             {
               "label": "Lifetime payout",
-              "value": "$19,792",
+              "value": "$20,127",
               "context": "since the first conversion"
             },
             {
               "label": "Lifetime conversions",
-              "value": "109",
+              "value": "112",
               "context": "since the first conversion"
             }
           ]
@@ -305,7 +305,7 @@ export const ledger: LedgerFile = {
           "meta": {
             "state": "NOT_CONNECTED",
             "source": "barque/registry.yml",
-            "asOf": "2026-09-15",
+            "asOf": "2026-09-16",
             "note": "Katalys affiliate ID 12979 serves this property and the per-site split shipped 2026-08-01, but no Katalys reading for it is written to any committed file, so this ledger carries no revenue figure. Unmeasured, not zero."
           },
           "figures": []
@@ -316,7 +316,7 @@ export const ledger: LedgerFile = {
           "meta": {
             "state": "NOT_CONNECTED",
             "source": "barque/registry.yml",
-            "asOf": "2026-09-15",
+            "asOf": "2026-09-16",
             "note": "No Katalys tracking links exist in this product's data, per barque/registry.yml. Monetisation is unwired, so revenue here is unsized rather than zero."
           },
           "figures": []
@@ -327,7 +327,7 @@ export const ledger: LedgerFile = {
           "meta": {
             "state": "NOT_CONNECTED",
             "source": "barque/registry.yml",
-            "asOf": "2026-09-15",
+            "asOf": "2026-09-16",
             "note": "No Katalys tracking links in this product's data. It is an authority site with no affiliate layer yet."
           },
           "figures": []
@@ -338,7 +338,7 @@ export const ledger: LedgerFile = {
           "meta": {
             "state": "NOT_CONNECTED",
             "source": "barque/registry.yml",
-            "asOf": "2026-09-15",
+            "asOf": "2026-09-16",
             "note": "Not an affiliate surface. Revenue is App Store subscription revenue, and no App Store Connect export is committed to any repo this generator can read."
           },
           "figures": []
@@ -348,39 +348,39 @@ export const ledger: LedgerFile = {
         "meta": {
           "state": "OK",
           "source": "glp1picks/docs/seo-snapshot.json",
-          "asOf": "2026-09-15"
+          "asOf": "2026-09-16"
         },
         "rows": [
           {
             "partner": "Embody GLP1",
-            "clicks": 593,
-            "conversions": 35,
-            "payout": 5250.0,
-            "epc": 8.85,
+            "clicks": 605,
+            "conversions": 37,
+            "payout": 5550.0,
+            "epc": 9.17,
             "tier": "REVENUE_SCALE"
           },
           {
             "partner": "Sprout Health",
-            "clicks": 237,
+            "clicks": 241,
             "conversions": 1,
             "payout": 250.0,
-            "epc": 1.05,
+            "epc": 1.04,
             "tier": "REVENUE_SCALE"
           },
           {
             "partner": "Ro.co",
-            "clicks": 245,
+            "clicks": 255,
             "conversions": 3,
             "payout": 150.0,
-            "epc": 0.61,
+            "epc": 0.59,
             "tier": "REVENUE_SCALE"
           },
           {
             "partner": "Eden Health GLP-1",
-            "clicks": 63,
+            "clicks": 98,
             "conversions": 1,
             "payout": 150.0,
-            "epc": 2.38,
+            "epc": 1.53,
             "tier": "REVENUE_SCALE"
           },
           {
@@ -393,15 +393,15 @@ export const ledger: LedgerFile = {
           },
           {
             "partner": "bmiMD Personalized Health RX",
-            "clicks": 104,
+            "clicks": 107,
             "conversions": 1,
             "payout": 100.0,
-            "epc": 0.96,
+            "epc": 0.93,
             "tier": "REVENUE_SCALE"
           },
           {
             "partner": "Fridays Health",
-            "clicks": 139,
+            "clicks": 150,
             "conversions": 0,
             "payout": 0.0,
             "epc": null,
@@ -414,7 +414,7 @@ export const ledger: LedgerFile = {
       "meta": {
         "state": "OK",
         "source": "barque/data/gsc/",
-        "asOf": "2026-09-15"
+        "asOf": "2026-09-16"
       },
       "properties": [
         {
@@ -423,32 +423,32 @@ export const ledger: LedgerFile = {
           "meta": {
             "state": "OK",
             "source": "barque/data/gsc/glp1picks.json",
-            "asOf": "2026-09-14"
+            "asOf": "2026-09-15"
           },
           "figures": [
             {
               "label": "Queries with impressions",
-              "value": "3,490",
+              "value": "3,664",
               "context": "28-day window"
             },
             {
               "label": "Pages with impressions",
-              "value": "1,572",
+              "value": "1,585",
               "context": "28-day window"
             },
             {
               "label": "Clicks",
-              "value": "1,227",
-              "context": "summed over the top 250 pages of 1,572"
+              "value": "1,246",
+              "context": "summed over the top 250 pages of 1,585"
             },
             {
               "label": "Impressions",
-              "value": "277,496",
-              "context": "summed over the top 250 pages of 1,572"
+              "value": "288,675",
+              "context": "summed over the top 250 pages of 1,585"
             },
             {
               "label": "Strike-zone pairs",
-              "value": "805",
+              "value": "822",
               "context": "query and page pairs ranking 8 to 20, the cheapest wins available"
             }
           ]
@@ -459,7 +459,7 @@ export const ledger: LedgerFile = {
           "meta": {
             "state": "OK",
             "source": "barque/data/gsc/hrtpicks.json",
-            "asOf": "2026-09-14"
+            "asOf": "2026-09-15"
           },
           "figures": [
             {
@@ -469,7 +469,7 @@ export const ledger: LedgerFile = {
             },
             {
               "label": "Pages with impressions",
-              "value": "3",
+              "value": "2",
               "context": "28-day window"
             },
             {
@@ -479,7 +479,7 @@ export const ledger: LedgerFile = {
             },
             {
               "label": "Impressions",
-              "value": "42",
+              "value": "31",
               "context": "summed over every page the report returned"
             },
             {
@@ -495,7 +495,7 @@ export const ledger: LedgerFile = {
           "meta": {
             "state": "OK",
             "source": "barque/data/gsc/bestpeptideforthat.json",
-            "asOf": "2026-09-14"
+            "asOf": "2026-09-15"
           },
           "figures": [
             {
@@ -531,12 +531,12 @@ export const ledger: LedgerFile = {
           "meta": {
             "state": "OK",
             "source": "barque/data/gsc/glp1pets.json",
-            "asOf": "2026-09-14"
+            "asOf": "2026-09-15"
           },
           "figures": [
             {
               "label": "Queries with impressions",
-              "value": "223",
+              "value": "226",
               "context": "28-day window"
             },
             {
@@ -546,17 +546,17 @@ export const ledger: LedgerFile = {
             },
             {
               "label": "Clicks",
-              "value": "41",
+              "value": "42",
               "context": "summed over every page the report returned"
             },
             {
               "label": "Impressions",
-              "value": "3,349",
+              "value": "3,481",
               "context": "summed over every page the report returned"
             },
             {
               "label": "Strike-zone pairs",
-              "value": "63",
+              "value": "64",
               "context": "query and page pairs ranking 8 to 20, the cheapest wins available"
             }
           ]
@@ -567,7 +567,7 @@ export const ledger: LedgerFile = {
           "meta": {
             "state": "OK",
             "source": "barque/data/gsc/titrate.json",
-            "asOf": "2026-09-14"
+            "asOf": "2026-09-15"
           },
           "figures": [
             {
@@ -603,7 +603,7 @@ export const ledger: LedgerFile = {
           "meta": {
             "state": "OK",
             "source": "barque/data/gsc/thecompound.json",
-            "asOf": "2026-09-14"
+            "asOf": "2026-09-15"
           },
           "figures": [
             {
@@ -623,7 +623,7 @@ export const ledger: LedgerFile = {
             },
             {
               "label": "Impressions",
-              "value": "106",
+              "value": "103",
               "context": "summed over every page the report returned"
             },
             {
@@ -639,7 +639,7 @@ export const ledger: LedgerFile = {
       "meta": {
         "state": "OK",
         "source": "barque/forecasts.tsv, barque/resolutions.tsv",
-        "asOf": "2026-09-15"
+        "asOf": "2026-09-16"
       },
       "resolved": [
         {
@@ -693,7 +693,7 @@ export const ledger: LedgerFile = {
       "meta": {
         "state": "OK",
         "source": "barque/work-orders.tsv, barque/work-order-status.tsv",
-        "asOf": "2026-09-15"
+        "asOf": "2026-09-16"
       },
       "raised": 172,
       "counts": [
@@ -763,7 +763,7 @@ export const ledger: LedgerFile = {
       "meta": {
         "state": "OK",
         "source": "barque/incidents.tsv",
-        "asOf": "2026-09-15"
+        "asOf": "2026-09-16"
       },
       "rows": [
         {
@@ -847,13 +847,13 @@ export const ledger: LedgerFile = {
       "meta": {
         "state": "OK",
         "source": "glp1picks/src/data/posts.ts, barque/data/gsc/glp1picks.json",
-        "asOf": "2026-09-14"
+        "asOf": "2026-09-15"
       },
       "rows": [
         {
           "slug": "retatrutide-weight-loss-drug",
           "published": "2026-08-05",
-          "ageDays": 41,
+          "ageDays": 42,
           "ranked": true,
           "clicks": 0,
           "impressions": 32
@@ -861,15 +861,15 @@ export const ledger: LedgerFile = {
         {
           "slug": "alcohol-and-glp1",
           "published": "2026-08-02",
-          "ageDays": 44,
+          "ageDays": 45,
           "ranked": true,
           "clicks": 0,
-          "impressions": 23
+          "impressions": 21
         },
         {
           "slug": "berberine-natures-ozempic",
           "published": "2026-08-02",
-          "ageDays": 44,
+          "ageDays": 45,
           "ranked": false,
           "clicks": null,
           "impressions": null
@@ -877,15 +877,15 @@ export const ledger: LedgerFile = {
         {
           "slug": "glp1-storage-and-travel",
           "published": "2026-08-02",
-          "ageDays": 44,
+          "ageDays": 45,
           "ranked": true,
           "clicks": 0,
-          "impressions": 24
+          "impressions": 25
         },
         {
           "slug": "how-to-get-semaglutide-online",
           "published": "2026-08-02",
-          "ageDays": 44,
+          "ageDays": 45,
           "ranked": true,
           "clicks": 0,
           "impressions": 13
@@ -893,7 +893,7 @@ export const ledger: LedgerFile = {
         {
           "slug": "ozempic-plateau",
           "published": "2026-08-02",
-          "ageDays": 44,
+          "ageDays": 45,
           "ranked": true,
           "clicks": 0,
           "impressions": 8
@@ -901,7 +901,7 @@ export const ledger: LedgerFile = {
         {
           "slug": "semaglutide-before-and-after",
           "published": "2026-07-17",
-          "ageDays": 60,
+          "ageDays": 61,
           "ranked": true,
           "clicks": 0,
           "impressions": 8
@@ -909,55 +909,55 @@ export const ledger: LedgerFile = {
         {
           "slug": "foundayo-vs-wegovy-pill",
           "published": "2026-07-16",
-          "ageDays": 61,
+          "ageDays": 62,
           "ranked": true,
           "clicks": 3,
-          "impressions": 414
+          "impressions": 408
         },
         {
           "slug": "semaglutide-vs-tirzepatide",
           "published": "2026-07-15",
-          "ageDays": 62,
+          "ageDays": 63,
           "ranked": true,
           "clicks": 0,
-          "impressions": 89
+          "impressions": 88
         },
         {
           "slug": "wegovy-vs-zepbound",
           "published": "2026-07-07",
-          "ageDays": 70,
+          "ageDays": 71,
           "ranked": true,
           "clicks": 0,
-          "impressions": 67
+          "impressions": 68
         },
         {
           "slug": "glp1-cost-guide-2026",
           "published": "2026-07-06",
-          "ageDays": 71,
+          "ageDays": 72,
           "ranked": true,
           "clicks": 1,
-          "impressions": 416
+          "impressions": 412
         },
         {
           "slug": "medicare-part-d-glp1-coverage-2026-complete-guide",
           "published": "2026-07-06",
-          "ageDays": 71,
-          "ranked": false,
-          "clicks": null,
-          "impressions": null
+          "ageDays": 72,
+          "ranked": true,
+          "clicks": 0,
+          "impressions": 2
         },
         {
           "slug": "ozempic-vs-wegovy",
           "published": "2026-07-02",
-          "ageDays": 75,
+          "ageDays": 76,
           "ranked": true,
           "clicks": 0,
-          "impressions": 57
+          "impressions": 56
         },
         {
           "slug": "mounjaro-vs-ozempic",
           "published": "2026-06-24",
-          "ageDays": 83,
+          "ageDays": 84,
           "ranked": true,
           "clicks": 0,
           "impressions": 47
@@ -965,7 +965,7 @@ export const ledger: LedgerFile = {
         {
           "slug": "compounded-semaglutide-crackdown",
           "published": "2026-06-19",
-          "ageDays": 88,
+          "ageDays": 89,
           "ranked": true,
           "clicks": 0,
           "impressions": 14
@@ -973,31 +973,31 @@ export const ledger: LedgerFile = {
         {
           "slug": "cagrisema-weight-loss-drug",
           "published": "2026-06-16",
-          "ageDays": 91,
+          "ageDays": 92,
           "ranked": true,
           "clicks": 1,
-          "impressions": 213
+          "impressions": 215
         },
         {
           "slug": "fda-503b-permanent-compounding-ban-2026",
           "published": "2026-05-08",
-          "ageDays": 130,
+          "ageDays": 131,
           "ranked": true,
           "clicks": 0,
-          "impressions": 7
+          "impressions": 6
         },
         {
           "slug": "next-weight-loss-drugs-pipeline-2026",
           "published": "2026-05-05",
-          "ageDays": 133,
+          "ageDays": 134,
           "ranked": true,
           "clicks": 0,
-          "impressions": 44
+          "impressions": 48
         },
         {
           "slug": "foundayo-guide-2026",
           "published": "2026-04-29",
-          "ageDays": 139,
+          "ageDays": 140,
           "ranked": false,
           "clicks": null,
           "impressions": null
@@ -1005,7 +1005,7 @@ export const ledger: LedgerFile = {
         {
           "slug": "zepbound-vs-mounjaro",
           "published": "2026-04-22",
-          "ageDays": 146,
+          "ageDays": 147,
           "ranked": true,
           "clicks": 0,
           "impressions": 83
@@ -1013,31 +1013,31 @@ export const ledger: LedgerFile = {
         {
           "slug": "glp1-beginners-guide-2026",
           "published": "2026-04-13",
-          "ageDays": 155,
+          "ageDays": 156,
           "ranked": true,
           "clicks": 0,
-          "impressions": 138
+          "impressions": 140
         },
         {
           "slug": "wegovy-pill-vs-injection",
           "published": "2026-04-11",
-          "ageDays": 157,
+          "ageDays": 158,
           "ranked": true,
           "clicks": 0,
-          "impressions": 95
+          "impressions": 92
         },
         {
           "slug": "foods-to-avoid-on-glp1",
           "published": "2026-04-11",
-          "ageDays": 157,
+          "ageDays": 158,
           "ranked": true,
           "clicks": 0,
-          "impressions": 14
+          "impressions": 11
         },
         {
           "slug": "glp1-side-effects-management-guide",
           "published": "2026-04-11",
-          "ageDays": 157,
+          "ageDays": 158,
           "ranked": true,
           "clicks": 0,
           "impressions": 2
@@ -1045,7 +1045,7 @@ export const ledger: LedgerFile = {
         {
           "slug": "tirzepatide-cost",
           "published": "2026-04-11",
-          "ageDays": 157,
+          "ageDays": 158,
           "ranked": true,
           "clicks": 0,
           "impressions": 25
@@ -1053,7 +1053,7 @@ export const ledger: LedgerFile = {
         {
           "slug": "compounded-tirzepatide",
           "published": "2026-04-11",
-          "ageDays": 157,
+          "ageDays": 158,
           "ranked": true,
           "clicks": 0,
           "impressions": 161
@@ -1061,31 +1061,31 @@ export const ledger: LedgerFile = {
         {
           "slug": "glp1-patches",
           "published": "2026-04-08",
-          "ageDays": 160,
+          "ageDays": 161,
           "ranked": false,
           "clicks": null,
           "impressions": null
         }
       ],
       "eligible": 27,
-      "ranked": 23,
-      "notRanked": 4,
-      "scope": "Every article on GLP-1 Picks published at least 30 days ago, checked against the 28-day pages report. Ranked means the article's own URL appears in that report, which stores the top 250 pages by clicks out of 1,572. An article missing from it may still have a handful of impressions in the tail; what this counts is whether it earned a place in the measured set."
+      "ranked": 24,
+      "notRanked": 3,
+      "scope": "Every article on GLP-1 Picks published at least 30 days ago, checked against the 28-day pages report. Ranked means the article's own URL appears in that report, which stores the top 250 pages by clicks out of 1,585. An article missing from it may still have a handful of impressions in the tail; what this counts is whether it earned a place in the measured set."
     },
     "aiCitations": {
       "meta": {
         "state": "OK",
         "source": "glp1picks/docs/seo-snapshot.json",
-        "asOf": "2026-09-15"
+        "asOf": "2026-09-16"
       },
       "engines": [
         {
           "engine": "chatgpt",
-          "sessions": 45,
+          "sessions": 52,
           "rawSources": [
             "chatgpt.com"
           ],
-          "shareOfAllSessions": 1.34
+          "shareOfAllSessions": 1.54
         },
         {
           "engine": "copilot",
@@ -1097,23 +1097,23 @@ export const ledger: LedgerFile = {
         },
         {
           "engine": "gemini.google",
-          "sessions": 2,
+          "sessions": 4,
           "rawSources": [
             "gemini.google.com"
           ],
-          "shareOfAllSessions": 0.06
+          "shareOfAllSessions": 0.12
         }
       ],
-      "aiSessions": 55,
-      "allSessions": 3347,
-      "aiShare": 1.64,
+      "aiSessions": 64,
+      "allSessions": 3386,
+      "aiShare": 1.89,
       "windowDays": 30,
       "landings": [
         {
           "path": "/reviews/embody",
           "engine": "chatgpt.com",
-          "sessions": 16,
-          "avgSeconds": 54
+          "sessions": 17,
+          "avgSeconds": 51
         },
         {
           "path": "/pricing/embody",
@@ -1124,8 +1124,14 @@ export const ledger: LedgerFile = {
         {
           "path": "/reviews",
           "engine": "chatgpt.com",
+          "sessions": 7,
+          "avgSeconds": 268
+        },
+        {
+          "path": "/",
+          "engine": "chatgpt.com",
           "sessions": 3,
-          "avgSeconds": 281
+          "avgSeconds": 495
         },
         {
           "path": "/states/texas",
@@ -1194,10 +1200,10 @@ export const ledger: LedgerFile = {
           "avgSeconds": 0
         },
         {
-          "path": "/",
-          "engine": "chatgpt.com",
+          "path": "(not set)",
+          "engine": "gemini.google.com",
           "sessions": 1,
-          "avgSeconds": 1405
+          "avgSeconds": 0
         },
         {
           "path": "/best",
@@ -1236,6 +1242,12 @@ export const ledger: LedgerFile = {
           "avgSeconds": 3
         },
         {
+          "path": "/oral-semaglutide",
+          "engine": "gemini.google.com",
+          "sessions": 1,
+          "avgSeconds": 0
+        },
+        {
           "path": "/reviews/feelgood",
           "engine": "claude.ai",
           "sessions": 1,
@@ -1253,7 +1265,7 @@ export const ledger: LedgerFile = {
       "otherProperties": {
         "state": "NOT_CONNECTED",
         "source": "barque/registry.yml",
-        "asOf": "2026-09-15",
+        "asOf": "2026-09-16",
         "note": "HRT Picks, Best Peptide For That and Titrate have no analytics property at all, so their AI citation share is unsized. Not zero."
       }
     },
@@ -1261,7 +1273,7 @@ export const ledger: LedgerFile = {
       "meta": {
         "state": "OK",
         "source": "barque/spend.tsv",
-        "asOf": "2026-09-15"
+        "asOf": "2026-09-16"
       },
       "rows": [
         {
