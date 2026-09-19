@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "OpenSEO Private privacy policy",
-  description: "How The Compound Group's private SEO workspace handles Google Search Console data.",
+  description: "How The Compound Group's private SEO workspace handles Google Search Console and Analytics data.",
   alternates: { canonical: "/open-seo/privacy" },
 };
 
@@ -37,6 +37,13 @@ export default function OpenSeoPrivacyPage() {
             also receives the Google account identity needed to associate the
             connection with the authorized user.
           </p>
+          <p className="mt-4">
+            If an authorized user separately connects Google Analytics 4, the
+            workspace requests read-only access to selected properties. It
+            reads property details and reports such as traffic sources,
+            sessions, engagement, landing pages, and key events. It also
+            receives the connected Google account identity.
+          </p>
         </section>
         <section>
           <h2 className="mb-3 font-display text-2xl text-ink">How do we use and protect it?</h2>
@@ -48,8 +55,8 @@ export default function OpenSeoPrivacyPage() {
             account. We do not sell Google data or use it for advertising.
           </p>
           <p className="mt-4">
-            When an authorized user asks an AI agent to work with Search Console
-            data, the selected information may be provided to the AI service
+            When an authorized user asks an AI agent to work with Google data,
+            the selected information may be provided to the AI service
             used for that request. Separate keyword and backlink research may
             send entered domains or search terms to DataForSEO; this does not
             grant DataForSEO access to the Google account.
@@ -58,7 +65,7 @@ export default function OpenSeoPrivacyPage() {
         <section>
           <h2 className="mb-3 font-display text-2xl text-ink">How long is it kept?</h2>
           <p>
-            We keep the Search Console connection while it is needed for the
+            We keep each Google connection while it is needed for the
             private workspace. An authorized user can revoke access in their
             Google Account settings or ask us to remove the connection and
             associated stored data. Revoking access stops future collection;

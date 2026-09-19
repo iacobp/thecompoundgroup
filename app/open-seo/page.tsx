@@ -27,13 +27,13 @@ export default function OpenSeoPage() {
         </div>
         <div className="border-t border-sage/50 pt-5 md:mt-5">
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sage">
-            Google Search Console
+            Google Search Console and Analytics
           </p>
           <p className="mt-4 leading-relaxed text-ink/70">
             With account consent, OpenSEO Private reads Search Console data for
-            verified properties to show clicks, impressions, queries, pages,
-            positions, and related diagnostics. It requests read-only Search
-            Console access.
+            verified sites and Google Analytics 4 data for selected properties.
+            This includes search performance, traffic, and engagement reports.
+            Both connections request read-only access.
           </p>
         </div>
       </div>

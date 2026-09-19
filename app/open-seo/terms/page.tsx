@@ -27,11 +27,12 @@ export default function OpenSeoTermsPage() {
         <section>
           <h2 className="mb-3 font-display text-2xl text-ink">Connected accounts</h2>
           <p>
-            Authorized users should connect only Google Search Console
-            properties they have permission to access. They may revoke the
-            Google connection through their Google Account settings. The
-            workspace uses the granted read-only Search Console scope to show
-            reports and does not use that grant to modify a website.
+            Authorized users should connect only Google Search Console sites
+            and Google Analytics 4 properties they have permission to access.
+            They may revoke either Google connection through their Google
+            Account settings. The workspace uses read-only scopes to show
+            reports and does not use those grants to modify the sites or
+            Analytics properties.
           </p>
         </section>
         <section>
