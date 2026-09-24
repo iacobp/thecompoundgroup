@@ -12,7 +12,10 @@ export function LongevityRankedThumb() {
           <span>longevityranked.com</span>
         </div>
         <div className="flex items-center justify-between border-b border-[#26342e]/15 px-[5cqw] py-[3cqw] text-[2.1cqw]">
-          <span className="font-semibold tracking-[-.04em]">Longevity Ranked</span>
+          <span className="inline-flex items-center gap-[1cqw] text-[#26342e]">
+            <svg className="h-[4cqw] w-[4cqw] shrink-0" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#26342e"/><path fill="#f1f0e8" fillRule="evenodd" d="M17 14h17c11 0 17 6 17 15 0 7-4 12-11 14H27v8H17V14Zm10 10v10h7c5 0 7-2 7-5s-2-5-7-5h-7Z"/><path d="m36 39 14 12H37L27 40" fill="#c8dd68"/></svg>
+            <span className="font-serif italic">Longevity</span><span className="font-bold tracking-[-.05em]">Ranked</span>
+          </span>
           <span>NAD+ &amp; sermorelin</span>
         </div>
         <div className="px-[6cqw] py-[5cqw]">
