@@ -41,7 +41,7 @@ export type UnanchoredFact = {
 };
 
 export const anchors = {
-  "generatedAt": "2026-09-24",
+  "generatedAt": "2026-09-25",
   "generatedBy": "barque/scripts/generate-portfolio-anchors.py",
   "products": {
     "glp1picks": {
@@ -54,31 +54,31 @@ export const anchors = {
           "value": 36,
           "source": "src/data/providers.ts",
           "derivedBy": "count of top-level records in `export const providers`",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "affiliatePartnerCount": {
           "value": 34,
           "source": "src/data/providers.ts",
           "derivedBy": "providers whose affiliateUrl carries a tracking domain, mirroring isAffiliatePartner() in the anchor",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "comparisonPageCount": {
           "value": 630,
           "source": "src/data/providers.ts",
           "derivedBy": "every unordered provider pair, n*(n-1)/2, the /compare route family",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "stateGuideCount": {
           "value": 51,
           "source": "src/data/states.ts",
           "derivedBy": "count of top-level records in `export const states`",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "blogPostCount": {
           "value": 31,
           "source": "src/data/posts.ts",
           "derivedBy": "count of top-level records in `export const posts`",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "providerPrices": {
           "value": {
@@ -120,7 +120,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the headline `price` field per provider slug, in USD per month",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "providerScores": {
           "value": {
@@ -162,7 +162,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the methodology `score` field per provider slug, out of 10",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "providerRanks": {
           "value": {
@@ -204,7 +204,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the `rank` field per provider slug, so a leaderboard replica orders itself the way the product does instead of freezing a past order",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "providerPriceCeiling": {
           "value": {
@@ -246,7 +246,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the highest `price` inside the provider's own `pricingTiers` array, the top of the monthly range that program publishes for itself. Providers declaring no pricingTiers are absent, not defaulted",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "providerNames": {
           "value": {
@@ -288,19 +288,19 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the display `name` field per provider slug, so a chart labelled by name can be matched back to the anchor",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         }
       },
       "unanchored": {
         "pagesPublished": {
           "state": "no-anchor",
           "reason": "No anchor file states a total page count. The number is a property of the rendered sitemap, which needs a build, and no sitemap snapshot is committed anywhere the generator can read. Sum the route families instead (providerCount + comparisonPageCount + stateGuideCount + blogPostCount) and say which families you summed, or state no total.",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "pagesIndexed": {
           "state": "no-anchor",
           "reason": "Indexed-page counts come from Search Console, not from an anchor. barque/data/gsc/glp1picks.json holds the pages report; it measures pages with impressions, which is a different quantity from pages published, and it is a dated reading rather than a canonical fact.",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         }
       }
     },
@@ -314,25 +314,25 @@ export const anchors = {
           "value": 18,
           "source": "src/data/providers.ts",
           "derivedBy": "count of top-level research records in `ALL_PROVIDERS`",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "affiliatePartnerCount": {
           "value": 8,
           "source": "src/data/providers.ts",
           "derivedBy": "providers whose affiliateUrl carries a tracking domain, mirroring isAffiliatePartner() in the anchor",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "womensWingCount": {
           "value": 13,
           "source": "src/data/providers.ts",
           "derivedBy": "providers with wing \"women\" or \"both\"",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "mensWingCount": {
           "value": 7,
           "source": "src/data/providers.ts",
           "derivedBy": "providers with wing \"men\" or \"both\"",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "transparencyGrades": {
           "value": {
@@ -343,7 +343,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "distribution of the transparencyGrade field",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "providerNames": {
           "value": {
@@ -368,7 +368,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the display `name` field per provider slug",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "providerScores": {
           "value": {
@@ -393,7 +393,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the methodology `score` field per provider slug, out of 10",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "providerGrades": {
           "value": {
@@ -418,7 +418,7 @@ export const anchors = {
           },
           "source": "src/data/providers.ts",
           "derivedBy": "the transparencyGrade field per provider slug, A to F",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         }
       },
       "unanchored": {}
@@ -433,7 +433,7 @@ export const anchors = {
           "value": 46,
           "source": "src/data/peptides.ts",
           "derivedBy": "count of top-level records in `export const peptides`",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "evidenceGrades": {
           "value": {
@@ -445,7 +445,7 @@ export const anchors = {
           },
           "source": "src/data/peptides.ts",
           "derivedBy": "distribution of the evidenceGrade field",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "peptideGrades": {
           "value": {
@@ -498,13 +498,13 @@ export const anchors = {
           },
           "source": "src/data/peptides.ts",
           "derivedBy": "the evidenceGrade field per peptide display name, so a page naming a peptide reads its grade instead of remembering one",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "pcacDocketCount": {
           "value": 7,
           "source": "src/data/peptides.ts",
           "derivedBy": "peptides carrying a pcacVote record",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         }
       },
       "unanchored": {}
@@ -519,13 +519,13 @@ export const anchors = {
           "value": 5,
           "source": "src/data/pipeline.ts",
           "derivedBy": "count of top-level records in `export const programmes`",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "meow1ReadoutWindow": {
           "value": "Summer 2027",
           "source": "src/data/pipeline.ts",
           "derivedBy": "readoutWindow of the okv-119 programme, whose trialName is MEOW-1",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "readoutWindows": {
           "value": {
@@ -535,7 +535,7 @@ export const anchors = {
           },
           "source": "src/data/pipeline.ts",
           "derivedBy": "readoutWindow per programme slug",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "trialNames": {
           "value": {
@@ -543,7 +543,7 @@ export const anchors = {
           },
           "source": "src/data/pipeline.ts",
           "derivedBy": "trialName per programme slug",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         }
       },
       "unanchored": {}
@@ -558,31 +558,31 @@ export const anchors = {
           "value": 32,
           "source": "lib/constants.ts",
           "derivedBy": "COMPOUND_COUNT, the preloaded library size, which takes no plus sign",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "priceMonthlyUsd": {
           "value": 9.99,
           "source": "lib/constants.ts",
           "derivedBy": "PRICE_MONTHLY_USD",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "priceYearlyUsd": {
           "value": 49.99,
           "source": "lib/constants.ts",
           "derivedBy": "PRICE_YEARLY_USD",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "trialDays": {
           "value": 7,
           "source": "lib/constants.ts",
           "derivedBy": "TRIAL_DAYS",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         },
         "appStoreId": {
           "value": "6766338584",
           "source": "lib/constants.ts",
           "derivedBy": "APP_STORE_ID",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         }
       },
       "unanchored": {}
@@ -597,7 +597,7 @@ export const anchors = {
         "facialMarkerCount": {
           "state": "no-anchor",
           "reason": "Revolume declares no anchor: it is absent from barque/registry.yml, has no CLAUDE.md and no audit script. Its own copy states both fifteen and sixteen markers on different pages, so there is no value here that could be promoted to a fact without picking one arbitrarily. Observed: components/sample/data.ts holds 15 demo markers. Give Revolume an anchor before the mother site states a marker count.",
-          "asOf": "2026-09-24"
+          "asOf": "2026-09-25"
         }
       }
     }
