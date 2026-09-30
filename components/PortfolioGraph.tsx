@@ -202,7 +202,7 @@ const initialNodes: GraphNode[] = [
     sub: "Scaffolds",
     kind: "dev",
     href: "#comparison-studio",
-    description: `${comparisonScaffolds.filter((project) => !["supplement-index", "neuroscience-index"].includes(project.slug)).map((project) => project.name).join(", ")}: working comparison scaffolds for distinct audiences and products. Names are provisional; these sites are not publicly launched or claimed to earn affiliate revenue.`,
+    description: `${comparisonScaffolds.filter((project) => !["supplement-index", "neuroscience-index"].includes(project.slug)).map((project) => project.name).join(", ")}: comparison scaffolds for distinct audiences and products. Hair loss covers women and men; sexual health starts with ED. Their final names are undecided. These sites are not publicly launched or claimed to earn affiliate revenue.`,
     x: CX + 320,
     y: CY + 190,
     radius: 20,

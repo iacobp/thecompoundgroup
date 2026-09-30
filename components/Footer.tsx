@@ -222,7 +222,7 @@ export function Footer() {
             <div className="mt-10 text-[13px] leading-[1.7] text-cream/55">
               <a href="/#comparison-studio" className="font-medium text-cream/80 underline underline-offset-4">Comparison scaffolds:</a>{" "}
               {comparisonScaffolds.map((project, index) => <span key={project.slug}>{index > 0 && ", "}<a href={`/#${project.slug}`} className="hover:text-cream">{project.name}</a></span>)}.
-              <span className="mt-3 block">Working names, not publicly launched. Neuroplasticity Lab remains a separate planned project.</span>
+              <span className="mt-3 block">Not publicly launched. Hair loss and Sexual health use category labels while naming is undecided. Neuroplasticity Lab remains a separate planned project.</span>
             </div>
           </Reveal>
         </div>
