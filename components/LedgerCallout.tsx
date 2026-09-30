@@ -50,13 +50,6 @@ export function LedgerCallout() {
               off.
             </p>
 
-            <p className="mt-6 text-[15px] leading-[1.65] text-ink/60 max-w-[56ch]">
-              It lives on one page because a number that appears in two places
-              eventually disagrees with itself. This site used to state portfolio
-              scale in four places on four different dates. Now it states it in
-              one.
-            </p>
-
             <ul className="mt-9 flex flex-wrap gap-x-6 gap-y-2">
               {sections.map((s) => (
                 <li

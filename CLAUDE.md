@@ -3,6 +3,17 @@
 Anchor: lib/generated/anchors.ts
 Ledger: lib/generated/ledger.ts
 
+## Reader-facing copy, not internal edit logs
+
+Never publish internal revision summaries, partner-feedback implementation notes,
+QA/deployment logs or "what we changed" blocks in page headers, body copy,
+metadata or AI summaries. Keep operational records private, outside this public
+repository. Lead with the information the reader needs. Preserve truthful source
+and publication dates, price conditions, evidence limitations and material factual
+corrections. Cosmetic cleanup must not refresh source or verification dates.
+The deliberately public operating ledger remains a separate, evidence-backed
+publication; this rule does not remove its measurements or accountability.
+
 <!-- GATE W1 (thecompound/CLAUDE.md, Model Split canon 2026-08-01): a writing
      brief may only be issued for this product while the line above names an
      existing file AND `python3 scripts/audit-provider-anchors.py` exits 0.
