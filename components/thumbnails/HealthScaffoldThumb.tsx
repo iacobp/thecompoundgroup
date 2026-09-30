@@ -1,20 +1,24 @@
 import { comparisonScaffolds } from "@/lib/portfolio-development";
 
-/** Editorial replica of the actual shared-app preview, without a made-up domain. */
+/** Editorial replicas of the approved, deployed health preview homepages. */
 export function HealthScaffoldThumb({ edition }: { edition: "hair" | "desire" }) {
   const hair = edition === "hair";
   const project = comparisonScaffolds.find(item => item.slug === (hair ? "hair-index" : "desire-index"))!;
-  const accent = hair ? "#3F6157" : "#853F48";
-  const tint = hair ? "#E4EBE5" : "#F2E4E5";
+  const ink = hair ? "#19343D" : "#4D1E2B";
+  const paper = hair ? "#F3F0E7" : "#FFF4DD";
+  const signal = hair ? "#AC603E" : "#EB775F";
   return <figure>
-    <div role="img" aria-label={`${project.name} preview: ${hair ? "women's and men's care pathways" : "ED provider comparisons"} and a cost calculator`} className="overflow-hidden rounded-xl border border-border bg-[#F8F7F2] text-[#242C29] [container-type:inline-size] font-sans">
-      <div className="px-[5cqw] py-[2cqw] text-[2cqw]" style={{ color: accent, backgroundColor: tint }}>Design preview · Not launched</div>
-      <div className="flex items-center justify-between border-b border-[#DCDDD4] px-[5cqw] py-[3cqw]"><span className="text-[3.1cqw] font-semibold">{project.name}</span><span className="text-[1.8cqw]">{hair ? "For women / For men" : "ED care / Compare"}</span></div>
-      <div className="grid grid-cols-[1.2fr_.8fr] gap-[4cqw] px-[5cqw] py-[7cqw]">
-        <div><p className="text-[1.6cqw] uppercase tracking-wide" style={{ color: accent }}>{hair ? "Hair-loss care, clearly compared" : "Sexual health, on your terms"}</p><p className="mt-[3cqw] text-[5.4cqw] font-semibold leading-[1.04] tracking-[-.06em]">{hair ? <>Your hair.<br />A clearer next step.</> : <>Personal questions.<br />Clearer choices.</>}</p><div className="mt-[4cqw] inline-block rounded-[1cqw] px-[2cqw] py-[1.5cqw] text-[1.7cqw] text-white" style={{ backgroundColor: accent }}>{hair ? "Explore care providers" : "Explore ED providers"}</div></div>
-        <div className="rounded-[2cqw] p-[3cqw]" style={{ backgroundColor: tint }}><p className="text-[1.6cqw] uppercase" style={{ color: accent }}>Before you choose</p><p className="mt-[3cqw] text-[3.3cqw] font-medium leading-tight">The details<br />make the difference.</p><div className="mt-[4cqw] space-y-[2cqw] text-[1.7cqw]"><p>01 &nbsp; The actual product</p><p>02 &nbsp; The full commitment</p><p>03 &nbsp; The care around it</p></div></div>
+    <div role="img" aria-label={`${project.name} preview: ${hair ? "editorial typography and flowing strands" : "bold typography and open parentheses"}, care pathways and a cost calculator`} className="overflow-hidden rounded-lg border border-border [container-type:inline-size] font-sans" style={{ backgroundColor: paper, color: ink }}>
+      <div className="px-[5cqw] py-[2cqw] text-[2cqw]" style={{ backgroundColor: hair ? "#E3E7E1" : "#F0DFD0" }}>Design preview · Not launched</div>
+      <div className="flex items-center justify-between border-b px-[5cqw] py-[3cqw]" style={{ borderColor: `${ink}40` }}><span className="text-[3.5cqw]" style={{ fontFamily: hair ? "Georgia, serif" : undefined, fontWeight: hair ? 400 : 600 }}>{project.name}</span><span className="text-[1.8cqw]">{hair ? "For women / For men" : "ED care / Compare"}</span></div>
+      <div className="grid grid-cols-[1.1fr_1fr] px-[5cqw] pb-[5cqw] pt-[4cqw]">
+        <div className="py-[5cqw] pr-[3cqw]"><p className="text-[1.5cqw] uppercase tracking-wide">{hair ? "Hair loss, thoughtfully explained" : "Independent guides to sexual health"}</p><p className="mt-[3cqw] text-[5.7cqw] leading-[1.04] tracking-[-.055em]" style={{ fontFamily: hair ? "Georgia, serif" : undefined, fontWeight: hair ? 400 : 650 }}>{hair ? <>Still you.<br /><em>More informed.</em></> : <>Personal questions.<br />Straight answers.</>}</p><div className="mt-[4cqw] inline-block px-[2cqw] py-[1.5cqw] text-[1.65cqw]" style={{ backgroundColor: ink, color: paper }}>{hair ? "Find your starting point" : "Explore ED treatment options"}</div></div>
+        <div className="relative grid min-h-[49cqw] place-items-center overflow-hidden" style={{ backgroundColor: ink }}>
+          {hair ? <svg className="absolute inset-0 h-full w-full" viewBox="0 0 600 540" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true"><g stroke="#D8DFDD" strokeWidth="1.8" opacity=".66">{Array.from({ length: 20 }, (_, i) => <path key={i} d={`M -70 ${160 + i * 15} C ${145 + i * 3} ${650 - i * 10.5} ${390 + i * 4.5} ${-200 + i * 13.5} 700 ${80 + i * 16.5}`} />)}</g><path d="M-70 400 C130 495 570 25 700 176" stroke={signal} strokeWidth="7" /></svg> : <span className="-translate-y-[3cqw] whitespace-nowrap text-[41cqw] leading-none tracking-[-.08em]" style={{ fontFamily: "Georgia, serif", color: signal }}>( )</span>}
+          <span className="absolute bottom-[3cqw] left-[3cqw] text-[1.8cqw] leading-relaxed" style={{ color: paper }}>{hair ? <>Different textures.<br />A thoughtful next step.</> : <>A little more openness.<br />A little less guesswork.</>}</span>
+        </div>
       </div>
     </div>
-    <figcaption className="mt-2 text-[11px] leading-relaxed text-muted">Homepage scaffold. Final name undecided.</figcaption>
+    <figcaption className="mt-2 text-[11px] leading-relaxed text-muted">Homepage preview. Final name undecided.</figcaption>
   </figure>;
 }
