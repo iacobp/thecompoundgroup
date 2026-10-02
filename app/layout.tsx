@@ -61,6 +61,8 @@ export const metadata: Metadata = {
     "longevity comparison",
     "sermorelin comparison",
     "menopause telehealth",
+    "hair-loss care comparisons",
+    "sexual-health comparisons",
     "peptide tracker",
     "health venture studio",
   ],
@@ -165,7 +167,7 @@ const organizationJsonLd = {
     ...developmentProjects.map((project) => ({
       "@type": "Organization",
       name: project.name,
-      description: `${project.stage} stage, not publicly launched. Working project identity. ${project.description}`,
+      description: `${project.stage} stage, not publicly launched. Provisional name or category label. ${project.description}`,
     })),
   ],
 };
