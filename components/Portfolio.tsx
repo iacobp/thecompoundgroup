@@ -5,6 +5,7 @@ import { TitrateThumb } from "./thumbnails/TitrateThumb";
 import { RevolumeThumb } from "./thumbnails/RevolumeThumb";
 import { BestPeptideForThatThumb } from "./thumbnails/BestPeptideForThatThumb";
 import { LongevityRankedThumb } from "./thumbnails/LongevityRankedThumb";
+import { HealthScaffoldThumb } from "./thumbnails/HealthScaffoldThumb";
 import { Reveal } from "./Reveal";
 import { anchors, anchorValue } from "@/lib/generated/anchors";
 import { developmentProjects } from "@/lib/portfolio-development";
@@ -331,7 +332,8 @@ export function Portfolio() {
               catalog and GLP-1 alongside them.
             </p>
             <p className="mt-4 text-[13px] leading-[1.75] text-muted max-w-[40ch]">
-              Names are provisional. These comparison sites are not publicly
+              Hair loss and Sexual health are category labels; their names are undecided.
+              Other names are provisional. These comparison sites are not publicly
               launched, and no affiliate earnings are implied. Neuroplasticity
               Lab remains a separate planned project.
             </p>
@@ -355,6 +357,7 @@ export function Portfolio() {
                     <div className="text-[13px] text-muted leading-[1.5]">
                       {u.note}
                     </div>
+                    {(u.slug === "hair-index" || u.slug === "desire-index") && <div className="mt-5 max-w-sm"><HealthScaffoldThumb edition={u.slug === "hair-index" ? "hair" : "desire"} /></div>}
                     <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 md:hidden text-[10px] uppercase tracking-[0.22em] text-muted">
                       <span>{u.tag}</span>
                       <span aria-hidden className="opacity-50">·</span>
