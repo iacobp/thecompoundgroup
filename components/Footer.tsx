@@ -75,7 +75,7 @@ export function Footer() {
                     </span>
                   </div>
                   <div className="text-[12px] text-cream/55 mt-1">
-                    Provider comparison — Live
+                    GLP-1 options, costs &amp; payment terms
                   </div>
                 </a>
               </li>
@@ -98,7 +98,7 @@ export function Footer() {
                     </span>
                   </div>
                   <div className="text-[12px] text-cream/55 mt-1">
-                    Menopause HRT · Men’s TRT · Live
+                    Menopause HRT · Men’s TRT · Care &amp; costs
                   </div>
                 </a>
               </li>
@@ -213,7 +213,7 @@ export function Footer() {
                     </span>
                   </div>
                   <div className="text-[12px] text-cream/55 mt-1">
-                    NAD+ &amp; sermorelin comparisons · Live
+                    NAD+ &amp; sermorelin · Evidence &amp; costs
                   </div>
                 </a>
               </li>

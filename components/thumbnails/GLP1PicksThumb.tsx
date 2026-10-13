@@ -45,7 +45,7 @@ export function GLP1PicksThumb() {
         <div className="flex items-baseline justify-between border-b border-ink/10 pb-3">
           <div>
             <div className="font-display italic text-ink text-[18px] leading-none">
-              The Pricing Index
+              Find a program for your budget
             </div>
             <div className="text-[8px] tracking-[0.22em] text-muted mt-1.5 uppercase">
               {g.providerCount.value} providers · Updated{" "}
@@ -64,13 +64,13 @@ export function GLP1PicksThumb() {
         <div className="mt-3 p-3 rounded-md bg-sage/5 border border-sage/20 flex items-center justify-between">
           <div>
             <div className="text-[8px] uppercase tracking-[0.22em] text-sage/80 mb-0.5">
-              Editor&apos;s Top Pick
+              Provider snapshot
             </div>
             <div className="font-display text-ink text-[14px] leading-none">
               {leaderboard[0].name}
             </div>
             <div className="text-[9px] text-ink/60 mt-0.5">
-              ${leaderboard[0].price}/mo · All-in · No hidden fees
+              Check the first bill &amp; renewal terms
             </div>
           </div>
           <div className="text-right">
@@ -95,7 +95,7 @@ export function GLP1PicksThumb() {
               </span>
               <span className="text-[11px] font-medium text-ink">{row.name}</span>
               <span className="text-[9.5px] text-muted tabular-nums">
-                ${row.price}/mo
+                Cost details →
               </span>
               <span className="font-display italic text-ink text-[12px] tabular-nums w-6 text-right">
                 {row.score}

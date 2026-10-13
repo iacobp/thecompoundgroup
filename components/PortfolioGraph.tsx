@@ -81,7 +81,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://glp1picks.com",
     description:
-      `Independent comparison of ${anchorValue("glp1picks", "providerCount")} approved GLP-1 partner programs, with independent scores and reviews of costs, clinical care and transparency. Partnership determines inclusion, not scores.`,
+      `Find among ${anchorValue("glp1picks", "providerCount")} approved GLP-1 partner programs by medication, format and payment preference. Check first bills, renewal terms and unresolved costs. Partnership determines inclusion, not scores.`,
     x: CX - 220,
     y: CY - 120,
     radius: 24,
@@ -93,7 +93,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://hrtpicks.com",
     description:
-      "Approved affiliate partners compared through separate menopause HRT and men's TRT journeys, with treatment finders, costs, insurance guidance and provider reviews. Approval governs catalog inclusion; published scoring and transparency grades remain evidence-based.",
+      "Find care that fits your needs and budget through separate menopause HRT and men's TRT journeys. Treatment finders, medication costs, visit fees and insurance guidance support the choice. Approval governs catalog inclusion, not scores.",
     x: CX - 320,
     y: CY + 30,
     radius: 22,
@@ -130,7 +130,7 @@ const initialNodes: GraphNode[] = [
     kind: "live",
     href: "https://longevityranked.com",
     description:
-      "NAD+ and sermorelin provider and price comparisons. Treatment guides, payment terms and source-linked reviews keep product evidence separate from commercial arrangements.",
+      "Understand NAD+ and sermorelin evidence before spending. Provider reviews distinguish first payments, renewals, additional fees and known limitations. Commercial arrangements remain separate from the evidence.",
     x: CX + 65,
     y: CY - 170,
     radius: 22,

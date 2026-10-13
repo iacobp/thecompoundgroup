@@ -40,11 +40,11 @@ const items: PortfolioItem[] = [
     num: "I",
     name: "GLP-1 Picks",
     tagline:
-      "Compare GLP-1 partner programs by cost, care and transparency.",
+      "Find a GLP-1 program for your budget. Know the payment terms before you choose.",
     body: `We review ${anchorValue(
       "glp1picks",
       "providerCount",
-    )} approved GLP-1 partner programs using a published scoring methodology. Reviews cover full costs, clinical care and pricing transparency. Partnership determines which providers appear; it does not determine their scores. The scoring methodology is published in full, the affiliate relationships are disclosed on every page, and the rankings follow directly from the methodology. When we earn a commission on a visit, the page you're reading says so.`,
+    )} approved GLP-1 partner programs using a published scoring methodology. Medication, format and payment preferences help readers form a shortlist. Reviews distinguish the first bill, renewal terms, care details and costs still needing confirmation. Partnership determines which providers appear; it does not determine their scores. Affiliate relationships and the methodology are disclosed.`,
     status: "live",
     mode: "built",
     href: "https://glp1picks.com",
@@ -60,7 +60,7 @@ const items: PortfolioItem[] = [
     num: "II",
     name: "HRT Picks",
     tagline:
-      "Compare approved hormone-care partners with verified prices and published scoring.",
+      "Find hormone care that fits your needs and budget.",
     body: `HRT Picks compares approved affiliate partners through separate menopause HRT and men's TRT journeys. Each includes a treatment finder, costs, insurance guidance and provider reviews. Approval determines which providers enter the shopping catalog; the published methodology determines scores and rank within that set. Prices carry billing terms and verification dates, and transparency grades show what each provider discloses before intake.`,
     status: "live",
     mode: "built",
@@ -135,7 +135,7 @@ const items: PortfolioItem[] = [
   {
     num: "VI",
     name: "Longevity Ranked",
-    tagline: "Compare NAD+ and sermorelin providers, prices and plans.",
+    tagline: "Understand NAD+ and sermorelin before you spend.",
     body: "Longevity Ranked helps readers compare longevity-related care, starting with NAD+ and sermorelin. Separate treatment guides, provider reviews and price comparisons make the product, payment schedule and missing terms visible before a reader visits a provider. These are distinct categories, not interchangeable treatments. Commercial arrangements remain separate from the presentation of evidence and costs.",
     status: "live",
     mode: "built",

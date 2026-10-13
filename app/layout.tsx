@@ -115,14 +115,14 @@ const organizationJsonLd = {
       "@type": "Organization",
       name: "GLP-1 Picks",
       url: "https://glp1picks.com",
-      description: "Independent reviews of approved GLP-1 telehealth partners, comparing costs, care and transparency.",
+      description: "Find GLP-1 programs by medication, format and payment preference. Check first bills, renewals, care details and unresolved costs.",
     },
     {
       "@type": "Organization",
       name: "HRT Picks",
       url: "https://hrtpicks.com",
       description:
-        "Approved hormone telehealth affiliate partners compared through separate menopause HRT and men's TRT journeys, with treatment finders, cost and insurance guidance, provider reviews and transparency grades.",
+        "Find hormone care that fits your needs and budget, through separate menopause HRT and men's TRT journeys with treatment finders, cost and insurance guidance and provider reviews.",
     },
     {
       "@type": "Organization",
@@ -160,7 +160,7 @@ const organizationJsonLd = {
       name: "Longevity Ranked",
       url: "https://longevityranked.com",
       description:
-        "Longevity-related provider and price comparisons, starting with separate NAD+ and sermorelin categories. Treatment guides and source-linked reviews distinguish evidence, payment terms and commercial arrangements.",
+        "Understand NAD+ and sermorelin before spending. Treatment guides and source-linked provider reviews distinguish evidence, first payments, renewals and known limitations.",
     },
     ...developmentProjects.map((project) => ({
       "@type": "Organization",

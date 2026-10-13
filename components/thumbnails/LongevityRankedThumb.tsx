@@ -17,7 +17,7 @@ export function LongevityRankedThumb() {
         </div>
         <div className="px-[6cqw] py-[5cqw]">
           <p className="text-[1.8cqw] uppercase tracking-[0.15em] text-[#26342e]">Longevity care, compared</p>
-          <p className="mt-[3cqw] max-w-[80cqw] text-[6.6cqw] font-semibold leading-[.98] tracking-[-.07em]">Compare NAD+ and sermorelin providers, prices and plans.</p>
+          <p className="mt-[3cqw] max-w-[80cqw] text-[6.6cqw] font-semibold leading-[.98] tracking-[-.07em]">Understand NAD+ and sermorelin before you spend.</p>
           <p className="mt-[3cqw] max-w-[75cqw] text-[2.4cqw] leading-relaxed text-[#202722]/70">The product. The payment terms. The questions to ask.</p>
           <div className="mt-[4cqw] grid grid-cols-[.85fr_1.15fr] gap-[2cqw]">
             <div className="rounded-[2cqw] bg-[#c8dd68] p-[3cqw]">
